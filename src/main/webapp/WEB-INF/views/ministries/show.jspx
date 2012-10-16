@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_au_gov_nsw_records_search_model_Ministry" object="${ministry}" path="/ministries" z="mNXfn/eyuqKvbt7l0u9L4k5ldK8=">
+        <field:display field="title" id="s_au_gov_nsw_records_search_model_Ministry_title" object="${ministry}" z="wA1axLaOrCNK2+1Hp5fBW4AqG4s="/>
+        <field:display field="dateRange" id="s_au_gov_nsw_records_search_model_Ministry_dateRange" object="${ministry}" z="wA1axLaOrCNK2+1Hp5fBW4AqG4s="/>
+        <field:display date="true" dateTimePattern="${ministry_registereddate_date_format}" field="registeredDate" id="s_au_gov_nsw_records_search_model_Ministry_registeredDate" object="${ministry}" render="false" z="user-managed"/>
+        <field:display date="true" dateTimePattern="${ministry_startdate_date_format}" field="startDate" id="s_au_gov_nsw_records_search_model_Ministry_startDate" object="${ministry}" render="false" z="user-managed"/>
+        <field:display date="true" dateTimePattern="${ministry_enddate_date_format}" field="endDate" id="s_au_gov_nsw_records_search_model_Ministry_endDate" object="${ministry}" render="false" z="user-managed"/>
+    </page:show>
+</div>

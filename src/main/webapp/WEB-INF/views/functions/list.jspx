@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_au_gov_nsw_records_search_model_Functionn" items="${functionns}" z="GDAyWQZ8rdc8p7NsgAmMZjZlU/k=">
+        <table:table data="${functionns}" id="l_au_gov_nsw_records_search_model_Functionn" path="/functions" typeIdFieldName="functionNumber" z="N05nA+l7NyMOYXm9x01iw/EgiEA=">
+            <table:column id="c_au_gov_nsw_records_search_model_Functionn_title" property="title" z="CtM1Ymc2JXSX5OU8dGokuwSrFmw="/>
+            <table:column id="c_au_gov_nsw_records_search_model_Functionn_abolition" property="abolition" render="false" z="user-managed"/>
+            <table:column id="c_au_gov_nsw_records_search_model_Functionn_descriptiveNote" property="descriptiveNote" render="false" z="user-managed"/>
+            <table:column date="true" dateTimePattern="${functionn_registereddate_date_format}" id="c_au_gov_nsw_records_search_model_Functionn_registeredDate" property="registeredDate" render="false" z="user-managed"/>
+            <table:column date="true" dateTimePattern="${functionn_startdate_date_format}" id="c_au_gov_nsw_records_search_model_Functionn_startDate" property="startDate" render="false" z="user-managed"/>
+            <table:column id="c_au_gov_nsw_records_search_model_Functionn_startDateQualifier" property="startDateQualifier" render="false" z="user-managed"/>
+        </table:table>
+    </page:list>
+</div>

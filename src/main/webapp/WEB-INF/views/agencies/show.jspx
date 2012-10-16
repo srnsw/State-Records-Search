@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_au_gov_nsw_records_search_model_Agency" object="${agency}" path="/agencies" z="h5Dlc/nqRPt4kcsXg7ezG4yWYEg=">
+        <field:display field="title" id="s_au_gov_nsw_records_search_model_Agency_title" object="${agency}" z="brh+jWnhB+zw06vwntX0RqTTNVM="/>
+        <field:display field="dateRange" id="s_au_gov_nsw_records_search_model_Agency_dateRange" object="${agency}" z="tg4mMzd3bUmy6Se9FZYVzn6LR24="/>
+        <field:display field="category" id="s_au_gov_nsw_records_search_model_Agency_category" object="${agency}" z="zkh9OGyYO45sxK0/BZM6fQCKHo4="/>
+        <field:display field="creation" id="s_au_gov_nsw_records_search_model_Agency_creation" object="${agency}" z="TZPjSUM23M1+FYvn01fOZZ35H6Y="/>
+        <field:display field="abolition" id="s_au_gov_nsw_records_search_model_Agency_abolition" object="${agency}" z="iDQuETMSj2dKeZdCbHDs50bAN/8="/>
+        <field:display field="administrativeHistoryNote" id="s_au_gov_nsw_records_search_model_Agency_administrativeHistoryNote" object="${agency}" z="XJgzikaXTx19fQN3qiDwza/b3J8="/>
+        <field:display date="true" dateTimePattern="${agency_startdate_date_format}" field="startDate" id="s_au_gov_nsw_records_search_model_Agency_startDate" object="${agency}" render="false" z="user-managed"/>
+        <field:display field="startDateQualifier" id="s_au_gov_nsw_records_search_model_Agency_startDateQualifier" object="${agency}" render="false" z="user-managed"/>
+        <field:display date="true" dateTimePattern="${agency_enddate_date_format}" field="endDate" id="s_au_gov_nsw_records_search_model_Agency_endDate" object="${agency}" render="false" z="user-managed"/>
+        <field:display field="endDateQualifier" id="s_au_gov_nsw_records_search_model_Agency_endDateQualifier" object="${agency}" render="false" z="user-managed"/>
+    </page:show>
+</div>

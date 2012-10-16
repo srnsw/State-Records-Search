@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_au_gov_nsw_records_search_model_Organisation" items="${organisations}" z="B8sVGIxexKNqwHgUudE+yKsjtSA=">
+        <table:table data="${organisations}" id="l_au_gov_nsw_records_search_model_Organisation" path="/organisations" typeIdFieldName="organisationNumber" z="2Qqz+lJEnTk3FRcQ1Gt/89U5Jkg=">
+            <table:column id="c_au_gov_nsw_records_search_model_Organisation_title" property="title" z="ngfz6hXpl6IZylwhBsUh/UE+Tjg="/>
+            <table:column render="false" id="c_au_gov_nsw_records_search_model_Organisation_administrativeHistoryNote" property="administrativeHistoryNote" z="pRwcCduUCbhiUavtc5w0mOyH2j4="/>
+            <table:column render="false" date="true" dateTimePattern="${organisation_startdate_date_format}" id="c_au_gov_nsw_records_search_model_Organisation_startDate" property="startDate" z="VUo/6s5OuUseSlpBTbGFDypYD8I="/>
+            <table:column render="false" id="c_au_gov_nsw_records_search_model_Organisation_startDateQualifier" property="startDateQualifier" z="cDMRy/pAq0amoxBvDOvhApdFvtk="/>
+            <table:column render="false" date="true" dateTimePattern="${organisation_enddate_date_format}" id="c_au_gov_nsw_records_search_model_Organisation_endDate" property="endDate" z="oIup34ZNotds/4t9d6KKWDf/k5Q="/>
+            <table:column render="false" id="c_au_gov_nsw_records_search_model_Organisation_endDateQualifier" property="endDateQualifier" z="usBKmBAKnVWYVal9D33lKJgOk6U="/>
+        </table:table>
+    </page:list>
+</div>

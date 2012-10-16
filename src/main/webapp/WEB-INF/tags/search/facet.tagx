@@ -1,0 +1,29 @@
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:spring="http://www.springframework.org/tags" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
+  <jsp:output omit-xml-declaration="yes" />
+  
+  <jsp:directive.attribute name="facets" type="java.util.Collection" required="true" rtexprvalue="true" description="Facet results" />
+  <jsp:directive.attribute name="baseURL" type="java.lang.String" required="true" rtexprvalue="true" description="base URL" />
+  
+  <div>
+  	<h4>Filter by date</h4>
+  </div>
+  
+  <c:forEach items="${facets}" var="facet">
+  		<div>
+	  		<h4>Filter by ${facet.getLabel()}</h4>
+	  		
+				<c:forEach items="${facet.getItems()}" var="item">
+				 <spring:url value="${baseURL}" var="url">
+				  <spring:param name="q" value="${q}" />
+				  <!-- if parameter does not present -->
+	        <spring:param name="${facet.getLabel()}" value="${item.getLabel()}" />
+	       </spring:url>
+	      	<p>
+	      	 <util:entityicon type="${facet.getLabel()}"></util:entityicon> 
+	      	 <a href="${url}"> ${item.getLabel()} </a>  (${item.getCount()}) 
+	      	</p>
+	      </c:forEach>
+      </div>
+  </c:forEach >
+  
+</jsp:root>

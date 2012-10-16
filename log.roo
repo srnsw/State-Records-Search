@@ -1,0 +1,70 @@
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-10-08 08:12:25
+project --topLevelPackage au.gov.nsw.records.search --projectName Search --java 6 --packaging WAR
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-10-08 08:12:26
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-10-08 08:12:51
+backup
+persistence setup --database MSSQL --provider HIBERNATE 
+entity jpa --class au.gov.nsw.records.search.model.Person
+field string --fieldName surname
+field string --fieldName givenName
+backup
+web mvc setup 
+web mvc scaffold --class ~.web.PersonController
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-10-08 08:31:39
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-10-08 08:34:51
+backup
+backup
+backup
+security setup
+focus --class ~.model.Person
+field date --fieldName birthDate --type java.util.Date
+entity jpa --class au.gov.nsw.records.search.model.Activity
+web mvc scaffold --class ~.web.ActivityController
+entity jpa --class au.gov.nsw.records.search.model.Serie
+web mvc scaffold --class ~.web.SerieController
+entity jpa --class au.gov.nsw.records.search.model.PreceedingSerie
+field other --type ~.model.Serie --fieldName preceeding
+field other --type ~.model.Serie --fieldName series
+focus --class ~.model.Serie
+field other --type ~.model.PreceedingSerie --fieldName preceedingSeries --class ~.model.PreceedingSerie
+entity jpa --class au.gov.nsw.records.search.model.ControllingSerie
+entity jpa --class au.gov.nsw.records.search.model.RelatedSerie
+entity jpa --class au.gov.nsw.records.search.model.PrecedingSerie
+entity jpa --class au.gov.nsw.records.search.model.Agency
+web mvc scaffold --class ~.web.AgencyController
+entity jpa --class au.gov.nsw.records.search.model.SerieSucceedingAgency
+entity jpa --class au.gov.nsw.records.search.model.SerieCreatingAgency
+entity jpa --class au.gov.nsw.records.search.model.Item
+web mvc scaffold --class ~.web.ItemController
+entity jpa --class au.gov.nsw.records.search.model.Portfolio
+web mvc scaffold --class ~.web.PortfolioController
+entity jpa --class au.gov.nsw.records.search.model.Ministry
+web mvc scaffold --class ~.web.MinistryController
+backup
+solr setup 
+solr add --class ~.model.Item
+solr add --class ~.model.Person
+backup
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-10-10 11:06:26
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-10-10 11:06:52
+web mvc controller --class ~.web.SearchController
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-10-10 15:19:57
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-10-10 15:20:21
+backup
+json add --class ~.model.Activity
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-10-11 16:23:36
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-10-15 10:07:28
+// [failed] entity jpa --class au.gov.nsw.records.search.model.Function
+entity jpa --class au.gov.nsw.records.search.model.Functionn
+backup
+web mvc scaffold --class ~.web.FunctionController
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-10-15 10:27:47
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-10-15 10:27:57
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-10-15 10:32:20
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-10-15 10:35:10
+entity jpa --class au.gov.nsw.records.search.model.Organisation
+web mvc controller --class ~.web.OrganisationController
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-10-16 13:10:27
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-10-16 13:10:55
+focus --class ~.model.Organisation
+web mvc scaffold --class ~.web.OrganisationController

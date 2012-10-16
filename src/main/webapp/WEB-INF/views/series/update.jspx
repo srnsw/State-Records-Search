@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_au_gov_nsw_records_search_model_Serie" idField="seriesNumber" modelAttribute="serie" path="/series" versionField="none" z="klfGEJoNpL0lEm51tk9Mz25ZzVU=">
+        <field:input field="title" id="c_au_gov_nsw_records_search_model_Serie_title" z="UTKeGKdopHiJ+Ch3mqRvcXnAPAk="/>
+        <field:input field="descriptiveNote" id="c_au_gov_nsw_records_search_model_Serie_descriptiveNote" z="13SSAQasV0IVUmmDlbprUZpoLZQ="/>
+        <field:input field="format" id="c_au_gov_nsw_records_search_model_Serie_format" z="7Xr9NckmifBQxuOpE6yYGrA88J4="/>
+        <field:input field="arrangement" id="c_au_gov_nsw_records_search_model_Serie_arrangement" z="vsnWeffn62OjGHtO9hr2PE96Y2g="/>
+        <field:input field="copies" id="c_au_gov_nsw_records_search_model_Serie_copies" z="/KlT+aWdAXAGQ5/ByduyEGYOQno="/>
+        <field:input field="seriesControlStatus" id="c_au_gov_nsw_records_search_model_Serie_seriesControlStatus" z="zSbs3TCALbeOalxLMdW4UCUMiP8="/>
+        <field:input field="repository" id="c_au_gov_nsw_records_search_model_Serie_repository" z="r8pbragw5TFE6Jg4fRpPxqQKskE="/>
+        <field:datetime dateTimePattern="${serie_startdate_date_format}" field="startDate" id="c_au_gov_nsw_records_search_model_Serie_startDate" z="h04QF+5IKKig1pmSGWFDTwuK6Tw="/>
+        <field:input field="startDateQualifier" id="c_au_gov_nsw_records_search_model_Serie_startDateQualifier" z="8hbIsa3lh1SONfnySrgQ9Wd9/3g="/>
+        <field:datetime dateTimePattern="${serie_enddate_date_format}" field="endDate" id="c_au_gov_nsw_records_search_model_Serie_endDate" z="Zl5wxjp1HIGyS7ZheXfbCabCEHw="/>
+        <field:input field="endDateQualifier" id="c_au_gov_nsw_records_search_model_Serie_endDateQualifier" z="3MFff03NKiHtBuX3norO4UTNZps="/>
+        <field:datetime dateTimePattern="${serie_contentstartdate_date_format}" field="contentStartDate" id="c_au_gov_nsw_records_search_model_Serie_contentStartDate" z="529dh4Sx1keR1y6UROuZc5MVYVc="/>
+        <field:input field="contentStartDateQualifier" id="c_au_gov_nsw_records_search_model_Serie_contentStartDateQualifier" z="412E7f6EyxRIk3jfxLycs/6bRAs="/>
+        <field:datetime dateTimePattern="${serie_contentenddate_date_format}" field="contentEndDate" id="c_au_gov_nsw_records_search_model_Serie_contentEndDate" z="wkJl5MrcAWX9ysfMPmorX7oYFPo="/>
+        <field:input field="contentEndDateQualifier" id="c_au_gov_nsw_records_search_model_Serie_contentEndDateQualifier" z="6k7jC35jdsZtS1hQm1sNzHe7yn4="/>
+        <field:select field="preceedingSeries" id="c_au_gov_nsw_records_search_model_Serie_preceedingSeries" itemValue="seriesNumber" items="${series}" multiple="true" path="/series" z="nEknZlbHA2iPgwqSwHg70Is8/oA="/>
+        <field:select field="relatedSeries" id="c_au_gov_nsw_records_search_model_Serie_relatedSeries" itemValue="seriesNumber" items="${series}" multiple="true" path="/series" z="UhzyYcJuI1kMNRTvzA3v42puqHk="/>
+    </form:update>
+</div>

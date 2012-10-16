@@ -1,0 +1,93 @@
+<div id="header" xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:sc="http://www.springframework.org/security/tags"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />
+	<jsp:output omit-xml-declaration="yes" />
+
+	<div id="portal-top">
+	  <spring:url var="banner" value="/resources/images/banner-graphic.png" />
+		<a href="http://www.records.nsw.gov.au"><img src="${banner}" alt="State Records Home" /></a>
+		<div id="portal-header">
+			<p id="skip">
+			  <spring:url var="font_small" value="/resources/images/icon_font_small.png" />
+			  <spring:url var="font_big" value="/resources/images/icon_font_big.png" />
+			  <spring:url var="printer" value="/resources/images/printer.png" />
+				<span id="document-action-textsmall"> 
+				  <a href="javascript:resizeDown();" title="Decrease text size"><img src="${font_small}" alt="Decrease text size" /> </a>
+				</span>|
+				<span id="document-action-textbig"> 
+					<a href="javascript:resizeUp();" title="Increase text size"><img src="${font_big}" alt="Increase text size" /></a>
+				</span>|
+				<span id="document-action-print"> 
+					<a href="javascript:this.print();" title="Print this page"><img src="${printer}" alt="Print this page" /></a>
+				</span>
+			</p>
+
+			<div id="portal-searchbox">
+				<form name="searchform" action="http://www.records.nsw.gov.au/search" id="livesearch0">
+					<label for="searchGadget" class="hiddenStructure">Search</label>
+					<div class="LSBox">
+						<a href="http://www.records.nsw.gov.au/resolveuid/140afb41826b8345ae49241109d54912">Collection Search</a> or 
+						<input name="SearchableText" type="text" size="15" title="site search" accesskey="4" class="inputLabel inputLabelActive" id="searchGadget"
+							autocomplete="off" /> 
+						<input type="submit" value="Go »" />
+							
+						<div class="LSResult" id="LSResult" style="">
+							<div class="LSShadow" id="LSShadow"></div>
+						</div>
+					</div>
+				</form>
+
+				<div id="portal-advanced-search" class="hiddenStructure">
+					<a href="http://www.records.nsw.gov.au/search_form"> Advanced Search… </a>
+				</div>
+
+			</div>
+
+		</div>
+				<ul id="nav">
+				<li><a href="http://www.records.nsw.gov.au/">Home</a></li>
+				<li><a href="http://www.records.nsw.gov.au/resolveuid/0c86d456f8a85f2a77faeedc6ec9709d">About</a></li>
+				<li><a href="http://www.records.nsw.gov.au/resolveuid/5f109f7f358a6c7934ff545e7a29f5e9">Contact</a></li>
+				<li><a href="http://www.records.nsw.gov.au/resolveuid/fd06e202db6211a8585790735c397404">Visit</a></li>
+				<li><a href="http://www.records.nsw.gov.au/resolveuid/2aed68338d1b20ad0c42712eb669ac47">The State Archives Collection</a></li>
+				<li><a href="http://www.records.nsw.gov.au/resolveuid/31b969b40364474f676180e6888e7f12">Recordkeeping NSW public sector</a></li>
+				<li><a href="http://www.records.nsw.gov.au/resolveuid/15b2f682df4a62742b9507969deb8cd4">Government Records Repository</a></li>
+			</ul>
+	</div>
+	<div id="portal-personaltools-wrapper">
+			<h5 class="hiddenStructure">Personal tools</h5>
+		</div>
+
+		<ul id="portal-languageselector">
+			<li class="currentLanguage language-en"><a href="http://www.records.nsw.gov.au/state-archives/indexes-online/indexes-online/switchLanguage?set_language=en"
+				title="English">English</a></li>
+		</ul>
+
+
+		<div id="portal-breadcrumbs">
+			<span id="breadcrumbs-you-are-here">You are here ::</span> 
+			<a href="http://www.records.nsw.gov.au">Home</a> 
+			<span class="breadcrumbSeparator"> → </span> 
+			<a href="#">Open Data</a> 
+			<span class="breadcrumbSeparator"> → </span> 
+				Search 
+			<span class="alignright"> 
+			<sc:authorize access="isAuthenticated()">
+					<spring:message code="security_logedin_as" />
+					<sc:authentication property="principal.username" />
+					<c:out value=" | " />
+					<span> 
+					  <spring:url value="/resources/j_spring_security_logout" var="logout" /> 
+					  <a href="${logout}"> <spring:message code="security_logout" /> </a>
+					</span>
+				</sc:authorize> 
+				<sc:authorize access="not isAuthenticated()">
+				  <spring:url var="login" value="/login" />
+					<a href="${login}"> <spring:message code="security_login" /> </a>
+				</sc:authorize>
+			</span>
+		</div>
+</div>

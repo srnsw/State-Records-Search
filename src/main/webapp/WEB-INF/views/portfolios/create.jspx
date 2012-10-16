@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_au_gov_nsw_records_search_model_Portfolio" modelAttribute="portfolio" path="/portfolios" render="${empty dependencies}" z="zgeaz3xsQLGH56v2mEDqp89uiO8=">
+        <field:input field="title" id="c_au_gov_nsw_records_search_model_Portfolio_title" z="PJ7RyodpyFic+QHDr6kAjkbzjww="/>
+        <field:input field="descriptiveNote" id="c_au_gov_nsw_records_search_model_Portfolio_descriptiveNote" z="y11blnEzhDUgSXamCTA+oiffm/Y="/>
+        <field:datetime dateTimePattern="${portfolio_registereddate_date_format}" field="registeredDate" id="c_au_gov_nsw_records_search_model_Portfolio_registeredDate" z="3G5SluKA1XVWBXl9GplkZAXQgjM="/>
+        <field:datetime dateTimePattern="${portfolio_startdate_date_format}" field="startDate" id="c_au_gov_nsw_records_search_model_Portfolio_startDate" z="bpr4qWhHZzrtYhgObEUyD6VdODE="/>
+        <field:input field="startDateQualifier" id="c_au_gov_nsw_records_search_model_Portfolio_startDateQualifier" z="SgITm1vZ/vkmAVWEEqXxzDz7Auo="/>
+        <field:datetime dateTimePattern="${portfolio_enddate_date_format}" field="endDate" id="c_au_gov_nsw_records_search_model_Portfolio_endDate" z="eRe1qRo7As94/UVRQump13WIXN0="/>
+        <field:input field="endDateQualifier" id="c_au_gov_nsw_records_search_model_Portfolio_endDateQualifier" z="wz2hpZEr95C7Xt1oIRCJ/RexdiM="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_au_gov_nsw_records_search_model_Portfolio" render="${not empty dependencies}" z="rkVAXkJFbJ/Xa0yFZnw6N83CNtQ="/>
+</div>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_au_gov_nsw_records_search_model_Item" modelAttribute="item" path="/items" versionField="none" z="97ID7qErsoIU0F+jBsuPFDwk7bg=">
+        <field:select field="seriesNumber" id="c_au_gov_nsw_records_search_model_Item_seriesNumber" itemValue="seriesNumber" items="${series}" path="/series" z="0VZ5msop6ZzlOAwesbszozVDqt8="/>
+        <field:input field="itemNumberOrControlSymbol" id="c_au_gov_nsw_records_search_model_Item_itemNumberOrControlSymbol" z="hYD9SC4lB3KY48bRCew7Y1CKR9k="/>
+        <field:input field="title" id="c_au_gov_nsw_records_search_model_Item_title" z="zf/ngyi/BSwmMuyWAJ9gwQ5VRPw="/>
+        <field:input field="descriptiveNote" id="c_au_gov_nsw_records_search_model_Item_descriptiveNote" z="PrhK56j9j8NsdAuaMP9A4jnY704="/>
+        <field:input field="availability" id="c_au_gov_nsw_records_search_model_Item_availability" z="j0KONVrj/jAUQVXNOWEihmNZniU="/>
+        <field:datetime dateTimePattern="${item_startdate_date_format}" field="startDate" id="c_au_gov_nsw_records_search_model_Item_startDate" z="k5cv6yeuMAVCBqJIOSskJQ01vNQ="/>
+        <field:datetime dateTimePattern="${item_enddate_date_format}" field="endDate" id="c_au_gov_nsw_records_search_model_Item_endDate" z="W8/90wOU4aL/b1rTHkm/zyBEsOU="/>
+        <field:input field="seriesType" id="c_au_gov_nsw_records_search_model_Item_seriesType" z="Fv4kY5luTsCVIF8hTW6bNy77vvc="/>
+        <field:input field="accessDirectionNumber" id="c_au_gov_nsw_records_search_model_Item_accessDirectionNumber" z="urtPHn+r6JZPTatC4M3IJkNfnpI="/>
+    </form:update>
+</div>

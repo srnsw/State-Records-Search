@@ -1,0 +1,431 @@
+
+/* - print.css - */
+@media print {
+/* http://www.records.nsw.gov.au/portal_css/print.css?original=1 */
+body {font-family:"Times New Roman",Georgia,Garamond,serif; font-size:12pt !important;}
+h1, h2, h3, h4, h5, h6 {border:none; font-family:Baskerville,Georgia,Garamond,Times,serif;}
+div, p, ul, dl, ol {width:auto;}
+ul, ol, dl {padding-right:0.5em;}
+ul {list-style-type:square;}
+.documentDescription {font-weight:700;}
+fieldset td, td {font-size:12pt;}
+pre {border:1pt dotted #000; white-space:pre; font-size:8pt; overflow:auto; padding:1em 0;}
+table.listing, table.listing td {border:1pt solid #000; border-collapse: collapse;}
+a {color:#000 !important; padding:0 !important; text-decoration:none !important;}
+a:link, a:visited {color:#520; background:transparent;}
+/* */
+div.pageBreak {page-break-before:always;}
+/* */
+#content a:link:after, #content a:visited:after {content: " [" attr(href) "] "; display: none}
+/* */
+div.top,
+#portal-top,
+#portal-logo,
+#portal-siteactions,
+#portal-languageselector,
+.hiddenStructure,
+#portal-searchbox,
+#portal-globalnav,
+#portal-personaltools,
+#portal-breadcrumbs,
+#portal-column-one,
+#portal-column-two,
+.contentViews,
+.contentActions,
+.help,
+.legend,
+.portalMessage,
+.documentActions,
+.documentByLine,
+.netscape4,
+#portal-footer,
+#flinks, .footerlinks, .footerlinks2,
+#portal-colophon,
+.skipnav,
+.visualNoPrint,
+#kss-spinner {display:none;}
+}
+
+
+/* - deprecated.css - */
+@media screen {
+/* http://www.records.nsw.gov.au/portal_css/deprecated.css?original=1 */
+/* */
+/* */
+/* */
+/* */
+
+}
+
+
+/* - navtree.css - */
+@media screen {
+/* http://www.records.nsw.gov.au/portal_css/navtree.css?original=1 */
+/* */
+/* */
+.portletNavigationTree {list-style: none !important;list-style-image: none !important; line-height: 1.2em; background: transparent;}
+.portletNavigationTree .portletHeader {border: 0; border-bottom: 1px solid #ccc; background: #4f4f4f; font-size: 1.1em; padding-left: 5px;}
+.portletNavigationTree .portletHeader a, .portletNavigationTree .portletHeader a:hover  {color: #fff;}
+.portletNavigationTree .portletItem {padding: 0; margin: 0;border: 0;background: transparent; color: #246;}
+.navTree {list-style: none; list-style-image: none; margin-top: 0; }
+.navTree li {margin-bottom: 0;}
+.navTreeItem {background: transparent; padding: 0; margin: 0; font-size: 99%;}
+.navTreeItem a, dd.portletItem .navTreeItem a {border: 1px solid #ccc; border-top-color: #fff; display: block; text-decoration: none; padding: 5px 0.1em 5px 1em; border-right: 0; border-left: 0; color: #246; font-weight: 400; }
+.navTreeItem a:hover,
+dd.portletItem .navTreeItem a:hover {background: #fff url(../images/nav-bg.jpg) repeat-y 0 0; color: #961c1d; border-bottom-color: transparent; border-left: 0;}
+.navTreeItem a:active, .navTree a:focus,
+dd.portletItem .navTreeItem a:active, dd.portletItem .navTreeItem a:focus {background-color: #246; background-image: none; color: #fff; border-color: #686C4B;}
+.navTreeCurrentItem {background-color: #E1EAF5; border: 0 !important;}
+li.navTreeCurrentItem {display: block; padding: 0 0 0 1px; margin: 0 0 2px -1px;}
+li.navTreeCurrentItem a,
+li.navTreeCurrentItem a:hover {display: block; border: 1px solid #dee7ec; min-height: 1.6em; line-height: 1.6em; height: auto; padding-left: 2em; border-right: 0;}
+/* */
+* html li.navTreeCurrentItem a, * html li.navTreeCurrentItem a:hover {height: 1.6em;}
+.navTreeLevel0 {margin: 0;}
+.navTreeLevel1, .navTreeLevel2, .navTreeLevel3, .navTreeLevel4, .navTreeLevel5 {margin-left: 0.75em;}
+/* */
+}
+
+
+/* - invisibles.css - */
+@media screen {
+/* http://www.records.nsw.gov.au/portal_css/invisibles.css?original=1 */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+ul.visualNoMarker, ol.visualNoMarker {list-style-type: none; list-style-image: none; margin: 0.5em 0 0 0;}
+.visualOverflow {overflow: auto; margin: 0 0 1em 0;}
+.visualOverflow pre, .visualOverflow table, .visualOverflow img {margin: 0;}
+/* */
+.hiddenStructure {display: block; background: transparent; background-image: none; /* */ border: none; height: 1px; overflow: hidden; padding: 0; margin: -1px 0 0 -1px; width: 1px;}
+.contentViews .hiddenStructure, .contentActions .hiddenStructure {position: absolute; top: -200px; left: -200px;}
+.hiddenLabel {display: block; background: transparent; background-image: none; /* */ border: none; height: 1px; overflow: hidden; padding: 0; margin: -1px 0 0 -1px; width: 1px;}
+/* */
+.visualClear {display: block; clear: both;}
+/* */
+}
+
+
+/* - forms.css - */
+@media screen {
+/* http://www.records.nsw.gov.au/portal_css/forms.css?original=1 */
+/* */
+/* */
+textarea {font:100% Monaco, "Courier New", Courier, monospace;border:1px solid #ddd; border-color:#666 #ddd #ddd #666; color:Black; background:#fff url(http://www.records.nsw.gov.au/input_background.gif) repeat-x; width:100%;}
+input {font-family:Verdana, Lucida, Helvetica, Arial, sans-serif; visibility:visible; border:1px solid #ddd; border-color:#666 #ddd #ddd #666; color:Black; vertical-align:middle; background:#fff url(http://www.records.nsw.gov.au/input_background.gif) repeat-x;}
+/* */
+.noborder, .documentEditable * .noborder {border:none; margin:0; background:none; background-color:transparent;}
+input[type=checkbox] {border:none; margin:0; background:none; background-color:transparent;}
+#searchGadget {border:1px solid #ccc; margin:2px; padding:3px; font-weight:600; font-size:1.1em;}
+button {font-family:Verdana, Lucida, Helvetica, Arial, sans-serif; visibility:visible; border:1px solid #ccc; color:Black; vertical-align:middle; background-color:#dee7ec; padding:1px; cursor:pointer; font-size:90%; text-transform:none;}
+select {vertical-align:top;}
+form {border:none; margin:0;}
+fieldset { border:1px solid #ccc; margin:1em 0; padding:0 1em 1em; line-height:1.5em; width:auto;-moz-border-radius:10px; -webkit-border-radius: 10px; border-radius:10px;}
+legend {background:White; padding:0.5em; font-size:1.3em; color:#069;}
+label {font-weight:700; line-height: 180% }
+optgroup { font-style:normal; font-weight:700; color:#999; padding-left:0.25em;}
+option {color:#000;}
+optgroup > option {padding:0 0.25em 0 1em;}
+dl.enableFormTabbing dd {margin-left:0; padding-top:2em;}
+#login-form {width:50%; margin:0 auto; padding-bottom:30%;}
+#login-form .field {clear:none;}
+#login-form label {}
+#login-form input {font-size:150%;}
+#login-form input.context {padding:1px 10px 1px 20px; background-position:9px 5px; margin-bottom:1em;}
+#login-form #__ac_password {margin-left: 28px; }
+#login-form #__ac_name {margin-left: 10px; }
+#login-form .formControls {margin-left: 110px}
+#forgotten-password {float:right; width:35%; margin:0 1em;}
+.standalone, .documentEditable * .standalone {background:#dee7ec url(http://www.records.nsw.gov.au/linkOpaque.gif) 9px 1px no-repeat; color:Black; cursor:pointer; font-size:90%; padding:1px 1px 1px 15px; text-transform:none; border:1px solid #ccc;}
+.context, .formControls .actionButtons .button, .documentEditable * .context {background:transparent url(http://www.records.nsw.gov.au/linkTransparent.gif) 9px 1px no-repeat; color:Black; cursor:pointer; font-size:90%; padding:1px 1px 1px 15px; text-transform:none; border:1px solid #ccc;}
+.destructive, .documentEditable * .destructive {background:#ffce7b url(http://www.records.nsw.gov.au/linkTransparent.gif) 9px 1px no-repeat; border:1px solid #ffa500; color:Black; cursor:pointer; font-size:90%; padding:1px 1px 1px 15px; text-transform:none; border:1px solid #ccc;}
+input.searchButton {margin-bottom:1px ! important; color:Black; font-size:90%; background:White url(http://www.records.nsw.gov.au/search_icon.gif) 2px 1px no-repeat; cursor:pointer; padding:1px 1px 1px 19px; text-transform:none; border:1px solid #ccc;}
+.searchSection {color:#76797c;margin-top:0.25em;}
+.searchSection label:hover {color:Black;}
+/* */
+.field {top:0; left:0; margin:0 1em 1em 0; clear:both;}
+.field .field {margin:0;}
+.fieldRequired {background:url(http://www.records.nsw.gov.au/required.gif) center left no-repeat; padding:0 0 0 8px; color:White;}
+.fieldUploadFile {text-align:right; margin-right:0.75em; display:none;}
+.fieldTextFormat {text-align:right; margin-right:0.75em}
+.formHelp {font-size:90%; color:#4f4f4f; margin:0 0 0.2em 0; line-height: 160%}
+.formHelp:hover {color:Black; cursor:default;}
+/* */
+div.error {background-color:#fdc; border:1px solid #d00; padding:0.5em; margin:0 0 1em 0; width:95%;}
+.error .fieldRequired {color:#d00;}
+/* */
+#archetypes-fieldname-title input, input#form\.title {font-size:160%; font-family:"Lucida Grande", Verdana, Lucida, Helvetica, Arial, sans-serif; font-weight:400; width:99%;}
+#archetypes-fieldname-description textarea, textarea#form\.description {font:100% Verdana, Lucida, Helvetica, Arial, sans-serif; font-weight:700;}
+input.inputLabelActive {color:#76797c;}
+textarea#form\.description {height:6em; width:99%;}
+tr.selected {background:#ffa;}
+.kupu-save-message {color:#fff; font-weight:700; background-color:red; padding:0.3em; position:fixed; top:0; right:0; z-index:999;}
+/* */
+}
+
+
+/* - ploneKss.css - */
+@media screen {
+/* http://www.records.nsw.gov.au/portal_css/ploneKss.css?original=1 */
+#kss-spinner {
+display:none;
+width: 20px;
+height: 20px;
+position: fixed;
+background-position: center center;
+top: 50%;
+left: 50%;
+margin-top: -10px;
+margin-left: -10px;
+}
+.formlibInlineEditable,
+.inlineEditable {
+padding: 1px;
+display: block;
+}
+body.kssActive .inlineEditable:hover,
+body.kssActive .formlibInlineEditable:hover {
+padding: 0;
+border: 1px solid #ddd;
+border-color: #666 #ddd #ddd #666;
+cursor: text;
+background: White url(input_background.png) repeat-x;
+}
+body.kssActive .inlineEditable a:hover,
+body.kssActive .formlibInlineEditable a:hover {
+cursor: pointer;
+}
+body.kssActive .formlibInlineForm:hover,
+body.kssActive .formlibInlineForm a:hover {
+padding: 1px;
+border: none;
+cursor: default;
+background: none;
+}
+.inlineForm .formHelp,
+.inlineForm .fieldRequired,
+.inlineForm label {
+display: none;
+}
+/* */
+.inlineForm .ArchetypesSelectionWidget label {
+display: inline;
+}
+.inlineForm #archetypes-fieldname-title input,
+.inlineForm #archetypes-fieldname-title {
+font-size: 100%;
+}
+/* */
+h1 div.formControls input {
+font-size: 55% !important;
+}
+}
+
+
+/* - srnsw.css - */
+/* http://www.records.nsw.gov.au/portal_css/srnsw.css?original=1 */
+/* */
+.section-draft-home h1 {display: none;}
+.section-draft-home #portal-breadcrumbs, .section-front-page #portal-breadcrumbs {display:none}
+.listleft {float:left; width: 47%; }
+.listright {float:right; width: 46%; }
+.listleft ul li { }
+.listright ul li {}
+#options {width:910px; border-bottom:3px solid #B8474B; height:258px; }
+#options ul {background-image: none; margin-left:0; margin-top:0}
+#options ul li {float:left; padding: 0 10px; width:250px; height: 235px; margin:0 15px;}
+#options li a, #optionstwo li a, #collectionsearch li a {border-bottom: 0; background:transparent; cursor: pointer}
+#options ul #search {background: #f4f4f4 url(../images/search-online) no-repeat 50% 0; border-bottom:2px solid #B8B447;}
+#options ul #collection {background: #f4f4f4 url(../images/collection-gloves) no-repeat 50% 60%; border-bottom:2px solid #B8474B;}
+#options ul #recordkeeping {background: #f4f4f4 url(../images/recordkeeping) no-repeat 50% 0; border-bottom:2px solid #4783B8;}
+.heading-opt {letter-spacing: .1em; font: 700 160% trebuchet, arial, sans-serif; position:relative; top: 147px; left: -10px; padding: 10px 10px 0 10px; width: 100%; z-index:1;}
+.description-opt {position:relative; top: 147px; left: -10px; padding:5px 10px 10px 10px;width: 100%; font: 700 120% helvetica, arial, sans-serif; }
+.heading-opt, .description-opt {color: #fff; font-weight: 700; display: block; filter: alpha(opacity=95); -moz-opacity:0.95; opacity:0.95;  }
+.heading-opt a:focus, .description-opt a:focus {background:transparent}
+#search .description-opt, #search .heading-opt {background:#B8B447;}
+#collection .description-opt, #collection .heading-opt {background:#B8474B;}
+#recordkeeping .description-opt, #recordkeeping .heading-opt {background:#4783B8;}
+#optionstwo {width:720px; border-bottom:2px solid #B8474B; height:265px; padding: 10px 0;}
+#optionstwo img {border:0}
+#optionstwo ul {background-image: none; margin-left:15px; }
+#collectionsearch ul {background-image: none; margin-left:35px; }
+#optionstwo ul li {float:left; padding: 0 10px; width:295px; height: 245px; margin:0 15px; }
+#optionstwo ul .general {padding: 10px 10px 0 15px; line-height: 170%; color: #000; background: #fff url(../images/sidebar-shadow) repeat-y 0 0; border:1px double #ccc; }
+#optionstwo .heading-opt {color: #000;}
+#collectionsearch ul .indexes, #collectionsearch ul .photos,
+#collectionsearch ul .ai,
+#collectionsearch ul .api,
+#collectionsearch ul .gaols,
+#collectionsearch ul .aib-82,
+#collectionsearch ul .aib-124,
+#collectionsearch ul .crime-gallery,
+#collectionsearch ul .deceased {padding: 10px 10px 0 10px; line-height: 160%; color: #fff; margin: 10px}
+#collectionsearch ul .indexes {background: #fff url(../images/search-indexes) no-repeat 50% -60%}
+#collectionsearch ul .photos {background: #fff url(../images/shb) no-repeat 30% 15%}
+#collectionsearch ul .ai {background: #f7f7f7 url(state-archives/images/archives-investigator/aib52-1.gif) no-repeat 50% 20%}
+#collectionsearch ul .api {background: #fff url(../images/search-api) no-repeat 50% 0%}
+#collectionsearch ul .gaols {background: #fff url(../images/gaol-photo) no-repeat 0% 110%}
+#collectionsearch ul .deceased {background: #fff url(../images/deceased-estate) no-repeat 50% 0}
+#collectionsearch ul .aib-82 {background: #fff url(../images/gaol-inmates-aib-82) no-repeat 100% 150%}
+#collectionsearch ul .aib-124 {background: #fff url(../images/gaol-staff-aib-124) no-repeat 0% 190%}
+#collectionsearch ul .crime-gallery {background: #fff url(../images/crime-gallery) no-repeat 40% -370%}
+#collectionsearch ul li {float:left; padding: 0 10px; margin:0 15px;width: 285px; height: 235px; border: 1px solid #ccc; }
+#collectionsearch li a:link, #collectionsearch li a:visited {color: #000;border-bottom: 0;}
+.photos .description-opt, .photos .heading-opt,
+.gaols .description-opt, .gaols .heading-opt {background:#B8B447;}
+.indexes .description-opt, .indexes .heading-opt,
+.crime-gallery .description-opt, .crime-gallery .heading-opt {background:#B8474B;}
+.ai .description-opt, .ai .heading-opt,
+.aib-82 .description-opt, .aib-82 .heading-opt,
+.deceased .description-opt, .deceased .heading-opt {background:#4783B8;}
+.api .description-opt, .api .heading-opt,
+.aib-124 .description-opt, .aib-124 .heading-opt {background:#83B847;}
+/* */
+#homelinks {float: left; background: #f4f4f4 url(../images/gray-white) repeat-y 59% 0; min-height:380px; width: 100%; border-top:1em solid #fff; border-bottom: 1em solid #fff; }
+#newsfeed {padding:.5em; width: 56%; float: left; }
+#newsfeed h3 {padding: .3em .5em; background: #dbdbdb url(../images/button-home.jpg) repeat-x 0 20%; margin-top:0;}
+#newsfeed h3 a {color: #000; border-bottom: 0}
+.rssfeeds {float:right; position: relative; top: -38px; right: 1em; }
+.rssfeeds img {border:0}
+.rssfeeds a {border:0}
+.feedBurnerFeedBlock {}
+p.feedTitle {background:#f4f4f4; margin-top:0; padding: .5em; font-size: 120%;}
+a.feedTitle {color: #000; text-decoration:none; border-bottom:0;}
+.headline {font-weight: 700; }
+.enclosure {}
+#creditfooter {display:none}
+#quicklinks {padding:.5em; width: 39%; float: right;}
+#quicklinks h3 {color: #000; border-bottom: 0; padding: .3em .5em; background: #dbdbdb url(../../images/button-home.jpg) repeat-x 0 20%; margin-top:0; }
+#quicklinks ul li, #newsfeed ul li {margin-left: .1em}
+#secondarylinks {background: #f4f4f4; height: 250px;float: left; width:100%; font-size: 95%; padding: 0; margin:0; border-top:3px solid #B8474B; }
+#secondarylinks ul {margin-left:10px; }
+#secondarylinks ul li {float:left; padding: 102px 5px 5px 7px; width:141px; height:120px; margin:0 10px; background-image: none; border: 1px dotted #ccc;}
+#secondarylinks img {border-top: 5px solid #fff; border-color: #fff}
+#secondarylinks a:link, #secondarylinks a:visited {border-color: #fff}
+#secondarylinks ul .exhibitions {background: #fff url(../images/exhibition) no-repeat 10% 0;}
+#secondarylinks ul .galleries {background: #fff  url(../images/gallery) no-repeat 50% -25%;}
+#secondarylinks ul .publications {background: #fff  url(../images/publications) no-repeat 1% -2%;}
+#secondarylinks ul .blogs {background: #fff  url(../images/srnsw-blogs) no-repeat 70% 0%; }
+#secondarylinks ul .newsletters {background: #fff  url(../images/enewsletters) no-repeat 0% 0%; }
+#secondarylinks ul .activities {background: #fff  url(../images/blogs) no-repeat 70% 0%; }
+#sublinks {float: left; width:100%; font-size: 95%; padding: 0; margin:0; }
+#sublinks ul {margin-left:0;}
+#sublinks ul li {float:left; padding:.5em 1em; width:16%; height: 120px; margin:0;background-image: none; text-align:center}
+#sublinks img {border-top: 5px solid #fff; border-color: #fff}
+#sublinks a:link, #sublinks a:visited {border-color: #fff}
+/* */
+#twocol {width: 95%; margin: 1%; padding: 2% 2% 10% 0; border: 1px solid #ccc; font-size: 90%;}
+.colleft {width: 44%; float: left; margin: 0; padding: 0 1em 0 0;}
+.colright {width: auto; margin: 0 0 0 45%; padding: 0 0 0 10px; }
+.colleft img, .colright img {border:1px solid #ccc; float:left; margin:0 10px 0 2px; width:64px; height: 64px;}
+.colleft ul, .colright ul {list-style-type: none; padding: 0 0 1% 0; margin: 0 2px 0 0; }
+.colleft li, .colright li {background-image:none; padding: 0 5px 1em 5px; margin: 0 0 2em 0;}
+.colleft li {border-right: 1px solid #ccc; padding-right: 2%}
+.colright ul li { }
+.colleft ul li a, .colright ul li a {font: 400 100%/100% Verdana, Arial, Helvetica, sans-serif;}
+#content #twocol ul li {background-image:none}
+p.lineblock {border-top: 1px solid #ccc; padding: 2% 0;}
+/* */
+ul.quicklinks {float:left; margin:0 0 0 2%; padding:0; width:30%;}
+#content ul.quicklinks li {padding:2px 0 2px 20px; margin:0 0 .5em 0;background: url(../images/arrows) no-repeat 0 0.4em;}
+.clear {clear:left;}
+.box {background: #fff url(../images/sidebar-shadow) repeat-y 0 0;  margin:2% auto; width:90%; padding: .5em 1em; clear: both; border:1px solid #ccc; line-height:150%}
+.box h4 {text-align:center; font-size: 1em; padding-bottom: 1em}
+.box h3 a {border-bottom: none; color: #000;}
+.box img {border: 0; margin-top:2px}
+/* */
+#skip {position:absolute; top: -8px;  width: 943px; padding: 0; margin: 0; text-align: right; }
+#skip a:link, #skip a:visited  {text-decoration: none; color: #000; background: transparent;}
+#skip a:hover {text-decoration: underline;}
+#skip a:focus, #skip a:active {background: #fff; color: #246;}
+/* */
+ul#nav {float:left;width: 100%; padding: 0; margin: 0; list-style-type: none; background: #ccc url(../images/button-home.jpg) repeat-x 0 20%; border-bottom: 1px solid #ccc; border-top: 1px solid #ccc;font-weight: 600; font-family: Arial,Verdana,sans-serif;}
+#nav li {float: left; letter-spacing: .05em; position: relative; padding: 0; margin: 0;}
+#nav li a:link, #nav li a:visited {float: left; display: block; border-left: 1px solid #fff; border-right: 1px solid #ccc; color: #363636; text-decoration: none; margin: 0; padding: 4px 1em; text-indent: 1px;}
+#nav li a:hover {background: #B8474B; color: #fff; border-left: 1px groove #ccc; border-right: 1px ridge #fff; border-bottom: 0;}
+#nav li a:active, #nav li a:focus {background: #246; color: #fff;}
+#nav li li {z-index: 199; text-indent: .5em; list-style-type: none; display: block; width: 100%; border: 0; color: #369; letter-spacing: 0; padding: 0; margin: 0; float: left; font-size: 95%;}
+#nav li li a:link, #nav li li a:visited {color: #246; padding: 2px 0; margin: 0; border: 0; }
+#nav li li a:hover {padding: 2px 0; margin: 0; background: #69c; color: #fff; border: 0; width: 100%;}
+#nav li ul {display: none; position: absolute; top: 100%; left: 0; background: #d9e5f2; padding: 0; border-top: 1px solid #69c; border-right: 1px solid #69c; border-bottom: 1px solid #246; border-left: 1px solid #246; width: 17em; margin: 0;}
+#nav li>ul {top: 10; left: auto;}
+#nav li:hover ul, #nav li.over ul {display: block;}
+/* */
+.footerlinks img {float: right; margin: 0 2% 0 0;}
+.footerlinks {background: #fff; display: block; float: left; width: 24%; text-align: left; padding: 1% 0 1% 1%; margin: 0;}
+.footerlinks p {margin: .5em 0}
+.footernote { }
+/* */
+ul.album {float:left; width:98%; background:#fff url(../images/gallery-bg) repeat-y 0 0; padding:1%; margin:1% auto;}
+ul.album li {background-image:none; padding:0; float:left;}
+.album li {width:140px; height:140px; list-style-type:none; list-style-image:none; margin:1em 0; padding:0 0 .5em 0; vertical-align:top; font-size:0.7em; color:#999; text-align:center;}
+.album li a {display:block; border-bottom:0;}
+.album li a:hover {background: #961c1d; color:#fff;}
+.album li a:active, .album li a:focus {background:#0085A3; color: #fff;}
+.album img {padding:5px; border-right-color:#666; border-bottom-color:#666; height:105px; width:95px; background:#fff;}
+.album br {clear: both;}
+.image-right, .image-left {border: 0;}
+/* */
+.exhibit {width:580px; text-align:left; font-size:1em; background:#fff; margin:0; padding:7px; border:2px dashed #b1b1b1;}
+.phototext {background:#fcfbf8; border:1px solid silver; clear:both; font-weight:500; font-size:85%; font-family:arial, verdana, sans-serif; text-align:center; padding:1%; margin:2% 14% 2% 11%}
+/* */
+li.news, li.news a:link, li.news a:visited {color: #c6004a; font-weight: 500;}
+li.news a:hover {color: #fff}
+/* */
+acronym {border-bottom: 1px #444 dashed; cursor: help; font-style: normal;}
+a acronym {cursor: pointer;}
+/* */
+.title {font-size: medium; font-weight: 400; margin: 0 2%; color: #000;}
+/* */
+.indigenousculture {font-size: 1.2em; font-family: "trebuchet ms", Helvetica, Verdana, Arial, sans-serif; color: #fff; border: 1px solid silver; margin: 10px 1%; padding: 5px; background: url(../images/indigenous-artwork) 0 0 repeat-x}
+.naidoc {float: left; clear: both;}
+.address {text-align: center; font-size: 1em; font-family: "trebuchet ms", Helvetica, Verdana, Arial, sans-serif; color: #246; border: 1px solid #ccc; margin: 10px 18%; padding: 5px; background: #f8f8f8;}
+.address hr {border-style: dashed; height: 1px}
+li.ai {margin: .6% 0 0 0; line-height: 150%; padding-left: 55px; }
+small {font-size: xx-small; color: #fff; text-align: center;}
+.dropcap, dropcapi {float: left; line-height: 100%; font: 400 5.4em "times new roman", "trebuchet ms", Helvetica, Verdana, Arial, sans-serif; color: #808080; margin: -12px 7px -20px 0;}
+.dropcap {width: .5em; padding: 0;}
+.dropcapi {width: .2em; padding: 0 2px 0 0;}
+.caption {font-size: 75%; color: #28509E; font-weight: 500; margin: 0; padding: 0 0 0 15px;}
+.awb, .awb1 {font-family: "trebuchet ms",arial,verdana,geneva,sans-serif; letter-spacing: 0.1em; margin: 0; padding: 0;}
+.awb {font-size: 1.2em; font-weight: 400;}
+.awb1 {font-size: 1.1em; font-weight: 600;}
+.contact {font-size: 95%; color: #000; border: 1px solid silver; width: 550px; margin: 10px 0 10px 40px; padding: 5px; background: #f4f4f4;}
+.contact:first-line{font-size: 1em; color: #246; font-weight: 600;}
+ul.index, ul#album {list-style-image: none; list-style-type: none;}
+ul#album {clear: both;}
+.index li {margin: 5px; padding: 0;}
+.announce, .govnote, .govquote, .recordnote, .greyed, .index, .govrec, .notice, .beigebox, .greybox, .bluebox, .redbox, .greenbox {margin: 2% auto; width: 90%; padding: 1em; line-height: 170%; border: 2px solid #ccc;}
+.beigebox {border-color: #E5CC9A; background: #fcfbf8;}
+.greenbox {border-color: #c6d880; background: #F7FAEB;}
+.greybox {background: #f8f8f8;}
+.bluebox {background: #F8FBFC; border-color: #79A6D2; color: #036;}
+.redbox, .announce {color: #B8474B; border-color: #C66C6F; background: #fff;}
+.govquote img, .bluebox img, .index img, .beigbox img, .redbox img, .greybox img {float: left; margin: .5em 10px 2px 5px; border: 0;}
+.greyed {color: #999; border: 1px solid #ccc;}
+.announce {font-size: 1.2em;}
+.note {color:#B8474B; font-weight: 600}
+.note-green {color:#4A902C; font-weight: 600}
+.small {font-size: .8em; line-height: 140%; font-weight: 600;}
+.terms {font-size: .8em; line-height: 140%; font-weight: 500;}
+.grksub {color: #246; font-weight: 500;}
+.notice {margin: 10px 10%; padding: 5px;}
+.beigebox img, .greybox img, .bluebox img, .redbox img  {border:0;}
+.beigebox, .bluebox, .redbox, .greybox, .greenbox {-moz-border-radius:10px; -webkit-border-radius: 10px; border-radius: 10px;}
+/* */
+table.search {background-color: #f7fbff; margin: 0 2% 0 0;}
+table.SearchMain {background-color: #fcfbf8; margin: 0 2%;}
+td {font-weight: 400; padding: 2px; vertical-align: top; margin: 0; }
+th {font-weight: 700; color: #4f4f4f; }
+td.numlist {font-weight: 700;}
+tr.small {line-height: 1px; color: #28509E;}
+tr.smallnavy {font-size: xx-small; line-height: 1px; color: navy;}
+td.titletext {font-weight: 700; font-size: small; color: #000;}
+tr {font-weight: 400; font-size: .8em; padding: 0; vertical-align: top; margin: 0;}
+/* */

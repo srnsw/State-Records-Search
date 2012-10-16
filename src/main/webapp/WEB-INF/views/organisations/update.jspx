@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_au_gov_nsw_records_search_model_Organisation" idField="organisationNumber" modelAttribute="organisation" path="/organisations" versionField="none" z="sYbItojC0UpzUJqiaxn7d0a0wLI=">
+        <field:input field="title" id="c_au_gov_nsw_records_search_model_Organisation_title" z="2M3fs/AZsCe+wiy+YutX/nd8PGc="/>
+        <field:input field="administrativeHistoryNote" id="c_au_gov_nsw_records_search_model_Organisation_administrativeHistoryNote" z="Q8rHoV8TDo97x7mAAdN7w5avtBY="/>
+        <field:datetime dateTimePattern="${organisation_startdate_date_format}" field="startDate" id="c_au_gov_nsw_records_search_model_Organisation_startDate" z="WE29InkhoHCKWIDkF60Q6MU0gCs="/>
+        <field:input field="startDateQualifier" id="c_au_gov_nsw_records_search_model_Organisation_startDateQualifier" z="6VcRc24nY9g1t2G/USlevGDRZBI="/>
+        <field:datetime dateTimePattern="${organisation_enddate_date_format}" field="endDate" id="c_au_gov_nsw_records_search_model_Organisation_endDate" z="TSJGNeKUH7rEQbuMg0f1zoMlWdE="/>
+        <field:input field="endDateQualifier" id="c_au_gov_nsw_records_search_model_Organisation_endDateQualifier" z="PNmahoMnXako2KRlRThgjWBP7nE="/>
+    </form:update>
+</div>

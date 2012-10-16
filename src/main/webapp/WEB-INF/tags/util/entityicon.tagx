@@ -1,0 +1,9 @@
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:spring="http://www.springframework.org/tags" xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
+  <jsp:output omit-xml-declaration="yes" />
+  
+  <jsp:directive.attribute name="type" type="java.lang.String" required="true" rtexprvalue="true" description="Entity type" />
+  
+  <spring:url value="/resources/images/${type}.png" var="icon_url" />
+  <img alt="${type}" src="${icon_url}" />
+  
+</jsp:root>

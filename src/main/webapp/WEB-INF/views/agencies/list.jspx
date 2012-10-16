@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_au_gov_nsw_records_search_model_Agency" items="${agencys}" z="lBYiewVEypEnr+bqE+f2lx6qkHA=">
+        <table:table data="${agencys}" id="l_au_gov_nsw_records_search_model_Agency" path="/agencies" typeIdFieldName="agencyNumber" z="B8yFRAHVGmA/Rjua2pD2KH07eOo=">
+            <table:column id="c_au_gov_nsw_records_search_model_Agency_title" property="title" z="3yL9x+M+UIAWX9KTaKzikONm29g="/>
+            <table:column id="c_au_gov_nsw_records_search_model_Agency_category" property="category" render="false" z="user-managed"/>
+            <table:column id="c_au_gov_nsw_records_search_model_Agency_creation" property="creation" render="false" z="user-managed"/>
+            <table:column id="c_au_gov_nsw_records_search_model_Agency_abolition" property="abolition" render="false" z="user-managed"/>
+            <table:column id="c_au_gov_nsw_records_search_model_Agency_administrativeHistoryNote" property="administrativeHistoryNote" render="false" z="user-managed"/>
+            <table:column date="true" dateTimePattern="${agency_startdate_date_format}" id="c_au_gov_nsw_records_search_model_Agency_startDate" property="startDate" render="false" z="user-managed"/>
+        </table:table>
+    </page:list>
+</div>

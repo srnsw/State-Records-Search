@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_au_gov_nsw_records_search_model_Ministry" idField="ministryNumber" modelAttribute="ministry" path="/ministries" versionField="none" z="uagNrhuDBNq7hRN5oQaC2G3ALLA=">
+        <field:input field="title" id="c_au_gov_nsw_records_search_model_Ministry_title" z="OrggzBiA+MHp71XNZh2DeF9kduI="/>
+        <field:datetime dateTimePattern="${ministry_registereddate_date_format}" field="registeredDate" id="c_au_gov_nsw_records_search_model_Ministry_registeredDate" z="dTtmFtqoQqGd9GH5KC99ttQrxkI="/>
+        <field:datetime dateTimePattern="${ministry_startdate_date_format}" field="startDate" id="c_au_gov_nsw_records_search_model_Ministry_startDate" z="ft0cIutRsstcnTAf87GrxvgOTJo="/>
+        <field:datetime dateTimePattern="${ministry_enddate_date_format}" field="endDate" id="c_au_gov_nsw_records_search_model_Ministry_endDate" z="VOHZ3OGnE/zsgB2JahNkdylAySc="/>
+    </form:update>
+</div>

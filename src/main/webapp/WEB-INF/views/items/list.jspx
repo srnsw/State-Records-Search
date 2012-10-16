@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_au_gov_nsw_records_search_model_Item" items="${items}" z="dZK/7it8QlbTnDe3uwb141IPMVk=">
+        <table:table data="${items}" id="l_au_gov_nsw_records_search_model_Item" path="/items" z="AdbZ1CyZ1bQGJnkosNtX3Z+Cxpo=">
+            <table:column id="c_au_gov_nsw_records_search_model_Item_seriesNumber" property="seriesNumber" render="false" z="user-managed"/>
+            <table:column id="c_au_gov_nsw_records_search_model_Item_itemNumberOrControlSymbol" property="itemNumberOrControlSymbol" render="false" z="user-managed"/>
+            <table:column id="c_au_gov_nsw_records_search_model_Item_title" property="title" z="I+M5R0Hs1f5K0nWD0sklnEcVnzM="/>
+            <table:column id="c_au_gov_nsw_records_search_model_Item_descriptiveNote" property="descriptiveNote" render="false" z="user-managed"/>
+            <table:column id="c_au_gov_nsw_records_search_model_Item_seriesType" property="seriesType" render="false" z="user-managed"/>
+            <table:column id="c_au_gov_nsw_records_search_model_Item_accessDirectionNumber" property="accessDirectionNumber" render="false" z="user-managed"/>
+        </table:table>
+    </page:list>
+</div>

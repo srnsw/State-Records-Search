@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" id="footer" version="2.0">
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />
+	<jsp:output omit-xml-declaration="yes" />
+
+	<div id="portal-footer">
+
+		<p class="footernote">
+			<a title="Accessibility" href="http://www.records.nsw.gov.au/resolveuid/469e777f22083fd7c8c094b28202aab6">Accessibility</a>
+			| <a title="Copyright Policy" href="http://www.records.nsw.gov.au/resolveuid/6e3ff931e4d5b1d8fed02cceba2a50b7">Copyright</a>
+			| <a title="Links to other archival organisations" href="http://www.records.nsw.gov.au/resolveuid/9f0ed51a1e7e23b40d235d1cb00ed0e5">Links to other cultural organisations</a>
+			| <a title="Privacy Policy" href="http://www.records.nsw.gov.au/resolveuid/0cdb5fb198d24ec0ef04f3a3202c9a42">Privacy</a>
+			| <a title="Sitemap" href="http://www.records.nsw.gov.au/sitemap">Sitemap</a>
+		</p>
+		<div class="footerlinks">
+			<p>
+				<strong><a title="Visit us" href="#">Our Reading Room</a></strong>
+			</p>
+			<p>143 O'Connell Street, Kingswood</p>
+			<p>Mon-Fri 9am-5pm &amp; Sat 10am-4pm</p>
+			<p>(Closed Sun &amp; Public Holidays)</p>
+		</div>
+		<div class="footerlinks">
+			<p>
+				<strong>Publications</strong>
+			</p>
+			<p>
+				<a href="http://www.records.nsw.gov.au/resolveuid/9de810a97357333952691039195b27f3">+ Catalogue</a>
+			</p>
+			<p>
+				<a title="For the Record" href="http://www.records.nsw.gov.au/resolveuid/72a965c802ecbbf952fd1f40195a849f">+ For The Record eNewsletter</a>
+			</p>
+			<p>
+				<a title="Now&amp;Then"
+					href="http://www.records.nsw.gov.au/resolveuid/81441f6540275c606a259941e5c9d66a">+ Now&amp;Then eNewsletter</a>
+			</p>
+		</div>
+
+		<div class="footerlinks">
+			<p>
+				<strong>Social media</strong>
+			</p>
+			<p>
+				<a title="Our blogs and other websites" href="http://www.records.nsw.gov.au/resolveuid/da16e8154b61b3f1c0282ff9fe1b2706">Blogs</a>
+			| <a title="Like us on Facebook" href="http://www.facebook.com/srnsw">Facebook</a>
+			| <a title="Join us on Flickr" href="http://www.flickr.com/photos/state-records-nsw/">Flickr</a>
+			</p>
+			<p>
+				<a title="Add us to your circle" href="https://plus.google.com/b/116873268467610315885/">Google+</a>
+			| <a title="Stay up-to-date via our RSS Feeds" href="http://www.records.nsw.gov.au/resolveuid/48be5456ca7d627c0ddf15a6bc57207f">RSS feeds</a>
+			</p>
+			<p>
+				<a title="Follow us on Twitter" href="https://twitter.com/srnsw/">Twitter</a>
+			| <a title="Watch us on YouTube" href="http://www.youtube.com/user/staterecordsnsw">YouTube</a>
+			</p>
+		</div>
+
+		<div class="footerlinks">
+			<p>
+			  <spring:url var="logo" value="/resources/images/nswlogo.gif" />
+				<a href="http://www.nsw.gov.au"><img src="${logo}" alt=""/></a><strong>A Division of the Department of Finance and Services</strong>
+			</p>
+			<p>
+				<a title="NSW Government" href="http://www.nsw.gov.au">nsw.gov.au</a> 
+			| <a title="jobs.nsw" href="http://www.jobs.nsw.gov.au">jobs.nsw</a>
+			</p>
+		</div>
+		<p class="footernote">
+			The State Records Authority of New South Wales <br />
+			T: +61 2 9673 1788 | F: +61 2 9833 4518 | E: 
+			<a href="mailto:info@records.nsw.gov.au">info@records.nsw.gov.au</a>
+			| ABN: 96 588 554 718
+		</p>
+	</div>
+
+</div>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_au_gov_nsw_records_search_model_Portfolio" items="${portfolios}" z="6/uKKlCMkA3BXfY6inZcQgmHUXU=">
+        <table:table data="${portfolios}" id="l_au_gov_nsw_records_search_model_Portfolio" path="/portfolios" typeIdFieldName="portfolioNumber" z="ErfsBLoklM5S/i0sbegzX+kDq74=">
+            <table:column id="c_au_gov_nsw_records_search_model_Portfolio_title" property="title" z="KF1FhSJC+WlAxQz79e1LCAAsLDo="/>
+            <table:column id="c_au_gov_nsw_records_search_model_Portfolio_descriptiveNote" property="descriptiveNote" render="false" z="user-managed"/>
+            <table:column date="true" dateTimePattern="${portfolio_registereddate_date_format}" id="c_au_gov_nsw_records_search_model_Portfolio_registeredDate" property="registeredDate" render="false" z="user-managed"/>
+            <table:column date="true" dateTimePattern="${portfolio_startdate_date_format}" id="c_au_gov_nsw_records_search_model_Portfolio_startDate" property="startDate" render="false" z="user-managed"/>
+            <table:column id="c_au_gov_nsw_records_search_model_Portfolio_startDateQualifier" property="startDateQualifier" render="false" z="user-managed"/>
+            <table:column date="true" dateTimePattern="${portfolio_enddate_date_format}" id="c_au_gov_nsw_records_search_model_Portfolio_endDate" property="endDate" render="false" z="user-managed"/>
+        </table:table>
+    </page:list>
+</div>

@@ -1,0 +1,68 @@
+<html xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:tiles="http://tiles.apache.org/tags-tiles" xmlns:spring="http://www.springframework.org/tags" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" >  
+	
+	<jsp:output doctype-root-element="HTML" doctype-system="about:legacy-compat" />
+	
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />  
+	<jsp:directive.page pageEncoding="UTF-8" /> 
+			
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=8" />	
+			
+		<util:load-scripts />
+		
+		<spring:message code="application_name" var="app_name" htmlEscape="false"/>
+		<title><spring:message code="welcome_h3" arguments="${app_name}" /></title>
+	</head>
+	
+  	<body>
+   		<div id="visual-portal-wrapper">
+		    <tiles:insertAttribute name="header" ignore="true" />
+		    <div class="visualClear" id="clear-space-before-wrapper-table"><!-- --></div>
+		    <table id="portal-columns">
+	        <tbody>
+	          <tr>
+	            <td id="portal-column-one">
+							<div class="visualPadding">
+							  <dl class="portlet portletNavigationTree">
+									<dt class="portletHeader">
+										<span class="portletTopLeft"></span><a
+											name="portlet-navigation-tree"></a> <a
+											href="#"
+											class="tile">Digital Archives</a> <span class="portletTopRight"></span>
+									</dt>
+									<dd class="portletItem lastItem">
+										<tiles:insertAttribute name="menu" ignore="true" />
+									</dd>
+								</dl>
+							</div>
+					</td>
+	             <td id="portal-column-content">
+	               <div id="viewlet-above-content"></div>
+	               <div class="">
+	                 <span id="contentTopLeft"></span>
+	                 <span id="contentTopRight"></span>
+		                 <div id="content">
+		                 		<c:if test="${not empty errors or not empty param.login_error}">
+			                    <dl class="portalMessage error">
+									            <dt>Error</dt>
+									            <dd>Please correct the indicated errors</dd>
+									        </dl>
+								        </c:if>
+			    		          <tiles:insertAttribute name="body"/> 
+			    		       </div>
+		    		         <span id="contentBottomLeft"></span>
+	                   <span id="contentBottomRight"></span>
+	               </div>
+		    		     <div id="viewlet-below-content">
+		    		     </div>
+	            </td>
+	            </tr>
+	        </tbody>
+        </table>
+		    <div class="visualClear" id="clear-space-before-footer"><!-- --></div>
+		    <tiles:insertAttribute name="footer" ignore="true"/>
+		    <div class="visualClear"><!-- --></div>
+		</div>
+	</body>
+</html>

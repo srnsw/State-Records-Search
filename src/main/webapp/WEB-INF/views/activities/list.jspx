@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_au_gov_nsw_records_search_model_Activity" items="${activitys}" z="q/6rP7htPHgVsZOAMlWy7bX4/xc=">
+        <table:table data="${activitys}" id="l_au_gov_nsw_records_search_model_Activity" path="/activities" typeIdFieldName="activityNumber" z="XO4GEGqBDvQVeb0mh6LmvuoBRFY=">
+            <table:column id="c_au_gov_nsw_records_search_model_Activity_title" property="title" z="user-managed"/>
+            <table:column id="c_au_gov_nsw_records_search_model_Activity_descriptiveNote" property="descriptiveNote" render="false" z="user-managed"/>
+            <table:column date="true" dateTimePattern="${activity_startdate_date_format}" id="c_au_gov_nsw_records_search_model_Activity_startDate" property="startDate" render="false" z="user-managed"/>
+            <table:column id="c_au_gov_nsw_records_search_model_Activity_startDateQualifier" property="startDateQualifier" render="false" z="user-managed"/>
+            <table:column date="true" dateTimePattern="${activity_enddate_date_format}" id="c_au_gov_nsw_records_search_model_Activity_endDate" property="endDate" render="false" z="user-managed"/>
+            <table:column id="c_au_gov_nsw_records_search_model_Activity_endDateQualifier" property="endDateQualifier" render="false" z="user-managed"/>
+        </table:table>
+    </page:list>
+</div>

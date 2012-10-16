@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_au_gov_nsw_records_search_model_Serie" items="${series}" z="l91fpkGHSgQ0ELZOUfnHpD48Ohk=">
+        <table:table data="${series}" id="l_au_gov_nsw_records_search_model_Serie" path="/series" typeIdFieldName="seriesNumber" z="uAhRaC6b25/8uInub6PDwUjryyQ=">
+            <table:column id="c_au_gov_nsw_records_search_model_Serie_title" property="title" z="Ycct2NfCyAoankxrY3fFaFXcKUQ="/>
+            <table:column id="c_au_gov_nsw_records_search_model_Serie_descriptiveNote" property="descriptiveNote" render="false" z="user-managed"/>
+            <table:column id="c_au_gov_nsw_records_search_model_Serie_format" property="format" render="false" z="user-managed"/>
+            <table:column id="c_au_gov_nsw_records_search_model_Serie_arrangement" property="arrangement" render="false" z="user-managed"/>
+            <table:column id="c_au_gov_nsw_records_search_model_Serie_copies" property="copies" render="false" z="user-managed"/>
+            <table:column id="c_au_gov_nsw_records_search_model_Serie_seriesControlStatus" property="seriesControlStatus" render="false" z="user-managed"/>
+        </table:table>
+    </page:list>
+</div>

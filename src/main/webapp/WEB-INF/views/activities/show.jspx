@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_au_gov_nsw_records_search_model_Activity" object="${activity}" path="/activities" z="uyLy/GXY8EGi2sRHg006drkvUtA=">
+        <field:display field="title" id="s_au_gov_nsw_records_search_model_Activity_title" object="${activity}" z="gnpPE5J3zYjbRmme7e4R5lAiuhs="/>
+        <field:display field="dateRange" id="s_au_gov_nsw_records_search_model_Activity_dateRange" object="${activity}" z="SAhnf50YLDTsEfwKtkzPbFZjXqo="/>
+        <field:display field="descriptiveNote" id="s_au_gov_nsw_records_search_model_Activity_descriptiveNote" object="${activity}" z="Sj7+As/rDzcwXJFe8HCL0CUsYbU="/>
+        <field:display date="true" dateTimePattern="${activity_startdate_date_format}" field="startDate" id="s_au_gov_nsw_records_search_model_Activity_startDate" object="${activity}" render="false" z="user-managed"/>
+        <field:display field="startDateQualifier" id="s_au_gov_nsw_records_search_model_Activity_startDateQualifier" object="${activity}" render="false" z="user-managed"/>
+        <field:display date="true" dateTimePattern="${activity_enddate_date_format}" field="endDate" id="s_au_gov_nsw_records_search_model_Activity_endDate" object="${activity}" render="false" z="user-managed"/>
+        <field:display field="endDateQualifier" id="s_au_gov_nsw_records_search_model_Activity_endDateQualifier" object="${activity}" render="false" z="user-managed"/>
+    </page:show>
+</div>
