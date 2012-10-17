@@ -2,25 +2,23 @@
 <div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:show id="ps_au_gov_nsw_records_search_model_Serie" object="${serie}" path="/series" z="EOws3xK2SJKzSDEFRHEHZx0UbVI=">
+    <page:show create="false" delete="false" id="ps_au_gov_nsw_records_search_model_Serie" object="${serie}" path="/series" update="false" z="9aSZ5efpI4CQSl9w0/vvSCAP0Mg=">
         <field:display field="title" id="s_au_gov_nsw_records_search_model_Serie_title" object="${serie}" z="cRfl/dIL9dwUBpj/XeeYcoOzk+I="/>
-        <field:display field="seriesNumber" id="s_au_gov_nsw_records_search_model_Serie_seriesNumber" object="${serie}" z="F6zo4JIn0RfpAIYaoqynR59hHkU="/>
-        <field:display field="contentDateRange" id="s_au_gov_nsw_records_search_model_Serie_contentDateRange" object="${serie}" z="F6zo4JIn0RfpAIYaoqynR59hHkU="/>
         <field:display field="descriptiveNote" id="s_au_gov_nsw_records_search_model_Serie_descriptiveNote" object="${serie}" z="F6zo4JIn0RfpAIYaoqynR59hHkU="/>
         <field:display field="format" id="s_au_gov_nsw_records_search_model_Serie_format" object="${serie}" z="y4ABtYqYFGtds6bIRm+qc3UBcbw="/>
         <field:display field="arrangement" id="s_au_gov_nsw_records_search_model_Serie_arrangement" object="${serie}" z="jEK4yrj7bPUZ2w/NEIjzAwspX4Y="/>
         <field:display field="copies" id="s_au_gov_nsw_records_search_model_Serie_copies" object="${serie}" z="KwOPFSpsCV+JG/jSW/kwnH3MbbY="/>
         <field:display field="seriesControlStatus" id="s_au_gov_nsw_records_search_model_Serie_seriesControlStatus" object="${serie}" z="GCi2x79a51iyxinxIAicyUAfsoM="/>
         <field:display field="repository" id="s_au_gov_nsw_records_search_model_Serie_repository" object="${serie}" z="psPHJiOXoM24bXOQkxwP9PywBAU="/>
-        <field:display date="true" dateTimePattern="${serie_startdate_date_format}" field="startDate" id="s_au_gov_nsw_records_search_model_Serie_startDate" object="${serie}" render="false" z="user-managed"/>
-        <field:display field="startDateQualifier" id="s_au_gov_nsw_records_search_model_Serie_startDateQualifier" object="${serie}" render="false" z="user-managed"/>
-        <field:display date="true" dateTimePattern="${serie_enddate_date_format}" field="endDate" id="s_au_gov_nsw_records_search_model_Serie_endDate" object="${serie}" render="false" z="user-managed"/>
-        <field:display field="endDateQualifier" id="s_au_gov_nsw_records_search_model_Serie_endDateQualifier" object="${serie}" render="false" z="user-managed"/>
-        <field:display date="true" dateTimePattern="${serie_contentstartdate_date_format}" field="contentStartDate" id="s_au_gov_nsw_records_search_model_Serie_contentStartDate" object="${serie}" render="false" z="user-managed"/>
-        <field:display field="contentStartDateQualifier" id="s_au_gov_nsw_records_search_model_Serie_contentStartDateQualifier" object="${serie}" render="false" z="user-managed"/>
-        <field:display date="true" dateTimePattern="${serie_contentenddate_date_format}" field="contentEndDate" id="s_au_gov_nsw_records_search_model_Serie_contentEndDate" object="${serie}" render="false" z="user-managed"/>
-        <field:display field="contentEndDateQualifier" id="s_au_gov_nsw_records_search_model_Serie_contentEndDateQualifier" object="${serie}" render="false" z="user-managed"/>
-        <field:display field="preceedingSeries" id="s_au_gov_nsw_records_search_model_Serie_preceedingSeries" object="${serie}" z="0nREiy/3tIlsOA8yzH22moQhWcI="/>
+        <field:display render="false" date="true" dateTimePattern="${serie_startdate_date_format}" field="startDate" id="s_au_gov_nsw_records_search_model_Serie_startDate" object="${serie}" z="v9UTPTvkAw0m+ZFJFXNyevj6mzE="/>
+        <field:display render="false" field="startDateQualifier" id="s_au_gov_nsw_records_search_model_Serie_startDateQualifier" object="${serie}" z="M1gh7KtjdCLLm/c4SW7+nhOIOVE="/>
+        <field:display render="false" date="true" dateTimePattern="${serie_enddate_date_format}" field="endDate" id="s_au_gov_nsw_records_search_model_Serie_endDate" object="${serie}" z="DB7dLAIW0nOnGkAqYYs4Se764GM="/>
+        <field:display render="false" field="endDateQualifier" id="s_au_gov_nsw_records_search_model_Serie_endDateQualifier" object="${serie}" z="rNDjThzLN1YkQ2twh8OomQYmU7Y="/>
+        <field:display render="false" date="true" dateTimePattern="${serie_contentstartdate_date_format}" field="contentStartDate" id="s_au_gov_nsw_records_search_model_Serie_contentStartDate" object="${serie}" z="xDa7sV+I0RxsgNI+wehhuDaCB7I="/>
+        <field:display render="false" field="contentStartDateQualifier" id="s_au_gov_nsw_records_search_model_Serie_contentStartDateQualifier" object="${serie}" z="GIL5El2cs7po2GCDdeKvIwNRQSA="/>
+        <field:display render="false" date="true" dateTimePattern="${serie_contentenddate_date_format}" field="contentEndDate" id="s_au_gov_nsw_records_search_model_Serie_contentEndDate" object="${serie}" z="y9zIUx+qEVwhUwx7VATQIViGGt4="/>
+        <field:display render="false" field="contentEndDateQualifier" id="s_au_gov_nsw_records_search_model_Serie_contentEndDateQualifier" object="${serie}" z="4Diqq5/yE0iaZBg6UGf4GxhPhH0="/>
+        <field:display render="false" field="preceedingSeries" id="s_au_gov_nsw_records_search_model_Serie_preceedingSeries" object="${serie}" z="0nREiy/3tIlsOA8yzH22moQhWcI="/>
         <field:display field="relatedSeries" id="s_au_gov_nsw_records_search_model_Serie_relatedSeries" object="${serie}" z="rTBbjEqkNnLKqxfuJeKKCtNF75w="/>
     </page:show>
 </div>

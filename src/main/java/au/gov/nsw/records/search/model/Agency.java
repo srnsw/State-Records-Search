@@ -66,6 +66,10 @@ public class Agency {
 		return DateHelper.dateRange(startDateQualifier, startDate, endDateQualifier, endDate);
 	}
 	
+	public int getId(){
+		return agencyNumber;
+	}
+	
 	public static List<Document> getIndexData(List<Agency> agencies, CategoryDocumentBuilder builder){
 		List<Document> agenciesIndex = new ArrayList<Document>();
   	for (Agency agency: agencies){

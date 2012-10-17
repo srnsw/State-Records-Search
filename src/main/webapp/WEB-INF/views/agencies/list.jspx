@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:spring="http://www.springframework.org/tags" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:list id="pl_au_gov_nsw_records_search_model_Agency" items="${agencys}" z="lBYiewVEypEnr+bqE+f2lx6qkHA=">
-        <table:table data="${agencys}" id="l_au_gov_nsw_records_search_model_Agency" path="/agencies" typeIdFieldName="agencyNumber" z="B8yFRAHVGmA/Rjua2pD2KH07eOo=">
+    <c:forEach items="${agencys}" var="item">
+        <spring:url value="/agencies/${item.getId()}" var="link_url"/>
+        <div class="collection_search_result">
+            <p>
+                <a href="${link_url}"> ${item.getTitle()} </a>
+            </p>
+        </div>
+    </c:forEach>
+    <util:pagination maxPages="${maxPages}" page="${page}" size="${size}"/>
+    <page:list id="pl_au_gov_nsw_records_search_model_Agency" items="${agencys}" render="false" z="user-managed">
+        <table:table data="${agencys}" delete="false" id="l_au_gov_nsw_records_search_model_Agency" path="/agencies" typeIdFieldName="agencyNumber" update="false" z="YXZn3cJ/KV0YRxMlKS/KhNbazjs=">
             <table:column id="c_au_gov_nsw_records_search_model_Agency_title" property="title" z="3yL9x+M+UIAWX9KTaKzikONm29g="/>
-            <table:column id="c_au_gov_nsw_records_search_model_Agency_category" property="category" render="false" z="user-managed"/>
-            <table:column id="c_au_gov_nsw_records_search_model_Agency_creation" property="creation" render="false" z="user-managed"/>
-            <table:column id="c_au_gov_nsw_records_search_model_Agency_abolition" property="abolition" render="false" z="user-managed"/>
-            <table:column id="c_au_gov_nsw_records_search_model_Agency_administrativeHistoryNote" property="administrativeHistoryNote" render="false" z="user-managed"/>
-            <table:column date="true" dateTimePattern="${agency_startdate_date_format}" id="c_au_gov_nsw_records_search_model_Agency_startDate" property="startDate" render="false" z="user-managed"/>
+            <table:column id="c_au_gov_nsw_records_search_model_Agency_category" property="category" z="GBOkNJaSlIIOsm55qjye267m8xc="/>
+            <table:column id="c_au_gov_nsw_records_search_model_Agency_creation" property="creation" z="CKhkx8fRxgi3nbhfDV+nMWWti4M="/>
+            <table:column id="c_au_gov_nsw_records_search_model_Agency_abolition" property="abolition" z="Y9FyD2JsKbszXNKh+HdJrh6HoKA="/>
+            <table:column id="c_au_gov_nsw_records_search_model_Agency_administrativeHistoryNote" property="administrativeHistoryNote" z="wUvIsqTTNUZPt8Ajg3rsOw9VTd0="/>
+            <table:column date="true" dateTimePattern="${agency_startdate_date_format}" id="c_au_gov_nsw_records_search_model_Agency_startDate" property="startDate" z="87IIW4XR5TIfHAwyvRt1QV9oLhw="/>
         </table:table>
     </page:list>
 </div>

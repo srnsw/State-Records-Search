@@ -120,30 +120,51 @@ public class SearchController {
   		
   		LuceneSearchParams params = new LuceneSearchParams();
   		FacetSearchParams facetParams = new FacetSearchParams();
-  		facetParams.addFacetRequest(new CountFacetRequest(new CategoryPath("location"), 10));
-  		facetParams.addFacetRequest(new CountFacetRequest(new CategoryPath("series"), 10));
-  		facetParams.addFacetRequest(new CountFacetRequest(new CategoryPath("from", "to"), 10));
   		
-  		SearchResult activitiesFunctions = lucene.search(params.setQuery(queryText).setFacetParams(facetParams).setPage(fpage).setSize(pageSize).setClazz(Activity.class, Functionn.class));
-  		SearchResult seriesItems = lucene.search(params.setQuery(queryText).setFacetParams(facetParams).setPage(page).setSize(pageSize).setClazz(Serie.class, Item.class));
-  		SearchResult agenciesPeople = lucene.search(params.setQuery(queryText).setFacetParams(facetParams).setPage(apage).setSize(pageSize).setClazz(Agency.class, Person.class));
-  		//SearchResult activitiesFunctions = lucene.search(queryText, facetParams, fpage, pageSize, Activity.class, Functionn.class);
-  		//SearchResult seriesItems = lucene.search(queryText, facetParams, page, pageSize, Serie.class, Item.class);
-  		//SearchResult agenciesPeople = lucene.search(queryText, facetParams, apage, pageSize, Agency.class, Person.class);
+  		facetParams.addFacetRequest(new CountFacetRequest(new CategoryPath("series"), 10));
+  		facetParams.addFacetRequest(new CountFacetRequest(new CategoryPath("location"), 10));
+  		//facetParams.addFacetRequest(new CountFacetRequest(new CategoryPath("startyear", "endyear"), 10));
+  		int asize = 15;
+  		int fsize = 5;
+  		
+  		SearchResult activitiesFunctions = lucene.search(params.setQuery(queryText).setFacetParams(facetParams).setPage(fpage).setSize(fsize).setClazz(Activity.class, Functionn.class));
+  		SearchResult agenciesPeople = lucene.search(params.setQuery(queryText).setFacetParams(facetParams).setPage(apage).setSize(asize).setClazz(Agency.class, Person.class));
+  		SearchResult seriesItems = lucene.search(params.setQuery(queryText).setSeries(series).setLocation(location).setFrom(from).setTo(to).setFacetParams(facetParams).setPage(page).setSize(pageSize).setClazz(Serie.class, Item.class));
       
       model.addAttribute("q", queryText);
       
+      model.addAttribute("page", page);
+      model.addAttribute("fpage", fpage);
+      model.addAttribute("apage", apage);
+      model.addAttribute("size", pageSize);
+      model.addAttribute("asize", asize);
+      model.addAttribute("fsize", fsize);
+      
+      model.addAttribute("location", location);
+      model.addAttribute("series", series);
+      model.addAttribute("from", from);
+      model.addAttribute("to", to);
+    
+      String nonPageParams = "&q=" + queryText;
+      if (location!=null){ nonPageParams += "&location=" + location; }
+      if (series!=null){ nonPageParams += "&series=" + series; }
+      if (from!=null){ nonPageParams += "&from=" + from; }
+      if (to!=null){ nonPageParams += "&to=" + to; }
+      
+      model.addAttribute("nonPageParams", nonPageParams);
+      
       model.addAttribute("activitiesfunctions", activitiesFunctions.getResults());
-      model.addAttribute("activitiesfunctions_count", Math.ceil(activitiesFunctions.getResultCount()/Double.valueOf(pageSize)));
+      model.addAttribute("activitiesfunctions_count", Math.ceil(activitiesFunctions.getResultCount()/Double.valueOf(fsize)));
       
       model.addAttribute("seriesitems", seriesItems.getResults());
       model.addAttribute("seriesitems_count", Math.ceil(seriesItems.getResultCount()/Double.valueOf(pageSize)));
       
       model.addAttribute("agenciespeoples", agenciesPeople.getResults());
-      model.addAttribute("agenciespeoples_count", Math.ceil(agenciesPeople.getResultCount()/Double.valueOf(pageSize)));
+      model.addAttribute("agenciespeoples_count", Math.ceil(agenciesPeople.getResultCount()/Double.valueOf(asize)));
       
       model.addAttribute("facets", seriesItems.getFacets());
       model.addAttribute("baseurl", request.getRequestURL() + String.format("?q=%s", queryText));
       return "search/list";
     }
 }
+

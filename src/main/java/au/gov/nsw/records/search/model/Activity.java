@@ -61,6 +61,10 @@ public class Activity {
 		return DateHelper.dateRange(startDateQualifier, startDate, endDateQualifier, endDate);
 	}
 
+	public int getId(){
+		return activityNumber;
+	}
+	
 	public static List<Document> getIndexData(List<Activity> activities, CategoryDocumentBuilder builder) throws IOException{
 		List<Document> activitiesIndex = new ArrayList<Document>();
 		for (Activity activity: activities){
@@ -87,7 +91,4 @@ public class Activity {
 		return activitiesIndex;
 	}
 
-	public static void search(String query){
-
-	}
 }

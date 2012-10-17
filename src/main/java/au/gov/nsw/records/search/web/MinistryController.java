@@ -1,40 +1,33 @@
 package au.gov.nsw.records.search.web;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-
-import au.gov.nsw.records.search.model.Ministry;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import au.gov.nsw.records.search.model.Ministry;
 
 @RequestMapping("/ministries")
 @Controller
-@RooWebScaffold(path = "ministries", formBackingObject = Ministry.class)
+@RooWebScaffold(path = "ministries", formBackingObject = Ministry.class, update=false, create=false, delete=false)
 public class MinistryController {
-	
-  @RequestMapping(method = RequestMethod.POST, produces = "text/html")
-  public String create(@Valid Ministry ministry, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-      if (bindingResult.hasErrors()) {
-          populateEditForm(uiModel, ministry);
-          return "ministrys/create";
-      }
-      uiModel.asMap().clear();
-      ministry.persist();
-      return "redirect:/ministrys/" + encodeUrlPathSegment(String.valueOf(ministry.getMinistryNumber()), httpServletRequest);
-  }
-  
-  @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
-  public String update(@Valid Ministry ministry, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-      if (bindingResult.hasErrors()) {
-          populateEditForm(uiModel, ministry);
-          return "ministrys/update";
-      }
-      uiModel.asMap().clear();
-      ministry.merge();
-      return "redirect:/ministrys/" + encodeUrlPathSegment(String.valueOf(ministry.getMinistryNumber()), httpServletRequest);
-  }
+
+
+	@RequestMapping(produces = "text/html")
+    public String list(@RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+        if (page != null || size != null) {
+            int sizeNo = size == null ? 10 : size.intValue();
+            final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
+            uiModel.addAttribute("ministrys", Ministry.findMinistryEntries(firstResult, sizeNo));
+            float nrOfPages = (float) Ministry.countMinistrys() / sizeNo;
+            uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
+            uiModel.addAttribute("page", page);
+            uiModel.addAttribute("size", size);
+        } else {
+            uiModel.addAttribute("ministrys", Ministry.findAllMinistrys());
+        }
+        addDateTimeFormatPatterns(uiModel);
+        return "ministries/list";
+    }
 }

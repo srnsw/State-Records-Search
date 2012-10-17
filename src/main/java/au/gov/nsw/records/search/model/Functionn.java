@@ -66,6 +66,10 @@ public class Functionn {
 		return DateHelper.dateRange(startDateQualifier, startDate, endDateQualifier, endDate);
 	}
 	
+	public int getId(){
+		return functionNumber;
+	}
+	
 	public static List<Document> getIndexData(List<Functionn> functions, CategoryDocumentBuilder builder) throws IOException{
   	List<Document> functionsIndex = new ArrayList<Document>();
   	for (Functionn func: functions){

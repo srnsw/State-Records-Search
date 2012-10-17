@@ -7,10 +7,6 @@
 <definition extends="default" name="organisations/show">
         <put-attribute name="body" value="/WEB-INF/views/organisations/show.jspx"/>
     </definition>
-<definition extends="default" name="organisations/create">
-        <put-attribute name="body" value="/WEB-INF/views/organisations/create.jspx"/>
-    </definition>
-<definition extends="default" name="organisations/update">
-        <put-attribute name="body" value="/WEB-INF/views/organisations/update.jspx"/>
-    </definition>
+
+
 </tiles-definitions>

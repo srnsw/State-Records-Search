@@ -4,27 +4,14 @@
 package au.gov.nsw.records.search.web;
 
 import au.gov.nsw.records.search.model.Item;
-import au.gov.nsw.records.search.model.Serie;
 import au.gov.nsw.records.search.web.ItemController;
-import java.io.UnsupportedEncodingException;
-import javax.servlet.http.HttpServletRequest;
 import org.joda.time.format.DateTimeFormat;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.util.UriUtils;
-import org.springframework.web.util.WebUtils;
 
 privileged aspect ItemController_Roo_Controller {
-    
-    @RequestMapping(params = "form", produces = "text/html")
-    public String ItemController.createForm(Model uiModel) {
-        populateEditForm(uiModel, new Item());
-        return "items/create";
-    }
     
     @RequestMapping(value = "/{id}", produces = "text/html")
     public String ItemController.show(@PathVariable("id") int id, Model uiModel) {
@@ -34,57 +21,9 @@ privileged aspect ItemController_Roo_Controller {
         return "items/show";
     }
     
-    @RequestMapping(produces = "text/html")
-    public String ItemController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        if (page != null || size != null) {
-            int sizeNo = size == null ? 10 : size.intValue();
-            final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("items", Item.findItemEntries(firstResult, sizeNo));
-            float nrOfPages = (float) Item.countItems() / sizeNo;
-            uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
-        } else {
-            uiModel.addAttribute("items", Item.findAllItems());
-        }
-        addDateTimeFormatPatterns(uiModel);
-        return "items/list";
-    }
-    
-    @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
-    public String ItemController.updateForm(@PathVariable("id") int id, Model uiModel) {
-        populateEditForm(uiModel, Item.findItem(id));
-        return "items/update";
-    }
-    
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
-    public String ItemController.delete(@PathVariable("id") int id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        Item item = Item.findItem(id);
-        item.remove();
-        uiModel.asMap().clear();
-        uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
-        uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
-        return "redirect:/items";
-    }
-    
     void ItemController.addDateTimeFormatPatterns(Model uiModel) {
         uiModel.addAttribute("item_startdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
         uiModel.addAttribute("item_enddate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
-    }
-    
-    void ItemController.populateEditForm(Model uiModel, Item item) {
-        uiModel.addAttribute("item", item);
-        addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("series", Serie.findAllSeries());
-    }
-    
-    String ItemController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
-        String enc = httpServletRequest.getCharacterEncoding();
-        if (enc == null) {
-            enc = WebUtils.DEFAULT_CHARACTER_ENCODING;
-        }
-        try {
-            pathSegment = UriUtils.encodePathSegment(pathSegment, enc);
-        } catch (UnsupportedEncodingException uee) {}
-        return pathSegment;
     }
     
 }

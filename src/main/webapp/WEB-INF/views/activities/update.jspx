@@ -3,11 +3,11 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <form:update id="fu_au_gov_nsw_records_search_model_Activity" idField="activityNumber" modelAttribute="activity" path="/activities" versionField="none" z="3UUOchuQxtaBp/hq0skqEI5oS9E=">
+        <field:input field="title" id="c_au_gov_nsw_records_search_model_Activity_title" z="/LzQ6ocodMPSzmJgEiCVVQnMF60="/>
         <field:input field="descriptiveNote" id="c_au_gov_nsw_records_search_model_Activity_descriptiveNote" z="EvhzAP9uV3hDEmDGXrLCDnQJogg="/>
         <field:datetime dateTimePattern="${activity_startdate_date_format}" field="startDate" id="c_au_gov_nsw_records_search_model_Activity_startDate" z="RFaSAGTvuGCDezAwDgW7Ze1xLEE="/>
         <field:input field="startDateQualifier" id="c_au_gov_nsw_records_search_model_Activity_startDateQualifier" z="fLVOFvZIHIwO147S0ZoXlCMeshg="/>
         <field:datetime dateTimePattern="${activity_enddate_date_format}" field="endDate" id="c_au_gov_nsw_records_search_model_Activity_endDate" z="VrZ350NUBJ1+idFfKdfwGx9N6oM="/>
         <field:input field="endDateQualifier" id="c_au_gov_nsw_records_search_model_Activity_endDateQualifier" z="ua1Sn7pa/EUGv+ApjS61u5hjWzQ="/>
-        <field:input field="title" id="c_au_gov_nsw_records_search_model_Activity_title" z="/LzQ6ocodMPSzmJgEiCVVQnMF60="/>
     </form:update>
 </div>

@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:spring="http://www.springframework.org/tags" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:list id="pl_au_gov_nsw_records_search_model_Item" items="${items}" z="dZK/7it8QlbTnDe3uwb141IPMVk=">
-        <table:table data="${items}" id="l_au_gov_nsw_records_search_model_Item" path="/items" z="AdbZ1CyZ1bQGJnkosNtX3Z+Cxpo=">
-            <table:column id="c_au_gov_nsw_records_search_model_Item_seriesNumber" property="seriesNumber" render="false" z="user-managed"/>
-            <table:column id="c_au_gov_nsw_records_search_model_Item_itemNumberOrControlSymbol" property="itemNumberOrControlSymbol" render="false" z="user-managed"/>
+    <c:forEach items="${items}" var="item">
+        <spring:url value="/items/${item.getId()}" var="link_url"/>
+        <div class="collection_search_result">
+            <p>
+                <a href="${link_url}"> ${item.getTitle()} </a>
+            </p>
+        </div>
+    </c:forEach>
+    <util:pagination maxPages="${maxPages}" page="${page}" size="${size}"/>
+    <page:list id="pl_au_gov_nsw_records_search_model_Item" items="${items}" render="false" z="user-managed">
+        <table:table data="${items}" delete="false" id="l_au_gov_nsw_records_search_model_Item" path="/items" update="false" z="avjrCXkDXVcpbOpuLP5PQa9lcQQ=">
+            <table:column id="c_au_gov_nsw_records_search_model_Item_seriesType" property="seriesType" z="VNCgXoSI8sADe2cNuwdrn0NTNLM="/>
+            <table:column id="c_au_gov_nsw_records_search_model_Item_seriesNumber" property="seriesNumber" z="kpAxS1cEKOfrbt2CVJN6hSnduNo="/>
+            <table:column id="c_au_gov_nsw_records_search_model_Item_itemNumberOrControlSymbol" property="itemNumberOrControlSymbol" z="BHuJkq5Uf0KqOopxnEqsRo30Ibk="/>
             <table:column id="c_au_gov_nsw_records_search_model_Item_title" property="title" z="I+M5R0Hs1f5K0nWD0sklnEcVnzM="/>
-            <table:column id="c_au_gov_nsw_records_search_model_Item_descriptiveNote" property="descriptiveNote" render="false" z="user-managed"/>
-            <table:column id="c_au_gov_nsw_records_search_model_Item_seriesType" property="seriesType" render="false" z="user-managed"/>
-            <table:column id="c_au_gov_nsw_records_search_model_Item_accessDirectionNumber" property="accessDirectionNumber" render="false" z="user-managed"/>
+            <table:column id="c_au_gov_nsw_records_search_model_Item_descriptiveNote" property="descriptiveNote" z="tSdxG8YYITtUKOusyiLHItsRPqw="/>
+            <table:column id="c_au_gov_nsw_records_search_model_Item_accessDirectionNumber" property="accessDirectionNumber" z="vTTZZJ7+nju+XMp3QaAGYHbNcnw="/>
         </table:table>
     </page:list>
 </div>

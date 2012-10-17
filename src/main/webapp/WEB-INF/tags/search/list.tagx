@@ -3,19 +3,23 @@
   
   <jsp:directive.attribute name="results" type="java.util.Collection" required="true" rtexprvalue="true" description="Search results" />
   
-  <c:forEach items="${results}" var="result">
-      <spring:url value="${result.getUrl()}" var="link_url"/>
-      <div class="collection_search_result">
-          <p>
-            <util:entityicon type="${result.getType()}"></util:entityicon>
-            <a href="${link_url}"> ${result.getTitle()} </a>
-          </p>
-          <c:if test="${not empty result.getContent()}">
-			      <p>
-          		...${result.getContent()}...
-          	</p>
-			    </c:if>
-      </div>
-  </c:forEach>
-  
+   <c:if test="${results.size() gt 0}">
+	  <c:forEach items="${results}" var="result">
+	      <spring:url value="${result.getUrl()}" var="link_url"/>
+	      <div class="collection_search_result">
+	          <p>
+	            <util:entityicon type="${result.getType()}"></util:entityicon>
+	            <a href="${link_url}"> ${result.getTitle()} </a>
+	          </p>
+	          <c:if test="${not empty result.getContent()}">
+				      <p>
+	          		...${result.getContent()}...
+	          	</p>
+				    </c:if>
+	      </div>
+	  </c:forEach>
+	  </c:if>
+	  <c:if test="${results.size() lt 1}">
+  		<em>No results</em>
+  	</c:if>
 </jsp:root>

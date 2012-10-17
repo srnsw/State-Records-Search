@@ -5,25 +5,13 @@ package au.gov.nsw.records.search.web;
 
 import au.gov.nsw.records.search.model.Person;
 import au.gov.nsw.records.search.web.PersonController;
-import java.io.UnsupportedEncodingException;
-import javax.servlet.http.HttpServletRequest;
 import org.joda.time.format.DateTimeFormat;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.util.UriUtils;
-import org.springframework.web.util.WebUtils;
 
 privileged aspect PersonController_Roo_Controller {
-    
-    @RequestMapping(params = "form", produces = "text/html")
-    public String PersonController.createForm(Model uiModel) {
-        populateEditForm(uiModel, new Person());
-        return "people/create";
-    }
     
     @RequestMapping(value = "/{personNumber}", produces = "text/html")
     public String PersonController.show(@PathVariable("personNumber") int personNumber, Model uiModel) {
@@ -33,56 +21,9 @@ privileged aspect PersonController_Roo_Controller {
         return "people/show";
     }
     
-    @RequestMapping(produces = "text/html")
-    public String PersonController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        if (page != null || size != null) {
-            int sizeNo = size == null ? 10 : size.intValue();
-            final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("people", Person.findPersonEntries(firstResult, sizeNo));
-            float nrOfPages = (float) Person.countPeople() / sizeNo;
-            uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
-        } else {
-            uiModel.addAttribute("people", Person.findAllPeople());
-        }
-        addDateTimeFormatPatterns(uiModel);
-        return "people/list";
-    }
-    
-    @RequestMapping(value = "/{personNumber}", params = "form", produces = "text/html")
-    public String PersonController.updateForm(@PathVariable("personNumber") int personNumber, Model uiModel) {
-        populateEditForm(uiModel, Person.findPerson(personNumber));
-        return "people/update";
-    }
-    
-    @RequestMapping(value = "/{personNumber}", method = RequestMethod.DELETE, produces = "text/html")
-    public String PersonController.delete(@PathVariable("personNumber") int personNumber, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        Person person = Person.findPerson(personNumber);
-        person.remove();
-        uiModel.asMap().clear();
-        uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
-        uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
-        return "redirect:/people";
-    }
-    
     void PersonController.addDateTimeFormatPatterns(Model uiModel) {
         uiModel.addAttribute("person_birthdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
         uiModel.addAttribute("person_deathdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
-    }
-    
-    void PersonController.populateEditForm(Model uiModel, Person person) {
-        uiModel.addAttribute("person", person);
-        addDateTimeFormatPatterns(uiModel);
-    }
-    
-    String PersonController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
-        String enc = httpServletRequest.getCharacterEncoding();
-        if (enc == null) {
-            enc = WebUtils.DEFAULT_CHARACTER_ENCODING;
-        }
-        try {
-            pathSegment = UriUtils.encodePathSegment(pathSegment, enc);
-        } catch (UnsupportedEncodingException uee) {}
-        return pathSegment;
     }
     
 }

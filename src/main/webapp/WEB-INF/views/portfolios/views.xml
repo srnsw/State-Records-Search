@@ -7,10 +7,7 @@
 <definition extends="default" name="portfolios/show">
         <put-attribute name="body" value="/WEB-INF/views/portfolios/show.jspx"/>
     </definition>
-<definition extends="default" name="portfolios/create">
-        <put-attribute name="body" value="/WEB-INF/views/portfolios/create.jspx"/>
-    </definition>
-<definition extends="default" name="portfolios/update">
-        <put-attribute name="body" value="/WEB-INF/views/portfolios/update.jspx"/>
-    </definition>
+
+
+
 </tiles-definitions>

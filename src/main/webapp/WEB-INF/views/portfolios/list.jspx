@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:spring="http://www.springframework.org/tags" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:list id="pl_au_gov_nsw_records_search_model_Portfolio" items="${portfolios}" z="6/uKKlCMkA3BXfY6inZcQgmHUXU=">
-        <table:table data="${portfolios}" id="l_au_gov_nsw_records_search_model_Portfolio" path="/portfolios" typeIdFieldName="portfolioNumber" z="ErfsBLoklM5S/i0sbegzX+kDq74=">
+    <c:forEach items="${portfolios}" var="item">
+        <spring:url value="/portfolios/${item.getId()}" var="link_url"/>
+        <div class="collection_search_result">
+            <p>
+                <a href="${link_url}"> ${item.getTitle()} </a>
+            </p>
+        </div>
+    </c:forEach>
+    <util:pagination maxPages="${maxPages}" page="${page}" size="${size}"/>
+    <page:list id="pl_au_gov_nsw_records_search_model_Portfolio" items="${portfolios}" render="false" z="user-managed">
+        <table:table data="${portfolios}" delete="false" id="l_au_gov_nsw_records_search_model_Portfolio" path="/portfolios" typeIdFieldName="portfolioNumber" update="false" z="emNCVOeFHPKU9K6fKrGLychKJAA=">
             <table:column id="c_au_gov_nsw_records_search_model_Portfolio_title" property="title" z="KF1FhSJC+WlAxQz79e1LCAAsLDo="/>
-            <table:column id="c_au_gov_nsw_records_search_model_Portfolio_descriptiveNote" property="descriptiveNote" render="false" z="user-managed"/>
-            <table:column date="true" dateTimePattern="${portfolio_registereddate_date_format}" id="c_au_gov_nsw_records_search_model_Portfolio_registeredDate" property="registeredDate" render="false" z="user-managed"/>
-            <table:column date="true" dateTimePattern="${portfolio_startdate_date_format}" id="c_au_gov_nsw_records_search_model_Portfolio_startDate" property="startDate" render="false" z="user-managed"/>
-            <table:column id="c_au_gov_nsw_records_search_model_Portfolio_startDateQualifier" property="startDateQualifier" render="false" z="user-managed"/>
-            <table:column date="true" dateTimePattern="${portfolio_enddate_date_format}" id="c_au_gov_nsw_records_search_model_Portfolio_endDate" property="endDate" render="false" z="user-managed"/>
+            <table:column id="c_au_gov_nsw_records_search_model_Portfolio_descriptiveNote" property="descriptiveNote" z="RHZFeFPjqRvRQYHnud60fDl8nHI="/>
+            <table:column date="true" dateTimePattern="${portfolio_registereddate_date_format}" id="c_au_gov_nsw_records_search_model_Portfolio_registeredDate" property="registeredDate" z="CxaNz84k8re93Ipic70T4x8a8QA="/>
+            <table:column date="true" dateTimePattern="${portfolio_startdate_date_format}" id="c_au_gov_nsw_records_search_model_Portfolio_startDate" property="startDate" z="sMwLMvATOOKzLhf3NnS6mH9R/AE="/>
+            <table:column id="c_au_gov_nsw_records_search_model_Portfolio_startDateQualifier" property="startDateQualifier" z="SvG/BRGXYk+uHkeR1oN7uqIrSKY="/>
+            <table:column date="true" dateTimePattern="${portfolio_enddate_date_format}" id="c_au_gov_nsw_records_search_model_Portfolio_endDate" property="endDate" z="l9yVSvZyocvbWxfF2daahLGw1J8="/>
         </table:table>
     </page:list>
 </div>

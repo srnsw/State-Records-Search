@@ -61,6 +61,10 @@ public class Portfolio {
 		return DateHelper.dateRange(startDateQualifier, startDate, endDateQualifier, endDate);
 	}
 
+	public int getId(){
+		return portfolioNumber;
+	}
+	
 	public static List<Document> getIndexData(List<Portfolio> portfolios, CategoryDocumentBuilder builder){
   	List<Document> portfoliosIndex = new ArrayList<Document>();
   	for (Portfolio portfolio:portfolios){

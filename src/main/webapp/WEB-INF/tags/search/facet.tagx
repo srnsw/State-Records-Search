@@ -3,6 +3,8 @@
   
   <jsp:directive.attribute name="facets" type="java.util.Collection" required="true" rtexprvalue="true" description="Facet results" />
   <jsp:directive.attribute name="baseURL" type="java.lang.String" required="true" rtexprvalue="true" description="base URL" />
+  <jsp:directive.attribute name="location" type="java.lang.String" required="false" rtexprvalue="true" description="Selected location value" />
+  <jsp:directive.attribute name="series" type="java.lang.String" required="false" rtexprvalue="true" description="Selected series value" />
   
   <div>
   	<h4>Filter by date</h4>
@@ -14,12 +16,28 @@
 	  		
 				<c:forEach items="${facet.getItems()}" var="item">
 				 <spring:url value="${baseURL}" var="url">
-				  <spring:param name="q" value="${q}" />
-				  <!-- if parameter does not present -->
-	        <spring:param name="${facet.getLabel()}" value="${item.getLabel()}" />
-	       </spring:url>
+					<spring:param name="q" value="${q}" />
+					<c:if test="${(location ne item.getLabel()) and (series ne item.getLabel())}">
+						<!-- include the select parameter if not already present -->
+						<spring:param name="${facet.getLabel()}" value="${item.getLabel()}" />
+					</c:if>
+					<c:choose>
+						<c:when test="${('series' ne facet.getLabel()) and (not empty series)}">
+							<!-- include only series parameter if not already present -->
+							<spring:param name="series" value="${series}" />
+						</c:when>
+						<c:when test="${('location' ne facet.getLabel()) and (not empty location)}">
+							<!-- include only location parameter if not already present -->
+							<spring:param name="location" value="${location}" />
+						</c:when>
+					</c:choose>
+				</spring:url>
 	      	<p>
-	      	 <util:entityicon type="${facet.getLabel()}"></util:entityicon> 
+	      	 <c:set var="icontype" value="${facet.getLabel()}"/>
+	      	 <c:if test="${(location eq item.getLabel()) or (series eq item.getLabel())}">
+	      	 		<c:set var="icontype" value="cross"/>
+	      	 </c:if>
+	      	 <util:entityicon type="${icontype}"></util:entityicon> 
 	      	 <a href="${url}"> ${item.getLabel()} </a>  (${item.getCount()}) 
 	      	</p>
 	      </c:forEach>

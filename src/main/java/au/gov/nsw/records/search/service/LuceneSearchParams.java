@@ -16,12 +16,12 @@ public class LuceneSearchParams {
 	private String location;
 	private int size;
 	private int page;
-	private List<Class> clazz;
+	private List<Class<?>> clazz;
 	
-	public List<Class> getClazz() {
+	public List<Class<?>> getClazz() {
 		return clazz;
 	}
-	public LuceneSearchParams setClazz(Class... clazz) {
+	public LuceneSearchParams setClazz(Class<?>... clazz) {
 		this.clazz = new ArrayList(Arrays.asList(clazz));
 		return this;
 	}

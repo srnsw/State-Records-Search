@@ -7,10 +7,7 @@
 <definition extends="default" name="ministries/show">
         <put-attribute name="body" value="/WEB-INF/views/ministries/show.jspx"/>
     </definition>
-<definition extends="default" name="ministries/create">
-        <put-attribute name="body" value="/WEB-INF/views/ministries/create.jspx"/>
-    </definition>
-<definition extends="default" name="ministries/update">
-        <put-attribute name="body" value="/WEB-INF/views/ministries/update.jspx"/>
-    </definition>
+
+
+
 </tiles-definitions>

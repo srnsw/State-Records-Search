@@ -76,14 +76,11 @@ public class Item {
     		Field f = new Field("title", item.getTitle(), Field.Store.YES, Field.Index.ANALYZED);
     		f.setBoost(2.0f);
     		doc.add(f);
-    		
-    		if (item.getId() == 23877){
-					System.out.print("#");
-    		}
-    		
+    		   		
     		doc.add(new Field("location", item.getLocation(), Field.Store.YES, Field.Index.ANALYZED));
+    		doc.add(new Field("series", item.getSeriesNumber().getTitle(), Field.Store.YES, Field.Index.ANALYZED));
     		doc.add(new Field("type", "items", Field.Store.YES, Field.Index.ANALYZED));
-    		doc.add(new Field("content", item.getDescriptiveNote(), Field.Store.YES, Field.Index.ANALYZED));
+    		doc.add(new Field("content", item.getDescriptiveNote().replace("<i>", "").replace("</i>", ""), Field.Store.YES, Field.Index.ANALYZED));
     		doc.add(new Field("url", String.format("/items/%d",item.getId()), Field.Store.YES, Field.Index.ANALYZED));
     		doc.add(new Field("startyear", DateHelper.getYearString(item.getStartDate()), Field.Store.YES, Field.Index.ANALYZED));
     		doc.add(new Field("endyear",  DateHelper.getYearString(item.getEndDate()), Field.Store.YES, Field.Index.ANALYZED));

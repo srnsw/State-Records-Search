@@ -2,15 +2,14 @@
 <div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:show id="ps_au_gov_nsw_records_search_model_Functionn" object="${functionn}" path="/functions" z="VKqbGPiFUAjz1w+VkY7scsPfEj4=">
+    <page:show create="false" delete="false" id="ps_au_gov_nsw_records_search_model_Functionn" object="${functionn}" path="/functions" update="false" z="piuWjQ7y/ebhkUIyI9K2g+ucbK0=">
         <field:display field="title" id="s_au_gov_nsw_records_search_model_Functionn_title" object="${functionn}" z="y0QL6V+A36n5bqnrpekEPVO7fTU="/>
-        <field:display field="dateRange" id="s_au_gov_nsw_records_search_model_Functionn_dateRange" object="${functionn}" z="wA1axLaOrCNK2+1Hp5fBW4AqG4s="/>
-        <field:display field="abolition" id="s_au_gov_nsw_records_search_model_Functionn_abolition" object="${functionn}" render="false" z="user-managed"/>
+        <field:display field="abolition" id="s_au_gov_nsw_records_search_model_Functionn_abolition" object="${functionn}" z="jj/UZxAOZ4H6jsabnwFCkOenwQE="/>
         <field:display field="descriptiveNote" id="s_au_gov_nsw_records_search_model_Functionn_descriptiveNote" object="${functionn}" z="YLz243byQhw96GIj1kNDL0H7V3o="/>
-        <field:display date="true" dateTimePattern="${functionn_registereddate_date_format}" field="registeredDate" id="s_au_gov_nsw_records_search_model_Functionn_registeredDate" object="${functionn}" render="false" z="user-managed"/>
-        <field:display date="true" dateTimePattern="${functionn_startdate_date_format}" field="startDate" id="s_au_gov_nsw_records_search_model_Functionn_startDate" object="${functionn}" render="false" z="user-managed"/>
-        <field:display field="startDateQualifier" id="s_au_gov_nsw_records_search_model_Functionn_startDateQualifier" object="${functionn}" render="false" z="user-managed"/>
-        <field:display date="true" dateTimePattern="${functionn_enddate_date_format}" field="endDate" id="s_au_gov_nsw_records_search_model_Functionn_endDate" object="${functionn}" render="false" z="user-managed"/>
-        <field:display field="endDateQualifier" id="s_au_gov_nsw_records_search_model_Functionn_endDateQualifier" object="${functionn}" render="false" z="user-managed"/>
+        <field:display date="true" dateTimePattern="${functionn_registereddate_date_format}" field="registeredDate" id="s_au_gov_nsw_records_search_model_Functionn_registeredDate" object="${functionn}" z="8O6YyfcUrpJoTBNFxXsKUSONMvU="/>
+        <field:display date="true" dateTimePattern="${functionn_startdate_date_format}" field="startDate" id="s_au_gov_nsw_records_search_model_Functionn_startDate" object="${functionn}" z="6gbQ5v44YSQfGNVO1Us0NKcGbwo="/>
+        <field:display field="startDateQualifier" id="s_au_gov_nsw_records_search_model_Functionn_startDateQualifier" object="${functionn}" z="zPYZJyJ5d4AXKkMKubQMDtE0mqk="/>
+        <field:display date="true" dateTimePattern="${functionn_enddate_date_format}" field="endDate" id="s_au_gov_nsw_records_search_model_Functionn_endDate" object="${functionn}" z="BEGQKb+ffmt5mc9fUlFQqcEYtW0="/>
+        <field:display field="endDateQualifier" id="s_au_gov_nsw_records_search_model_Functionn_endDateQualifier" object="${functionn}" z="5iGdWMb4TygvAqa2un7z8o84dEU="/>
     </page:show>
 </div>

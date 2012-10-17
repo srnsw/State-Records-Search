@@ -2,14 +2,13 @@
 <div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:show id="ps_au_gov_nsw_records_search_model_Portfolio" object="${portfolio}" path="/portfolios" z="NpuyqwlwSrz3DfpYkKTCMkpQWeA=">
+    <page:show create="false" delete="false" id="ps_au_gov_nsw_records_search_model_Portfolio" object="${portfolio}" path="/portfolios" update="false" z="yDXUaqA+XZ4vu/tfWXDVuj6eRy8=">
         <field:display field="title" id="s_au_gov_nsw_records_search_model_Portfolio_title" object="${portfolio}" z="F78ZqHgulRnS9/QsovmXHAjDd4A="/>
-        <field:display field="dateRange" id="s_au_gov_nsw_records_search_model_Portfolio_dateRange" object="${portfolio}" z="l3jVp8oicuqvREeil1tBAapSbRU="/>
         <field:display field="descriptiveNote" id="s_au_gov_nsw_records_search_model_Portfolio_descriptiveNote" object="${portfolio}" z="l3jVp8oicuqvREeil1tBAapSbRU="/>
         <field:display date="true" dateTimePattern="${portfolio_registereddate_date_format}" field="registeredDate" id="s_au_gov_nsw_records_search_model_Portfolio_registeredDate" object="${portfolio}" z="HXmqmIR+CrEu3aA7eVeGbUfdT48="/>
-        <field:display date="true" dateTimePattern="${portfolio_startdate_date_format}" field="startDate" id="s_au_gov_nsw_records_search_model_Portfolio_startDate" object="${portfolio}" render="false" z="user-managed"/>
-        <field:display field="startDateQualifier" id="s_au_gov_nsw_records_search_model_Portfolio_startDateQualifier" object="${portfolio}" render="false" z="user-managed"/>
-        <field:display date="true" dateTimePattern="${portfolio_enddate_date_format}" field="endDate" id="s_au_gov_nsw_records_search_model_Portfolio_endDate" object="${portfolio}" render="false" z="user-managed"/>
-        <field:display field="endDateQualifier" id="s_au_gov_nsw_records_search_model_Portfolio_endDateQualifier" object="${portfolio}" render="false" z="user-managed"/>
+        <field:display date="true" dateTimePattern="${portfolio_startdate_date_format}" field="startDate" id="s_au_gov_nsw_records_search_model_Portfolio_startDate" object="${portfolio}" z="vXbCZAKL0sUnwhVK4f0Betqqjys="/>
+        <field:display field="startDateQualifier" id="s_au_gov_nsw_records_search_model_Portfolio_startDateQualifier" object="${portfolio}" z="IV7IF6m41+7PDFFA8oIx5z8awCQ="/>
+        <field:display date="true" dateTimePattern="${portfolio_enddate_date_format}" field="endDate" id="s_au_gov_nsw_records_search_model_Portfolio_endDate" object="${portfolio}" z="EI3QyQGWODvv+L5mq1rDanKSxqI="/>
+        <field:display field="endDateQualifier" id="s_au_gov_nsw_records_search_model_Portfolio_endDateQualifier" object="${portfolio}" z="iTzziAuI7zfM60BTqamEWZMnHDo="/>
     </page:show>
 </div>

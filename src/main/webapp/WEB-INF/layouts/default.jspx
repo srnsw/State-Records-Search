@@ -22,7 +22,7 @@
 		    <table id="portal-columns">
 	        <tbody>
 	          <tr>
-	            <td id="portal-column-one">
+	            <!-- <td id="portal-column-one">
 							<div class="visualPadding">
 							  <dl class="portlet portletNavigationTree">
 									<dt class="portletHeader">
@@ -36,7 +36,7 @@
 									</dd>
 								</dl>
 							</div>
-					</td>
+					</td> -->
 	             <td id="portal-column-content">
 	               <div id="viewlet-above-content"></div>
 	               <div class="">

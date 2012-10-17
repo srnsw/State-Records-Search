@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:spring="http://www.springframework.org/tags" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:list id="pl_au_gov_nsw_records_search_model_Ministry" items="${ministrys}" z="ps8mwwIEQf9fAk6FTGO7cOzqZus=">
-        <table:table data="${ministrys}" id="l_au_gov_nsw_records_search_model_Ministry" path="/ministries" typeIdFieldName="ministryNumber" z="UejYYB/KFDneOj9eQ4AU8Y9zu/4=">
+    <c:forEach items="${ministrys}" var="item">
+        <spring:url value="/ministries/${item.getId()}" var="link_url"/>
+        <div class="collection_search_result">
+            <p>
+                <a href="${link_url}"> ${item.getTitle()} </a>
+            </p>
+        </div>
+    </c:forEach>
+    <util:pagination maxPages="${maxPages}" page="${page}" size="${size}"/>
+    <page:list id="pl_au_gov_nsw_records_search_model_Ministry" items="${ministrys}" render="false" z="user-managed">
+        <table:table data="${ministrys}" delete="false" id="l_au_gov_nsw_records_search_model_Ministry" path="/ministries" typeIdFieldName="ministryNumber" update="false" z="sn59PLyWJjAmgqeUB+2IT6NZ1FY=">
             <table:column id="c_au_gov_nsw_records_search_model_Ministry_title" property="title" z="/uq+IMke8Qfec6Coa48YBk7lxFA="/>
-            <table:column date="true" dateTimePattern="${ministry_registereddate_date_format}" id="c_au_gov_nsw_records_search_model_Ministry_registeredDate" property="registeredDate" render="false" z="user-managed"/>
-            <table:column date="true" dateTimePattern="${ministry_startdate_date_format}" id="c_au_gov_nsw_records_search_model_Ministry_startDate" property="startDate" render="false" z="user-managed"/>
-            <table:column date="true" dateTimePattern="${ministry_enddate_date_format}" id="c_au_gov_nsw_records_search_model_Ministry_endDate" property="endDate" render="false" z="user-managed"/>
+            <table:column date="true" dateTimePattern="${ministry_registereddate_date_format}" id="c_au_gov_nsw_records_search_model_Ministry_registeredDate" property="registeredDate" z="VHOBB32YrACI43zQ8tIswirwF8U="/>
+            <table:column date="true" dateTimePattern="${ministry_startdate_date_format}" id="c_au_gov_nsw_records_search_model_Ministry_startDate" property="startDate" z="d0naL6tX/USNxaV1JdTpoh4dM6A="/>
+            <table:column date="true" dateTimePattern="${ministry_enddate_date_format}" id="c_au_gov_nsw_records_search_model_Ministry_endDate" property="endDate" z="vkEUULOdjqb78ydgASTMpX8QeCs="/>
         </table:table>
     </page:list>
 </div>

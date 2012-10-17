@@ -1,41 +1,33 @@
 package au.gov.nsw.records.search.web;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-
-import au.gov.nsw.records.search.model.Item;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import au.gov.nsw.records.search.model.Item;
 
 @RequestMapping("/items")
 @Controller
-@RooWebScaffold(path = "items", formBackingObject = Item.class)
+@RooWebScaffold(path = "items", formBackingObject = Item.class, update=false, create=false, delete=false)
 public class ItemController {
-	
-  @RequestMapping(method = RequestMethod.POST, produces = "text/html")
-  public String create(@Valid Item item, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-      if (bindingResult.hasErrors()) {
-          populateEditForm(uiModel, item);
-          return "items/create";
-      }
-      uiModel.asMap().clear();
-      item.persist();
-      return "redirect:/items/" + encodeUrlPathSegment(String.valueOf(item.getId()), httpServletRequest);
-  }
   
-  @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
-  public String update(@Valid Item item, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-      if (bindingResult.hasErrors()) {
-          populateEditForm(uiModel, item);
-          return "items/update";
-      }
-      uiModel.asMap().clear();
-      item.merge();
-      return "redirect:/items/" + encodeUrlPathSegment(String.valueOf(item.getId()), httpServletRequest);
-  }
-  
+
+	@RequestMapping(produces = "text/html")
+    public String list(@RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+        if (page != null || size != null) {
+            int sizeNo = size == null ? 10 : size.intValue();
+            final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
+            uiModel.addAttribute("items", Item.findItemEntries(firstResult, sizeNo));
+            float nrOfPages = (float) Item.countItems() / sizeNo;
+            uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
+            uiModel.addAttribute("page", page);
+            uiModel.addAttribute("size", size);
+        } else {
+            uiModel.addAttribute("items", Item.findAllItems());
+        }
+        addDateTimeFormatPatterns(uiModel);
+        return "items/list";
+    }
 }

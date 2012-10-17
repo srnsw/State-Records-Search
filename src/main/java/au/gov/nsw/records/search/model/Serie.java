@@ -127,6 +127,10 @@ public class Serie {
   	return LocationHelper.getSimpleLocation(repository);
   }
 	
+	public int getId(){
+		return seriesNumber;
+	}
+	
 	public static List<Document> getIndexData(List<Serie> series, CategoryDocumentBuilder builder) throws IOException{
   	List<Document> seriesIndex = new ArrayList<Document>();
   	for (Serie serie:series){
@@ -137,7 +141,8 @@ public class Serie {
 
   		doc.add(new Field("type", "series", Field.Store.YES, Field.Index.ANALYZED));
   		doc.add(new Field("location", serie.getLocation(), Field.Store.YES, Field.Index.ANALYZED));
-  		doc.add(new Field("content", serie.getDescriptiveNote()==null? "" : serie.getDescriptiveNote(), Field.Store.YES, Field.Index.ANALYZED));
+  		doc.add(new Field("series", serie.getTitle(), Field.Store.YES, Field.Index.ANALYZED));
+  		doc.add(new Field("content", serie.getDescriptiveNote()==null? "" : serie.getDescriptiveNote().replace("<i>", "").replace("</i>", ""), Field.Store.YES, Field.Index.ANALYZED));
   		doc.add(new Field("url", String.format("/series/%d", serie.getSeriesNumber()), Field.Store.YES, Field.Index.ANALYZED));
   		doc.add(new Field("startyear", DateHelper.getYearString(serie.getStartDate()), Field.Store.YES, Field.Index.ANALYZED));
   		doc.add(new Field("endyear",  DateHelper.getYearString(serie.getEndDate()), Field.Store.YES, Field.Index.ANALYZED));
@@ -149,6 +154,7 @@ public class Serie {
 			categories.add(new CategoryPath("series", serie.getTitle()));
 			
 			builder.setCategoryPaths(categories);
+			builder.build(doc);
 			
   		seriesIndex.add(doc);
   	}

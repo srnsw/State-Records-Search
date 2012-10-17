@@ -71,6 +71,14 @@ public class Person {
         return DateHelper.dateRange(birthDateQualifier, birthDate, deathDateQualifier, deathDate);
     }
 
+    public int getId(){
+    	return personNumber;
+    }
+    
+    public String getTitle(){
+    	return getFullName();
+    }
+    
     public String getFullName() {
         String s = (prenomialHonorifics != null ? prenomialHonorifics + " " : "");
         s = (givenName != null ? s + givenName + " " : s);

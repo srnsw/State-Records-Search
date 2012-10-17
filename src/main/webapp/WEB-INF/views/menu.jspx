@@ -36,12 +36,11 @@
             <menu:item id="i_functionn_list" messageCode="global_menu_list" url="/functions?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
         </menu:category>
         <menu:category id="c_organisation" z="QTXwJ24qYjc5Gr1nhIS2tO9SShI=">
-            <menu:item id="i_organisation_new" render="false" messageCode="global_menu_new" url="/organisations?form" z="FI+Fxhi9mE2dnMKWMXyPRGeY2hQ="/>
+            <menu:item id="i_organisation_new" messageCode="global_menu_new" render="false" url="/organisations?form" z="user-managed"/>
             <menu:item id="i_organisation_list" messageCode="global_menu_list" url="/organisations?page=1&amp;size=${empty param.size ? 10 : param.size}" z="IcomRzBiIOgq88FmI5Rw2+nBRXA="/>
         </menu:category>
         <menu:category id="c_controller" z="nj8Dm3hojIyIEyPkwE1UMDIs+K8=">
             <menu:item id="i_controller__searchindex_id" messageCode="global_generic" url="/search/index" z="Rr2P0bqq8h2TImrqyyTAYCJ8lLY="/>
         </menu:category>
-     
     </menu:menu>
 </div>

@@ -53,6 +53,10 @@ public class Ministry {
 		return DateHelper.dateRange(null, startDate, null, endDate);
 	}
 	
+	public int getId(){
+		return ministryNumber;
+	}
+	
 	public static List<Document> getIndexData(List<Ministry> ministries, CategoryDocumentBuilder builder){
 		List<Document> ministriesIndex = new ArrayList<Document>();
   	for (Ministry ministry:ministries){

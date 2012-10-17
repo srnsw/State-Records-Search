@@ -2,9 +2,11 @@
 <div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <form:update id="fu_au_gov_nsw_records_search_model_Person" idField="personNumber" modelAttribute="person" path="/persons" versionField="none" z="user-managed">
+    <form:update id="fu_au_gov_nsw_records_search_model_Person" idField="personNumber" modelAttribute="person" path="/people" versionField="none" z="Z8eEPRBCc0S5wtmWDM0QcJ7C5f8=">
         <field:input field="surname" id="c_au_gov_nsw_records_search_model_Person_surname" z="fQ49u8CyDWM7GDBd0AuO9omJ+Nk="/>
         <field:input field="givenName" id="c_au_gov_nsw_records_search_model_Person_givenName" z="FKxTtCyO+/Hlc5e8a8NfgVwvkPE="/>
+        <field:input field="prenomialHonorifics" id="c_au_gov_nsw_records_search_model_Person_prenomialHonorifics" z="Svln0ISr1EWHqdbBjIy9uC2qjRs="/>
+        <field:input field="postnomialHonorifics" id="c_au_gov_nsw_records_search_model_Person_postnomialHonorifics" z="v8hly8NIZpk9CHiNigRfmsaby7A="/>
         <field:input field="officeHeld" id="c_au_gov_nsw_records_search_model_Person_officeHeld" z="6X3wHLvvFuwNC+GHOurIkdUyEVk="/>
         <field:input field="biographicalNote" id="c_au_gov_nsw_records_search_model_Person_biographicalNote" z="5ijVQztD13fSFZQy/nYMxK4YQYU="/>
         <field:checkbox field="minister" id="c_au_gov_nsw_records_search_model_Person_minister" z="TsGvt3gJJXf68q+nxcb3RIABRkE="/>
@@ -12,7 +14,5 @@
         <field:input field="birthDateQualifier" id="c_au_gov_nsw_records_search_model_Person_birthDateQualifier" z="rKWvdkFk+nA3fwI4zn/Nu4+OWQs="/>
         <field:datetime dateTimePattern="${person_deathdate_date_format}" field="deathDate" id="c_au_gov_nsw_records_search_model_Person_deathDate" z="73gAbVnAJUj4o6jh4n7TRbGJ4a4="/>
         <field:input field="deathDateQualifier" id="c_au_gov_nsw_records_search_model_Person_deathDateQualifier" z="AeUzFyKYonaX9Nu45wuMjDeNXoE="/>
-        <field:input field="prenomialHonorifics" id="c_au_gov_nsw_records_search_model_Person_prenomialHonorifics" z="Svln0ISr1EWHqdbBjIy9uC2qjRs="/>
-        <field:input field="postnomialHonorifics" id="c_au_gov_nsw_records_search_model_Person_postnomialHonorifics" z="v8hly8NIZpk9CHiNigRfmsaby7A="/>
     </form:update>
 </div>

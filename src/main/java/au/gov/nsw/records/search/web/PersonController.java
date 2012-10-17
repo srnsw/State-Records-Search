@@ -1,40 +1,32 @@
 package au.gov.nsw.records.search.web;
 
-import au.gov.nsw.records.search.model.Person;
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import au.gov.nsw.records.search.model.Person;
 
 @RequestMapping("/persons")
 @Controller
-@RooWebScaffold(path = "people", formBackingObject = Person.class)
+@RooWebScaffold(path = "people", formBackingObject = Person.class, update=false, create=false, delete=false)
 public class PersonController {
 
-
-	@RequestMapping(method = RequestMethod.PUT, produces = "text/html")
-    public String update(@Valid Person person, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-        if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, person);
-            return "people/update";
+	@RequestMapping(produces = "text/html")
+    public String list(@RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+        if (page != null || size != null) {
+            int sizeNo = size == null ? 10 : size.intValue();
+            final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
+            uiModel.addAttribute("people", Person.findPersonEntries(firstResult, sizeNo));
+            float nrOfPages = (float) Person.countPeople() / sizeNo;
+            uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
+            uiModel.addAttribute("page", page);
+            uiModel.addAttribute("size", size);
+        } else {
+            uiModel.addAttribute("people", Person.findAllPeople());
         }
-        uiModel.asMap().clear();
-        person.merge();
-        return "redirect:/people/" + encodeUrlPathSegment(String.valueOf(person.getPersonNumber()), httpServletRequest);
-    }
-
-	@RequestMapping(method = RequestMethod.POST, produces = "text/html")
-    public String create(@Valid Person person, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-        if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, person);
-            return "people/create";
-        }
-        uiModel.asMap().clear();
-        person.persist();
-        return "redirect:/people/" + encodeUrlPathSegment(String.valueOf(person.getPersonNumber()), httpServletRequest);
+        addDateTimeFormatPatterns(uiModel);
+        return "people/list";
     }
 }

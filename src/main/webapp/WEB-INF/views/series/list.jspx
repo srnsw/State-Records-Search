@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:spring="http://www.springframework.org/tags" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:list id="pl_au_gov_nsw_records_search_model_Serie" items="${series}" z="l91fpkGHSgQ0ELZOUfnHpD48Ohk=">
-        <table:table data="${series}" id="l_au_gov_nsw_records_search_model_Serie" path="/series" typeIdFieldName="seriesNumber" z="uAhRaC6b25/8uInub6PDwUjryyQ=">
+    <c:forEach items="${series}" var="item">
+        <spring:url value="/series/${item.getId()}" var="link_url"/>
+        <div class="collection_search_result">
+            <p>
+                <a href="${link_url}"> ${item.getTitle()} </a>
+            </p>
+        </div>
+    </c:forEach>
+    <util:pagination maxPages="${maxPages}" page="${page}" size="${size}"/>
+    <page:list id="pl_au_gov_nsw_records_search_model_Serie" items="${series}" render="false" z="user-managed">
+        <table:table data="${series}" delete="false" id="l_au_gov_nsw_records_search_model_Serie" path="/series" typeIdFieldName="seriesNumber" update="false" z="+60UxQYGXE0v9VUka+XetSUOuak=">
             <table:column id="c_au_gov_nsw_records_search_model_Serie_title" property="title" z="Ycct2NfCyAoankxrY3fFaFXcKUQ="/>
-            <table:column id="c_au_gov_nsw_records_search_model_Serie_descriptiveNote" property="descriptiveNote" render="false" z="user-managed"/>
-            <table:column id="c_au_gov_nsw_records_search_model_Serie_format" property="format" render="false" z="user-managed"/>
-            <table:column id="c_au_gov_nsw_records_search_model_Serie_arrangement" property="arrangement" render="false" z="user-managed"/>
-            <table:column id="c_au_gov_nsw_records_search_model_Serie_copies" property="copies" render="false" z="user-managed"/>
-            <table:column id="c_au_gov_nsw_records_search_model_Serie_seriesControlStatus" property="seriesControlStatus" render="false" z="user-managed"/>
+            <table:column id="c_au_gov_nsw_records_search_model_Serie_descriptiveNote" property="descriptiveNote" z="MyuAXrmQEH0hmrmV6dSrOVIgLCo="/>
+            <table:column id="c_au_gov_nsw_records_search_model_Serie_format" property="format" z="waKo4jbNpp1uDPDIGWeN932CazQ="/>
+            <table:column id="c_au_gov_nsw_records_search_model_Serie_arrangement" property="arrangement" z="LIjM+54BwLi1hI7eSsQpCoXDgd0="/>
+            <table:column id="c_au_gov_nsw_records_search_model_Serie_copies" property="copies" z="/7ypVqe+817vK0XfiYgaUI7AD1E="/>
+            <table:column id="c_au_gov_nsw_records_search_model_Serie_seriesControlStatus" property="seriesControlStatus" z="OeDQj8s8r7etUXdSCLsyTsb4Y8I="/>
         </table:table>
     </page:list>
 </div>

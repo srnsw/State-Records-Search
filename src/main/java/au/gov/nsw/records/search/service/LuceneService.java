@@ -1,10 +1,13 @@
 package au.gov.nsw.records.search.service;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
+import org.apache.log4j.Logger;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
@@ -42,14 +45,24 @@ import org.apache.lucene.search.highlight.SimpleHTMLFormatter;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
+import org.springframework.core.io.ClassPathResource;
 
 public class LuceneService {
 
 	private static IndexWriter writer;
 	private static TaxonomyWriter taxo;
+	private static ClassPathResource cpr = new ClassPathResource("lucene.properties");
+	
+	private static final String INDEX_LOC_PROPERTY = "indexlocation";
+	private static final String TEXO_LOC_PROPERTY = "taxolocation";
+	
+	private static Logger log = Logger.getLogger(LuceneService.class);
 	
 	public CategoryDocumentBuilder startWriting() throws IOException{
-		Directory dir = FSDirectory.open(new File("c:\\index\\"));
+		Properties prop = new Properties();
+		prop.load(new FileInputStream(cpr.getFile()));
+		
+		Directory dir = FSDirectory.open(new File(prop.getProperty(INDEX_LOC_PROPERTY)));
 		Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_31);
 		IndexWriterConfig iwc = new IndexWriterConfig(Version.LUCENE_31, analyzer);
 		// Create a new index in the directory, removing any
@@ -64,7 +77,7 @@ public class LuceneService {
 
 		writer = new IndexWriter(dir, iwc);
 		
-		Directory taxoDir = FSDirectory.open(new File("c:\\taxo\\"));
+		Directory taxoDir = FSDirectory.open(new File(prop.getProperty(TEXO_LOC_PROPERTY)));
 		taxo = new DirectoryTaxonomyWriter(taxoDir, OpenMode.CREATE);
 		
 		return new CategoryDocumentBuilder(taxo);
@@ -96,11 +109,14 @@ public class LuceneService {
 		List<FacetResultItem> facetResults = new ArrayList<FacetResultItem>();
 		int numTotalHits = 0;
 		try {
-			IndexReader indexReader = IndexReader.open(FSDirectory.open(new File("c:\\index\\")));
+			Properties prop = new Properties();
+			prop.load(new FileInputStream(cpr.getFile()));
+			
+			IndexReader indexReader = IndexReader.open(FSDirectory.open(new File(prop.getProperty(INDEX_LOC_PROPERTY))));
 			IndexSearcher searcher = new IndexSearcher(indexReader);
 			Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_31);
 
-			Directory taxoDir = FSDirectory.open(new File("c:\\taxo\\"));
+			Directory taxoDir = FSDirectory.open(new File(prop.getProperty(TEXO_LOC_PROPERTY)));
 			TaxonomyReader taxoReader = new DirectoryTaxonomyReader(taxoDir);
 			FacetsCollector facetsCollector = new FacetsCollector(facets, indexReader, taxoReader);
 			
@@ -110,7 +126,7 @@ public class LuceneService {
 			
 			TopDocs docs = docCollector.topDocs((page.intValue()-1)*size.intValue(), size.intValue());
 			numTotalHits = docCollector.getTotalHits();
-			System.out.println(numTotalHits + " total matching documents");
+			log.info(numTotalHits + " total matching documents");
 			
 			for (ScoreDoc hit:docs.scoreDocs){
 				Document doc = searcher.doc(hit.doc);
@@ -145,15 +161,23 @@ public class LuceneService {
 		String classQuery = "";
 		int i = 0;
 		// multi-entity search
-		for (Class clazz: params.getClazz()){
+		for (Class<?> clazz: params.getClazz()){
 			if (i++>0){
 				classQuery += " OR ";
 			}
 			classQuery += String.format("class:( +\"%s\")", clazz.getName());
 		}
+		String facetCondition = "";
+		if (params.getLocation()!=null){
+			facetCondition += String.format(" AND location:( +\"%s\")", params.getLocation());
+		}
+		if (params.getSeries()!=null){
+			facetCondition += String.format(" AND series:( +\"%s\")", params.getSeries());
+		}
+		
 		try {
-			String queryText = params.getQuery() + String.format(" AND (%s)", classQuery); 
-			System.out.println("Query:" + queryText);
+			String queryText = params.getQuery() + String.format(" AND (%s)", classQuery) + facetCondition; 
+			log.info("Query:" + queryText);
 			//general query
 			Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_31);
 			MultiFieldQueryParser queryParser = new MultiFieldQueryParser(Version.LUCENE_31, new String[] {"title", "content"},analyzer);
@@ -170,34 +194,4 @@ public class LuceneService {
 		
     return new SearchResult(new ArrayList<SearchResultItem>(), new ArrayList<FacetResultItem>(), 0); 
 	}
-//	public SearchResult search(String queryText, FacetSearchParams facets, Integer page, Integer size, Class<?>... clazzs){
-//		String classQuery = "";
-//		int i = 0;
-//		// multi-entity search
-//		for (Class<?> clazz:clazzs){
-//			if (i++>0){
-//				classQuery += " OR ";
-//			}
-//			classQuery += String.format("class:( +\"%s\")", clazz.getName());
-//		}
-//		try {
-//			queryText = queryText + String.format(" AND (%s)", classQuery); 
-//			System.out.println("Query:" + queryText);
-//			//general query
-//			Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_31);
-//			MultiFieldQueryParser queryParser = new MultiFieldQueryParser(Version.LUCENE_31, new String[] {"title", "content"},analyzer);
-//			Query baseQuery = queryParser.parse(queryText);
-//			
-//			//baseQuery = DrillDown.query(baseQuery, new CategoryPath("location", "Western Sydney Records Centre, Kingswood"));
-//			
-//			return search(baseQuery, facets, page, size);
-//		} catch (ParseException e) {
-//			e.printStackTrace();
-//		} catch (Exception e){
-//			e.printStackTrace();
-//		}
-//		
-//    return new SearchResult(new ArrayList<SearchResultItem>(), new ArrayList<FacetResultItem>(), 0); 
-//	}
-
 }

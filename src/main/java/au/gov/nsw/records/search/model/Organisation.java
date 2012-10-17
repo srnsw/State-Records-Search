@@ -50,4 +50,9 @@ public class Organisation {
 	public String getDateRange() {
 		return DateHelper.dateRange(startDateQualifier, startDate, endDateQualifier, endDate);
 	}
+	
+	public int getId(){
+		return organisationNumber;
+	}
+	
 }

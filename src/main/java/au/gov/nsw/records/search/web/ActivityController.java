@@ -1,39 +1,32 @@
 package au.gov.nsw.records.search.web;
 
-import au.gov.nsw.records.search.model.Activity;
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import au.gov.nsw.records.search.model.Activity;
 
 @RequestMapping("/activities")
 @Controller
-@RooWebScaffold(path = "activities", formBackingObject = Activity.class)
+@RooWebScaffold(path = "activities", formBackingObject = Activity.class, update=false, create=false, delete=false)
 public class ActivityController {
 
-	@RequestMapping(method = RequestMethod.PUT, produces = "text/html")
-    public String update(@Valid Activity activity, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-        if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, activity);
-            return "activitys/update";
+	@RequestMapping(produces = "text/html")
+    public String list(@RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+        if (page != null || size != null) {
+            int sizeNo = size == null ? 10 : size.intValue();
+            final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
+            uiModel.addAttribute("activitys", Activity.findActivityEntries(firstResult, sizeNo));
+            float nrOfPages = (float) Activity.countActivitys() / sizeNo;
+            uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
+            uiModel.addAttribute("page", page);
+            uiModel.addAttribute("size", size);
+        } else {
+            uiModel.addAttribute("activitys", Activity.findAllActivitys());
         }
-        uiModel.asMap().clear();
-        activity.merge();
-        return "redirect:/activities/" + encodeUrlPathSegment(String.valueOf(activity.getActivityNumber()), httpServletRequest);
-    }
-
-	@RequestMapping(method = RequestMethod.POST, produces = "text/html")
-    public String create(@Valid Activity activity, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-        if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, activity);
-            return "activitys/create";
-        }
-        uiModel.asMap().clear();
-        activity.persist();
-        return "redirect:/activities/" + encodeUrlPathSegment(String.valueOf(activity.getActivityNumber()), httpServletRequest);
+        addDateTimeFormatPatterns(uiModel);
+        return "activities/list";
     }
 }
