@@ -2,24 +2,24 @@
   <jsp:output omit-xml-declaration="yes" />
   
   <jsp:directive.attribute name="results" type="java.util.Collection" required="true" rtexprvalue="true" description="Search results" />
-  
-   <c:if test="${results.size() gt 0}">
+   
+   <c:if test="${not empty results}">
 	  <c:forEach items="${results}" var="result">
-	      <spring:url value="${result.getUrl()}" var="link_url"/>
+	      <spring:url value="${result.url}" var="link_url"/>
 	      <div class="collection_search_result">
 	          <p>
-	            <util:entityicon type="${result.getType()}"></util:entityicon>
-	            <a href="${link_url}"> ${result.getTitle()} </a>
+	            <util:entityicon type="${result.type}"></util:entityicon>
+	            <a href="${link_url}"> ${result.title} </a>
 	          </p>
-	          <c:if test="${(not result.isTitleEqualContent()) and (not empty result.getContent()) and (result.getType() eq 'series' or result.getType() eq 'items')}">
+	          <c:if test="${(not result.titleEqualContent) and (not empty result.content) and (result.type eq 'series' or result.type eq 'items')}">
 					      <p>
-		          		...${result.getContent()}...
+		          		...${result.content}...
 		          	</p>
 				    </c:if>
 	      </div>
 	  </c:forEach>
 	  </c:if>
-	  <c:if test="${results.size() lt 1}">
+	  <c:if test="${empty results}">
   		<em>No results</em>
   	</c:if>
 </jsp:root>

@@ -6,10 +6,10 @@
     <table>
     <td class="entitylist">
     <c:forEach items="${functionns}" var="item">
-        <spring:url value="/functions/${item.getId()}" var="link_url"/>
+        <spring:url value="/functions/${item.id}" var="link_url"/>
         <div class="collection_search_result">
             <p>
-                <a href="${link_url}"> ${item.getTitle()} </a>
+                <a href="${link_url}"> ${item.title} </a>
             </p>
         </div>
     </c:forEach>

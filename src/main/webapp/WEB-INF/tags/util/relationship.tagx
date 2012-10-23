@@ -9,18 +9,18 @@
   <jsp:directive.attribute name="pageParam" type="java.lang.String" required="true" rtexprvalue="true" description="page parameter" />
   <jsp:directive.attribute name="browseLink" type="java.lang.String" required="false" rtexprvalue="true" description="Extra browse link" />
   
-  <c:if test="${relationships.size() gt 0}">
+  <c:if test="${maxPages gt 0}">
 	  <fieldset class="PFGFieldsetWidget">
 	       <legend>
 	           <span>${heading}</span>
 	       </legend>
 	       <c:forEach items="${relationships}" var="item">
-	           <c:set value="${item.getRelationship()}" var="entity"/>
-	           <spring:url value="/${type}/${entity.getId()}" var="link_url"/>
+	           <c:set value="${item.relationship}" var="entity"/>
+	           <spring:url value="/${type}/${entity.id}" var="link_url"/>
 	           <p>
 	               <util:entityicon type="${type}"/>
-	               <a href="${link_url}"> ${entity.getTitle()} </a> (${entity.getDateRange()})
-	      </p>
+	               <a href="${link_url}"> ${entity.title} </a> (${entity.dateRange})
+	           </p>
 	       </c:forEach>
 	       <util:pagination browseLink="${browseLink}" maxPages="${maxPages}" page="${page}" pageParam="${pageParam}" showPageSizeSelection="false"/>
 	   </fieldset>

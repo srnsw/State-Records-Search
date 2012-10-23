@@ -24,11 +24,11 @@
 					  </div>
         </td>
         <td class="searchlist" width="35%">
-					<util:relationship browseLink="/person/${person.getId()}/agencies" maxPages="${rel_agencies_size}" relationships="${rel_agencies}" type="agencies" pageParam="agencies_page" page="${rel_agencies_page}" heading="Agencies related to this person"></util:relationship>
-					<util:relationship browseLink="/person/${person.getId()}/ministries" maxPages="${rel_ministries_size}" relationships="${rel_ministries}" type="ministries" pageParam="ministries_page" page="${rel_ministries_page}" heading="Ministries containing this person"></util:relationship>
-					<util:relationship browseLink="/person/${person.getId()}/portfolios" maxPages="${rel_portfolios_size}" relationships="${rel_portfolios}" type="portfolios" pageParam="portfolios_page" page="${rel_portfolios_page}" heading="Portfolios this person held as minister"></util:relationship>
-					<util:relationship browseLink="/person/${person.getId()}/functions" maxPages="${rel_functions_size}" relationships="${rel_functions}" type="functions" pageParam="functions_page" page="${rel_functions_page}" heading="Functions exercised by this person"></util:relationship>
-					<util:relationship browseLink="/person/${person.getId()}/series" maxPages="${rel_series_size}" relationships="${rel_series}" type="series" pageParam="series_page" page="${rel_series_page}" heading="Record series created by this person"></util:relationship>
+					<util:relationship browseLink="/person/${person.id}/agencies" maxPages="${rel_agencies_size}" relationships="${rel_agencies}" type="agencies" pageParam="agencies_page" page="${rel_agencies_page}" heading="Agencies related to this person"></util:relationship>
+					<util:relationship browseLink="/person/${person.id}/ministries" maxPages="${rel_ministries_size}" relationships="${rel_ministries}" type="ministries" pageParam="ministries_page" page="${rel_ministries_page}" heading="Ministries containing this person"></util:relationship>
+					<util:relationship browseLink="/person/${person.id}/portfolios" maxPages="${rel_portfolios_size}" relationships="${rel_portfolios}" type="portfolios" pageParam="portfolios_page" page="${rel_portfolios_page}" heading="Portfolios this person held as minister"></util:relationship>
+					<util:relationship browseLink="/person/${person.id}/functions" maxPages="${rel_functions_size}" relationships="${rel_functions}" type="functions" pageParam="functions_page" page="${rel_functions_page}" heading="Functions exercised by this person"></util:relationship>
+					<util:relationship browseLink="/person/${person.id}/series" maxPages="${rel_series_size}" relationships="${rel_series}" type="series" pageParam="series_page" page="${rel_series_page}" heading="Record series created by this person"></util:relationship>
 					
         </td>
     </table>

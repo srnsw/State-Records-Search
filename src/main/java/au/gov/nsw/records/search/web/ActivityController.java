@@ -58,16 +58,15 @@ public class ActivityController {
 
 		Activity ac = Activity.findActivity(activityNumber);
 		if (ac!=null){
-			final int firstResult = page == null ? 0 : (page.intValue() - 1) * size;
 			int resultSize = ac.getSeries().size();
-			ac.getSeries().subList(Math.max((page-1)*size, 0), Math.min(page*size, resultSize));
-			uiModel.addAttribute("series", Serie.findSerieEntries(firstResult, size));
+			uiModel.addAttribute("series", ac.getSeries().subList(Math.max((page-1)*size, 0), Math.min(page*size, resultSize)));
 			float nrOfPages = (float) resultSize / size;
 			uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
 			uiModel.addAttribute("page", page);
 			uiModel.addAttribute("size", size);
 
 			addDateTimeFormatPatterns(uiModel);
+			
 		}
 		return "series/list";
 	}

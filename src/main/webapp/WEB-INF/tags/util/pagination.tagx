@@ -28,7 +28,7 @@
       <c:set var="sizeParam" value="size" />
     </c:if>		
 		<c:if test="${not empty itemCount || itemCount gt 0}">
-			<c:set var="maxPages" value="${java.lang.Math.ceil(itemCount/size)}" />
+			<c:set var="maxPages" value="${itemCount/size}" />
 		</c:if>
 		
     <p class="collection_navigation">

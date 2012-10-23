@@ -17,8 +17,8 @@
             </div>
         </td>
         <td class="searchlist" width="35%">
-					<util:relationship browseLink="/activities/${activity.getId()}/functions" maxPages="${rel_functions_size}" relationships="${rel_functions}" type="functions" pageParam="functions_page" page="${rel_functions_page}" heading="Functions containing this activity"></util:relationship>            
-					<util:relationship browseLink="/activities/${activity.getId()}/series" maxPages="${rel_series_size}" relationships="${rel_series}" type="series" pageParam="series_page" page="${rel_series_page}" heading="Record series documenting this activity"></util:relationship>
+					<util:relationship browseLink="/activities/${activity.id}/functions" maxPages="${rel_functions_size}" relationships="${rel_functions}" type="functions" pageParam="functions_page" page="${rel_functions_page}" heading="Functions containing this activity"></util:relationship>            
+					<util:relationship browseLink="/activities/${activity.id}/series" maxPages="${rel_series_size}" relationships="${rel_series}" type="series" pageParam="series_page" page="${rel_series_page}" heading="Record series documenting this activity"></util:relationship>
         </td>
     </table>
 </div>

@@ -12,22 +12,22 @@
   
   <c:forEach items="${facets}" var="facet">
   		<div>
-	  		<h4>Filter by ${facet.getLabel()}</h4>
+	  		<h4>Filter by ${facet.label}</h4>
 	  		
-				<c:forEach items="${facet.getItems()}" var="item">
+				<c:forEach items="${facet.items}" var="item">
 				  
 				  <spring:url value="${baseURL}" var="url">
 					<spring:param name="q" value="${q}" />
-					<c:if test="${(location ne item.getLabel()) and (series ne item.getLabel())}">
+					<c:if test="${(location ne item.label) and (series ne item.label)}">
 						<!-- include the select parameter if not already present -->
-						<spring:param name="${facet.getLabel()}" value="${item.getLabel()}" />
+						<spring:param name="${facet.label}" value="${item.label}" />
 					</c:if>
 					<c:choose>
-						<c:when test="${('series' ne facet.getLabel()) and (not empty series)}">
+						<c:when test="${('series' ne facet.label) and (not empty series)}">
 							<!-- include only series parameter if not already present -->
 							<spring:param name="series" value="${series}" />
 						</c:when>
-						<c:when test="${('location' ne facet.getLabel()) and (not empty location)}">
+						<c:when test="${('location' ne facet.label) and (not empty location)}">
 							<!-- include only location parameter if not already present -->
 							<spring:param name="location" value="${location}" />
 						</c:when>
@@ -35,12 +35,12 @@
 				  
 				  </spring:url>
 	      	<p>
-	      	 <c:set var="icontype" value="${facet.getLabel()}"/>
-	      	 <c:if test="${(location eq item.getLabel()) or (series eq item.getLabel())}">
+	      	 <c:set var="icontype" value="${facet.label}"/>
+	      	 <c:if test="${(location eq item.label) or (series eq item.label)}">
 	      	 		<c:set var="icontype" value="cross"/>
 	      	 </c:if>
 	      	 <util:entityicon type="${icontype}"></util:entityicon> 
-	      	 <a href="${url}"> ${item.getLabel()} </a>  (${item.getCount()}) 
+	      	 <a href="${url}"> ${item.label} </a>  (${item.count}) 
 	      	</p>
 	      </c:forEach>
       </div>

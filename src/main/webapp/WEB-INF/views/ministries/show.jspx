@@ -15,7 +15,7 @@
 					  </div>
         </td>
         <td class="searchlist" width="35%">
-					<util:relationship browseLink="/ministries/${ministry.getId()}/portfolios" maxPages="${rel_portfolios_size}" relationships="${rel_portfolios}" type="portfolios" pageParam="portfolios_page" page="${rel_portfolios_page}" heading="Portfolios in this ministry"></util:relationship>
+					<util:relationship browseLink="/ministries/${ministry.id}/portfolios" maxPages="${rel_portfolios_size}" relationships="${rel_portfolios}" type="portfolios" pageParam="portfolios_page" page="${rel_portfolios_page}" heading="Portfolios in this ministry"></util:relationship>
         </td>
     </table>
 </div>

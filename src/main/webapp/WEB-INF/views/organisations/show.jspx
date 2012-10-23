@@ -16,9 +16,9 @@
 					  </div>
         </td>
         <td class="searchlist" width="35%">
-					<util:relationship browseLink="/organisations/${organisation.getId()}/preceding" maxPages="${rel_preceding_size}" relationships="${rel_preceding}" type="organisations" pageParam="preceding_page" page="${rel_preceding_page}" heading="Preceding organisations"></util:relationship>
-					<util:relationship browseLink="/organisations/${organisation.getId()}/succeeding" maxPages="${rel_succeeding_size}" relationships="${rel_succeeding}" type="organisations" pageParam="succeeding_page" page="${rel_succeeding_page}" heading="Succeeding organisations"></util:relationship>
-					<util:relationship browseLink="/organisations/${organisation.getId()}/agencies" maxPages="${rel_agencies_size}" relationships="${rel_agencies}" type="agencies" pageParam="agencies_page" page="${rel_agencies_page}" heading="Agencies controlled by this organisation"></util:relationship>
+					<util:relationship browseLink="/organisations/${organisation.id}/preceding" maxPages="${rel_preceding_size}" relationships="${rel_preceding}" type="organisations" pageParam="preceding_page" page="${rel_preceding_page}" heading="Preceding organisations"></util:relationship>
+					<util:relationship browseLink="/organisations/${organisation.id}/succeeding" maxPages="${rel_succeeding_size}" relationships="${rel_succeeding}" type="organisations" pageParam="succeeding_page" page="${rel_succeeding_page}" heading="Succeeding organisations"></util:relationship>
+					<util:relationship browseLink="/organisations/${organisation.id}/agencies" maxPages="${rel_agencies_size}" relationships="${rel_agencies}" type="agencies" pageParam="agencies_page" page="${rel_agencies_page}" heading="Agencies controlled by this organisation"></util:relationship>
         </td>
     </table>
 </div>
