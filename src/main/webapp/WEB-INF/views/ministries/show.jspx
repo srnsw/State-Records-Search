@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+<div xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:show create="false" delete="false" id="ps_au_gov_nsw_records_search_model_Ministry" object="${ministry}" path="/ministries" update="false" z="Tb8vNA0TDNtQjyIY66CuR4riaec=">
-        <field:display field="title" id="s_au_gov_nsw_records_search_model_Ministry_title" object="${ministry}" z="wA1axLaOrCNK2+1Hp5fBW4AqG4s="/>
-        <field:display date="true" dateTimePattern="${ministry_registereddate_date_format}" field="registeredDate" id="s_au_gov_nsw_records_search_model_Ministry_registeredDate" object="${ministry}" z="4ArsAUv+FlzkZJ1qrRaauJUPZuk="/>
-        <field:display date="true" dateTimePattern="${ministry_startdate_date_format}" field="startDate" id="s_au_gov_nsw_records_search_model_Ministry_startDate" object="${ministry}" z="U1bsx5BAScjctlmrMFeI87owW5k="/>
-        <field:display date="true" dateTimePattern="${ministry_enddate_date_format}" field="endDate" id="s_au_gov_nsw_records_search_model_Ministry_endDate" object="${ministry}" z="SBPKml3XTm0icZKo8qOSB9vkUOg="/>
-    </page:show>
+    
+    <table>
+        <td class="searchlist" width="65%">
+            <div class="entity_data">
+					    <page:show list="false" create="false" delete="false" id="ps_au_gov_nsw_records_search_model_Ministry" object="${ministry}" path="/ministries" update="false" z="Tb8vNA0TDNtQjyIY66CuR4riaec=">
+					        <field:display heading="true" field="title" id="s_au_gov_nsw_records_search_model_Ministry_title" object="${ministry}" z="wA1axLaOrCNK2+1Hp5fBW4AqG4s="/>
+					        <field:display date="true" dateTimePattern="${ministry_registereddate_date_format}" field="registeredDate" id="s_au_gov_nsw_records_search_model_Ministry_registeredDate" object="${ministry}" z="4ArsAUv+FlzkZJ1qrRaauJUPZuk="/>
+					        <field:display render="false" date="true" dateTimePattern="${ministry_startdate_date_format}" field="startDate" id="s_au_gov_nsw_records_search_model_Ministry_startDate" object="${ministry}" z="U1bsx5BAScjctlmrMFeI87owW5k="/>
+					        <field:display render="false" date="true" dateTimePattern="${ministry_enddate_date_format}" field="endDate" id="s_au_gov_nsw_records_search_model_Ministry_endDate" object="${ministry}" z="SBPKml3XTm0icZKo8qOSB9vkUOg="/>
+					    </page:show>
+					  </div>
+        </td>
+        <td class="searchlist" width="35%">
+					<util:relationship browseLink="/ministries/${ministry.getId()}/portfolios" maxPages="${rel_portfolios_size}" relationships="${rel_portfolios}" type="portfolios" pageParam="portfolios_page" page="${rel_portfolios_page}" heading="Portfolios in this ministry"></util:relationship>
+        </td>
+    </table>
 </div>

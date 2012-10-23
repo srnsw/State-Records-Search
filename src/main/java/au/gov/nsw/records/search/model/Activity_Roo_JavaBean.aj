@@ -4,7 +4,10 @@
 package au.gov.nsw.records.search.model;
 
 import au.gov.nsw.records.search.model.Activity;
+import au.gov.nsw.records.search.model.ActivityLinkFunction;
+import au.gov.nsw.records.search.model.ActivityLinkSerie;
 import java.util.Date;
+import java.util.List;
 
 privileged aspect Activity_Roo_JavaBean {
     
@@ -62,6 +65,22 @@ privileged aspect Activity_Roo_JavaBean {
     
     public void Activity.setEndDateQualifier(String endDateQualifier) {
         this.endDateQualifier = endDateQualifier;
+    }
+    
+    public List<ActivityLinkSerie> Activity.getSeries() {
+        return this.series;
+    }
+    
+    public void Activity.setSeries(List<ActivityLinkSerie> series) {
+        this.series = series;
+    }
+    
+    public List<ActivityLinkFunction> Activity.getFunctions() {
+        return this.functions;
+    }
+    
+    public void Activity.setFunctions(List<ActivityLinkFunction> functions) {
+        this.functions = functions;
     }
     
 }

@@ -8,18 +8,8 @@ import au.gov.nsw.records.search.web.PersonController;
 import org.joda.time.format.DateTimeFormat;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 privileged aspect PersonController_Roo_Controller {
-    
-    @RequestMapping(value = "/{personNumber}", produces = "text/html")
-    public String PersonController.show(@PathVariable("personNumber") int personNumber, Model uiModel) {
-        addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("person", Person.findPerson(personNumber));
-        uiModel.addAttribute("itemId", personNumber);
-        return "people/show";
-    }
     
     void PersonController.addDateTimeFormatPatterns(Model uiModel) {
         uiModel.addAttribute("person_birthdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));

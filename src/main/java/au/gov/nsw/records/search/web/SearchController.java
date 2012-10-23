@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import au.gov.nsw.records.search.bean.SearchResult;
 import au.gov.nsw.records.search.model.Activity;
 import au.gov.nsw.records.search.model.Agency;
 import au.gov.nsw.records.search.model.Functionn;
@@ -30,7 +31,6 @@ import au.gov.nsw.records.search.model.Portfolio;
 import au.gov.nsw.records.search.model.Serie;
 import au.gov.nsw.records.search.service.LuceneSearchParams;
 import au.gov.nsw.records.search.service.LuceneService;
-import au.gov.nsw.records.search.service.SearchResult;
 
 @RequestMapping("/search/**")
 @Controller
@@ -40,7 +40,7 @@ public class SearchController {
 		
 	  private static LuceneService lucene = new LuceneService();
 	
-    @RequestMapping
+	  @RequestMapping(method = RequestMethod.GET)
     public String index() {
         return "search/index";
     }

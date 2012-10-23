@@ -4,7 +4,18 @@
 package au.gov.nsw.records.search.model;
 
 import au.gov.nsw.records.search.model.Agency;
+import au.gov.nsw.records.search.model.AgencyLinkFunction;
+import au.gov.nsw.records.search.model.AgencyLinkOrganisation;
+import au.gov.nsw.records.search.model.AgencyLinkPerson;
+import au.gov.nsw.records.search.model.AgencyLinkPreceding;
+import au.gov.nsw.records.search.model.AgencyLinkRelated;
+import au.gov.nsw.records.search.model.AgencyLinkSeriesControlled;
+import au.gov.nsw.records.search.model.AgencyLinkSeriesCreated;
+import au.gov.nsw.records.search.model.AgencyLinkSubordinate;
+import au.gov.nsw.records.search.model.AgencyLinkSucceeding;
+import au.gov.nsw.records.search.model.AgencyLinkSuperior;
 import java.util.Date;
+import java.util.List;
 
 privileged aspect Agency_Roo_JavaBean {
     
@@ -86,6 +97,86 @@ privileged aspect Agency_Roo_JavaBean {
     
     public void Agency.setEndDateQualifier(String endDateQualifier) {
         this.endDateQualifier = endDateQualifier;
+    }
+    
+    public List<AgencyLinkFunction> Agency.getFunctions() {
+        return this.functions;
+    }
+    
+    public void Agency.setFunctions(List<AgencyLinkFunction> functions) {
+        this.functions = functions;
+    }
+    
+    public List<AgencyLinkOrganisation> Agency.getOrganisations() {
+        return this.organisations;
+    }
+    
+    public void Agency.setOrganisations(List<AgencyLinkOrganisation> organisations) {
+        this.organisations = organisations;
+    }
+    
+    public List<AgencyLinkPerson> Agency.getPersons() {
+        return this.persons;
+    }
+    
+    public void Agency.setPersons(List<AgencyLinkPerson> persons) {
+        this.persons = persons;
+    }
+    
+    public List<AgencyLinkSeriesControlled> Agency.getSeriesControlled() {
+        return this.seriesControlled;
+    }
+    
+    public void Agency.setSeriesControlled(List<AgencyLinkSeriesControlled> seriesControlled) {
+        this.seriesControlled = seriesControlled;
+    }
+    
+    public List<AgencyLinkSeriesCreated> Agency.getSeriesCreated() {
+        return this.seriesCreated;
+    }
+    
+    public void Agency.setSeriesCreated(List<AgencyLinkSeriesCreated> seriesCreated) {
+        this.seriesCreated = seriesCreated;
+    }
+    
+    public List<AgencyLinkPreceding> Agency.getPreceding() {
+        return this.preceding;
+    }
+    
+    public void Agency.setPreceding(List<AgencyLinkPreceding> preceding) {
+        this.preceding = preceding;
+    }
+    
+    public List<AgencyLinkRelated> Agency.getRelated() {
+        return this.related;
+    }
+    
+    public void Agency.setRelated(List<AgencyLinkRelated> related) {
+        this.related = related;
+    }
+    
+    public List<AgencyLinkSubordinate> Agency.getSubordinates() {
+        return this.subordinates;
+    }
+    
+    public void Agency.setSubordinates(List<AgencyLinkSubordinate> subordinates) {
+        this.subordinates = subordinates;
+    }
+    
+    public List<AgencyLinkSucceeding> Agency.getSucceeding() {
+        return this.succeeding;
+    }
+    
+    public void Agency.setSucceeding(List<AgencyLinkSucceeding> succeeding) {
+        this.succeeding = succeeding;
+    }
+    
+    public List<AgencyLinkSuperior> Agency.getSuperiors() {
+        return this.superiors;
+    }
+    
+    public void Agency.setSuperiors(List<AgencyLinkSuperior> superiors) {
+        this.superiors = superiors;
     }
     
 }

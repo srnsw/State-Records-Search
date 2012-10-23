@@ -7,15 +7,14 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.parsers.DocumentBuilder;
 
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.facet.index.CategoryDocumentBuilder;
-import org.apache.lucene.facet.taxonomy.CategoryPath;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
@@ -57,6 +56,12 @@ public class Activity {
 	@Column(name = "End_date_qualifier")
 	private String endDateQualifier;
 
+	@OneToMany(mappedBy="activitiyId")
+	private List<ActivityLinkSerie> series;
+	
+	@OneToMany(mappedBy="activitiyId")
+	private List<ActivityLinkFunction> functions;
+	
 	public String getDateRange() {
 		return DateHelper.dateRange(startDateQualifier, startDate, endDateQualifier, endDate);
 	}

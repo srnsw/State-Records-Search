@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -56,6 +57,9 @@ public class Ministry {
 	public int getId(){
 		return ministryNumber;
 	}
+	
+	@OneToMany(mappedBy="ministryId")
+	private List<MinistryLinkPortfolio> portfolios;
 	
 	public static List<Document> getIndexData(List<Ministry> ministries, CategoryDocumentBuilder builder){
 		List<Document> ministriesIndex = new ArrayList<Document>();

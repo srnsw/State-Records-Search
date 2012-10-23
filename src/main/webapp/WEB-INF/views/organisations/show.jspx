@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+<div xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:show create="false" delete="false" id="ps_au_gov_nsw_records_search_model_Organisation" object="${organisation}" path="/organisations" update="false" z="xyEc08cxU1JMtsph2haOZzHrb84=">
-        <field:display field="title" id="s_au_gov_nsw_records_search_model_Organisation_title" object="${organisation}" z="tc4E+cFE+DbheliL7T2WFEYZ18Y="/>
-        <field:display field="administrativeHistoryNote" id="s_au_gov_nsw_records_search_model_Organisation_administrativeHistoryNote" object="${organisation}" z="9hfnVFe1Vw/xO+vjRC+0P9BqJQ0="/>
-        <field:display date="true" dateTimePattern="${organisation_startdate_date_format}" field="startDate" id="s_au_gov_nsw_records_search_model_Organisation_startDate" object="${organisation}" z="4FMi9aBLbPRByJcnaH+ERxS0n4w="/>
-        <field:display field="startDateQualifier" id="s_au_gov_nsw_records_search_model_Organisation_startDateQualifier" object="${organisation}" z="9ozqebAfoPosZ7+t6ax8Djml+d0="/>
-        <field:display date="true" dateTimePattern="${organisation_enddate_date_format}" field="endDate" id="s_au_gov_nsw_records_search_model_Organisation_endDate" object="${organisation}" z="1Lz9NyotwVF1YkdkLI3rexg/114="/>
-        <field:display field="endDateQualifier" id="s_au_gov_nsw_records_search_model_Organisation_endDateQualifier" object="${organisation}" z="wiKlA5GLyaHSmTvXRHUmZHwAe+k="/>
-    </page:show>
+       <table>
+        <td class="searchlist" width="65%">
+            <div class="entity_data">
+					     <page:show list="false" create="false" delete="false" id="ps_au_gov_nsw_records_search_model_Organisation" object="${organisation}" path="/organisations" update="false" z="xyEc08cxU1JMtsph2haOZzHrb84=">
+					        <field:display heading="true" field="title" id="s_au_gov_nsw_records_search_model_Organisation_title" object="${organisation}" z="tc4E+cFE+DbheliL7T2WFEYZ18Y="/>
+					        <field:display field="administrativeHistoryNote" id="s_au_gov_nsw_records_search_model_Organisation_administrativeHistoryNote" object="${organisation}" z="9hfnVFe1Vw/xO+vjRC+0P9BqJQ0="/>
+					        <field:display render="false" date="true" dateTimePattern="${organisation_startdate_date_format}" field="startDate" id="s_au_gov_nsw_records_search_model_Organisation_startDate" object="${organisation}" z="4FMi9aBLbPRByJcnaH+ERxS0n4w="/>
+					        <field:display render="false" field="startDateQualifier" id="s_au_gov_nsw_records_search_model_Organisation_startDateQualifier" object="${organisation}" z="9ozqebAfoPosZ7+t6ax8Djml+d0="/>
+					        <field:display render="false" date="true" dateTimePattern="${organisation_enddate_date_format}" field="endDate" id="s_au_gov_nsw_records_search_model_Organisation_endDate" object="${organisation}" z="1Lz9NyotwVF1YkdkLI3rexg/114="/>
+					        <field:display render="false" field="endDateQualifier" id="s_au_gov_nsw_records_search_model_Organisation_endDateQualifier" object="${organisation}" z="wiKlA5GLyaHSmTvXRHUmZHwAe+k="/>
+					    </page:show>
+					  </div>
+        </td>
+        <td class="searchlist" width="35%">
+					<util:relationship browseLink="/organisations/${organisation.getId()}/preceding" maxPages="${rel_preceding_size}" relationships="${rel_preceding}" type="organisations" pageParam="preceding_page" page="${rel_preceding_page}" heading="Preceding organisations"></util:relationship>
+					<util:relationship browseLink="/organisations/${organisation.getId()}/succeeding" maxPages="${rel_succeeding_size}" relationships="${rel_succeeding}" type="organisations" pageParam="succeeding_page" page="${rel_succeeding_page}" heading="Succeeding organisations"></util:relationship>
+					<util:relationship browseLink="/organisations/${organisation.getId()}/agencies" maxPages="${rel_agencies_size}" relationships="${rel_agencies}" type="agencies" pageParam="agencies_page" page="${rel_agencies_page}" heading="Agencies controlled by this organisation"></util:relationship>
+        </td>
+    </table>
 </div>

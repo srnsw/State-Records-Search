@@ -8,18 +8,8 @@ import au.gov.nsw.records.search.web.OrganisationController;
 import org.joda.time.format.DateTimeFormat;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 privileged aspect OrganisationController_Roo_Controller {
-    
-    @RequestMapping(value = "/{organisationNumber}", produces = "text/html")
-    public String OrganisationController.show(@PathVariable("organisationNumber") int organisationNumber, Model uiModel) {
-        addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("organisation", Organisation.findOrganisation(organisationNumber));
-        uiModel.addAttribute("itemId", organisationNumber);
-        return "organisations/show";
-    }
     
     void OrganisationController.addDateTimeFormatPatterns(Model uiModel) {
         uiModel.addAttribute("organisation_startdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));

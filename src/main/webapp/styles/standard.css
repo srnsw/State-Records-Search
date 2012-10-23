@@ -90,7 +90,8 @@ form.searchPage input.searchButton {background-position:5px 7px; padding:1px 10p
 h1, h2 {border-bottom: 1px solid #ccc; font-weight: 400;}
 /* */
 body.kssActive h2.inlineEditable:hover, body.kssActive h1.inlineEditable:hover {padding-bottom: 1px;}
-h4, h5, h6 {border-bottom: none; font-weight: 600;}
+h3, h4, h5, h6 {border-bottom: none; font-weight: 600;color: #326395;}
+/*h4, h5, h6 {color: #326395; font-family: "Lucida Grande", Verdana, Lucida, Helvetica, Arial, sans-serif; margin:0.75em 0 0.25em 0;}*/
 h3 {border-bottom: none;}
 .documentFirstHeading {margin-top: 0;}
 #content {font-size: 120%; padding: .5em 1em 2em 1em !important; background: White;}

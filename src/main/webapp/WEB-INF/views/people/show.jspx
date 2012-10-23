@@ -1,20 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+<div xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:show create="false" delete="false" id="ps_au_gov_nsw_records_search_model_Person" object="${person}" path="/persons" update="false" z="user-managed">
-        <field:display field="givenName" id="s_au_gov_nsw_records_search_model_Person_givenName" object="${person}" render="false" z="user-managed"/>
-        <field:display field="surname" id="s_au_gov_nsw_records_search_model_Person_surname" object="${person}" render="false" z="user-managed"/>
-        <field:display field="fullName" id="s_au_gov_nsw_records_search_model_Person_fullName" object="${person}" z="tg4mMzd3bUmy6Se9FZYVzn6LR24="/>
-        <field:display field="dateRange" id="s_au_gov_nsw_records_search_model_Person_dateRange" object="${person}" z="tg4mMzd3bUmy6Se9FZYVzn6LR24="/>
-        <field:display field="officeHeld" id="s_au_gov_nsw_records_search_model_Person_officeHeld" object="${person}" z="NV3xnK6VuGHim3aFEdl8NKrJO/A="/>
-        <field:display field="biographicalNote" id="s_au_gov_nsw_records_search_model_Person_biographicalNote" object="${person}" z="+cHeW4X2AIzQW4Vs6UsEbuIXXVQ="/>
-        <field:display field="minister" id="s_au_gov_nsw_records_search_model_Person_minister" object="${person}" z="WBvVSQ1WiRlB2in0pzPTZr6uDi4="/>
-        <field:display date="true" dateTimePattern="${person_birthdate_date_format}" field="birthDate" id="s_au_gov_nsw_records_search_model_Person_birthDate" object="${person}" render="false" z="user-managed"/>
-        <field:display field="birthDateQualifier" id="s_au_gov_nsw_records_search_model_Person_birthDateQualifier" object="${person}" render="false" z="user-managed"/>
-        <field:display date="true" dateTimePattern="${person_deathdate_date_format}" field="deathDate" id="s_au_gov_nsw_records_search_model_Person_deathDate" object="${person}" render="false" z="user-managed"/>
-        <field:display field="deathDateQualifier" id="s_au_gov_nsw_records_search_model_Person_deathDateQualifier" object="${person}" render="false" z="user-managed"/>
-        <field:display field="prenomialHonorifics" id="s_au_gov_nsw_records_search_model_Person_prenomialHonorifics" object="${person}" z="saZtHMxr8LAMflTEYSQyvHrSUps="/>
-        <field:display field="postnomialHonorifics" id="s_au_gov_nsw_records_search_model_Person_postnomialHonorifics" object="${person}" z="xVBPW0S6qn312hiPaXrjp6F7Edk="/>
-    </page:show>
+    
+    <table>
+        <td class="searchlist" width="65%">
+            <div class="entity_data">
+						  <page:show list="false" create="false" delete="false" id="ps_au_gov_nsw_records_search_model_Person" object="${person}" path="/persons" update="false" z="user-managed">
+								<field:display heading="true" field="fullName" id="s_au_gov_nsw_records_search_model_Person_fullName" object="${person}" z="user-managed"/>
+				        <field:display field="givenName" id="s_au_gov_nsw_records_search_model_Person_givenName" object="${person}" render="false" z="user-managed"/>
+				        <field:display field="surname" id="s_au_gov_nsw_records_search_model_Person_surname" object="${person}" render="false" z="user-managed"/>
+				        <field:display field="dateRange" id="s_au_gov_nsw_records_search_model_Person_dateRange" object="${person}" z="tg4mMzd3bUmy6Se9FZYVzn6LR24="/>
+				        <field:display field="officeHeld" id="s_au_gov_nsw_records_search_model_Person_officeHeld" object="${person}" z="NV3xnK6VuGHim3aFEdl8NKrJO/A="/>
+				        <field:display field="biographicalNote" id="s_au_gov_nsw_records_search_model_Person_biographicalNote" object="${person}" z="+cHeW4X2AIzQW4Vs6UsEbuIXXVQ="/>
+				        <field:display field="minister" id="s_au_gov_nsw_records_search_model_Person_minister" object="${person}" z="WBvVSQ1WiRlB2in0pzPTZr6uDi4="/>
+				        <field:display date="true" dateTimePattern="${person_birthdate_date_format}" field="birthDate" id="s_au_gov_nsw_records_search_model_Person_birthDate" object="${person}" render="false" z="user-managed"/>
+				        <field:display field="birthDateQualifier" id="s_au_gov_nsw_records_search_model_Person_birthDateQualifier" object="${person}" render="false" z="user-managed"/>
+				        <field:display date="true" dateTimePattern="${person_deathdate_date_format}" field="deathDate" id="s_au_gov_nsw_records_search_model_Person_deathDate" object="${person}" render="false" z="user-managed"/>
+				        <field:display field="deathDateQualifier" id="s_au_gov_nsw_records_search_model_Person_deathDateQualifier" object="${person}" render="false" z="user-managed"/>
+				        <field:display render="false" field="prenomialHonorifics" id="s_au_gov_nsw_records_search_model_Person_prenomialHonorifics" object="${person}" z="saZtHMxr8LAMflTEYSQyvHrSUps="/>
+				        <field:display render="false" field="postnomialHonorifics" id="s_au_gov_nsw_records_search_model_Person_postnomialHonorifics" object="${person}" z="xVBPW0S6qn312hiPaXrjp6F7Edk="/>
+				      </page:show>
+					  </div>
+        </td>
+        <td class="searchlist" width="35%">
+					<util:relationship browseLink="/person/${person.getId()}/agencies" maxPages="${rel_agencies_size}" relationships="${rel_agencies}" type="agencies" pageParam="agencies_page" page="${rel_agencies_page}" heading="Agencies related to this person"></util:relationship>
+					<util:relationship browseLink="/person/${person.getId()}/ministries" maxPages="${rel_ministries_size}" relationships="${rel_ministries}" type="ministries" pageParam="ministries_page" page="${rel_ministries_page}" heading="Ministries containing this person"></util:relationship>
+					<util:relationship browseLink="/person/${person.getId()}/portfolios" maxPages="${rel_portfolios_size}" relationships="${rel_portfolios}" type="portfolios" pageParam="portfolios_page" page="${rel_portfolios_page}" heading="Portfolios this person held as minister"></util:relationship>
+					<util:relationship browseLink="/person/${person.getId()}/functions" maxPages="${rel_functions_size}" relationships="${rel_functions}" type="functions" pageParam="functions_page" page="${rel_functions_page}" heading="Functions exercised by this person"></util:relationship>
+					<util:relationship browseLink="/person/${person.getId()}/series" maxPages="${rel_series_size}" relationships="${rel_series}" type="series" pageParam="series_page" page="${rel_series_page}" heading="Record series created by this person"></util:relationship>
+					
+        </td>
+    </table>
 </div>

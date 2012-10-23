@@ -22,7 +22,19 @@
 		</div>
 
 		<table>
-			<td width="35%">
+		<td class="searchlist" width="20%">
+			  <search:facet facets="${facets}" location="${location}" series="${series}" baseURL="/search"></search:facet>
+			</td>
+			<td class="searchlist" width="50%">
+				<div class="what">
+					<h4>Record series and items</h4>
+					<search:list results="${seriesitems}"></search:list>
+					<c:if test="${seriesitems_count gt 1}">
+						<util:pagination showPageSizeSelection="false" page="${page}" pageParam="page" size="${size}" sizeParam="size" maxPages="${seriesitems_count}"></util:pagination>
+					</c:if>
+				</div>
+			</td>
+			<td class="searchlist" width="30%">
 				<div class="why_who">
 					<h4>Functions and activities</h4>
 					<search:list results="${activitiesfunctions}"></search:list>
@@ -36,18 +48,6 @@
 						<util:pagination showPageSizeSelection="false" page="${apage}" pageParam="apage" size="${asize}" sizeParam="asize" maxPages="${agenciespeoples_count}"></util:pagination>
 					</c:if>
 				</div>
-			</td>
-			<td width="50%">
-				<div class="what">
-					<h4>Record series and items</h4>
-					<search:list results="${seriesitems}"></search:list>
-					<c:if test="${seriesitems_count gt 1}">
-						<util:pagination showPageSizeSelection="false" page="${page}" pageParam="page" size="${size}" sizeParam="size" maxPages="${seriesitems_count}"></util:pagination>
-					</c:if>
-				</div>
-			</td>
-			<td width="15%">
-			  <search:facet facets="${facets}" location="${location}" series="${series}" baseURL="/search"></search:facet>
 			</td>
 		</table>
 

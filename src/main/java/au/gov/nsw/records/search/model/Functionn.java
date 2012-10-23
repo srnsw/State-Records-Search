@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -65,6 +66,15 @@ public class Functionn {
 	public String getDateRange() {
 		return DateHelper.dateRange(startDateQualifier, startDate, endDateQualifier, endDate);
 	}
+	
+	@OneToMany(mappedBy="functionId")
+	private List<FunctionnLinkActivity> activities;
+	
+	@OneToMany(mappedBy="functionId")
+	private List<FunctionnLinkAgency> agencies;
+	
+	@OneToMany(mappedBy="functionId")
+	private List<FunctionnLinkPerson> persons;
 	
 	public int getId(){
 		return functionNumber;

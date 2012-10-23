@@ -8,18 +8,8 @@ import au.gov.nsw.records.search.web.ActivityController;
 import org.joda.time.format.DateTimeFormat;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 privileged aspect ActivityController_Roo_Controller {
-    
-    @RequestMapping(value = "/{activityNumber}", produces = "text/html")
-    public String ActivityController.show(@PathVariable("activityNumber") int activityNumber, Model uiModel) {
-        addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("activity", Activity.findActivity(activityNumber));
-        uiModel.addAttribute("itemId", activityNumber);
-        return "activities/show";
-    }
     
     void ActivityController.addDateTimeFormatPatterns(Model uiModel) {
         uiModel.addAttribute("activity_startdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));

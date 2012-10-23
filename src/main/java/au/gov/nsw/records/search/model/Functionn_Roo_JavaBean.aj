@@ -4,7 +4,11 @@
 package au.gov.nsw.records.search.model;
 
 import au.gov.nsw.records.search.model.Functionn;
+import au.gov.nsw.records.search.model.FunctionnLinkActivity;
+import au.gov.nsw.records.search.model.FunctionnLinkAgency;
+import au.gov.nsw.records.search.model.FunctionnLinkPerson;
 import java.util.Date;
+import java.util.List;
 
 privileged aspect Functionn_Roo_JavaBean {
     
@@ -78,6 +82,30 @@ privileged aspect Functionn_Roo_JavaBean {
     
     public void Functionn.setEndDateQualifier(String endDateQualifier) {
         this.endDateQualifier = endDateQualifier;
+    }
+    
+    public List<FunctionnLinkActivity> Functionn.getActivities() {
+        return this.activities;
+    }
+    
+    public void Functionn.setActivities(List<FunctionnLinkActivity> activities) {
+        this.activities = activities;
+    }
+    
+    public List<FunctionnLinkAgency> Functionn.getAgencies() {
+        return this.agencies;
+    }
+    
+    public void Functionn.setAgencies(List<FunctionnLinkAgency> agencies) {
+        this.agencies = agencies;
+    }
+    
+    public List<FunctionnLinkPerson> Functionn.getPersons() {
+        return this.persons;
+    }
+    
+    public void Functionn.setPersons(List<FunctionnLinkPerson> persons) {
+        this.persons = persons;
     }
     
 }

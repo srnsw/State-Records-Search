@@ -1,7 +1,50 @@
+
 span.alignleft{
  float: left;
 }
 
 span.alignright{
  float: right;
+}
+
+p.collection_navigation
+{
+text-align:center;
+}
+
+td.searchlist {font-weight: 400; font-size: 1.1em; padding: 0; vertical-align: top; margin: 0;}
+td.entitylist {font-weight: 400; font-size: 1.1em; padding: 0; vertical-align: top; margin: 0;}
+
+/* */
+input#q
+{
+  font-size: medium;
+  border: solid 1px #85b1de; 
+  width: 320px;
+  padding: 5px;
+  margin-top: 5px;
+}
+
+div.collection_search
+{
+ margin-top: 10px;
+ margin-bottom: 10px;
+}
+
+div.entity_data
+{
+ margin-top: 10px;
+ margin-bottom: 10px;
+ margin-right: 10px;
+ font-size: 1.1em;
+}
+
+td.searchlist
+{
+ padding: 10px;
+}
+input.collection_search
+{
+ margin-top: 5px;
+ height:30px;
 }

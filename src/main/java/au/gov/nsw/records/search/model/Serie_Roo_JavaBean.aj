@@ -4,6 +4,15 @@
 package au.gov.nsw.records.search.model;
 
 import au.gov.nsw.records.search.model.Serie;
+import au.gov.nsw.records.search.model.SerieLinkActivity;
+import au.gov.nsw.records.search.model.SerieLinkControlledSerie;
+import au.gov.nsw.records.search.model.SerieLinkControllingAgency;
+import au.gov.nsw.records.search.model.SerieLinkControllingSerie;
+import au.gov.nsw.records.search.model.SerieLinkCreatingAgency;
+import au.gov.nsw.records.search.model.SerieLinkPerson;
+import au.gov.nsw.records.search.model.SerieLinkPrecedingSerie;
+import au.gov.nsw.records.search.model.SerieLinkRelatedSerie;
+import au.gov.nsw.records.search.model.SerieLinkSucceedingSerie;
 import java.util.Date;
 import java.util.List;
 
@@ -137,20 +146,76 @@ privileged aspect Serie_Roo_JavaBean {
         this.contentEndDateQualifier = contentEndDateQualifier;
     }
     
-    public List<Serie> Serie.getPreceedingSeries() {
-        return this.preceedingSeries;
+    public List<SerieLinkActivity> Serie.getActivities() {
+        return this.activities;
     }
     
-    public void Serie.setPreceedingSeries(List<Serie> preceedingSeries) {
-        this.preceedingSeries = preceedingSeries;
+    public void Serie.setActivities(List<SerieLinkActivity> activities) {
+        this.activities = activities;
     }
     
-    public List<Serie> Serie.getRelatedSeries() {
+    public List<SerieLinkControllingAgency> Serie.getControllingAgencies() {
+        return this.controllingAgencies;
+    }
+    
+    public void Serie.setControllingAgencies(List<SerieLinkControllingAgency> controllingAgencies) {
+        this.controllingAgencies = controllingAgencies;
+    }
+    
+    public List<SerieLinkCreatingAgency> Serie.getCreatingAgencies() {
+        return this.creatingAgencies;
+    }
+    
+    public void Serie.setCreatingAgencies(List<SerieLinkCreatingAgency> creatingAgencies) {
+        this.creatingAgencies = creatingAgencies;
+    }
+    
+    public List<SerieLinkPerson> Serie.getPersons() {
+        return this.persons;
+    }
+    
+    public void Serie.setPersons(List<SerieLinkPerson> persons) {
+        this.persons = persons;
+    }
+    
+    public List<SerieLinkPrecedingSerie> Serie.getPrecedingSeries() {
+        return this.precedingSeries;
+    }
+    
+    public void Serie.setPrecedingSeries(List<SerieLinkPrecedingSerie> precedingSeries) {
+        this.precedingSeries = precedingSeries;
+    }
+    
+    public List<SerieLinkSucceedingSerie> Serie.getSucceedingSeries() {
+        return this.succeedingSeries;
+    }
+    
+    public void Serie.setSucceedingSeries(List<SerieLinkSucceedingSerie> succeedingSeries) {
+        this.succeedingSeries = succeedingSeries;
+    }
+    
+    public List<SerieLinkRelatedSerie> Serie.getRelatedSeries() {
         return this.relatedSeries;
     }
     
-    public void Serie.setRelatedSeries(List<Serie> relatedSeries) {
+    public void Serie.setRelatedSeries(List<SerieLinkRelatedSerie> relatedSeries) {
         this.relatedSeries = relatedSeries;
+    }
+    
+    public List<SerieLinkControllingSerie> Serie.getControllingSeries() {
+        return this.controllingSeries;
+    }
+    
+    public void Serie.setControllingSeries(List<SerieLinkControllingSerie> controllingSeries) {
+        this.controllingSeries = controllingSeries;
+    }
+    
+    public List<SerieLinkControlledSerie> Serie.getControlledSeries() {
+        return this.controlledSeries;
+    }
+    
+    public void Serie.setControlledSeries(List<SerieLinkControlledSerie> controlledSeries) {
+        this.controlledSeries = controlledSeries;
     }
     
 }

@@ -22,7 +22,7 @@ public class LuceneSearchParams {
 		return clazz;
 	}
 	public LuceneSearchParams setClazz(Class<?>... clazz) {
-		this.clazz = new ArrayList(Arrays.asList(clazz));
+		this.clazz = new ArrayList<Class<?>>(Arrays.asList(clazz));
 		return this;
 	}
 	public String getQuery() {

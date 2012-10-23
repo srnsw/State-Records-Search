@@ -4,7 +4,13 @@
 package au.gov.nsw.records.search.model;
 
 import au.gov.nsw.records.search.model.Portfolio;
+import au.gov.nsw.records.search.model.PortfolioLinkAgency;
+import au.gov.nsw.records.search.model.PortfolioLinkMinistry;
+import au.gov.nsw.records.search.model.PortfolioLinkPerson;
+import au.gov.nsw.records.search.model.PortfolioLinkPreceding;
+import au.gov.nsw.records.search.model.PortfolioLinkSucceeding;
 import java.util.Date;
+import java.util.List;
 
 privileged aspect Portfolio_Roo_JavaBean {
     
@@ -70,6 +76,46 @@ privileged aspect Portfolio_Roo_JavaBean {
     
     public void Portfolio.setEndDateQualifier(String endDateQualifier) {
         this.endDateQualifier = endDateQualifier;
+    }
+    
+    public List<PortfolioLinkMinistry> Portfolio.getMinistries() {
+        return this.ministries;
+    }
+    
+    public void Portfolio.setMinistries(List<PortfolioLinkMinistry> ministries) {
+        this.ministries = ministries;
+    }
+    
+    public List<PortfolioLinkPerson> Portfolio.getPersons() {
+        return this.persons;
+    }
+    
+    public void Portfolio.setPersons(List<PortfolioLinkPerson> persons) {
+        this.persons = persons;
+    }
+    
+    public List<PortfolioLinkAgency> Portfolio.getAgencies() {
+        return this.agencies;
+    }
+    
+    public void Portfolio.setAgencies(List<PortfolioLinkAgency> agencies) {
+        this.agencies = agencies;
+    }
+    
+    public List<PortfolioLinkPreceding> Portfolio.getPreceding() {
+        return this.preceding;
+    }
+    
+    public void Portfolio.setPreceding(List<PortfolioLinkPreceding> preceding) {
+        this.preceding = preceding;
+    }
+    
+    public List<PortfolioLinkSucceeding> Portfolio.getSucceeding() {
+        return this.succeeding;
+    }
+    
+    public void Portfolio.setSucceeding(List<PortfolioLinkSucceeding> succeeding) {
+        this.succeeding = succeeding;
     }
     
 }

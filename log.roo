@@ -68,3 +68,49 @@ web mvc controller --class ~.web.OrganisationController
 // Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-10-16 13:10:55
 focus --class ~.model.Organisation
 web mvc scaffold --class ~.web.OrganisationController
+perform package 
+entity jpa --class au.gov.nsw.records.search.model.AtivityLinkSerie
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-10-18 15:57:30
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-10-19 10:32:30
+entity jpa --class au.gov.nsw.records.search.model.AtivityLinkFunction
+entity jpa --class au.gov.nsw.records.search.model.AgencyLinkFunction
+entity jpa --class au.gov.nsw.records.search.model.AgencyLinkOrganisation
+entity jpa --class au.gov.nsw.records.search.model.AgencyLinkPerson
+entity jpa --class au.gov.nsw.records.search.model.AgencyLinkPreceding
+entity jpa --class au.gov.nsw.records.search.model.AgencyLinkRelated
+entity jpa --class au.gov.nsw.records.search.model.AgencyLinkSeriesControlled
+entity jpa --class au.gov.nsw.records.search.model.AgencyLinkSeriesCreated
+entity jpa --class au.gov.nsw.records.search.model.AgencyLinkSubordinate
+entity jpa --class au.gov.nsw.records.search.model.AgencyLinkSucceeding
+entity jpa --class au.gov.nsw.records.search.model.AgencyLinkSuperior
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-10-19 15:54:02
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-10-22 08:35:39
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-10-22 09:47:06
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-10-22 09:47:17
+entity jpa --class au.gov.nsw.records.search.model.FunctionnLinkActivity
+entity jpa --class au.gov.nsw.records.search.model.FunctionnLinkAgency
+entity jpa --class au.gov.nsw.records.search.model.FunctionnLinkPerson
+entity jpa --class au.gov.nsw.records.search.model.MinistryLinkPortfolio
+entity jpa --class au.gov.nsw.records.search.model.OrganisationLinkSucceeding
+entity jpa --class au.gov.nsw.records.search.model.OrganisationLinkPreceding
+entity jpa --class au.gov.nsw.records.search.model.OrganisationLinkAgency
+entity jpa --class au.gov.nsw.records.search.model.PersonLinkFunction
+entity jpa --class au.gov.nsw.records.search.model.PersonLinkAgency
+entity jpa --class au.gov.nsw.records.search.model.PersonLinkSeries
+entity jpa --class au.gov.nsw.records.search.model.PersonLinkPortfolio
+entity jpa --class au.gov.nsw.records.search.model.PersonLinkMinistry
+entity jpa --class au.gov.nsw.records.search.model.PortfolioLinkMinistry
+entity jpa --class au.gov.nsw.records.search.model.PortfolioLinkPerson
+entity jpa --class au.gov.nsw.records.search.model.PortfolioLinkAgency
+entity jpa --class au.gov.nsw.records.search.model.PortfolioLinkPreceding
+entity jpa --class au.gov.nsw.records.search.model.PortfolioLinkSucceeding
+entity jpa --class au.gov.nsw.records.search.model.SerieLinkActivity
+entity jpa --class au.gov.nsw.records.search.model.SerieLinkControllingAgency
+entity jpa --class au.gov.nsw.records.search.model.SerieLinkControllingCreatingAgency
+entity jpa --class au.gov.nsw.records.search.model.SerieLinkCreatingAgency
+entity jpa --class au.gov.nsw.records.search.model.SerieLinkPerson
+entity jpa --class au.gov.nsw.records.search.model.SerieLinkPrecedingSerie
+entity jpa --class au.gov.nsw.records.search.model.SerieLinkSucceedingSerie
+entity jpa --class au.gov.nsw.records.search.model.SerieLinkRelatedSerie
+entity jpa --class au.gov.nsw.records.search.model.SerieLinkControllingSerie
+entity jpa --class au.gov.nsw.records.search.model.SerieLinkControlledSerie

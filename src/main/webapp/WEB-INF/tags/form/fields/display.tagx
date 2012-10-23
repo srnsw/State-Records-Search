@@ -13,6 +13,7 @@
   <jsp:directive.attribute name="dateTimePattern" type="java.lang.String" required="false" rtexprvalue="true" description="The date / time pattern to use if the field is a date or calendar type" />
   <jsp:directive.attribute name="render" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Indicate if the contents of this tag and all enclosed tags should be rendered (default 'true')" />
   <jsp:directive.attribute name="z" type="java.lang.String" required="false" description="Used for checking if element has been modified (to recalculate simply provide empty string value)" />
+	<jsp:directive.attribute name="heading" type="java.lang.String" required="false" rtexprvalue="true" description="Make title" />
 
   <c:set var="zero" value="0" />
   <c:set var="obj" value="${object[field]}" />
@@ -31,31 +32,38 @@
 	    <c:set var="sec_field" value="${fn:escapeXml(field)}" />
 	    
 	    <div id="_${fn:escapeXml(id)}_id" >
-	      <dl>
-	        <dt><c:out value="${label}" />:</dt>
-		      <dd>
-		        <c:choose>
-		          <c:when test="${date}">
-		            <spring:escapeBody>
-		              <fmt:formatDate value="${object[field]}" pattern="${fn:escapeXml(dateTimePattern)}" />
-		            </spring:escapeBody>
-		          </c:when>
-		          <c:when test="${calendar}">
-		            <spring:escapeBody>
-		              <fmt:formatDate value="${object[field].time}" pattern="${fn:escapeXml(dateTimePattern)}" />
-		            </spring:escapeBody>
-		          </c:when>
-		          <c:when test="${htmlLink}">
-		              <c:forEach var="num" items="${fn:split(object[field], ',')}">
-	                   <a href="${prependLink}${num}">${num}</a><br/> 
-	                </c:forEach>
-		          </c:when>
-		          <c:otherwise>
-		            <spring:eval expression="object[field]" />
-		          </c:otherwise>
-		        </c:choose>
-		      </dd>
-	      </dl>
+	     <c:choose>
+	        <c:when test="${empty heading}">
+			      <dl>
+			        <dt><c:out value="${label}" />:</dt>
+				      <dd>
+				        <c:choose>
+				          <c:when test="${date}">
+				            <spring:escapeBody>
+				              <fmt:formatDate value="${object[field]}" pattern="${fn:escapeXml(dateTimePattern)}" />
+				            </spring:escapeBody>
+				          </c:when>
+				          <c:when test="${calendar}">
+				            <spring:escapeBody>
+				              <fmt:formatDate value="${object[field].time}" pattern="${fn:escapeXml(dateTimePattern)}" />
+				            </spring:escapeBody>
+				          </c:when>
+				          <c:when test="${htmlLink}">
+				              <c:forEach var="num" items="${fn:split(object[field], ',')}">
+			                   <a href="${prependLink}${num}">${num}</a><br/> 
+			                </c:forEach>
+				          </c:when>
+				          <c:otherwise>
+				            <spring:eval expression="object[field]" />
+				          </c:otherwise>
+				        </c:choose>
+				      </dd>
+			      </dl>
+		      </c:when>
+	        <c:otherwise>
+	          <h3><spring:eval expression="object[field]" /></h3>
+	        </c:otherwise>
+	      </c:choose>
 	    </div>
 	  </c:if>
   </c:if>

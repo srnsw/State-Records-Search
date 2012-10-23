@@ -15,7 +15,8 @@
 	  		<h4>Filter by ${facet.getLabel()}</h4>
 	  		
 				<c:forEach items="${facet.getItems()}" var="item">
-				 <spring:url value="${baseURL}" var="url">
+				  
+				  <spring:url value="${baseURL}" var="url">
 					<spring:param name="q" value="${q}" />
 					<c:if test="${(location ne item.getLabel()) and (series ne item.getLabel())}">
 						<!-- include the select parameter if not already present -->
@@ -31,7 +32,8 @@
 							<spring:param name="location" value="${location}" />
 						</c:when>
 					</c:choose>
-				</spring:url>
+				  
+				  </spring:url>
 	      	<p>
 	      	 <c:set var="icontype" value="${facet.getLabel()}"/>
 	      	 <c:if test="${(location eq item.getLabel()) or (series eq item.getLabel())}">

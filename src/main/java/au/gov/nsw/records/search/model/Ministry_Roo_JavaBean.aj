@@ -4,7 +4,9 @@
 package au.gov.nsw.records.search.model;
 
 import au.gov.nsw.records.search.model.Ministry;
+import au.gov.nsw.records.search.model.MinistryLinkPortfolio;
 import java.util.Date;
+import java.util.List;
 
 privileged aspect Ministry_Roo_JavaBean {
     
@@ -46,6 +48,14 @@ privileged aspect Ministry_Roo_JavaBean {
     
     public void Ministry.setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+    
+    public List<MinistryLinkPortfolio> Ministry.getPortfolios() {
+        return this.portfolios;
+    }
+    
+    public void Ministry.setPortfolios(List<MinistryLinkPortfolio> portfolios) {
+        this.portfolios = portfolios;
     }
     
 }

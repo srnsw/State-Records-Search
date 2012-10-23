@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:spring="http://www.springframework.org/tags" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:show create="false" delete="false" id="ps_au_gov_nsw_records_search_model_Activity" object="${activity}" path="/activities" update="false" z="zKeOv52Hx0reloKqkoRYzHiSKiQ=">
-        <field:display field="title" id="s_au_gov_nsw_records_search_model_Activity_title" object="${activity}" z="gnpPE5J3zYjbRmme7e4R5lAiuhs="/>
-        <field:display field="descriptiveNote" id="s_au_gov_nsw_records_search_model_Activity_descriptiveNote" object="${activity}" z="Sj7+As/rDzcwXJFe8HCL0CUsYbU="/>
-        <field:display date="true" dateTimePattern="${activity_startdate_date_format}" field="startDate" id="s_au_gov_nsw_records_search_model_Activity_startDate" object="${activity}" z="xncLbiHfiEjKIKgYWmzT/b2ne8k="/>
-        <field:display field="startDateQualifier" id="s_au_gov_nsw_records_search_model_Activity_startDateQualifier" object="${activity}" z="SAhnf50YLDTsEfwKtkzPbFZjXqo="/>
-        <field:display date="true" dateTimePattern="${activity_enddate_date_format}" field="endDate" id="s_au_gov_nsw_records_search_model_Activity_endDate" object="${activity}" z="g3KpXSCWVKNxwCxrovDXR6axpO8="/>
-        <field:display field="endDateQualifier" id="s_au_gov_nsw_records_search_model_Activity_endDateQualifier" object="${activity}" z="63WXZz83IkoFcGT4q06TST+X48U="/>
-    </page:show>
+    <table>
+        <td class="searchlist" width="65%">
+            <div class="entity_data">
+                <page:show list="false" create="false" delete="false" id="ps_au_gov_nsw_records_search_model_Activity" object="${activity}" path="/activities" update="false" z="zKeOv52Hx0reloKqkoRYzHiSKiQ=">
+                    <field:display heading="true" field="title" id="s_au_gov_nsw_records_search_model_Activity_title" object="${activity}" z="gnpPE5J3zYjbRmme7e4R5lAiuhs="/>
+                    <field:display field="descriptiveNote" id="s_au_gov_nsw_records_search_model_Activity_descriptiveNote" object="${activity}" z="Sj7+As/rDzcwXJFe8HCL0CUsYbU="/>
+                    <field:display date="true" dateTimePattern="${activity_startdate_date_format}" field="startDate" id="s_au_gov_nsw_records_search_model_Activity_startDate" object="${activity}" render="false" z="user-managed"/>
+                    <field:display field="startDateQualifier" id="s_au_gov_nsw_records_search_model_Activity_startDateQualifier" object="${activity}" render="false" z="user-managed"/>
+                    <field:display date="true" dateTimePattern="${activity_enddate_date_format}" field="endDate" id="s_au_gov_nsw_records_search_model_Activity_endDate" object="${activity}" render="false" z="user-managed"/>
+                    <field:display field="endDateQualifier" id="s_au_gov_nsw_records_search_model_Activity_endDateQualifier" object="${activity}" render="false" z="user-managed"/>
+                    <field:display field="series" id="s_au_gov_nsw_records_search_model_Activity_series" object="${activity}" render="false" z="gGo0dZA9KdzWrYdGuq33mLotL9s="/>
+                </page:show>
+            </div>
+        </td>
+        <td class="searchlist" width="35%">
+					<util:relationship browseLink="/activities/${activity.getId()}/functions" maxPages="${rel_functions_size}" relationships="${rel_functions}" type="functions" pageParam="functions_page" page="${rel_functions_page}" heading="Functions containing this activity"></util:relationship>            
+					<util:relationship browseLink="/activities/${activity.getId()}/series" maxPages="${rel_series_size}" relationships="${rel_series}" type="series" pageParam="series_page" page="${rel_series_page}" heading="Record series documenting this activity"></util:relationship>
+        </td>
+    </table>
 </div>

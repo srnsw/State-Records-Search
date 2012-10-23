@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -61,6 +62,37 @@ public class Agency {
 
 	@Column(name = "End_date_qualifier")
 	private String endDateQualifier;
+	
+	@OneToMany(mappedBy="agencyId")
+	private List<AgencyLinkFunction> functions;
+	
+	@OneToMany(mappedBy="agencyId")
+	private List<AgencyLinkOrganisation> organisations;
+	
+	@OneToMany(mappedBy="agencyId")
+	private List<AgencyLinkPerson> persons;
+	
+	@OneToMany(mappedBy="agencyId")
+	private List<AgencyLinkSeriesControlled> seriesControlled;
+	
+	@OneToMany(mappedBy="agencyId")
+	private List<AgencyLinkSeriesCreated> seriesCreated;
+	
+	//
+	@OneToMany(mappedBy="agencyId")
+	private List<AgencyLinkPreceding> preceding;
+	
+	@OneToMany(mappedBy="agencyId")
+	private List<AgencyLinkRelated> related;
+	
+	@OneToMany(mappedBy="agencyId")
+	private List<AgencyLinkSubordinate> subordinates;
+	
+	@OneToMany(mappedBy="agencyId")
+	private List<AgencyLinkSucceeding> succeeding;
+	
+	@OneToMany(mappedBy="agencyId")
+	private List<AgencyLinkSuperior> superiors;
 	
 	public String getDateRange() {
 		return DateHelper.dateRange(startDateQualifier, startDate, endDateQualifier, endDate);

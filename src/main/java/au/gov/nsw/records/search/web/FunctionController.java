@@ -3,9 +3,11 @@ package au.gov.nsw.records.search.web;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import au.gov.nsw.records.search.model.Agency;
 import au.gov.nsw.records.search.model.Functionn;
 
 @RequestMapping("/functions")
@@ -28,5 +30,35 @@ public class FunctionController {
         }
         addDateTimeFormatPatterns(uiModel);
         return "functions/list";
+    }
+
+	@RequestMapping(value = "/{functionNumber}", produces = "text/html")
+    public String show(@PathVariable("functionNumber") int functionNumber, Model uiModel,
+    		@RequestParam(value = "activities_page", required = false, defaultValue="1") Integer activities_page,
+    		@RequestParam(value = "agencies_page", required = false, defaultValue="1") Integer agencies_page,
+    		@RequestParam(value = "persons_page", required = false, defaultValue="1") Integer persons_page) {
+		
+        addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("functionn", Functionn.findFunctionn(functionNumber));
+        uiModel.addAttribute("itemId", functionNumber);
+        
+        if (Functionn.findFunctionn(functionNumber)!=null){
+	        int size = 5;
+	        int arraySize =  Functionn.findFunctionn(functionNumber).getActivities().size();
+	        uiModel.addAttribute("rel_activities",  Functionn.findFunctionn(functionNumber).getActivities().subList(Math.max((activities_page-1)*size, 0), Math.min(activities_page*size, arraySize)));
+	        uiModel.addAttribute("rel_activities_size", Double.valueOf(Math.ceil(arraySize/(float)size)).intValue());
+	        uiModel.addAttribute("rel_activities_page", activities_page);
+	        
+	        arraySize =  Functionn.findFunctionn(functionNumber).getAgencies().size();
+	        uiModel.addAttribute("rel_agencies",  Functionn.findFunctionn(functionNumber).getAgencies().subList(Math.max((agencies_page-1)*size, 0), Math.min(agencies_page*size, arraySize)));
+	        uiModel.addAttribute("rel_agencies_size", Double.valueOf(Math.ceil(arraySize/(float)size)).intValue());
+	        uiModel.addAttribute("rel_agencies_page", agencies_page);
+	        
+	        arraySize =  Functionn.findFunctionn(functionNumber).getPersons().size();
+	        uiModel.addAttribute("rel_persons",  Functionn.findFunctionn(functionNumber).getPersons().subList(Math.max((persons_page-1)*size, 0), Math.min(persons_page*size, arraySize)));
+	        uiModel.addAttribute("rel_persons_size", Double.valueOf(Math.ceil(arraySize/(float)size)).intValue());
+	        uiModel.addAttribute("rel_persons_page", persons_page);
+        }
+        return "functions/show";
     }
 }

@@ -7,9 +7,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,7 +18,6 @@ import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.facet.index.CategoryDocumentBuilder;
 import org.apache.lucene.facet.taxonomy.CategoryPath;
-import org.hibernate.annotations.common.util.StringHelper;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
@@ -92,28 +89,32 @@ public class Serie {
 	@Column(name = "Contents_End_date_qualifier")
 	private String contentEndDateQualifier;
 
-	@ManyToMany
-	@JoinTable(name="series_link_preceding_series", joinColumns = {@JoinColumn(name="series_id")}, inverseJoinColumns = {@JoinColumn(name="preceding_id")})
-	private List<Serie> preceedingSeries; 
+	@OneToMany(mappedBy="serieId")
+	private List<SerieLinkActivity> activities;
 	
-	@ManyToMany
-	@JoinTable(name="series_link_related_series", joinColumns = {@JoinColumn(name="series_id")}, inverseJoinColumns = {@JoinColumn(name="related_id")})
-	private List<Serie> relatedSeries; 
-
-//	@OneToMany(mappedBy="serie")
-//	private List<SeriePrecedingSerie> precedingSeries;
-//	
-//	//@OneToMany(mappedBy="serie")
-//	//private List<SerieRelatedSerie> relatedSeries;
-//	
-//	@OneToMany(mappedBy="serie")
-//	private List<SerieControllingSerie> controllingSeries;
-//	
-//	@OneToMany(mappedBy="serie")
-//	private List<SerieSucceedingAgency> succeedingAgencies;
-//	
-//	@OneToMany(mappedBy="serie")
-//	private List<SerieCreatingAgency> creatingAgencies;
+	@OneToMany(mappedBy="serieId")
+	private List<SerieLinkControllingAgency> controllingAgencies;
+	
+	@OneToMany(mappedBy="serieId")
+	private List<SerieLinkCreatingAgency> creatingAgencies;
+	
+	@OneToMany(mappedBy="serieId")
+	private List<SerieLinkPerson> persons;
+	
+	@OneToMany(mappedBy="serieId")
+	private List<SerieLinkPrecedingSerie> precedingSeries;
+	
+	@OneToMany(mappedBy="serieId")
+	private List<SerieLinkSucceedingSerie> succeedingSeries;
+	
+	@OneToMany(mappedBy="serieId")
+	private List<SerieLinkRelatedSerie> relatedSeries;
+	
+	@OneToMany(mappedBy="serieId")
+	private List<SerieLinkControllingSerie> controllingSeries;
+	
+	@OneToMany(mappedBy="serieId")
+	private List<SerieLinkControlledSerie> controlledSeries;
 	
 	public String getDateRange() {
 		return DateHelper.dateRange(startDateQualifier, startDate, endDateQualifier, endDate);

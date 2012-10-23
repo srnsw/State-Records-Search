@@ -70,24 +70,28 @@
 		<div id="portal-breadcrumbs">
 			<span id="breadcrumbs-you-are-here">You are here ::</span> 
 			<a href="http://www.records.nsw.gov.au">Home</a> 
-			<span class="breadcrumbSeparator"> → </span> 
-			<a href="#">Open Data</a> 
-			<span class="breadcrumbSeparator"> → </span> 
-				Search 
-			<span class="alignright"> 
-			<sc:authorize access="isAuthenticated()">
-					<spring:message code="security_logedin_as" />
-					<sc:authentication property="principal.username" />
-					<c:out value=" | " />
-					<span> 
-					  <spring:url value="/resources/j_spring_security_logout" var="logout" /> 
-					  <a href="${logout}"> <spring:message code="security_logout" /> </a>
-					</span>
-				</sc:authorize> 
-				<sc:authorize access="not isAuthenticated()">
-				  <spring:url var="login" value="/login" />
-					<a href="${login}"> <spring:message code="security_login" /> </a>
-				</sc:authorize>
-			</span>
+		
+			<span class="breadcrumbSeparator"> → </span>
+			<spring:url var="rooturl" value="/" /> 
+			<a href="${rooturl}">Search</a> 
+				
+			<!-- no login at the moment -->
+			<c:if test="{false}">
+				<span class="alignright"> 
+				<sc:authorize access="isAuthenticated()">
+						<spring:message code="security_logedin_as" />
+						<sc:authentication property="principal.username" />
+						<c:out value=" | " />
+						<span> 
+						  <spring:url value="/resources/j_spring_security_logout" var="logout" /> 
+						  <a href="${logout}"> <spring:message code="security_logout" /> </a>
+						</span>
+					</sc:authorize> 
+					<sc:authorize access="not isAuthenticated()">
+					  <spring:url var="login" value="/login" />
+						<a href="${login}"> <spring:message code="security_login" /> </a>
+					</sc:authorize>
+				</span>
+			</c:if>
 		</div>
 </div>

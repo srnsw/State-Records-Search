@@ -47,6 +47,10 @@ import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 import org.springframework.core.io.ClassPathResource;
 
+import au.gov.nsw.records.search.bean.FacetResultItem;
+import au.gov.nsw.records.search.bean.SearchResult;
+import au.gov.nsw.records.search.bean.SearchResultItem;
+
 public class LuceneService {
 
 	private static IndexWriter writer;
@@ -135,7 +139,7 @@ public class LuceneService {
 				Highlighter highlighter = new Highlighter(formatter, fragmentScorer);
 				Fragmenter fragmenter = new SimpleFragmenter(150);
 				highlighter.setTextFragmenter(fragmenter);
-				searchResults.add(new SearchResultItem(doc.get("type"), doc.get("title"), highlighter.getBestFragment(analyzer, "content", doc.get("content")), doc.get("id"), doc.get("url")));
+				searchResults.add(new SearchResultItem(doc.get("type"), doc.get("title"), highlighter.getBestFragment(analyzer, "content", doc.get("content")), doc.get("id"), doc.get("url"), doc.get("title").equals(doc.get("content"))));
 			}
 
 			for (FacetResult fr:facetsCollector.getFacetResults()){

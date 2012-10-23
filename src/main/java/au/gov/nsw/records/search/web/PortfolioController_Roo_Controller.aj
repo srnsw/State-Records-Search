@@ -8,18 +8,8 @@ import au.gov.nsw.records.search.web.PortfolioController;
 import org.joda.time.format.DateTimeFormat;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 privileged aspect PortfolioController_Roo_Controller {
-    
-    @RequestMapping(value = "/{portfolioNumber}", produces = "text/html")
-    public String PortfolioController.show(@PathVariable("portfolioNumber") int portfolioNumber, Model uiModel) {
-        addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("portfolio", Portfolio.findPortfolio(portfolioNumber));
-        uiModel.addAttribute("itemId", portfolioNumber);
-        return "portfolios/show";
-    }
     
     void PortfolioController.addDateTimeFormatPatterns(Model uiModel) {
         uiModel.addAttribute("portfolio_registereddate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));

@@ -1,0 +1,28 @@
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:spring="http://www.springframework.org/tags" xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
+  <jsp:output omit-xml-declaration="yes" />
+  
+  <jsp:directive.attribute name="type" type="java.lang.String" required="true" rtexprvalue="true" description="Entity type" />
+  <jsp:directive.attribute name="heading" type="java.lang.String" required="true" rtexprvalue="true" description="Heading text" />
+  <jsp:directive.attribute name="relationships" type="java.util.Collection" required="true" rtexprvalue="true" description="Relationships entity" />
+  <jsp:directive.attribute name="maxPages" type="java.lang.Integer" required="true" rtexprvalue="true" description="Max pagination page" />
+  <jsp:directive.attribute name="page" type="java.lang.Integer" required="true" rtexprvalue="true" description="page number" />
+  <jsp:directive.attribute name="pageParam" type="java.lang.String" required="true" rtexprvalue="true" description="page parameter" />
+  <jsp:directive.attribute name="browseLink" type="java.lang.String" required="false" rtexprvalue="true" description="Extra browse link" />
+  
+  <c:if test="${relationships.size() gt 0}">
+	  <fieldset class="PFGFieldsetWidget">
+	       <legend>
+	           <span>${heading}</span>
+	       </legend>
+	       <c:forEach items="${relationships}" var="item">
+	           <c:set value="${item.getRelationship()}" var="entity"/>
+	           <spring:url value="/${type}/${entity.getId()}" var="link_url"/>
+	           <p>
+	               <util:entityicon type="${type}"/>
+	               <a href="${link_url}"> ${entity.getTitle()} </a> (${entity.getDateRange()})
+	      </p>
+	       </c:forEach>
+	       <util:pagination browseLink="${browseLink}" maxPages="${maxPages}" page="${page}" pageParam="${pageParam}" showPageSizeSelection="false"/>
+	   </fieldset>
+   </c:if>
+</jsp:root>

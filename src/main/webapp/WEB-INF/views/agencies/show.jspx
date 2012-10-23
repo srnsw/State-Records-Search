@@ -1,16 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+<div xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:show create="false" delete="false" id="ps_au_gov_nsw_records_search_model_Agency" object="${agency}" path="/agencies" update="false" z="BTlSykf/4iE95RV/WSa6s/RVkuU=">
-        <field:display field="title" id="s_au_gov_nsw_records_search_model_Agency_title" object="${agency}" z="brh+jWnhB+zw06vwntX0RqTTNVM="/>
-        <field:display field="category" id="s_au_gov_nsw_records_search_model_Agency_category" object="${agency}" z="zkh9OGyYO45sxK0/BZM6fQCKHo4="/>
-        <field:display field="creation" id="s_au_gov_nsw_records_search_model_Agency_creation" object="${agency}" z="TZPjSUM23M1+FYvn01fOZZ35H6Y="/>
-        <field:display field="abolition" id="s_au_gov_nsw_records_search_model_Agency_abolition" object="${agency}" z="iDQuETMSj2dKeZdCbHDs50bAN/8="/>
-        <field:display field="administrativeHistoryNote" id="s_au_gov_nsw_records_search_model_Agency_administrativeHistoryNote" object="${agency}" z="XJgzikaXTx19fQN3qiDwza/b3J8="/>
-        <field:display date="true" dateTimePattern="${agency_startdate_date_format}" field="startDate" id="s_au_gov_nsw_records_search_model_Agency_startDate" object="${agency}" z="/SV7FbyoZVrewcNvd6vIbd7Q/L8="/>
-        <field:display field="startDateQualifier" id="s_au_gov_nsw_records_search_model_Agency_startDateQualifier" object="${agency}" z="EulvcoZu2tAhJMWf9uORy3GNTg8="/>
-        <field:display date="true" dateTimePattern="${agency_enddate_date_format}" field="endDate" id="s_au_gov_nsw_records_search_model_Agency_endDate" object="${agency}" z="GxWkK9ZpMmtQs9KGq33fbh/7ajo="/>
-        <field:display field="endDateQualifier" id="s_au_gov_nsw_records_search_model_Agency_endDateQualifier" object="${agency}" z="L5v8gNPwfxqUM9YFMdkFfbT10d8="/>
-    </page:show>
+       <table>
+        <td class="searchlist" width="65%">
+            <div class="entity_data">
+					    <page:show list="false" create="false" delete="false" id="ps_au_gov_nsw_records_search_model_Agency" object="${agency}" path="/agencies" update="false" z="BTlSykf/4iE95RV/WSa6s/RVkuU=">
+					        <field:display heading="true" field="title" id="s_au_gov_nsw_records_search_model_Agency_title" object="${agency}" z="brh+jWnhB+zw06vwntX0RqTTNVM="/>
+					        <field:display field="category" id="s_au_gov_nsw_records_search_model_Agency_category" object="${agency}" z="zkh9OGyYO45sxK0/BZM6fQCKHo4="/>
+					        <field:display field="creation" id="s_au_gov_nsw_records_search_model_Agency_creation" object="${agency}" z="TZPjSUM23M1+FYvn01fOZZ35H6Y="/>
+					        <field:display field="abolition" id="s_au_gov_nsw_records_search_model_Agency_abolition" object="${agency}" z="iDQuETMSj2dKeZdCbHDs50bAN/8="/>
+					        <field:display field="administrativeHistoryNote" id="s_au_gov_nsw_records_search_model_Agency_administrativeHistoryNote" object="${agency}" z="XJgzikaXTx19fQN3qiDwza/b3J8="/>
+					        <field:display render="false" date="true" dateTimePattern="${agency_startdate_date_format}" field="startDate" id="s_au_gov_nsw_records_search_model_Agency_startDate" object="${agency}" z="/SV7FbyoZVrewcNvd6vIbd7Q/L8="/>
+					        <field:display render="false" field="startDateQualifier" id="s_au_gov_nsw_records_search_model_Agency_startDateQualifier" object="${agency}" z="EulvcoZu2tAhJMWf9uORy3GNTg8="/>
+					        <field:display render="false" date="true" dateTimePattern="${agency_enddate_date_format}" field="endDate" id="s_au_gov_nsw_records_search_model_Agency_endDate" object="${agency}" z="GxWkK9ZpMmtQs9KGq33fbh/7ajo="/>
+					        <field:display render="false" field="endDateQualifier" id="s_au_gov_nsw_records_search_model_Agency_endDateQualifier" object="${agency}" z="L5v8gNPwfxqUM9YFMdkFfbT10d8="/>
+					    </page:show>
+					  </div>
+        </td>
+        <td class="searchlist" width="35%">
+					<util:relationship browseLink="/agencies/${agency.getId()}/preceding" maxPages="${rel_preceding_size}" relationships="${rel_preceding}" type="agencies" pageParam="preceding_page" page="${rel_preceding_page}" heading="Preceding agencies"></util:relationship>            
+					<util:relationship browseLink="/agencies/${agency.getId()}/succeeding" maxPages="${rel_succeeding_size}" relationships="${rel_succeeding}" type="agencies" pageParam="succeeding_page" page="${rel_succeeding_page}" heading="Succeeding agencies"></util:relationship>
+					<util:relationship browseLink="/agencies/${agency.getId()}/superior" maxPages="${rel_superiors_size}" relationships="${rel_superiors}" type="agencies" pageParam="superiors_page" page="${rel_superiors_page}" heading="Superior agencies"></util:relationship>
+					<util:relationship browseLink="/agencies/${agency.getId()}/subordinate" maxPages="${rel_subordinates_size}" relationships="${rel_subordinates}" type="agencies" pageParam="subordinates_page" page="${rel_subordinates_page}" heading="Subordinate agencies"></util:relationship>
+					<util:relationship browseLink="/agencies/${agency.getId()}/related" maxPages="${rel_related_size}" relationships="${rel_related}" type="agencies" pageParam="related_page" page="${rel_related_page}" heading="Related agencies"></util:relationship>
+					<util:relationship browseLink="/agencies/${agency.getId()}/organisations" maxPages="${rel_organisations_size}" relationships="${rel_organisations}" type="organisations" pageParam="organisations_page" page="${rel_organisations_page}" heading="Organisations controlling this agency"></util:relationship>
+					<util:relationship browseLink="/agencies/${agency.getId()}/persons" maxPages="${rel_presons_size}" relationships="${rel_presons}" type="persons" pageParam="presons_page" page="${rel_presons_page}" heading="Persons related to this agency"></util:relationship>
+					<util:relationship browseLink="/agencies/${agency.getId()}/functions" maxPages="${rel_functions_size}" relationships="${rel_functions}" type="functions" pageParam="functions_page" page="${rel_functions_page}" heading="Functions exercised by this agency"></util:relationship>
+					<util:relationship browseLink="/agencies/${agency.getId()}/series_created" maxPages="${rel_series_created_size}" relationships="${rel_series_created}" type="series" pageParam="series_created_page" page="${rel_series_created_page}" heading="Record series created by this agency"></util:relationship>
+					<util:relationship browseLink="/agencies/${agency.getId()}/series_controlled" maxPages="${rel_series_controlled_size}" relationships="${rel_series_controlled}" type="series" pageParam="series_controlled_page" page="${rel_series_controlled_page}" heading="Record series controlled by this agency"></util:relationship>
+        </td>
+    </table>
 </div>

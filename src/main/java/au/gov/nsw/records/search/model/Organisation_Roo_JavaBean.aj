@@ -4,7 +4,11 @@
 package au.gov.nsw.records.search.model;
 
 import au.gov.nsw.records.search.model.Organisation;
+import au.gov.nsw.records.search.model.OrganisationLinkAgency;
+import au.gov.nsw.records.search.model.OrganisationLinkPreceding;
+import au.gov.nsw.records.search.model.OrganisationLinkSucceeding;
 import java.util.Date;
+import java.util.List;
 
 privileged aspect Organisation_Roo_JavaBean {
     
@@ -62,6 +66,30 @@ privileged aspect Organisation_Roo_JavaBean {
     
     public void Organisation.setEndDateQualifier(String endDateQualifier) {
         this.endDateQualifier = endDateQualifier;
+    }
+    
+    public List<OrganisationLinkSucceeding> Organisation.getSucceeding() {
+        return this.succeeding;
+    }
+    
+    public void Organisation.setSucceeding(List<OrganisationLinkSucceeding> succeeding) {
+        this.succeeding = succeeding;
+    }
+    
+    public List<OrganisationLinkPreceding> Organisation.getPreceding() {
+        return this.preceding;
+    }
+    
+    public void Organisation.setPreceding(List<OrganisationLinkPreceding> preceding) {
+        this.preceding = preceding;
+    }
+    
+    public List<OrganisationLinkAgency> Organisation.getAgencies() {
+        return this.agencies;
+    }
+    
+    public void Organisation.setAgencies(List<OrganisationLinkAgency> agencies) {
+        this.agencies = agencies;
     }
     
 }

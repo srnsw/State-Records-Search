@@ -1,16 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:spring="http://www.springframework.org/tags" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:show create="false" delete="false" id="ps_au_gov_nsw_records_search_model_Item" object="${item}" path="/items" update="false" z="/Bis6QqVvO7ShRXZMU9cu6Gp3RI=">
-        <field:display field="seriesType" id="s_au_gov_nsw_records_search_model_Item_seriesType" object="${item}" z="ETGIx7g2+SCfETp73TYji0TjGU8="/>
-        <field:display field="seriesNumber" id="s_au_gov_nsw_records_search_model_Item_seriesNumber" object="${item}" z="yIZ1A5QRRrn0IvSA1enBMFdThS0="/>
-        <field:display field="itemNumberOrControlSymbol" id="s_au_gov_nsw_records_search_model_Item_itemNumberOrControlSymbol" object="${item}" z="lJFgEgbN/pgUZgW+/tO7TEhD4tQ="/>
-        <field:display field="title" id="s_au_gov_nsw_records_search_model_Item_title" object="${item}" z="/0FZ1d0q1inbPZheUGncFvkclQI="/>
-        <field:display field="descriptiveNote" id="s_au_gov_nsw_records_search_model_Item_descriptiveNote" object="${item}" z="C/Eq95OhJbR8sVBj3N1bgXM53N0="/>
-        <field:display field="accessDirectionNumber" id="s_au_gov_nsw_records_search_model_Item_accessDirectionNumber" object="${item}" z="E8QoM4jZ6HoQekSTDs0axK0MSY0="/>
-        <field:display field="availability" id="s_au_gov_nsw_records_search_model_Item_availability" object="${item}" z="68Svmry8l85jRnlyub/PnC1vZdg="/>
-        <field:display date="true" dateTimePattern="${item_startdate_date_format}" field="startDate" id="s_au_gov_nsw_records_search_model_Item_startDate" object="${item}" z="z4djh6hJaz9HUBDx9AwU1/o4e2A="/>
-        <field:display date="true" dateTimePattern="${item_enddate_date_format}" field="endDate" id="s_au_gov_nsw_records_search_model_Item_endDate" object="${item}" z="ewXDLUIpqlC42dXnypYClTOTBdA="/>
-    </page:show>
+    
+        <table>
+        <td class="searchlist" width="65%">
+            <div class="entity_data">
+						  <page:show list="false" create="false" delete="false" id="ps_au_gov_nsw_records_search_model_Item" object="${item}" path="/items" update="false" z="/Bis6QqVvO7ShRXZMU9cu6Gp3RI=">
+					        <field:display heading="true" field="title" id="s_au_gov_nsw_records_search_model_Item_title" object="${item}" z="/0FZ1d0q1inbPZheUGncFvkclQI="/>
+					        <field:display field="itemNumberOrControlSymbol" id="s_au_gov_nsw_records_search_model_Item_itemNumberOrControlSymbol" object="${item}" z="lJFgEgbN/pgUZgW+/tO7TEhD4tQ="/>
+					        <field:display field="seriesType" id="s_au_gov_nsw_records_search_model_Item_seriesType" object="${item}" z="ETGIx7g2+SCfETp73TYji0TjGU8="/>
+					        <field:display field="descriptiveNote" id="s_au_gov_nsw_records_search_model_Item_descriptiveNote" object="${item}" z="C/Eq95OhJbR8sVBj3N1bgXM53N0="/>
+					        <field:display field="accessDirectionNumber" id="s_au_gov_nsw_records_search_model_Item_accessDirectionNumber" object="${item}" z="E8QoM4jZ6HoQekSTDs0axK0MSY0="/>
+					        <field:display field="availability" id="s_au_gov_nsw_records_search_model_Item_availability" object="${item}" z="68Svmry8l85jRnlyub/PnC1vZdg="/>
+					        <field:display render="false" date="true" dateTimePattern="${item_startdate_date_format}" field="startDate" id="s_au_gov_nsw_records_search_model_Item_startDate" object="${item}" z="z4djh6hJaz9HUBDx9AwU1/o4e2A="/>
+					        <field:display render="false" date="true" dateTimePattern="${item_enddate_date_format}" field="endDate" id="s_au_gov_nsw_records_search_model_Item_endDate" object="${item}" z="ewXDLUIpqlC42dXnypYClTOTBdA="/>
+					    </page:show>
+					  </div>
+        </td>
+        <td class="searchlist" width="35%">
+        	<fieldset class="PFGFieldsetWidget">
+			       <legend>
+			           <span>Series</span>
+			       </legend>
+	           <c:set value="${item.getSeriesNumber()}" var="entity"/>
+	           <spring:url value="/series/${entity.getId()}" var="link_url"/>
+	           <p>
+	               <util:entityicon type="series"/>
+	               <a href="${link_url}"> ${entity.getTitle()} </a> (${entity.getDateRange()})
+	      		 </p>
+			       <util:pagination maxPages="${maxPages}" page="${page}" pageParam="${pageParam}" showPageSizeSelection="false"/>
+			    </fieldset>
+					<util:relationship browseLink="/items/${item.getId()}/persons" maxPages="${rel_persons_size}" relationships="${rel_persons}" type="persons" pageParam="persons_page" page="${rel_persons_page}" heading="Creating person"></util:relationship>
+					<util:relationship browseLink="/items/${item.getId()}/agencies" maxPages="${rel_agencies_size}" relationships="${rel_agencies}" type="agencies" pageParam="agencies_page" page="${rel_agencies_page}" heading="Creating agency"></util:relationship>
+        </td>
+    </table>
 </div>

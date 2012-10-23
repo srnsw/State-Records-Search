@@ -11,10 +11,10 @@
 	            <util:entityicon type="${result.getType()}"></util:entityicon>
 	            <a href="${link_url}"> ${result.getTitle()} </a>
 	          </p>
-	          <c:if test="${not empty result.getContent()}">
-				      <p>
-	          		...${result.getContent()}...
-	          	</p>
+	          <c:if test="${(not result.isTitleEqualContent()) and (not empty result.getContent()) and (result.getType() eq 'series' or result.getType() eq 'items')}">
+					      <p>
+		          		...${result.getContent()}...
+		          	</p>
 				    </c:if>
 	      </div>
 	  </c:forEach>

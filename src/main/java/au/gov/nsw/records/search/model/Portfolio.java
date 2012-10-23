@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -56,6 +57,21 @@ public class Portfolio {
 
 	@Column(name = "End_date_qualifier")
 	private String endDateQualifier;
+	
+	@OneToMany(mappedBy="portfolioId")
+	private List<PortfolioLinkMinistry> ministries;
+	
+	@OneToMany(mappedBy="portfolioId")
+	private List<PortfolioLinkPerson> persons;
+	
+	@OneToMany(mappedBy="portfolioId")
+	private List<PortfolioLinkAgency> agencies;
+	
+	@OneToMany(mappedBy="portfolioId")
+	private List<PortfolioLinkPreceding> preceding;
+	
+	@OneToMany(mappedBy="portfolioId")
+	private List<PortfolioLinkSucceeding> succeeding;
 	
 	public String getDateRange() {
 		return DateHelper.dateRange(startDateQualifier, startDate, endDateQualifier, endDate);

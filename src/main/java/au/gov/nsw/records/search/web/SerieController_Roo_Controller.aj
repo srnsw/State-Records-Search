@@ -8,18 +8,8 @@ import au.gov.nsw.records.search.web.SerieController;
 import org.joda.time.format.DateTimeFormat;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 privileged aspect SerieController_Roo_Controller {
-    
-    @RequestMapping(value = "/{seriesNumber}", produces = "text/html")
-    public String SerieController.show(@PathVariable("seriesNumber") int seriesNumber, Model uiModel) {
-        addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("serie", Serie.findSerie(seriesNumber));
-        uiModel.addAttribute("itemId", seriesNumber);
-        return "series/show";
-    }
     
     void SerieController.addDateTimeFormatPatterns(Model uiModel) {
         uiModel.addAttribute("serie_startdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));

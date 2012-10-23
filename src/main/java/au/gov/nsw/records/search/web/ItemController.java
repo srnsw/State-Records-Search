@@ -1,12 +1,20 @@
 package au.gov.nsw.records.search.web;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import au.gov.nsw.records.search.model.Agency;
+import au.gov.nsw.records.search.model.Functionn;
 import au.gov.nsw.records.search.model.Item;
+import au.gov.nsw.records.search.model.Person;
+import au.gov.nsw.records.search.model.Serie;
 
 @RequestMapping("/items")
 @Controller
@@ -29,5 +37,28 @@ public class ItemController {
         }
         addDateTimeFormatPatterns(uiModel);
         return "items/list";
+    }
+
+	@RequestMapping(value = "/{id}", produces = "text/html")
+    public String show(@PathVariable("id") int id, Model uiModel,
+    		@RequestParam(value = "persons_page", required = false, defaultValue="1") Integer persons_page,
+    		@RequestParam(value = "agencies_page", required = false, defaultValue="1") Integer agencies_page) {
+        addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("item", Item.findItem(id));
+        uiModel.addAttribute("itemId", id);
+        
+        if (Item.findItem(id)!=null){
+	        int size = 5;
+	        int arraySize =  Item.findItem(id).getSeriesNumber().getPersons().size();
+	        uiModel.addAttribute("rel_persons",  Item.findItem(id).getSeriesNumber().getPersons().subList(Math.max((persons_page-1)*size, 0), Math.min(persons_page*size, arraySize)));
+	        uiModel.addAttribute("rel_persons_size", Double.valueOf(Math.ceil(arraySize/(float)size)).intValue());
+	        uiModel.addAttribute("rel_persons_page", persons_page);
+	        
+	        arraySize =  Item.findItem(id).getSeriesNumber().getCreatingAgencies().size();
+	        uiModel.addAttribute("rel_agencies",  Item.findItem(id).getSeriesNumber().getCreatingAgencies().subList(Math.max((agencies_page-1)*size, 0), Math.min(agencies_page*size, arraySize)));
+	        uiModel.addAttribute("rel_agencies_size", Double.valueOf(Math.ceil(arraySize/(float)size)).intValue());
+	        uiModel.addAttribute("rel_agencies_page", agencies_page);
+        }
+        return "items/show";
     }
 }

@@ -4,7 +4,13 @@
 package au.gov.nsw.records.search.model;
 
 import au.gov.nsw.records.search.model.Person;
+import au.gov.nsw.records.search.model.PersonLinkAgency;
+import au.gov.nsw.records.search.model.PersonLinkFunction;
+import au.gov.nsw.records.search.model.PersonLinkMinistry;
+import au.gov.nsw.records.search.model.PersonLinkPortfolio;
+import au.gov.nsw.records.search.model.PersonLinkSeries;
 import java.util.Date;
+import java.util.List;
 
 privileged aspect Person_Roo_JavaBean {
     
@@ -102,6 +108,46 @@ privileged aspect Person_Roo_JavaBean {
     
     public void Person.setDeathDateQualifier(String deathDateQualifier) {
         this.deathDateQualifier = deathDateQualifier;
+    }
+    
+    public List<PersonLinkFunction> Person.getFunctions() {
+        return this.functions;
+    }
+    
+    public void Person.setFunctions(List<PersonLinkFunction> functions) {
+        this.functions = functions;
+    }
+    
+    public List<PersonLinkAgency> Person.getAgencies() {
+        return this.agencies;
+    }
+    
+    public void Person.setAgencies(List<PersonLinkAgency> agencies) {
+        this.agencies = agencies;
+    }
+    
+    public List<PersonLinkSeries> Person.getSeries() {
+        return this.series;
+    }
+    
+    public void Person.setSeries(List<PersonLinkSeries> series) {
+        this.series = series;
+    }
+    
+    public List<PersonLinkPortfolio> Person.getPortfolios() {
+        return this.portfolios;
+    }
+    
+    public void Person.setPortfolios(List<PersonLinkPortfolio> portfolios) {
+        this.portfolios = portfolios;
+    }
+    
+    public List<PersonLinkMinistry> Person.getMinistries() {
+        return this.ministries;
+    }
+    
+    public void Person.setMinistries(List<PersonLinkMinistry> ministries) {
+        this.ministries = ministries;
     }
     
 }

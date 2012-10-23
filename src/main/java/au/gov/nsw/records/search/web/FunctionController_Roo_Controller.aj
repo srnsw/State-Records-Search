@@ -8,18 +8,8 @@ import au.gov.nsw.records.search.web.FunctionController;
 import org.joda.time.format.DateTimeFormat;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 privileged aspect FunctionController_Roo_Controller {
-    
-    @RequestMapping(value = "/{functionNumber}", produces = "text/html")
-    public String FunctionController.show(@PathVariable("functionNumber") int functionNumber, Model uiModel) {
-        addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("functionn", Functionn.findFunctionn(functionNumber));
-        uiModel.addAttribute("itemId", functionNumber);
-        return "functions/show";
-    }
     
     void FunctionController.addDateTimeFormatPatterns(Model uiModel) {
         uiModel.addAttribute("functionn_registereddate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));

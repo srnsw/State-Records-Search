@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -67,6 +68,21 @@ public class Person {
     @Column(name = "Death_date_qualifier")
     private String deathDateQualifier;
 
+  	@OneToMany(mappedBy="personId")
+  	private List<PersonLinkFunction> functions;
+  	
+  	@OneToMany(mappedBy="personId")
+  	private List<PersonLinkAgency> agencies;
+  	
+  	@OneToMany(mappedBy="personId")
+  	private List<PersonLinkSeries> series;
+  	
+  	@OneToMany(mappedBy="personId")
+  	private List<PersonLinkPortfolio> portfolios;
+  	
+  	@OneToMany(mappedBy="personId")
+  	private List<PersonLinkMinistry> ministries;
+  	
     public String getDateRange() {
         return DateHelper.dateRange(birthDateQualifier, birthDate, deathDateQualifier, deathDate);
     }

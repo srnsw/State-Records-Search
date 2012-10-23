@@ -1,9 +1,11 @@
 package au.gov.nsw.records.search.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -50,6 +52,15 @@ public class Organisation {
 	public String getDateRange() {
 		return DateHelper.dateRange(startDateQualifier, startDate, endDateQualifier, endDate);
 	}
+	
+	@OneToMany(mappedBy="organisationId")
+	private List<OrganisationLinkSucceeding> succeeding;
+	
+	@OneToMany(mappedBy="organisationId")
+	private List<OrganisationLinkPreceding> preceding;
+	
+	@OneToMany(mappedBy="organisationId")
+	private List<OrganisationLinkAgency> agencies;
 	
 	public int getId(){
 		return organisationNumber;

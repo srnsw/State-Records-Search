@@ -2,6 +2,9 @@
 <div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:spring="http://www.springframework.org/tags" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
+    <H1>Ministries</H1>
+    <table>
+    <td class="entitylist">
     <c:forEach items="${ministrys}" var="item">
         <spring:url value="/ministries/${item.getId()}" var="link_url"/>
         <div class="collection_search_result">
@@ -10,6 +13,8 @@
             </p>
         </div>
     </c:forEach>
+    </td>
+    </table>
     <util:pagination maxPages="${maxPages}" page="${page}" size="${size}"/>
     <page:list id="pl_au_gov_nsw_records_search_model_Ministry" items="${ministrys}" render="false" z="user-managed">
         <table:table data="${ministrys}" delete="false" id="l_au_gov_nsw_records_search_model_Ministry" path="/ministries" typeIdFieldName="ministryNumber" update="false" z="sn59PLyWJjAmgqeUB+2IT6NZ1FY=">

@@ -12,6 +12,48 @@ public class DateHelper {
 	private static SimpleDateFormat fullFormat =  new SimpleDateFormat("dd/MM/yyyy");
 	private static List<String> staticQualifiers = new ArrayList<String>(Arrays.asList("?", "circa", "c", "c."));
 	
+	public static String dateRange(String startQualifier, String start, String endQualifier, String end) {
+		start = parseDate(startQualifier, start);
+		end = parseDate(endQualifier, end);
+  	String dateRange = "";
+  	if (start!=null){
+  		dateRange = start;
+  		if (end!=null){
+  			dateRange += " to " + end;
+  		}else{
+  			dateRange += " +";
+  		}
+  	}else if(end!=null){
+  		dateRange = "- " + end;
+  	}else{
+  		dateRange = "unknown";
+  	}
+  	return dateRange;
+  }
+	
+	private static String parseDate(String qualifier, String date){
+  	if (date!=null){
+  		if (date.contains("Month and year only")){
+  			date = date.replace("Month and year only", "");
+  			qualifier = "Month and year only";
+  		}
+  		if (qualifier==null){
+  			// format dd/mm/yyyy
+  			return date;
+  		}else if (qualifier.equals("Month and year only")){
+  			return date.substring(date.indexOf("/"));
+  		}else if (qualifier.equals("year only")){
+  			// format yyyy
+  			return date.substring(date.lastIndexOf("/"));
+  		}else{
+  			String s = staticQualifiers.contains(qualifier)? "c. " : qualifier + " ";
+  			// format dd/mm/yyyy
+  			return s += date;
+  		}
+  	}
+  	return null;
+  }
+	
 	public static String dateRange(String startQualifier, Date start, String endQualifier, Date end) {
   	String dateRange = "";
   	String startDate = parseDate(startQualifier, start);
