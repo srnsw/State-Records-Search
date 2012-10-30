@@ -1,39 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-        <table>
+    <table>
         <td class="searchlist" width="65%">
             <div class="entity_data">
-						    <page:show list="false" create="false" delete="false" id="ps_au_gov_nsw_records_search_model_Serie" object="${serie}" path="/series" update="false" z="9aSZ5efpI4CQSl9w0/vvSCAP0Mg=">
-					        <field:display heading="true" field="title" id="s_au_gov_nsw_records_search_model_Serie_title" object="${serie}" z="cRfl/dIL9dwUBpj/XeeYcoOzk+I="/>
-					        <field:display field="descriptiveNote" id="s_au_gov_nsw_records_search_model_Serie_descriptiveNote" object="${serie}" z="F6zo4JIn0RfpAIYaoqynR59hHkU="/>
-					        <field:display field="format" id="s_au_gov_nsw_records_search_model_Serie_format" object="${serie}" z="y4ABtYqYFGtds6bIRm+qc3UBcbw="/>
-					        <field:display field="arrangement" id="s_au_gov_nsw_records_search_model_Serie_arrangement" object="${serie}" z="jEK4yrj7bPUZ2w/NEIjzAwspX4Y="/>
-					        <field:display field="copies" id="s_au_gov_nsw_records_search_model_Serie_copies" object="${serie}" z="KwOPFSpsCV+JG/jSW/kwnH3MbbY="/>
-					        <field:display field="seriesControlStatus" id="s_au_gov_nsw_records_search_model_Serie_seriesControlStatus" object="${serie}" z="GCi2x79a51iyxinxIAicyUAfsoM="/>
-					        <field:display field="repository" id="s_au_gov_nsw_records_search_model_Serie_repository" object="${serie}" z="psPHJiOXoM24bXOQkxwP9PywBAU="/>
-					        <field:display date="true" dateTimePattern="${serie_startdate_date_format}" field="startDate" id="s_au_gov_nsw_records_search_model_Serie_startDate" object="${serie}" render="false" z="user-managed"/>
-					        <field:display field="startDateQualifier" id="s_au_gov_nsw_records_search_model_Serie_startDateQualifier" object="${serie}" render="false" z="user-managed"/>
-					        <field:display date="true" dateTimePattern="${serie_enddate_date_format}" field="endDate" id="s_au_gov_nsw_records_search_model_Serie_endDate" object="${serie}" render="false" z="user-managed"/>
-					        <field:display field="endDateQualifier" id="s_au_gov_nsw_records_search_model_Serie_endDateQualifier" object="${serie}" render="false" z="user-managed"/>
-					        <field:display date="true" dateTimePattern="${serie_contentstartdate_date_format}" field="contentStartDate" id="s_au_gov_nsw_records_search_model_Serie_contentStartDate" object="${serie}" render="false" z="user-managed"/>
-					        <field:display field="contentStartDateQualifier" id="s_au_gov_nsw_records_search_model_Serie_contentStartDateQualifier" object="${serie}" render="false" z="user-managed"/>
-					        <field:display date="true" dateTimePattern="${serie_contentenddate_date_format}" field="contentEndDate" id="s_au_gov_nsw_records_search_model_Serie_contentEndDate" object="${serie}" render="false" z="user-managed"/>
-					        <field:display field="contentEndDateQualifier" id="s_au_gov_nsw_records_search_model_Serie_contentEndDateQualifier" object="${serie}" render="false" z="user-managed"/>
-					    </page:show>
-					  </div>
+                <page:show create="false" delete="false" id="ps_au_gov_nsw_records_search_model_Serie" list="false" object="${serie}" path="/series" update="false" z="user-managed">
+                    <field:display field="title" heading="true" id="s_au_gov_nsw_records_search_model_Serie_title" object="${serie}" z="user-managed"/>
+                    <field:display field="contentDateRange" id="s_au_gov_nsw_records_search_model_Serie_contentDateRange" object="${serie}" z="F6zo4JIn0RfpAIYaoqynR59hHkU="/>
+                    <field:display field="descriptiveNote" id="s_au_gov_nsw_records_search_model_Serie_descriptiveNote" object="${serie}" z="F6zo4JIn0RfpAIYaoqynR59hHkU="/>
+                    <field:display field="format" id="s_au_gov_nsw_records_search_model_Serie_format" object="${serie}" z="y4ABtYqYFGtds6bIRm+qc3UBcbw="/>
+                    <field:display field="arrangement" id="s_au_gov_nsw_records_search_model_Serie_arrangement" object="${serie}" z="jEK4yrj7bPUZ2w/NEIjzAwspX4Y="/>
+                    <field:display field="copies" id="s_au_gov_nsw_records_search_model_Serie_copies" object="${serie}" z="KwOPFSpsCV+JG/jSW/kwnH3MbbY="/>
+                    <field:display field="seriesControlStatus" id="s_au_gov_nsw_records_search_model_Serie_seriesControlStatus" object="${serie}" z="GCi2x79a51iyxinxIAicyUAfsoM="/>
+                    <field:display field="repository" id="s_au_gov_nsw_records_search_model_Serie_repository" object="${serie}" z="psPHJiOXoM24bXOQkxwP9PywBAU="/>
+                    <field:display date="true" dateTimePattern="${serie_startdate_date_format}" field="startDate" id="s_au_gov_nsw_records_search_model_Serie_startDate" object="${serie}" render="false" z="user-managed"/>
+                    <field:display field="startDateQualifier" id="s_au_gov_nsw_records_search_model_Serie_startDateQualifier" object="${serie}" render="false" z="user-managed"/>
+                    <field:display date="true" dateTimePattern="${serie_enddate_date_format}" field="endDate" id="s_au_gov_nsw_records_search_model_Serie_endDate" object="${serie}" render="false" z="user-managed"/>
+                    <field:display field="endDateQualifier" id="s_au_gov_nsw_records_search_model_Serie_endDateQualifier" object="${serie}" render="false" z="user-managed"/>
+                    <field:display date="true" dateTimePattern="${serie_contentstartdate_date_format}" field="contentStartDate" id="s_au_gov_nsw_records_search_model_Serie_contentStartDate" object="${serie}" render="false" z="user-managed"/>
+                    <field:display field="contentStartDateQualifier" id="s_au_gov_nsw_records_search_model_Serie_contentStartDateQualifier" object="${serie}" render="false" z="user-managed"/>
+                    <field:display date="true" dateTimePattern="${serie_contentenddate_date_format}" field="contentEndDate" id="s_au_gov_nsw_records_search_model_Serie_contentEndDate" object="${serie}" render="false" z="user-managed"/>
+                    <field:display field="contentEndDateQualifier" id="s_au_gov_nsw_records_search_model_Serie_contentEndDateQualifier" object="${serie}" render="false" z="user-managed"/>
+                </page:show>
+            </div>
         </td>
         <td class="searchlist" width="35%">
-					<util:relationship browseLink="/series/${serie.id}/activities" maxPages="${rel_activities_size}" relationships="${rel_activities}" type="activities" pageParam="activities_page" page="${rel_activities_page}" heading="Activities documented by this series"></util:relationship>
-					<util:relationship browseLink="/series/${serie.id}/agencies_controlling" maxPages="${rel_controlling_agencies_size}" relationships="${rel_controlling_agencies}" type="agencies" pageParam="controlling_agencies_page" page="${rel_controlling_agencies_page}" heading="Current agency responsible"></util:relationship>
-					<util:relationship browseLink="/series/${serie.id}/agencies_creating" maxPages="${rel_creating_agencies_size}" relationships="${rel_creating_agencies}" type="agencies" pageParam="creating_agencies_page" page="${rel_creating_agencies_page}" heading="Creating agency"></util:relationship>
-					<util:relationship browseLink="/series/${serie.id}/persons" maxPages="${rel_persons_size}" relationships="${rel_persons}" type="persons" pageParam="persons_page" page="${rel_persons_page}" heading="Persons creating this series"></util:relationship>
-					<util:relationship browseLink="/series/${serie.id}/preceding" maxPages="${rel_preceding_series_size}" relationships="${rel_preceding_series}" type="series" pageParam="preceding_series_page" page="${rel_preceding_series_page}" heading="Preceding series"></util:relationship>
-					<util:relationship browseLink="/series/${serie.id}/succeeding" maxPages="${rel_succeeding_series_size}" relationships="${rel_succeeding_series}" type="series" pageParam="succeeding_series_page" page="${rel_succeeding_series_page}" heading="Succeeding series"></util:relationship>
-					<util:relationship browseLink="/series/${serie.id}/related" maxPages="${rel_related_series_size}" relationships="${rel_related_series}" type="series" pageParam="related_series_page" page="${rel_related_series_page}" heading="Related series"></util:relationship>
-					<util:relationship browseLink="/series/${serie.id}/controlling" maxPages="${rel_controlling_series_size}" relationships="${rel_controlling_series}" type="series" pageParam="controlling_series_page" page="${rel_controlling_series_page}" heading="Controlling series"></util:relationship>
-					<util:relationship browseLink="/series/${serie.id}/controlled" maxPages="${rel_controlled_series_size}" relationships="${rel_controlled_series}" type="series" pageParam="controlled_series_page" page="${rel_controlled_series_page}" heading="Controlled series"></util:relationship>
+            <util:relationship browseLink="/series/${serie.id}/activities" heading="Activities documented by this series" maxPages="${rel_activities_size}" page="${rel_activities_page}" pageParam="activities_page" relationships="${rel_activities}" type="activities"/>
+            <util:relationship browseLink="/series/${serie.id}/agencies_controlling" heading="Current agency responsible" maxPages="${rel_controlling_agencies_size}" page="${rel_controlling_agencies_page}" pageParam="controlling_agencies_page" relationships="${rel_controlling_agencies}" type="agencies"/>
+            <util:relationship browseLink="/series/${serie.id}/agencies_creating" heading="Creating agency" maxPages="${rel_creating_agencies_size}" page="${rel_creating_agencies_page}" pageParam="creating_agencies_page" relationships="${rel_creating_agencies}" type="agencies"/>
+            <util:relationship browseLink="/series/${serie.id}/persons" heading="Persons creating this series" maxPages="${rel_persons_size}" page="${rel_persons_page}" pageParam="persons_page" relationships="${rel_persons}" type="persons"/>
+            <util:relationship browseLink="/series/${serie.id}/preceding" heading="Preceding series" maxPages="${rel_preceding_series_size}" page="${rel_preceding_series_page}" pageParam="preceding_series_page" relationships="${rel_preceding_series}" type="series"/>
+            <util:relationship browseLink="/series/${serie.id}/succeeding" heading="Succeeding series" maxPages="${rel_succeeding_series_size}" page="${rel_succeeding_series_page}" pageParam="succeeding_series_page" relationships="${rel_succeeding_series}" type="series"/>
+            <util:relationship browseLink="/series/${serie.id}/related" heading="Related series" maxPages="${rel_related_series_size}" page="${rel_related_series_page}" pageParam="related_series_page" relationships="${rel_related_series}" type="series"/>
+            <util:relationship browseLink="/series/${serie.id}/controlling" heading="Controlling series" maxPages="${rel_controlling_series_size}" page="${rel_controlling_series_page}" pageParam="controlling_series_page" relationships="${rel_controlling_series}" type="series"/>
+            <util:relationship browseLink="/series/${serie.id}/controlled" heading="Controlled series" maxPages="${rel_controlled_series_size}" page="${rel_controlled_series_page}" pageParam="controlled_series_page" relationships="${rel_controlled_series}" type="series"/>
         </td>
     </table>
 </div>

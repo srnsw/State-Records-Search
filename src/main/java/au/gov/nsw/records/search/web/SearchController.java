@@ -1,7 +1,7 @@
 package au.gov.nsw.records.search.web;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import au.gov.nsw.records.search.bean.FacetResultItem;
 import au.gov.nsw.records.search.bean.SearchResult;
 import au.gov.nsw.records.search.model.Activity;
 import au.gov.nsw.records.search.model.Agency;
@@ -39,71 +40,79 @@ public class SearchController {
 		private static final Logger logger = Logger.getLogger(SearchController.class);
 		
 	  private static LuceneService lucene = new LuceneService();
+	  private static boolean isIndexing = false;
 	
 	  @RequestMapping(method = RequestMethod.GET)
     public String index() {
         return "search/index";
     }
     
-    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    @RequestMapping(value = "/createindex", method = RequestMethod.POST)
     public void startIndex(HttpServletRequest request, HttpServletResponse response) {
      	ExecutorService indexWorker = Executors.newSingleThreadExecutor();
-     	
-     	indexWorker.execute(new Runnable() {
-				@Override
-				public void run() {
-		    	try {
-		    		
-		    		CategoryDocumentBuilder builder = lucene.startWriting();
-						//Activities
-						logger.info("Indexing activities");
-						lucene.indexDocuments(Activity.getIndexData(Activity.findAllActivitys(), builder), Activity.class);
-						lucene.commit();
-						
-						//Agencies
-						logger.info("Indexing agencies");
-						lucene.indexDocuments(Agency.getIndexData(Agency.findAllAgencys(), builder), Agency.class); 
-						lucene.commit();
-						
-						logger.info("Indexing Series");
-						lucene.indexDocuments(Serie.getIndexData(Serie.findAllSeries(), builder), Serie.class); 
-						lucene.commit();
-						
-						logger.info("Indexing ministries");
-						lucene.indexDocuments(Ministry.getIndexData(Ministry.findAllMinistrys(), builder), Ministry.class);
-						lucene.commit();
-						
-						logger.info("Indexing persons");
-						lucene.indexDocuments(Person.getIndexData(Person.findAllPeople(), builder), Person.class);
-						lucene.commit();
-						
-						logger.info("Indexing portfolios");
-						lucene.indexDocuments(Portfolio.getIndexData(Portfolio.findAllPortfolios(), builder), Portfolio.class);
-						lucene.commit();
-										
-						logger.info("Indexing items");
-						//lucene.indexDocuments(Item.getIndexData(Item.findAllItems()), Item.class);
-						long itemCount = Item.countItems();
-						int pageSize = 10000;
-						int pageCount = 0;
-						while(pageCount * pageSize < itemCount){
-							logger.info("Items page " + pageCount + " of " + itemCount/pageSize);
-							lucene.indexDocuments(Item.getIndexData(Item.findItemEntries(pageCount * pageSize, pageSize), builder), Item.class);
-							lucene.commit();
-							pageCount++;
-						}
-						lucene.finishWriting();
-						
-						logger.info("Indexing finished");
-		    	} catch (CorruptIndexException e) {
-						e.printStackTrace();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
-			});
+     	if (!isIndexing){
+     		indexWorker.execute(new Runnable() {
+  				@Override
+  				public void run() {
+  		    	try {
+  		    		
+  		    		isIndexing = true;
+  		    		
+  		    		CategoryDocumentBuilder builder = lucene.startWriting();
+  						//Activities
+  						logger.info("Indexing activities");
+  						lucene.indexDocuments(Activity.getIndexData(Activity.findAllActivitys(), builder), Activity.class);
+  						lucene.commit();
+  						
+  						//Agencies
+  						logger.info("Indexing agencies");
+  						lucene.indexDocuments(Agency.getIndexData(Agency.findAllAgencys(), builder), Agency.class); 
+  						lucene.commit();
+  						
+  						logger.info("Indexing Series");
+  						lucene.indexDocuments(Serie.getIndexData(Serie.findAllSeries(), builder), Serie.class); 
+  						lucene.commit();
+  						
+  						logger.info("Indexing ministries");
+  						lucene.indexDocuments(Ministry.getIndexData(Ministry.findAllMinistrys(), builder), Ministry.class);
+  						lucene.commit();
+  						
+  						logger.info("Indexing persons");
+  						lucene.indexDocuments(Person.getIndexData(Person.findAllPeople(), builder), Person.class);
+  						lucene.commit();
+  						
+  						logger.info("Indexing portfolios");
+  						lucene.indexDocuments(Portfolio.getIndexData(Portfolio.findAllPortfolios(), builder), Portfolio.class);
+  						lucene.commit();
+  										
+  						logger.info("Indexing items");
+  						long itemCount = Item.countItems();
+  						int pageSize = 15000;
+  						int pageCount = 0;
+  						while(pageCount * pageSize < itemCount){
+  							logger.info("Items page " + pageCount + " of " + itemCount/pageSize);
+  							lucene.indexDocuments(Item.getIndexData(Item.findItemEntries(pageCount * pageSize, pageSize), builder), Item.class);
+  							lucene.commit();
+  							pageCount++;
+  						}
+  						lucene.finishWriting();
+  						
+  						logger.info("Indexing finished");
+  		    	} catch (CorruptIndexException e) {
+  						e.printStackTrace();
+  					} catch (IOException e) {
+  						e.printStackTrace();
+  					}finally{
+  						isIndexing = false;
+  					}
+  				}
+  			});
 
-			logger.info("Indexing started");
+  			logger.info("Indexing started");
+     	}else{
+     		logger.warn("Indexing already in progress");
+     	}
+     	
     }
     
   	@RequestMapping(value = "/search", method = RequestMethod.GET)
@@ -121,6 +130,7 @@ public class SearchController {
   		LuceneSearchParams params = new LuceneSearchParams();
   		FacetSearchParams facetParams = new FacetSearchParams();
   		
+  		facetParams.addFacetRequest(new CountFacetRequest(new CategoryPath("series_id"), 10));
   		facetParams.addFacetRequest(new CountFacetRequest(new CategoryPath("series"), 10));
   		facetParams.addFacetRequest(new CountFacetRequest(new CategoryPath("location"), 10));
   		//facetParams.addFacetRequest(new CountFacetRequest(new CategoryPath("startyear", "endyear"), 10));
@@ -151,6 +161,15 @@ public class SearchController {
       if (from!=null){ nonPageParams += "&from=" + from; }
       if (to!=null){ nonPageParams += "&to=" + to; }
       
+      List<FacetResultItem> facets = seriesItems.getFacets();
+      for (FacetResultItem fri:facets){
+      	if (fri.getLabel().equals("series")){
+      		for (FacetResultItem subFri:fri.getItems()){
+      			subFri.setLabel(Serie.findSerie(Integer.valueOf(subFri.getLabel())).getTitle());
+      		}
+      	}
+      }
+      
       model.addAttribute("nonPageParams", nonPageParams);
       
       model.addAttribute("activitiesfunctions", activitiesFunctions.getResults());
@@ -162,7 +181,7 @@ public class SearchController {
       model.addAttribute("agenciespeoples", agenciesPeople.getResults());
       model.addAttribute("agenciespeoples_count", Math.ceil(agenciesPeople.getResultCount()/Double.valueOf(asize)));
       
-      model.addAttribute("facets", seriesItems.getFacets());
+      model.addAttribute("facets", facets);
       model.addAttribute("baseurl", request.getRequestURL() + String.format("?q=%s", queryText));
       return "search/list";
     }

@@ -7,8 +7,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import au.gov.nsw.records.search.model.Organisation;
+import au.gov.nsw.records.search.model.Agency;
+import au.gov.nsw.records.search.model.Functionn;
+import au.gov.nsw.records.search.model.Ministry;
 import au.gov.nsw.records.search.model.Person;
+import au.gov.nsw.records.search.model.Portfolio;
+import au.gov.nsw.records.search.model.Serie;
+import au.gov.nsw.records.search.service.ControllerUtils;
 
 @RequestMapping("/persons")
 @Controller
@@ -29,10 +34,11 @@ public class PersonController {
             uiModel.addAttribute("people", Person.findAllPeople());
         }
         addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("view", "people/list");
         return "people/list";
     }
 
-	@RequestMapping(value = "/{personNumber}", produces = "text/html")
+	  @RequestMapping(value = "/{personNumber}", produces = "text/html")
     public String show(@PathVariable("personNumber") int personNumber, Model uiModel,
     		@RequestParam(value = "agencies_page", required = false, defaultValue="1") Integer agencies_page,
     		@RequestParam(value = "ministries_page", required = false, defaultValue="1") Integer ministries_page,
@@ -70,6 +76,67 @@ public class PersonController {
 	        uiModel.addAttribute("rel_series_size", Double.valueOf(Math.ceil(arraySize/(float)size)).intValue());
 	        uiModel.addAttribute("rel_series_page", series_page);
         }
+        uiModel.addAttribute("view", "people/show");
         return "people/show";
     }
+	  
+		@RequestMapping(value="/{personNumber}/agencies", produces = "text/html")
+		public String listAgencies(@PathVariable("personNumber") int personNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+
+			Person ps = Person.findPerson(personNumber);
+			if (ps!=null){
+				ControllerUtils.populateRelationshipModel(ps.getAgencies(), "agencys", page, size, uiModel, Agency.class);
+				addDateTimeFormatPatterns(uiModel);
+			}
+			 uiModel.addAttribute("view", "agencies/list");
+			return "agencies/list";
+		}
+		
+		@RequestMapping(value="/{personNumber}/ministries", produces = "text/html")
+		public String listMinistries(@PathVariable("personNumber") int personNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+
+			Person ps = Person.findPerson(personNumber);
+			if (ps!=null){
+				ControllerUtils.populateRelationshipModel(ps.getMinistries(), "ministrys", page, size, uiModel, Ministry.class);
+				addDateTimeFormatPatterns(uiModel);
+			}
+			 uiModel.addAttribute("view", "ministries/list");
+			return "ministries/list";
+		}
+		
+		@RequestMapping(value="/{personNumber}/portfolios", produces = "text/html")
+		public String listPortfolios(@PathVariable("personNumber") int personNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+
+			Person ps = Person.findPerson(personNumber);
+			if (ps!=null){
+				ControllerUtils.populateRelationshipModel(ps.getPortfolios(), "portfolios", page, size, uiModel, Portfolio.class);
+				addDateTimeFormatPatterns(uiModel);
+			}
+			 uiModel.addAttribute("view", "portfolios/list");
+			return "portfolios/list";
+		}
+		
+		@RequestMapping(value="/{personNumber}/functions", produces = "text/html")
+		public String listFunctions(@PathVariable("personNumber") int personNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+
+			Person ps = Person.findPerson(personNumber);
+			if (ps!=null){
+				ControllerUtils.populateRelationshipModel(ps.getFunctions(), "functionns", page, size, uiModel, Functionn.class);
+				addDateTimeFormatPatterns(uiModel);
+			}
+			 uiModel.addAttribute("view", "functions/list");
+			return "functions/list";
+		}
+		
+		@RequestMapping(value="/{personNumber}/series", produces = "text/html")
+		public String listSeries(@PathVariable("personNumber") int personNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+
+			Person ps = Person.findPerson(personNumber);
+			if (ps!=null){
+				ControllerUtils.populateRelationshipModel(ps.getSeries(), "series", page, size, uiModel, Serie.class);
+				addDateTimeFormatPatterns(uiModel);
+			}
+			 uiModel.addAttribute("view", "series/list");
+			return "series/list";
+		}
 }

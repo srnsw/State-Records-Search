@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<function xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:spring="http://www.springframework.org/tags" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="1.0">
+    		  <id>${functionn.id}</id>
+    			<title>${fn:escapeXml(functionn.title)}</title>
+    			<descriptiveNote>${fn:escapeXml(functionn.descriptiveNote)}</descriptiveNote>
+    			<registeredDate>${functionn.registeredDate}</registeredDate>
+    			<endDate>${functionn.startDate}</endDate>
+    			<endDateQualifier>${functionn.endDateQualifier}</endDateQualifier>
+    			<startDate>${functionn.startDate}</startDate>
+    			<startDateQualifier>${functionn.startDateQualifier}</startDateQualifier>
+</function>

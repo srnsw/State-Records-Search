@@ -7,8 +7,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import au.gov.nsw.records.search.model.Functionn;
 import au.gov.nsw.records.search.model.Ministry;
+import au.gov.nsw.records.search.model.Portfolio;
+import au.gov.nsw.records.search.service.ControllerUtils;
 
 @RequestMapping("/ministries")
 @Controller
@@ -30,6 +31,7 @@ public class MinistryController {
             uiModel.addAttribute("ministrys", Ministry.findAllMinistrys());
         }
         addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("view", "ministries/list");
         return "ministries/list";
     }
 
@@ -45,6 +47,19 @@ public class MinistryController {
         uiModel.addAttribute("rel_portfolios",  Ministry.findMinistry(ministryNumber).getPortfolios().subList(Math.max((portfolios_page-1)*size, 0), Math.min(portfolios_page*size, arraySize)));
         uiModel.addAttribute("rel_portfolios_size", Double.valueOf(Math.ceil(arraySize/(float)size)).intValue());
         uiModel.addAttribute("rel_portfolios_page", portfolios_page);
+        uiModel.addAttribute("view", "ministries/show");
         return "ministries/show";
     }
+	
+	@RequestMapping(value="/{ministryNumber}/portfolios", produces = "text/html")
+	public String listPortfolios(@PathVariable("ministryNumber") int ministryNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+
+		Ministry min = Ministry.findMinistry(ministryNumber);
+		if (min!=null){
+			ControllerUtils.populateRelationshipModel(min.getPortfolios(), "portfolios", page, size, uiModel, Portfolio.class);
+			addDateTimeFormatPatterns(uiModel);
+		}
+		uiModel.addAttribute("view", "portfolios/list");
+		return "portfolios/list";
+	}
 }

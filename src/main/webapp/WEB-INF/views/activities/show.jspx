@@ -5,8 +5,8 @@
     <table>
         <td class="searchlist" width="65%">
             <div class="entity_data">
-                <page:show list="false" create="false" delete="false" id="ps_au_gov_nsw_records_search_model_Activity" object="${activity}" path="/activities" update="false" z="zKeOv52Hx0reloKqkoRYzHiSKiQ=">
-                    <field:display heading="true" field="title" id="s_au_gov_nsw_records_search_model_Activity_title" object="${activity}" z="gnpPE5J3zYjbRmme7e4R5lAiuhs="/>
+                <page:show create="false" delete="false" id="ps_au_gov_nsw_records_search_model_Activity" list="false" object="${activity}" path="/activities" update="false" z="user-managed">
+                    <field:display field="title" heading="true" id="s_au_gov_nsw_records_search_model_Activity_title" object="${activity}" z="user-managed"/>
                     <field:display field="descriptiveNote" id="s_au_gov_nsw_records_search_model_Activity_descriptiveNote" object="${activity}" z="Sj7+As/rDzcwXJFe8HCL0CUsYbU="/>
                     <field:display date="true" dateTimePattern="${activity_startdate_date_format}" field="startDate" id="s_au_gov_nsw_records_search_model_Activity_startDate" object="${activity}" render="false" z="user-managed"/>
                     <field:display field="startDateQualifier" id="s_au_gov_nsw_records_search_model_Activity_startDateQualifier" object="${activity}" render="false" z="user-managed"/>
@@ -17,8 +17,8 @@
             </div>
         </td>
         <td class="searchlist" width="35%">
-					<util:relationship browseLink="/activities/${activity.id}/functions" maxPages="${rel_functions_size}" relationships="${rel_functions}" type="functions" pageParam="functions_page" page="${rel_functions_page}" heading="Functions containing this activity"></util:relationship>            
-					<util:relationship browseLink="/activities/${activity.id}/series" maxPages="${rel_series_size}" relationships="${rel_series}" type="series" pageParam="series_page" page="${rel_series_page}" heading="Record series documenting this activity"></util:relationship>
+            <util:relationship browseLink="/activities/${activity.id}/functions" heading="Functions containing this activity" maxPages="${rel_functions_size}" page="${rel_functions_page}" pageParam="functions_page" relationships="${rel_functions}" type="functions"/>
+            <util:relationship browseLink="/activities/${activity.id}/series" heading="Record series documenting this activity" maxPages="${rel_series_size}" page="${rel_series_page}" pageParam="series_page" relationships="${rel_series}" type="series"/>
         </td>
     </table>
 </div>

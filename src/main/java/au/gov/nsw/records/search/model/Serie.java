@@ -21,6 +21,7 @@ import org.apache.lucene.facet.taxonomy.CategoryPath;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
+import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.tostring.RooToString;
 
 import au.gov.nsw.records.search.service.DateHelper;
@@ -30,6 +31,7 @@ import au.gov.nsw.records.search.service.LocationHelper;
 @RooToString
 @RooJpaActiveRecord(versionField = "")
 @Table(name = "series_view")
+@RooJson
 public class Serie {
 
 	@Id
@@ -142,7 +144,8 @@ public class Serie {
 
   		doc.add(new Field("type", "series", Field.Store.YES, Field.Index.ANALYZED));
   		doc.add(new Field("location", serie.getLocation(), Field.Store.YES, Field.Index.ANALYZED));
-  		doc.add(new Field("series", serie.getTitle(), Field.Store.YES, Field.Index.ANALYZED));
+  		//doc.add(new Field("series", serie.getTitle(), Field.Store.YES, Field.Index.ANALYZED));
+  		doc.add(new Field("series", String.valueOf(serie.getId()), Field.Store.YES, Field.Index.ANALYZED));
   		doc.add(new Field("content", serie.getDescriptiveNote()==null? "" : serie.getDescriptiveNote().replace("<i>", "").replace("</i>", ""), Field.Store.YES, Field.Index.ANALYZED));
   		doc.add(new Field("url", String.format("/series/%d", serie.getSeriesNumber()), Field.Store.YES, Field.Index.ANALYZED));
   		doc.add(new Field("startyear", DateHelper.getYearString(serie.getStartDate()), Field.Store.YES, Field.Index.ANALYZED));
@@ -152,7 +155,7 @@ public class Serie {
 			categories.add(new CategoryPath("startyear", DateHelper.getYearString(serie.getStartDate())));
 			categories.add(new CategoryPath("endyear", DateHelper.getYearString(serie.getEndDate())));
 			categories.add(new CategoryPath("location", serie.getLocation()));
-			categories.add(new CategoryPath("series", serie.getTitle()));
+			categories.add(new CategoryPath("series", String.valueOf(serie.getId())));
 			
 			builder.setCategoryPaths(categories);
 			builder.build(doc);

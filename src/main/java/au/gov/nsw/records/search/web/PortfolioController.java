@@ -7,8 +7,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import au.gov.nsw.records.search.model.Agency;
+import au.gov.nsw.records.search.model.Ministry;
 import au.gov.nsw.records.search.model.Person;
 import au.gov.nsw.records.search.model.Portfolio;
+import au.gov.nsw.records.search.service.ControllerUtils;
 
 @RequestMapping("/portfolios")
 @Controller
@@ -29,6 +32,7 @@ public class PortfolioController {
             uiModel.addAttribute("portfolios", Portfolio.findAllPortfolios());
         }
         addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("view", "portfolios/list");
         return "portfolios/list";
     }
 
@@ -70,6 +74,67 @@ public class PortfolioController {
 	        uiModel.addAttribute("rel_agencies_size", Double.valueOf(Math.ceil(arraySize/(float)size)).intValue());
 	        uiModel.addAttribute("rel_agencies_page", agencies_page);
         }
+        uiModel.addAttribute("view", "portfolios/show");
         return "portfolios/show";
     }
+	
+	@RequestMapping(value="/{portfolioNumber}/preceding", produces = "text/html")
+	public String listPreceding(@PathVariable("portfolioNumber") int portfolioNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+
+		Portfolio pf = Portfolio.findPortfolio(portfolioNumber);
+		if (pf!=null){
+			ControllerUtils.populateRelationshipModel(pf.getPreceding(), "portfolios", page, size, uiModel, Portfolio.class);
+			addDateTimeFormatPatterns(uiModel);
+		}
+		uiModel.addAttribute("view", "portfolios/list");
+		return "portfolios/list";
+	}
+	
+	@RequestMapping(value="/{portfolioNumber}/succeeding", produces = "text/html")
+	public String listSucceeding(@PathVariable("portfolioNumber") int portfolioNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+
+		Portfolio pf = Portfolio.findPortfolio(portfolioNumber);
+		if (pf!=null){
+			ControllerUtils.populateRelationshipModel(pf.getSucceeding(), "portfolios", page, size, uiModel, Portfolio.class);
+			addDateTimeFormatPatterns(uiModel);
+		}
+		uiModel.addAttribute("view", "portfolios/list");
+		return "portfolios/list";
+	}
+	
+	@RequestMapping(value="/{portfolioNumber}/ministries", produces = "text/html")
+	public String listMinistries(@PathVariable("portfolioNumber") int portfolioNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+
+		Portfolio pf = Portfolio.findPortfolio(portfolioNumber);
+		if (pf!=null){
+			ControllerUtils.populateRelationshipModel(pf.getMinistries(), "ministrys", page, size, uiModel, Ministry.class);
+			addDateTimeFormatPatterns(uiModel);
+		}
+		uiModel.addAttribute("view", "ministries/list");
+		return "ministries/list";
+	}
+	
+	@RequestMapping(value="/{portfolioNumber}/persons", produces = "text/html")
+	public String listPersons(@PathVariable("portfolioNumber") int portfolioNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+
+		Portfolio pf = Portfolio.findPortfolio(portfolioNumber);
+		if (pf!=null){
+			ControllerUtils.populateRelationshipModel(pf.getPersons(), "people", page, size, uiModel, Person.class);
+			addDateTimeFormatPatterns(uiModel);
+		}
+		uiModel.addAttribute("view", "people/list");
+		return "people/list";
+	}
+	
+	@RequestMapping(value="/{portfolioNumber}/agencies", produces = "text/html")
+	public String listAgencies(@PathVariable("portfolioNumber") int portfolioNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+
+		Portfolio pf = Portfolio.findPortfolio(portfolioNumber);
+		if (pf!=null){
+			ControllerUtils.populateRelationshipModel(pf.getAgencies(), "agencys", page, size, uiModel, Agency.class);
+			addDateTimeFormatPatterns(uiModel);
+		}
+		uiModel.addAttribute("view", "agencies/list");
+		return "agencies/list";
+	}
 }

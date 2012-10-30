@@ -113,7 +113,7 @@ public class Person {
 
     		doc.add(new Field("type", "persons", Field.Store.YES, Field.Index.ANALYZED));
     		doc.add(new Field("content", person.getBiographicalNote(), Field.Store.YES, Field.Index.ANALYZED));
-    		doc.add(new Field("url", String.format("/presons/%d", person.getPersonNumber()), Field.Store.YES, Field.Index.ANALYZED));
+    		doc.add(new Field("url", String.format("/persons/%d", person.getPersonNumber()), Field.Store.YES, Field.Index.ANALYZED));
     		doc.add(new Field("startyear", DateHelper.getYearString(person.getBirthDate()), Field.Store.YES, Field.Index.ANALYZED));
     		doc.add(new Field("endyear",  DateHelper.getYearString(person.getDeathDate()), Field.Store.YES, Field.Index.ANALYZED));
     		personsIndex.add(doc);

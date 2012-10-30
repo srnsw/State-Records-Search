@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import au.gov.nsw.records.search.model.Activity;
+import au.gov.nsw.records.search.model.Functionn;
 import au.gov.nsw.records.search.model.Serie;
+import au.gov.nsw.records.search.service.ControllerUtils;
 
 @RequestMapping("/activities")
 @Controller
@@ -28,6 +30,7 @@ public class ActivityController {
         } else {
             uiModel.addAttribute("activitys", Activity.findAllActivitys());
         }
+        uiModel.addAttribute("view", "activities/list");
         addDateTimeFormatPatterns(uiModel);
         return "activities/list";
     }
@@ -50,6 +53,7 @@ public class ActivityController {
 	        uiModel.addAttribute("rel_functions_size", Double.valueOf(Math.ceil(arraySize/(float)size)).intValue());
 	        uiModel.addAttribute("rel_functions_page", functions_page);
         }
+        uiModel.addAttribute("view", "activities/show");
         return "activities/show";
     }
 	
@@ -58,16 +62,23 @@ public class ActivityController {
 
 		Activity ac = Activity.findActivity(activityNumber);
 		if (ac!=null){
-			int resultSize = ac.getSeries().size();
-			uiModel.addAttribute("series", ac.getSeries().subList(Math.max((page-1)*size, 0), Math.min(page*size, resultSize)));
-			float nrOfPages = (float) resultSize / size;
-			uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
-			uiModel.addAttribute("page", page);
-			uiModel.addAttribute("size", size);
-
+			ControllerUtils.populateRelationshipModel(ac.getFunctions(), "series", page, size, uiModel, Serie.class);
 			addDateTimeFormatPatterns(uiModel);
-			
 		}
+		uiModel.addAttribute("view", "series/list");
 		return "series/list";
+	}
+	
+	
+	@RequestMapping(value="/{activityNumber}/functions", produces = "text/html")
+	public String listFunctions(@PathVariable("activityNumber") int activityNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+
+		Activity ac = Activity.findActivity(activityNumber);
+		if (ac!=null){
+			ControllerUtils.populateRelationshipModel(ac.getFunctions(), "functionns", page, size, uiModel, Functionn.class);
+			addDateTimeFormatPatterns(uiModel);
+		}
+		uiModel.addAttribute("view", "functions/list");
+		return "functions/list";
 	}
 }

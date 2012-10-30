@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<organisations xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:spring="http://www.springframework.org/tags" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="1.0">
+ 
+    	<pagination>
+    		<this_page>${page}</this_page>
+    		<total_results></total_results>
+    		<per_page>${size}</per_page>
+    	</pagination>
+    	<c:forEach items="${activitys}" var="item">
+    		<organisation>
+    		  <id>${item.activityNumber}</id>
+    			<title>${fn:escapeXml(item.title)}</title>
+    			<administrativeHistoryNote>${fn:escapeXml(item.administrativeHistoryNote)}</administrativeHistoryNote>
+    			<abolition>${item.abolition}</abolition>
+    			<creation>${item.creation}</creation>
+    			<coNumber>${item.coNumber}</coNumber>
+	    		<registeredDate>${item.registeredDate}</registeredDate>
+    			<endDate>${item.startDate}</endDate>
+    			<endDateQualifier>${item.endDateQualifier}</endDateQualifier>
+    			<startDate>${item.startDate}</startDate>
+    			<startDateQualifier>${item.startDateQualifier}</startDateQualifier>
+    		</organisation>
+    	</c:forEach>
+    	
+</organisations>

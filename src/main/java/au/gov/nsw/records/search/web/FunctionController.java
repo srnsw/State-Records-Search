@@ -7,8 +7,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import au.gov.nsw.records.search.model.Activity;
 import au.gov.nsw.records.search.model.Agency;
 import au.gov.nsw.records.search.model.Functionn;
+import au.gov.nsw.records.search.model.Person;
+import au.gov.nsw.records.search.service.ControllerUtils;
 
 @RequestMapping("/functions")
 @Controller
@@ -29,6 +32,7 @@ public class FunctionController {
             uiModel.addAttribute("functionns", Functionn.findAllFunctionns());
         }
         addDateTimeFormatPatterns(uiModel);
+      	uiModel.addAttribute("view", "functions/list");
         return "functions/list";
     }
 
@@ -59,6 +63,43 @@ public class FunctionController {
 	        uiModel.addAttribute("rel_persons_size", Double.valueOf(Math.ceil(arraySize/(float)size)).intValue());
 	        uiModel.addAttribute("rel_persons_page", persons_page);
         }
+      	uiModel.addAttribute("view", "functions/show");
         return "functions/show";
     }
+	
+	@RequestMapping(value="/{functionNumber}/agencies", produces = "text/html")
+	public String listAgencies(@PathVariable("functionNumber") int functionNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+
+		Functionn fn = Functionn.findFunctionn(functionNumber);
+		if (fn!=null){
+			ControllerUtils.populateRelationshipModel(fn.getAgencies(), "agencys", page, size, uiModel, Agency.class);
+			addDateTimeFormatPatterns(uiModel);
+		}
+		uiModel.addAttribute("view", "agencies/list");
+		return "agencies/list";
+	}
+	
+	@RequestMapping(value="/{functionNumber}/activities", produces = "text/html")
+	public String listActivities(@PathVariable("functionNumber") int functionNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+
+		Functionn fn = Functionn.findFunctionn(functionNumber);
+		if (fn!=null){
+			ControllerUtils.populateRelationshipModel(fn.getActivities(), "activitys", page, size, uiModel, Activity.class);
+			addDateTimeFormatPatterns(uiModel);
+		}
+		uiModel.addAttribute("view", "activities/list");
+		return "activities/list";
+	}
+	
+	@RequestMapping(value="/{functionNumber}/persons", produces = "text/html")
+	public String listPersons(@PathVariable("functionNumber") int functionNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+
+		Functionn fn = Functionn.findFunctionn(functionNumber);
+		if (fn!=null){
+			ControllerUtils.populateRelationshipModel(fn.getPersons(), "people", page, size, uiModel, Person.class);
+			addDateTimeFormatPatterns(uiModel);
+		}
+		uiModel.addAttribute("view", "people/list");
+		return "people/list";
+	}
 }

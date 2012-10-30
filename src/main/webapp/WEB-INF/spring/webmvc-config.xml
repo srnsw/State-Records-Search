@@ -58,20 +58,52 @@
             </props>
         </property>
     </bean>
-
-    <!-- Enable this for integration of file upload functionality -->
-    <bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver"/>
-<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" id="tilesViewResolver">
+  
+  <!-- Allow JSON mapping & rendering -->
+	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="mediaTypes">
+			<map>
+				<entry key="json" value="application/json"/>
+				<entry key="xml" value="application/xml"/>
+				<entry key="mods" value="application/mods"/>
+				<entry key="rdf_zotero" value="application/rdf_zotero"/>
+				<entry key="rif" value="application/rif"/>
+			</map>
+		</property>
+		<property name="defaultViews">
+			<list>
+				<bean class="au.gov.nsw.records.search.view.SimpleMediaTypeView" id="jsonView">
+					<property name="mediaType" value="application/json" />
+				</bean>
+				<bean class="au.gov.nsw.records.search.view.SimpleMediaTypeView" id="xmlView">
+					<property name="mediaType" value="application/xml" />
+				</bean>
+				<bean class="au.gov.nsw.records.search.view.SimpleMediaTypeView" id="modsView">
+					<property name="mediaType" value="application/mods" />
+				</bean>
+				<bean class="au.gov.nsw.records.search.view.SimpleMediaTypeView" id="zoterolView">
+					<property name="mediaType" value="application/rdf_zotero" />
+				</bean>
+				<bean class="au.gov.nsw.records.search.view.SimpleMediaTypeView" id="rifView">
+					<property name="mediaType" value="application/rif" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+  <!-- Enable this for integration of file upload functionality -->
+  <bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver"/>
+  <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" id="tilesViewResolver">
     <property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView"/>
   </bean>
-    <bean class="org.springframework.web.servlet.view.tiles2.TilesConfigurer" id="tilesConfigurer">
-    <property name="definitions">
-      <list>
-        <value>/WEB-INF/layouts/layouts.xml</value>
-        <!-- Scan views directory for Tiles configurations -->
-        <value>/WEB-INF/views/**/views.xml</value>
-      </list>
-    </property>
+  <bean class="org.springframework.web.servlet.view.tiles2.TilesConfigurer" id="tilesConfigurer">
+	  <property name="definitions">
+	    <list>
+	      <value>/WEB-INF/layouts/layouts.xml</value>
+	      <!-- Scan views directory for Tiles configurations -->
+	      <value>/WEB-INF/views/**/views.xml</value>
+	    </list>
+	  </property>
   </bean>
-<bean class="au.gov.nsw.records.search.web.ApplicationConversionServiceFactoryBean" id="applicationConversionService"/>
+ <bean class="au.gov.nsw.records.search.web.ApplicationConversionServiceFactoryBean" id="applicationConversionService"/>
 </beans>

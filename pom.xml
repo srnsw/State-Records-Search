@@ -31,6 +31,10 @@
             <name>Spring Roo Repository</name>
             <url>http://spring-roo-repository.springsource.org/release</url>
         </repository>
+        <repository>
+					<id>springsource-external</id>
+					<url>http://repository.springsource.com/maven/bundles/external</url>
+				</repository>
     </repositories>
     <pluginRepositories>
         <pluginRepository>
@@ -51,6 +55,17 @@
     </pluginRepositories>
     <dependencies>
         <!-- General dependencies for standard applications -->
+       	<dependency>
+					<groupId>org.codehaus.jackson</groupId>
+					<artifactId>com.springsource.org.codehaus.jackson</artifactId>
+					<version>1.0.0</version>
+				</dependency>
+				<dependency>
+					<groupId>org.codehaus.jackson</groupId>
+					<artifactId>com.springsource.org.codehaus.jackson.mapper</artifactId>
+					<version>1.0.0</version>
+				</dependency>
+						  
         <dependency>
 					<groupId>org.apache.lucene</groupId>
 					<artifactId>lucene-core</artifactId>

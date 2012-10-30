@@ -1,7 +1,10 @@
 package au.gov.nsw.records.search.model;
 
+import flexjson.JSONDeserializer;
+import flexjson.JSONSerializer;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -27,7 +30,6 @@ import au.gov.nsw.records.search.service.DateHelper;
 @RooToString
 @RooJpaActiveRecord(versionField = "")
 @Table(name = "activities_view")
-@RooJson
 public class Activity {
 
 	@Id

@@ -114,3 +114,23 @@ entity jpa --class au.gov.nsw.records.search.model.SerieLinkSucceedingSerie
 entity jpa --class au.gov.nsw.records.search.model.SerieLinkRelatedSerie
 entity jpa --class au.gov.nsw.records.search.model.SerieLinkControllingSerie
 entity jpa --class au.gov.nsw.records.search.model.SerieLinkControlledSerie
+perform package
+perform package
+perform package
+perform package
+perform package
+backup
+web mvc json add --jsonObject ~.model.Activity
+web mvc json add --jsonObject ~.model.Agency
+web mvc json add --jsonObject ~.model.Functionn
+web mvc json add --jsonObject ~.model.Item
+web mvc json add --jsonObject ~.model.Ministry
+web mvc json add --jsonObject ~.model.Organisation
+web mvc json add --jsonObject ~.model.Person
+web mvc json add --jsonObject ~.model.Portfolio
+web mvc json add --jsonObject ~.model.Serie
+json add 
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-10-25 15:54:02
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-10-29 13:22:19
+perform package
+backup

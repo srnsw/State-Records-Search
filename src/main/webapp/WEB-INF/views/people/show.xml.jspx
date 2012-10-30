@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<person xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:spring="http://www.springframework.org/tags" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="1.0">
+  		 <id>${person.id}</id>
+  			<biographicalNote>${fn:escapeXml(person.biographicalNote)}</biographicalNote>
+  			<givenName>${fn:escapeXml(person.givenName)}</givenName>
+  			<alternativeName>${fn:escapeXml(person.alternativeName)}</alternativeName>
+  			<officesHeld>${person.officesHeld}</officesHeld>
+  			<minister>${person.minister}</minister>
+  			<birthDate>${person.birthDate}</birthDate>
+  			<birthDateQualifier>${person.birthDateQualifier}</birthDateQualifier>
+  			<deathDate>${person.deathDate}</deathDateDate>
+  			<deathDateQualifier>${person.deathDateQualifier}</deathDateQualifier>
+</person>

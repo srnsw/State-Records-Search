@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<item xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:spring="http://www.springframework.org/tags" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="1.0">
+    		  <id>${item.id}</id>
+    			<title>${fn:escapeXml(item.title)}</title>
+    			<descriptiveNote>${fn:escapeXml(item.descriptiveNote)}</descriptiveNote>
+    			<accessDirectionNumber>${item.accessDirectionNumber}</accessDirectionNumber>
+    			<availability>${item.availability}</availability>
+    			<endDate>${item.startDate}</endDate>
+    			<startDate>${item.startDate}</startDate>
+</item>

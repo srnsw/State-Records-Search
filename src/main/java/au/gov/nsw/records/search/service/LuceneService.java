@@ -77,7 +77,7 @@ public class LuceneService {
 		// are indexing many documents, increase the RAM
 		// buffer.  But if you do this, increase the max heap
 		// size to the JVM (eg add -Xmx512m or -Xmx1g):
-		iwc.setRAMBufferSizeMB(256.0);
+		iwc.setRAMBufferSizeMB(512.0);
 
 		writer = new IndexWriter(dir, iwc);
 		
@@ -144,9 +144,9 @@ public class LuceneService {
 
 			for (FacetResult fr:facetsCollector.getFacetResults()){
 				List<FacetResultItem> subItems = new ArrayList<FacetResultItem>();
-				facetResults.add(new FacetResultItem(fr.getFacetResultNode().getLabel().toString(), fr.getFacetResultNode().getLabel().toString(),0, subItems));
+				facetResults.add(new FacetResultItem(fr.getFacetResultNode().getLabel().toString(),0, subItems));
 				for (FacetResultNode rn: fr.getFacetResultNode().getSubResults()){
-					subItems.add(new FacetResultItem(rn.getLabel().toString().replace(fr.getFacetResultNode().getLabel().toString() + "/", ""), fr.getFacetResultNode().getLabel().toString(), new Double(rn.getValue()).intValue(), null));
+					subItems.add(new FacetResultItem(rn.getLabel().toString().replace(fr.getFacetResultNode().getLabel().toString() + "/", ""), new Double(rn.getValue()).intValue(), null));
 				}
 			}
 			searcher.close();
@@ -178,6 +178,11 @@ public class LuceneService {
 		if (params.getSeries()!=null){
 			facetCondition += String.format(" AND series:( +\"%s\")", params.getSeries());
 		}
+		
+		if (params.getFrom()!=null && params.getTo()!=null){
+			facetCondition += String.format(" AND (startyear:[%s TO 9999] OR endyear:[0000 TO %s])", params.getFrom(), params.getTo());
+		}
+		
 		
 		try {
 			String queryText = params.getQuery() + String.format(" AND (%s)", classQuery) + facetCondition; 

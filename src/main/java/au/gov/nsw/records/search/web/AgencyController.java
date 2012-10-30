@@ -7,8 +7,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import au.gov.nsw.records.search.model.Activity;
 import au.gov.nsw.records.search.model.Agency;
+import au.gov.nsw.records.search.model.Functionn;
+import au.gov.nsw.records.search.model.Organisation;
+import au.gov.nsw.records.search.model.Serie;
+import au.gov.nsw.records.search.service.ControllerUtils;
 
 @RequestMapping("/agencies")
 @Controller
@@ -28,6 +31,7 @@ public class AgencyController {
         } else {
             uiModel.addAttribute("agencys", Agency.findAllAgencys());
         }
+        uiModel.addAttribute("view", "agencies/list");
         addDateTimeFormatPatterns(uiModel);
         return "agencies/list";
     }
@@ -100,6 +104,129 @@ public class AgencyController {
 	        uiModel.addAttribute("rel_superiors_size", Double.valueOf(Math.ceil(arraySize/(float)size)).intValue());
 	        uiModel.addAttribute("rel_superiors_page", superiors_page);
         }
+        uiModel.addAttribute("view", "agencies/show");
         return "agencies/show";
     }
+	
+	@RequestMapping(value="/{agencyNumber}/functions", produces = "text/html")
+	public String listFunctions(@PathVariable("agencyNumber") int agencyNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+
+		Agency ag = Agency.findAgency(agencyNumber);
+		if (ag!=null){
+			ControllerUtils.populateRelationshipModel(ag.getFunctions(), "functionns", page, size, uiModel, Functionn.class);
+			addDateTimeFormatPatterns(uiModel);
+		}
+		uiModel.addAttribute("view", "functions/list");
+		return "functions/list";
+	}
+	
+	@RequestMapping(value="/{agencyNumber}/organisations", produces = "text/html")
+	public String listOrganisations(@PathVariable("agencyNumber") int agencyNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+
+		Agency ag = Agency.findAgency(agencyNumber);
+		if (ag!=null){
+			ControllerUtils.populateRelationshipModel(ag.getOrganisations(), "organisations", page, size, uiModel, Organisation.class);
+			addDateTimeFormatPatterns(uiModel);
+		}
+		uiModel.addAttribute("view", "organisations/list");
+		return "organisations/list";
+	}
+	
+	@RequestMapping(value="/{agencyNumber}/persons", produces = "text/html")
+	public String listPersons(@PathVariable("agencyNumber") int agencyNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+
+		Agency ag = Agency.findAgency(agencyNumber);
+		if (ag!=null){
+			ControllerUtils.populateRelationshipModel(ag.getPersons(), "persons", page, size, uiModel, Organisation.class);
+			addDateTimeFormatPatterns(uiModel);
+		}
+		uiModel.addAttribute("view", "persons/list");
+		return "persons/list";
+	}
+	
+	@RequestMapping(value="/{agencyNumber}/series_created", produces = "text/html")
+	public String listSeriesCreated(@PathVariable("agencyNumber") int agencyNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+
+		Agency ag = Agency.findAgency(agencyNumber);
+		if (ag!=null){
+			ControllerUtils.populateRelationshipModel(ag.getSeriesCreated(), "series", page, size, uiModel, Serie.class);
+			addDateTimeFormatPatterns(uiModel);
+		}
+		uiModel.addAttribute("view", "series/list");
+		return "series/list";
+	}
+	
+	@RequestMapping(value="/{agencyNumber}/series_controlled", produces = "text/html")
+	public String listSeriesControlled(@PathVariable("agencyNumber") int agencyNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+
+		Agency ag = Agency.findAgency(agencyNumber);
+		if (ag!=null){
+			ControllerUtils.populateRelationshipModel(ag.getSeriesControlled(), "series", page, size, uiModel, Serie.class);
+			addDateTimeFormatPatterns(uiModel);
+		}
+		uiModel.addAttribute("view", "series/list");
+		return "series/list";
+	}
+	
+	// preceding
+	@RequestMapping(value="/{agencyNumber}/preceding", produces = "text/html")
+	public String listPreceding(@PathVariable("agencyNumber") int agencyNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+
+		Agency ag = Agency.findAgency(agencyNumber);
+		if (ag!=null){
+			ControllerUtils.populateRelationshipModel(ag.getPreceding(), "agencys", page, size, uiModel, Agency.class);
+			addDateTimeFormatPatterns(uiModel);
+		}
+		uiModel.addAttribute("view", "agencies/list");
+		return "agencies/list";
+	}
+  // related
+	@RequestMapping(value="/{agencyNumber}/related", produces = "text/html")
+	public String listRelated(@PathVariable("agencyNumber") int agencyNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+
+		Agency ag = Agency.findAgency(agencyNumber);
+		if (ag!=null){
+			ControllerUtils.populateRelationshipModel(ag.getRelated(), "agencys", page, size, uiModel, Agency.class);
+			addDateTimeFormatPatterns(uiModel);
+		}
+		uiModel.addAttribute("view", "agencies/list");
+		return "agencies/list";
+	}
+	// succeeding
+	@RequestMapping(value="/{agencyNumber}/succeeding", produces = "text/html")
+	public String listSucceeding(@PathVariable("agencyNumber") int agencyNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+
+		Agency ag = Agency.findAgency(agencyNumber);
+		if (ag!=null){
+			ControllerUtils.populateRelationshipModel(ag.getSucceeding(), "agencys", page, size, uiModel, Agency.class);
+			addDateTimeFormatPatterns(uiModel);
+		}
+		uiModel.addAttribute("view", "agencies/list");
+		return "agencies/list";
+	}
+	
+	// superior
+	@RequestMapping(value="/{agencyNumber}/superior", produces = "text/html")
+	public String listSuperior(@PathVariable("agencyNumber") int agencyNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+
+		Agency ag = Agency.findAgency(agencyNumber);
+		if (ag!=null){
+			ControllerUtils.populateRelationshipModel(ag.getSuperiors(), "agencys", page, size, uiModel, Agency.class);
+			addDateTimeFormatPatterns(uiModel);
+		}
+		uiModel.addAttribute("view", "agencies/list");
+		return "agencies/list";
+	}
+	
+	@RequestMapping(value="/{agencyNumber}/subordinate", produces = "text/html")
+	public String listSubordinate(@PathVariable("agencyNumber") int agencyNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+
+		Agency ag = Agency.findAgency(agencyNumber);
+		if (ag!=null){
+			ControllerUtils.populateRelationshipModel(ag.getSubordinates(), "agencys", page, size, uiModel, Agency.class);
+			addDateTimeFormatPatterns(uiModel);
+		}
+		uiModel.addAttribute("view", "agencies/list");
+		return "agencies/list";
+	}
 }

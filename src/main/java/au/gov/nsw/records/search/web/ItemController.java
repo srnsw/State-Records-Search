@@ -1,8 +1,5 @@
 package au.gov.nsw.records.search.web;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,10 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import au.gov.nsw.records.search.model.Agency;
-import au.gov.nsw.records.search.model.Functionn;
 import au.gov.nsw.records.search.model.Item;
 import au.gov.nsw.records.search.model.Person;
-import au.gov.nsw.records.search.model.Serie;
+import au.gov.nsw.records.search.service.ControllerUtils;
 
 @RequestMapping("/items")
 @Controller
@@ -36,6 +32,7 @@ public class ItemController {
             uiModel.addAttribute("items", Item.findAllItems());
         }
         addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("view", "items/list");
         return "items/list";
     }
 
@@ -59,6 +56,31 @@ public class ItemController {
 	        uiModel.addAttribute("rel_agencies_size", Double.valueOf(Math.ceil(arraySize/(float)size)).intValue());
 	        uiModel.addAttribute("rel_agencies_page", agencies_page);
         }
+        uiModel.addAttribute("view", "items/show");
         return "items/show";
     }
+	
+	@RequestMapping(value="/{id}/persons", produces = "text/html")
+	public String listPersons(@PathVariable("id") int id, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+
+		Item it = Item.findItem(id);
+		if (it!=null){
+			ControllerUtils.populateRelationshipModel(it.getSeriesNumber().getPersons(), "people", page, size, uiModel, Person.class);
+			addDateTimeFormatPatterns(uiModel);
+		}
+		uiModel.addAttribute("view", "people/list");
+		return "people/list";
+	}
+	
+	@RequestMapping(value="/{id}/agencies", produces = "text/html")
+	public String listAgencies(@PathVariable("id") int id, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+
+		Item it = Item.findItem(id);
+		if (it!=null){
+			ControllerUtils.populateRelationshipModel(it.getSeriesNumber().getCreatingAgencies(), "agencys", page, size, uiModel, Agency.class);
+			addDateTimeFormatPatterns(uiModel);
+		}
+		uiModel.addAttribute("view", "agencies/list");
+		return "agencies/list";
+	}
 }

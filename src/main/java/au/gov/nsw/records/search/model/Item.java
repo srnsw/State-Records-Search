@@ -65,6 +65,10 @@ public class Item {
     @Column(name = "End_date")
     private Date endDate;
 
+  	public String getDateRange() {
+  		return DateHelper.dateRange(null, startDate, null, endDate);
+  	}
+  	
     public String getLocation(){
     	return LocationHelper.getSimpleLocation(seriesNumber.getRepository());
     }
@@ -78,7 +82,8 @@ public class Item {
     		doc.add(f);
     		   		
     		doc.add(new Field("location", item.getLocation(), Field.Store.YES, Field.Index.ANALYZED));
-    		doc.add(new Field("series", item.getSeriesNumber().getTitle(), Field.Store.YES, Field.Index.ANALYZED));
+    		//doc.add(new Field("series", item.getSeriesNumber().getTitle(), Field.Store.YES, Field.Index.ANALYZED));
+    		doc.add(new Field("series", String.valueOf(item.getSeriesNumber().getId()), Field.Store.YES, Field.Index.ANALYZED));
     		doc.add(new Field("type", "items", Field.Store.YES, Field.Index.ANALYZED));
     		doc.add(new Field("content", item.getDescriptiveNote().replace("<i>", "").replace("</i>", ""), Field.Store.YES, Field.Index.ANALYZED));
     		doc.add(new Field("url", String.format("/items/%d",item.getId()), Field.Store.YES, Field.Index.ANALYZED));
@@ -89,7 +94,7 @@ public class Item {
   			categories.add(new CategoryPath("startyear", DateHelper.getYearString(item.getStartDate())));
   			categories.add(new CategoryPath("endyear", DateHelper.getYearString(item.getEndDate())));
   			categories.add(new CategoryPath("location", item.getLocation()));
-  			categories.add(new CategoryPath("series", item.getSeriesNumber().getTitle()));
+  			categories.add(new CategoryPath("series", String.valueOf(item.getSeriesNumber().getId())));
   			
   			builder.setCategoryPaths(categories);
   			builder.build(doc);

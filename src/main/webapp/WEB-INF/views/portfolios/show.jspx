@@ -1,28 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    
     <table>
         <td class="searchlist" width="65%">
             <div class="entity_data">
-						    <page:show list="false" create="false" delete="false" id="ps_au_gov_nsw_records_search_model_Portfolio" object="${portfolio}" path="/portfolios" update="false" z="yDXUaqA+XZ4vu/tfWXDVuj6eRy8=">
-						        <field:display heading="true" field="title" id="s_au_gov_nsw_records_search_model_Portfolio_title" object="${portfolio}" z="F78ZqHgulRnS9/QsovmXHAjDd4A="/>
-						        <field:display field="descriptiveNote" id="s_au_gov_nsw_records_search_model_Portfolio_descriptiveNote" object="${portfolio}" z="l3jVp8oicuqvREeil1tBAapSbRU="/>
-						        <field:display render="false" date="true" dateTimePattern="${portfolio_registereddate_date_format}" field="registeredDate" id="s_au_gov_nsw_records_search_model_Portfolio_registeredDate" object="${portfolio}" z="HXmqmIR+CrEu3aA7eVeGbUfdT48="/>
-						        <field:display render="false" date="true" dateTimePattern="${portfolio_startdate_date_format}" field="startDate" id="s_au_gov_nsw_records_search_model_Portfolio_startDate" object="${portfolio}" z="vXbCZAKL0sUnwhVK4f0Betqqjys="/>
-						        <field:display render="false" field="startDateQualifier" id="s_au_gov_nsw_records_search_model_Portfolio_startDateQualifier" object="${portfolio}" z="IV7IF6m41+7PDFFA8oIx5z8awCQ="/>
-						        <field:display render="false" date="true" dateTimePattern="${portfolio_enddate_date_format}" field="endDate" id="s_au_gov_nsw_records_search_model_Portfolio_endDate" object="${portfolio}" z="EI3QyQGWODvv+L5mq1rDanKSxqI="/>
-						        <field:display render="false" field="endDateQualifier" id="s_au_gov_nsw_records_search_model_Portfolio_endDateQualifier" object="${portfolio}" z="iTzziAuI7zfM60BTqamEWZMnHDo="/>
-						    </page:show>
-					  </div>
+                <page:show create="false" delete="false" id="ps_au_gov_nsw_records_search_model_Portfolio" list="false" object="${portfolio}" path="/portfolios" update="false" z="user-managed">
+                    <field:display field="title" heading="true" id="s_au_gov_nsw_records_search_model_Portfolio_title" object="${portfolio}" z="user-managed"/>
+                    <field:display field="descriptiveNote" id="s_au_gov_nsw_records_search_model_Portfolio_descriptiveNote" object="${portfolio}" z="l3jVp8oicuqvREeil1tBAapSbRU="/>
+                    <field:display date="true" dateTimePattern="${portfolio_registereddate_date_format}" field="registeredDate" id="s_au_gov_nsw_records_search_model_Portfolio_registeredDate" object="${portfolio}" render="false" z="user-managed"/>
+                    <field:display date="true" dateTimePattern="${portfolio_startdate_date_format}" field="startDate" id="s_au_gov_nsw_records_search_model_Portfolio_startDate" object="${portfolio}" render="false" z="user-managed"/>
+                    <field:display field="startDateQualifier" id="s_au_gov_nsw_records_search_model_Portfolio_startDateQualifier" object="${portfolio}" render="false" z="user-managed"/>
+                    <field:display date="true" dateTimePattern="${portfolio_enddate_date_format}" field="endDate" id="s_au_gov_nsw_records_search_model_Portfolio_endDate" object="${portfolio}" render="false" z="user-managed"/>
+                    <field:display field="endDateQualifier" id="s_au_gov_nsw_records_search_model_Portfolio_endDateQualifier" object="${portfolio}" render="false" z="user-managed"/>
+                </page:show>
+            </div>
         </td>
         <td class="searchlist" width="35%">
-					<util:relationship browseLink="/portfolios/${portfolio.id}/preceding" maxPages="${rel_preceding_size}" relationships="${rel_preceding}" type="portfolios" pageParam="preceding_page" page="${rel_preceding_page}" heading="Preceding portfolios"></util:relationship>
-					<util:relationship browseLink="/portfolios/${portfolio.id}/succeeding" maxPages="${rel_succeeding_size}" relationships="${rel_succeeding}" type="portfolios" pageParam="succeeding_page" page="${rel_succeeding_page}" heading="Succeeding portfolios"></util:relationship>
-					<util:relationship browseLink="/portfolios/${portfolio.id}/ministries" maxPages="${rel_ministries_size}" relationships="${rel_ministries}" type="ministries" pageParam="ministries_page" page="${rel_ministries_page}" heading="Ministries containing this portfolio"></util:relationship>
-					<util:relationship browseLink="/portfolios/${portfolio.id}/persons" maxPages="${rel_persons_size}" relationships="${rel_persons}" type="persons" pageParam="persons_page" page="${rel_persons_page}" heading="Ministers appointed to this portfolio"></util:relationship>
-					<util:relationship browseLink="/portfolios/${portfolio.id}/agencies" maxPages="${rel_agencies_size}" relationships="${rel_agencies}" type="agencies" pageParam="agencies_page" page="${rel_agencies_page}" heading="Agencies administered through this portfolio"></util:relationship>
+            <util:relationship browseLink="/portfolios/${portfolio.id}/preceding" heading="Preceding portfolios" maxPages="${rel_preceding_size}" page="${rel_preceding_page}" pageParam="preceding_page" relationships="${rel_preceding}" type="portfolios"/>
+            <util:relationship browseLink="/portfolios/${portfolio.id}/succeeding" heading="Succeeding portfolios" maxPages="${rel_succeeding_size}" page="${rel_succeeding_page}" pageParam="succeeding_page" relationships="${rel_succeeding}" type="portfolios"/>
+            <util:relationship browseLink="/portfolios/${portfolio.id}/ministries" heading="Ministries containing this portfolio" maxPages="${rel_ministries_size}" page="${rel_ministries_page}" pageParam="ministries_page" relationships="${rel_ministries}" type="ministries"/>
+            <util:relationship browseLink="/portfolios/${portfolio.id}/persons" heading="Ministers appointed to this portfolio" maxPages="${rel_persons_size}" page="${rel_persons_page}" pageParam="persons_page" relationships="${rel_persons}" type="persons"/>
+            <util:relationship browseLink="/portfolios/${portfolio.id}/agencies" heading="Agencies administered through this portfolio" maxPages="${rel_agencies_size}" page="${rel_agencies_page}" pageParam="agencies_page" relationships="${rel_agencies}" type="agencies"/>
         </td>
     </table>
 </div>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<series xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:spring="http://www.springframework.org/tags" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="1.0">
+ 
+    	<pagination>
+    		<this_page>${page}</this_page>
+    		<total_results></total_results>
+    		<per_page>${size}</per_page>
+    	</pagination>
+    	<c:forEach items="${series}" var="item">
+    		<series>
+    		  <id>${item.id}</id>
+    			<title>${fn:escapeXml(item.title)}</title>
+    			<descriptiveNote>${fn:escapeXml(item.descriptiveNote)}</descriptiveNote>
+    			<accessNote>${item.accessNote}</accessNote>
+    			<arrangement>${item.arrangement}</arrangement>
+    			<copies>${item.copies}</copies>
+    			<repository>${item.repository}</repository>
+    			<endDate>${item.startDate}</endDate>
+    			<startDate>${item.startDate}</startDate>
+    		</series>
+    	</c:forEach>
+    	
+</series>

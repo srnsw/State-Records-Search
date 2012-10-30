@@ -9,6 +9,7 @@ import java.util.List;
 public class DateHelper {
 
 	private static SimpleDateFormat yearOnlyFormat = new SimpleDateFormat("yyyy");
+	private static SimpleDateFormat monthAndYearOnlyFormat = new SimpleDateFormat("MM/yyyy");
 	private static SimpleDateFormat fullFormat =  new SimpleDateFormat("dd/MM/yyyy");
 	private static List<String> staticQualifiers = new ArrayList<String>(Arrays.asList("?", "circa", "c", "c."));
 	
@@ -33,16 +34,12 @@ public class DateHelper {
 	
 	private static String parseDate(String qualifier, String date){
   	if (date!=null){
-  		if (date.contains("Month and year only")){
-  			date = date.replace("Month and year only", "");
-  			qualifier = "Month and year only";
-  		}
   		if (qualifier==null){
   			// format dd/mm/yyyy
   			return date;
-  		}else if (qualifier.equals("Month and year only")){
+  		}else if (qualifier.equalsIgnoreCase("month and year only")){
   			return date.substring(date.indexOf("/"));
-  		}else if (qualifier.equals("year only")){
+  		}else if (qualifier.equalsIgnoreCase("year only")){
   			// format yyyy
   			return date.substring(date.lastIndexOf("/"));
   		}else{
@@ -78,12 +75,14 @@ public class DateHelper {
   		if (qualifier==null){
   			// format dd/mm/yyyy
   			return fullFormat.format(date);
-  		}else if (qualifier.equals("year only")){
+  		}else if (qualifier.equalsIgnoreCase("year only")){
   			// format yyyy
   			return yearOnlyFormat.format(date);
+  		}else if (qualifier.equalsIgnoreCase("month and year only")){
+  			// format yyyy
+  			return monthAndYearOnlyFormat.format(date);
   		}else{
-  			
-  			String s = staticQualifiers.contains(qualifier)? "c. " : qualifier + " ";
+  			String s = staticQualifiers.contains(qualifier.toLowerCase())? "c. " : qualifier + " ";
   			// format dd/mm/yyyy
   			return s += fullFormat.format(date);
   		}

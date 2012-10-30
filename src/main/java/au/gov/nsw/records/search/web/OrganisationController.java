@@ -7,8 +7,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import au.gov.nsw.records.search.model.Ministry;
+import au.gov.nsw.records.search.model.Agency;
 import au.gov.nsw.records.search.model.Organisation;
+import au.gov.nsw.records.search.service.ControllerUtils;
 
 @RequestMapping("/organisations")
 @Controller
@@ -29,6 +30,7 @@ public class OrganisationController {
             uiModel.addAttribute("organisations", Organisation.findAllOrganisations());
         }
         addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("view", "organisations/list");
         return "organisations/list";
     }
 
@@ -58,6 +60,43 @@ public class OrganisationController {
 	        uiModel.addAttribute("rel_agencies_size", Double.valueOf(Math.ceil(arraySize/(float)size)).intValue());
 	        uiModel.addAttribute("rel_agencies_page", agencies_page);
         }
+        uiModel.addAttribute("view", "organisations/show");
         return "organisations/show";
     }
+	
+	@RequestMapping(value="/{organisationNumber}/preceding", produces = "text/html")
+	public String listPreceding(@PathVariable("organisationNumber") int organisationNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+
+		Organisation og = Organisation.findOrganisation(organisationNumber);
+		if (og!=null){
+			ControllerUtils.populateRelationshipModel(og.getPreceding(), "organisations", page, size, uiModel, Organisation.class);
+			addDateTimeFormatPatterns(uiModel);
+		}
+		uiModel.addAttribute("view", "organisations/list");
+		return "organisations/list";
+	}
+	
+	@RequestMapping(value="/{organisationNumber}/succeeding", produces = "text/html")
+	public String listSucceeding(@PathVariable("organisationNumber") int organisationNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+
+		Organisation og = Organisation.findOrganisation(organisationNumber);
+		if (og!=null){
+			ControllerUtils.populateRelationshipModel(og.getSucceeding(), "organisations", page, size, uiModel, Organisation.class);
+			addDateTimeFormatPatterns(uiModel);
+		}
+		uiModel.addAttribute("view", "organisations/list");
+		return "organisations/list";
+	}
+	
+	@RequestMapping(value="/{organisationNumber}/agencies", produces = "text/html")
+	public String listAgencies(@PathVariable("organisationNumber") int organisationNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+
+		Organisation og = Organisation.findOrganisation(organisationNumber);
+		if (og!=null){
+			ControllerUtils.populateRelationshipModel(og.getAgencies(), "agencys", page, size, uiModel, Agency.class);
+			addDateTimeFormatPatterns(uiModel);
+		}
+		uiModel.addAttribute("view", "agencies/list");
+		return "agencies/list";
+	}
 }
