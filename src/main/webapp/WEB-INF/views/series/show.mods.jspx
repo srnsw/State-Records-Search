@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<mods xmlns:xlink="http://www.w3.org/1999/xlink" version="3.4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.loc.gov/mods/v3" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd"
+ xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:spring="http://www.springframework.org/tags" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util">
+
+	<c:set var="requestURL" value="${pageContext.request.requestURL}" />
+	<c:set var="baseURL" value="${fn:replace(requestURL, pageContext.request.requestURI, pageContext.request.contextPath)}" />
+	
+	<titleInfo>
+	  <title>${serie.title}</title>
+	</titleInfo>
+	<typeOfResource manuscript="yes" collection="yes">mixed material</typeOfResource>
+	<genre authority="local">manuscript</genre>
+	 <c:forEach items="${serie.creatingAgencies}" var="item">
+			<name type="personal">
+			  <namePart>${item.relationship.title}</namePart>
+			  <role>
+			    <roleTerm type="code" authority="marcrelator">aut</roleTerm>
+			   </role>
+			</name>
+	</c:forEach>
+	<c:forEach items="${serie.persons}" var="item">
+		<name type="personal">
+		  <namePart type="family">${item.relationship.surname}</namePart>
+		  <namePart type="given">${item.relationship.givenNames}</namePart>
+		  <role>
+		    <roleTerm type="code" authority="marcrelator">aut</roleTerm>
+		   </role>
+		</name>
+	</c:forEach>
+	<originInfo>
+	  <dateCreated>${serie.startDate}</dateCreated>
+	</originInfo>
+	<location>
+	  <physicalLocation>State Records NSW</physicalLocation>
+	  <shelfLocator>NRS ${serie.id}</shelfLocator>
+	  <url>${baseURL}/series/${serie.id}</url>
+	</location>
+	
+</mods>

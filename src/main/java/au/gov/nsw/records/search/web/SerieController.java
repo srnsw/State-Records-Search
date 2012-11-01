@@ -99,6 +99,7 @@ public class SerieController {
 	        uiModel.addAttribute("rel_controlled_series_size", Double.valueOf(Math.ceil(arraySize/(float)size)).intValue());
 	        uiModel.addAttribute("rel_controlled_series_page", controlled_series_page);
         }
+        uiModel.addAttribute("unapi", "true");
         uiModel.addAttribute("view", "series/show");
         return "series/show";
     }

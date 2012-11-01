@@ -87,6 +87,7 @@
 				<bean class="au.gov.nsw.records.search.view.SimpleMediaTypeView" id="rifView">
 					<property name="mediaType" value="application/rif" />
 				</bean>
+				
 			</list>
 		</property>
 	</bean>

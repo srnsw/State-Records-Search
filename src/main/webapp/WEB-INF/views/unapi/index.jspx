@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<formats xmlns:jsp="http://java.sun.com/JSP/Page">
+ <format name="mods" type="application/mods+xml"/>
+</formats>

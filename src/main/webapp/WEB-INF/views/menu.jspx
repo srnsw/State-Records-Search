@@ -41,6 +41,8 @@
         </menu:category>
         <menu:category id="c_controller" z="nj8Dm3hojIyIEyPkwE1UMDIs+K8=">
             <menu:item id="i_controller__searchindex_id" messageCode="global_generic" url="/search/index" z="Rr2P0bqq8h2TImrqyyTAYCJ8lLY="/>
+            <menu:item id="i_controller__unapiindex_id" messageCode="global_generic" url="/unapi/index" z="Bf8a71Ux0DIPpqZw6B4AkptsmiI="/>
+            <menu:item id="i_controller__opensearchindex_id" messageCode="global_generic" url="/opensearch/index" z="UIjqa9ADwmKD5LyWI/JooI93dnM="/>
         </menu:category>
     </menu:menu>
 </div>

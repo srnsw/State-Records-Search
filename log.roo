@@ -134,3 +134,7 @@ json add
 // Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-10-29 13:22:19
 perform package
 backup
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-10-30 16:23:26
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-10-31 09:57:46
+web mvc controller --class ~.web.UnapiController
+web mvc controller --class ~.web.OpensearchController 

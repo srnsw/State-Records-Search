@@ -1,6 +1,8 @@
 package au.gov.nsw.records.search.model;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -132,6 +134,20 @@ public class Serie {
 	
 	public int getId(){
 		return seriesNumber;
+	}
+	
+	public String getStartDateW3c(){
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");  
+		String text = df.format(startDate);  
+		String result = text.substring(0, 22) + ":" + text.substring(22);  
+		return result;
+	}
+	
+	public String getEndDateW3c(){
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");  
+		String text = df.format(endDate);  
+		String result = text.substring(0, 22) + ":" + text.substring(22); 
+		return result;
 	}
 	
 	public static List<Document> getIndexData(List<Serie> series, CategoryDocumentBuilder builder) throws IOException{

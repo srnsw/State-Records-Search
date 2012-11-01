@@ -56,6 +56,7 @@ public class ItemController {
 	        uiModel.addAttribute("rel_agencies_size", Double.valueOf(Math.ceil(arraySize/(float)size)).intValue());
 	        uiModel.addAttribute("rel_agencies_page", agencies_page);
         }
+        uiModel.addAttribute("unapi", "true");
         uiModel.addAttribute("view", "items/show");
         return "items/show";
     }

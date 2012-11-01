@@ -127,6 +127,12 @@ public class SearchController {
     		@RequestParam("q") String queryText,
     		Model model, HttpServletRequest request) {
   		
+  		if (page==null){
+  			page=1;
+  		}
+  		if (pageSize==null){
+  			pageSize=30;
+  		}
   		LuceneSearchParams params = new LuceneSearchParams();
   		FacetSearchParams facetParams = new FacetSearchParams();
   		
@@ -139,7 +145,24 @@ public class SearchController {
   		
   		SearchResult activitiesFunctions = lucene.search(params.setQuery(queryText).setFacetParams(facetParams).setPage(fpage).setSize(fsize).setClazz(Activity.class, Functionn.class));
   		SearchResult agenciesPeople = lucene.search(params.setQuery(queryText).setFacetParams(facetParams).setPage(apage).setSize(asize).setClazz(Agency.class, Person.class));
+  		try{
   		SearchResult seriesItems = lucene.search(params.setQuery(queryText).setSeries(series).setLocation(location).setFrom(from).setTo(to).setFacetParams(facetParams).setPage(page).setSize(pageSize).setClazz(Serie.class, Item.class));
+      
+  		String nonPageParams = "&q=" + queryText;
+      if (location!=null){ nonPageParams += "&location=" + location; }
+      if (series!=null){ nonPageParams += "&series=" + series; }
+      if (from!=null){ nonPageParams += "&from=" + from; }
+      if (to!=null){ nonPageParams += "&to=" + to; }
+      
+      List<FacetResultItem> facets = seriesItems.getFacets();
+      for (FacetResultItem fri:facets){
+      	if (fri.getLabel().equals("series")){
+      		for (FacetResultItem subFri:fri.getItems()){
+      			subFri.setLabel(Serie.findSerie(Integer.valueOf(subFri.getLabel())).getTitle());
+      		}
+      	}
+      }
+  	
       
       model.addAttribute("q", queryText);
       
@@ -155,21 +178,6 @@ public class SearchController {
       model.addAttribute("from", from);
       model.addAttribute("to", to);
     
-      String nonPageParams = "&q=" + queryText;
-      if (location!=null){ nonPageParams += "&location=" + location; }
-      if (series!=null){ nonPageParams += "&series=" + series; }
-      if (from!=null){ nonPageParams += "&from=" + from; }
-      if (to!=null){ nonPageParams += "&to=" + to; }
-      
-      List<FacetResultItem> facets = seriesItems.getFacets();
-      for (FacetResultItem fri:facets){
-      	if (fri.getLabel().equals("series")){
-      		for (FacetResultItem subFri:fri.getItems()){
-      			subFri.setLabel(Serie.findSerie(Integer.valueOf(subFri.getLabel())).getTitle());
-      		}
-      	}
-      }
-      
       model.addAttribute("nonPageParams", nonPageParams);
       
       model.addAttribute("activitiesfunctions", activitiesFunctions.getResults());
@@ -183,6 +191,9 @@ public class SearchController {
       
       model.addAttribute("facets", facets);
       model.addAttribute("baseurl", request.getRequestURL() + String.format("?q=%s", queryText));
+  		}catch(Exception e){
+  			e.printStackTrace();
+  		}
       return "search/list";
     }
 }
