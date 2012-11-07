@@ -30,6 +30,7 @@ public class ActivityController {
         } else {
             uiModel.addAttribute("activitys", Activity.findAllActivitys());
         }
+        uiModel.addAttribute("count", Activity.countActivitys());
         uiModel.addAttribute("view", "activities/list");
         addDateTimeFormatPatterns(uiModel);
         return "activities/list";

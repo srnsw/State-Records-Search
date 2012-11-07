@@ -33,6 +33,7 @@ public class SerieController {
         }
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("view", "series/list");
+        uiModel.addAttribute("count", Serie.countSeries());
         return "series/list";
     }
 

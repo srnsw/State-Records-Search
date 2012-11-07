@@ -78,6 +78,14 @@ privileged aspect Person_Roo_JavaBean {
         this.minister = minister;
     }
     
+    public Date Person.getLastAmendmentDate() {
+        return this.lastAmendmentDate;
+    }
+    
+    public void Person.setLastAmendmentDate(Date lastAmendmentDate) {
+        this.lastAmendmentDate = lastAmendmentDate;
+    }
+    
     public Date Person.getBirthDate() {
         return this.birthDate;
     }

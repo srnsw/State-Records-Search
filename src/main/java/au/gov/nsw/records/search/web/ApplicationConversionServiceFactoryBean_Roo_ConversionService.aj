@@ -24,7 +24,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Activity, String> ApplicationConversionServiceFactoryBean.getActivityToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<au.gov.nsw.records.search.model.Activity, java.lang.String>() {
             public String convert(Activity activity) {
-                return new StringBuilder().append(activity.getTitle()).append(" ").append(activity.getDescriptiveNote()).append(" ").append(activity.getStartDate()).append(" ").append(activity.getStartDateQualifier()).toString();
+                return new StringBuilder().append(activity.getTitle()).append(" ").append(activity.getDescriptiveNote()).append(" ").append(activity.getLastAmendmentDate()).append(" ").append(activity.getStartDate()).toString();
             }
         };
     }
@@ -56,7 +56,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Functionn, String> ApplicationConversionServiceFactoryBean.getFunctionnToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<au.gov.nsw.records.search.model.Functionn, java.lang.String>() {
             public String convert(Functionn functionn) {
-                return new StringBuilder().append(functionn.getTitle()).append(" ").append(functionn.getAbolition()).append(" ").append(functionn.getDescriptiveNote()).append(" ").append(functionn.getRegisteredDate()).toString();
+                return new StringBuilder().append(functionn.getTitle()).append(" ").append(functionn.getAbolition()).append(" ").append(functionn.getDescriptiveNote()).append(" ").append(functionn.getLastAmendmentDate()).toString();
             }
         };
     }
@@ -88,7 +88,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Ministry, String> ApplicationConversionServiceFactoryBean.getMinistryToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<au.gov.nsw.records.search.model.Ministry, java.lang.String>() {
             public String convert(Ministry ministry) {
-                return new StringBuilder().append(ministry.getTitle()).append(" ").append(ministry.getRegisteredDate()).append(" ").append(ministry.getStartDate()).append(" ").append(ministry.getEndDate()).toString();
+                return new StringBuilder().append(ministry.getTitle()).append(" ").append(ministry.getLastAmendmentDate()).append(" ").append(ministry.getRegisteredDate()).append(" ").append(ministry.getStartDate()).toString();
             }
         };
     }
@@ -104,7 +104,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Organisation, String> ApplicationConversionServiceFactoryBean.getOrganisationToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<au.gov.nsw.records.search.model.Organisation, java.lang.String>() {
             public String convert(Organisation organisation) {
-                return new StringBuilder().append(organisation.getTitle()).append(" ").append(organisation.getAdministrativeHistoryNote()).append(" ").append(organisation.getStartDate()).append(" ").append(organisation.getStartDateQualifier()).toString();
+                return new StringBuilder().append(organisation.getTitle()).append(" ").append(organisation.getAdministrativeHistoryNote()).append(" ").append(organisation.getLastAmendmentDate()).append(" ").append(organisation.getStartDate()).toString();
             }
         };
     }
@@ -136,7 +136,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Portfolio, String> ApplicationConversionServiceFactoryBean.getPortfolioToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<au.gov.nsw.records.search.model.Portfolio, java.lang.String>() {
             public String convert(Portfolio portfolio) {
-                return new StringBuilder().append(portfolio.getTitle()).append(" ").append(portfolio.getDescriptiveNote()).append(" ").append(portfolio.getRegisteredDate()).append(" ").append(portfolio.getStartDate()).toString();
+                return new StringBuilder().append(portfolio.getTitle()).append(" ").append(portfolio.getDescriptiveNote()).append(" ").append(portfolio.getLastAmendmentDate()).append(" ").append(portfolio.getRegisteredDate()).toString();
             }
         };
     }

@@ -24,7 +24,6 @@ public class SimpleMediaTypeView extends AbstractView {
 	
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
 		Object viewpath = model.get("view");
 		if (viewpath!=null){
 			String targetJsp = String.format("/WEB-INF/views/%s.%s.jspx", viewpath, extension);
@@ -33,7 +32,7 @@ public class SimpleMediaTypeView extends AbstractView {
 			view.setApplicationContext(getApplicationContext());
 			view.render(model, request, response);
 		}else{
-			logger.warn("No viewpath object (view) configured");
+			logger.warn("No viewpath attribute (model's attribute named: view) configured");
 		}
 	}
 	

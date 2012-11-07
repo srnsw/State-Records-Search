@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 privileged aspect AgencyController_Roo_Controller {
     
     void AgencyController.addDateTimeFormatPatterns(Model uiModel) {
+        uiModel.addAttribute("agency_lastamendmentdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
         uiModel.addAttribute("agency_startdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
         uiModel.addAttribute("agency_enddate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
     }

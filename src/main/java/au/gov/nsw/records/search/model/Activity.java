@@ -1,10 +1,7 @@
 package au.gov.nsw.records.search.model;
 
-import flexjson.JSONDeserializer;
-import flexjson.JSONSerializer;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -21,7 +18,6 @@ import org.apache.lucene.facet.index.CategoryDocumentBuilder;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
-import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.tostring.RooToString;
 
 import au.gov.nsw.records.search.service.DateHelper;
@@ -42,6 +38,12 @@ public class Activity {
 	@Column(name = "Descriptive_note")
 	private String descriptiveNote;
 
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(style = "M-")
+	@Column(name = "Last_amendment_date")
+	private Date lastAmendmentDate;
+	
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style = "M-")
 	@Column(name = "Start_date")

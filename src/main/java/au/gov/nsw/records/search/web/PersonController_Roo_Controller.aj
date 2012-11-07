@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 privileged aspect PersonController_Roo_Controller {
     
     void PersonController.addDateTimeFormatPatterns(Model uiModel) {
+        uiModel.addAttribute("person_lastamendmentdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
         uiModel.addAttribute("person_birthdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
         uiModel.addAttribute("person_deathdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
     }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:spring="http://www.springframework.org/tags" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="2.0">
-    <c:set var="requestURL" value="${pageContext.request.requestURL}" />
-    <c:set var="baseURL" value="${fn:replace(requestURL, pageContext.request.requestURI, pageContext.request.contextPath)}" />
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:spring="http://www.springframework.org/tags" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="2.0">
+    <c:set value="${pageContext.request.requestURL}" var="requestURL"/>
+    <c:set value="${fn:replace(requestURL, pageContext.request.requestURI, pageContext.request.contextPath)}" var="baseURL"/>
     <abbr class="unapi-id" title="${baseURL}/items/${item.id}">${emptyvar}</abbr>
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
@@ -19,6 +19,7 @@
                     <field:display date="true" dateTimePattern="${item_startdate_date_format}" field="startDate" id="s_au_gov_nsw_records_search_model_Item_startDate" object="${item}" render="false" z="user-managed"/>
                     <field:display date="true" dateTimePattern="${item_enddate_date_format}" field="endDate" id="s_au_gov_nsw_records_search_model_Item_endDate" object="${item}" render="false" z="user-managed"/>
                     <field:display field="seriesNumber" id="s_au_gov_nsw_records_search_model_Item_seriesNumber" object="${item}" z="yIZ1A5QRRrn0IvSA1enBMFdThS0="/>
+                    <field:display field="lastAmendmentDate" id="s_au_gov_nsw_records_search_model_Item_lastAmendmentDate" object="${item}" render="false" z="user-managed"/>
                 </page:show>
             </div>
         </td>

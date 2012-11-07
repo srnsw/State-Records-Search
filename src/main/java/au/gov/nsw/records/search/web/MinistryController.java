@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import au.gov.nsw.records.search.model.Activity;
 import au.gov.nsw.records.search.model.Ministry;
 import au.gov.nsw.records.search.model.Portfolio;
 import au.gov.nsw.records.search.service.ControllerUtils;
@@ -32,6 +33,7 @@ public class MinistryController {
         }
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("view", "ministries/list");
+        uiModel.addAttribute("count", Ministry.countMinistrys());
         return "ministries/list";
     }
 

@@ -4,16 +4,16 @@
     <jsp:output omit-xml-declaration="yes"/>
     <H1>Functions</H1>
     <table>
-    <td class="entitylist">
-    <c:forEach items="${functionns}" var="item">
-        <spring:url value="/functions/${item.id}" var="link_url"/>
-        <div class="collection_search_result">
-            <p>
-                <a href="${link_url}"> ${item.title} </a>
-            </p>
-        </div>
-    </c:forEach>
-    </td>
+        <td class="entitylist">
+            <c:forEach items="${functionns}" var="item">
+                <spring:url value="/functions/${item.id}" var="link_url"/>
+                <div class="collection_search_result">
+                    <p>
+                        <a href="${link_url}"> ${item.title} </a>
+                    </p>
+                </div>
+            </c:forEach>
+        </td>
     </table>
     <util:pagination maxPages="${maxPages}" page="${page}" size="${size}"/>
     <page:list id="pl_au_gov_nsw_records_search_model_Functionn" items="${functionns}" render="false" z="user-managed">
@@ -23,7 +23,7 @@
             <table:column id="c_au_gov_nsw_records_search_model_Functionn_descriptiveNote" property="descriptiveNote" z="a5pQA8mtjMVRqVP3vLH8hERuOis="/>
             <table:column date="true" dateTimePattern="${functionn_registereddate_date_format}" id="c_au_gov_nsw_records_search_model_Functionn_registeredDate" property="registeredDate" z="g8E1PWzzTRstvtuTTjf9tGvRUfg="/>
             <table:column date="true" dateTimePattern="${functionn_startdate_date_format}" id="c_au_gov_nsw_records_search_model_Functionn_startDate" property="startDate" z="XAbMCjlGJbLgIWRRrJ3EC29FSXU="/>
-            <table:column id="c_au_gov_nsw_records_search_model_Functionn_startDateQualifier" property="startDateQualifier" z="5OegTyRP8PR/fwAXeeSG1qqEZHg="/>
+            <table:column date="true" dateTimePattern="${functionn_lastamendmentdate_date_format}" id="c_au_gov_nsw_records_search_model_Functionn_lastAmendmentDate" property="lastAmendmentDate" z="U5DvOQhLixuyNAYrSWE1BTBxfrw="/>
         </table:table>
     </page:list>
 </div>

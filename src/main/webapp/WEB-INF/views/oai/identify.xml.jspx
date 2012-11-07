@@ -1,0 +1,15 @@
+<jsp:root xmlns:oai="urn:jsptagdir:/WEB-INF/tags/oai"  xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:spring="http://www.springframework.org/tags" xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
+	<oai:template>
+		<Identify>
+		  <repositoryName>State Records Authority of New South Wales</repositoryName>
+		  <baseURL>${baseURL}</baseURL>
+		  <protocolVersion>2.0</protocolVersion>
+		  <adminEmail>richard.lehane@records.nsw.gov.au</adminEmail>
+		  <earliestDatestamp>1996-08-26</earliestDatestamp>
+		  <deletedRecord>no</deletedRecord>
+		  <granularity>YYYY-MM-DD</granularity>
+		  <compression>gzip</compression>
+		  <compression>deflate</compression>
+    </Identify>
+	</oai:template>
+</jsp:root>

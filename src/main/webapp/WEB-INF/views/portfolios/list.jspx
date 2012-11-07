@@ -4,16 +4,16 @@
     <jsp:output omit-xml-declaration="yes"/>
     <H1>Portfolios</H1>
     <table>
-    <td class="entitylist">
-    <c:forEach items="${portfolios}" var="item">
-        <spring:url value="/portfolios/${item.id}" var="link_url"/>
-        <div class="collection_search_result">
-            <p>
-                <a href="${link_url}"> ${item.title} </a>
-            </p>
-        </div>
-    </c:forEach>
-    </td>
+        <td class="entitylist">
+            <c:forEach items="${portfolios}" var="item">
+                <spring:url value="/portfolios/${item.id}" var="link_url"/>
+                <div class="collection_search_result">
+                    <p>
+                        <a href="${link_url}"> ${item.title} </a>
+                    </p>
+                </div>
+            </c:forEach>
+        </td>
     </table>
     <util:pagination maxPages="${maxPages}" page="${page}" size="${size}"/>
     <page:list id="pl_au_gov_nsw_records_search_model_Portfolio" items="${portfolios}" render="false" z="user-managed">
@@ -23,7 +23,7 @@
             <table:column date="true" dateTimePattern="${portfolio_registereddate_date_format}" id="c_au_gov_nsw_records_search_model_Portfolio_registeredDate" property="registeredDate" z="CxaNz84k8re93Ipic70T4x8a8QA="/>
             <table:column date="true" dateTimePattern="${portfolio_startdate_date_format}" id="c_au_gov_nsw_records_search_model_Portfolio_startDate" property="startDate" z="sMwLMvATOOKzLhf3NnS6mH9R/AE="/>
             <table:column id="c_au_gov_nsw_records_search_model_Portfolio_startDateQualifier" property="startDateQualifier" z="SvG/BRGXYk+uHkeR1oN7uqIrSKY="/>
-            <table:column date="true" dateTimePattern="${portfolio_enddate_date_format}" id="c_au_gov_nsw_records_search_model_Portfolio_endDate" property="endDate" z="l9yVSvZyocvbWxfF2daahLGw1J8="/>
+            <table:column date="true" dateTimePattern="${portfolio_lastamendmentdate_date_format}" id="c_au_gov_nsw_records_search_model_Portfolio_lastAmendmentDate" property="lastAmendmentDate" z="YPFfoidkNGMrAR1OqU+9wUtGkx4="/>
         </table:table>
     </page:list>
 </div>

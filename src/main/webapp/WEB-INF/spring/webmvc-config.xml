@@ -68,6 +68,8 @@
 				<entry key="mods" value="application/mods"/>
 				<entry key="rdf_zotero" value="application/rdf_zotero"/>
 				<entry key="rif" value="application/rif"/>
+				<entry key="oai_dc" value="application/oai_dc"/>
+				<entry key="eac_cpf" value="application/eac_cpf"/>
 			</map>
 		</property>
 		<property name="defaultViews">
@@ -87,7 +89,12 @@
 				<bean class="au.gov.nsw.records.search.view.SimpleMediaTypeView" id="rifView">
 					<property name="mediaType" value="application/rif" />
 				</bean>
-				
+				<bean class="au.gov.nsw.records.search.view.SimpleMediaTypeView" id="oaiDcView">
+					<property name="mediaType" value="application/oai_dc" />
+				</bean>
+				<bean class="au.gov.nsw.records.search.view.SimpleMediaTypeView" id="eacCpfView">
+					<property name="mediaType" value="application/eac_cpf" />
+				</bean>
 			</list>
 		</property>
 	</bean>

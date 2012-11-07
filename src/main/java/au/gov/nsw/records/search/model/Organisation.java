@@ -32,7 +32,12 @@ public class Organisation {
 	
 	@Column(name="Administrative_history_note")
 	private String administrativeHistoryNote;
-	
+
+  @Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(style = "M-")
+	@Column(name = "Last_amendment_date")
+	private Date lastAmendmentDate;
+  
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style = "M-")
 	@Column(name = "Start_date")

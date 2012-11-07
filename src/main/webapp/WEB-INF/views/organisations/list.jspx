@@ -4,16 +4,16 @@
     <jsp:output omit-xml-declaration="yes"/>
     <H1>Organisations</H1>
     <table>
-    <td class="entitylist">
-    <c:forEach items="${organisations}" var="item">
-        <spring:url value="/organisations/${item.id}" var="link_url"/>
-        <div class="collection_search_result">
-            <p>
-                <a href="${link_url}"> ${item.title} </a>
-            </p>
-        </div>
-    </c:forEach>
-    </td>
+        <td class="entitylist">
+            <c:forEach items="${organisations}" var="item">
+                <spring:url value="/organisations/${item.id}" var="link_url"/>
+                <div class="collection_search_result">
+                    <p>
+                        <a href="${link_url}"> ${item.title} </a>
+                    </p>
+                </div>
+            </c:forEach>
+        </td>
     </table>
     <util:pagination maxPages="${maxPages}" page="${page}" size="${size}"/>
     <page:list id="pl_au_gov_nsw_records_search_model_Organisation" items="${organisations}" render="false" z="user-managed">
@@ -23,7 +23,7 @@
             <table:column date="true" dateTimePattern="${organisation_startdate_date_format}" id="c_au_gov_nsw_records_search_model_Organisation_startDate" property="startDate" z="VUo/6s5OuUseSlpBTbGFDypYD8I="/>
             <table:column id="c_au_gov_nsw_records_search_model_Organisation_startDateQualifier" property="startDateQualifier" z="cDMRy/pAq0amoxBvDOvhApdFvtk="/>
             <table:column date="true" dateTimePattern="${organisation_enddate_date_format}" id="c_au_gov_nsw_records_search_model_Organisation_endDate" property="endDate" z="oIup34ZNotds/4t9d6KKWDf/k5Q="/>
-            <table:column id="c_au_gov_nsw_records_search_model_Organisation_endDateQualifier" property="endDateQualifier" z="usBKmBAKnVWYVal9D33lKJgOk6U="/>
+            <table:column date="true" dateTimePattern="${organisation_lastamendmentdate_date_format}" id="c_au_gov_nsw_records_search_model_Organisation_lastAmendmentDate" property="lastAmendmentDate" z="v6l8W38XbIiJfMfv0tOugAi2VPI="/>
         </table:table>
     </page:list>
 </div>

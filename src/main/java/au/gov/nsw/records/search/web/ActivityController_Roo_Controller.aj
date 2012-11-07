@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 privileged aspect ActivityController_Roo_Controller {
     
     void ActivityController.addDateTimeFormatPatterns(Model uiModel) {
+        uiModel.addAttribute("activity_lastamendmentdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
         uiModel.addAttribute("activity_startdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
         uiModel.addAttribute("activity_enddate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
     }

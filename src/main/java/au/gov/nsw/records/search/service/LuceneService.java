@@ -163,10 +163,12 @@ public class LuceneService {
 
 	public SearchResult search(LuceneSearchParams params){
 		String classQuery = "";
-		int i = 0;
 		// multi-entity search
+		boolean first = true;;
 		for (Class<?> clazz: params.getClazz()){
-			if (i++>0){
+			if (first){
+				first = false;
+			}else{
 				classQuery += " OR ";
 			}
 			classQuery += String.format("class:( +\"%s\")", clazz.getName());
@@ -191,8 +193,6 @@ public class LuceneService {
 			Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_31);
 			MultiFieldQueryParser queryParser = new MultiFieldQueryParser(Version.LUCENE_31, new String[] {"title", "content"},analyzer);
 			Query baseQuery = queryParser.parse(queryText);
-			
-			//baseQuery = DrillDown.query(baseQuery, new CategoryPath("location", "Western Sydney Records Centre, Kingswood"));
 			
 			return search(baseQuery, params.getFacetParams(), params.getPage(), params.getSize());
 		} catch (ParseException e) {

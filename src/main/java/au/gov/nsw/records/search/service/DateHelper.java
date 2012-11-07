@@ -1,5 +1,6 @@
 package au.gov.nsw.records.search.service;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -95,5 +96,10 @@ public class DateHelper {
   		return yearOnlyFormat.format(date);
   	}
   	return "";
+  }
+  
+  public static Date parseDate(String date) throws ParseException{
+  	SimpleDateFormat parserSDF=new SimpleDateFormat("yyyy-MM-dd");
+		return parserSDF.parse(date);
   }
 }

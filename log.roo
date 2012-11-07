@@ -138,3 +138,13 @@ backup
 // Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-10-31 09:57:46
 web mvc controller --class ~.web.UnapiController
 web mvc controller --class ~.web.OpensearchController 
+web mvc controller --class ~.web.OaiController
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-11-02 15:54:30
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-11-06 11:55:22
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-11-06 12:48:32
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-11-06 12:58:45
+backup
+focus --class ~.model.Agency
+finder add --finderName agency
+finder list
+finder add --finderName findAgencysByStartDateLessThan

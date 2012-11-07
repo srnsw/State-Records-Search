@@ -13,6 +13,7 @@
                     <field:display date="true" dateTimePattern="${activity_enddate_date_format}" field="endDate" id="s_au_gov_nsw_records_search_model_Activity_endDate" object="${activity}" render="false" z="user-managed"/>
                     <field:display field="endDateQualifier" id="s_au_gov_nsw_records_search_model_Activity_endDateQualifier" object="${activity}" render="false" z="user-managed"/>
                     <field:display field="series" id="s_au_gov_nsw_records_search_model_Activity_series" object="${activity}" render="false" z="gGo0dZA9KdzWrYdGuq33mLotL9s="/>
+                    <field:display field="lastAmendmentDate" id="s_au_gov_nsw_records_search_model_Activity_lastAmendmentDate" object="${activity}" render="false" z="user-managed"/>
                 </page:show>
             </div>
         </td>

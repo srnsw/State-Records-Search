@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 privileged aspect PortfolioController_Roo_Controller {
     
     void PortfolioController.addDateTimeFormatPatterns(Model uiModel) {
+        uiModel.addAttribute("portfolio_lastamendmentdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
         uiModel.addAttribute("portfolio_registereddate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
         uiModel.addAttribute("portfolio_startdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
         uiModel.addAttribute("portfolio_enddate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));

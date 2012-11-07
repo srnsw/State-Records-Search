@@ -3,7 +3,7 @@
  
     	<pagination>
     		<this_page>${page}</this_page>
-    		<total_results></total_results>
+    		<total_results>${count}</total_results>
     		<per_page>${size}</per_page>
     	</pagination>
     	<c:forEach items="${portfolios}" var="item">

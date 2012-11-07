@@ -36,6 +36,14 @@ privileged aspect Organisation_Roo_JavaBean {
         this.administrativeHistoryNote = administrativeHistoryNote;
     }
     
+    public Date Organisation.getLastAmendmentDate() {
+        return this.lastAmendmentDate;
+    }
+    
+    public void Organisation.setLastAmendmentDate(Date lastAmendmentDate) {
+        this.lastAmendmentDate = lastAmendmentDate;
+    }
+    
     public Date Organisation.getStartDate() {
         return this.startDate;
     }

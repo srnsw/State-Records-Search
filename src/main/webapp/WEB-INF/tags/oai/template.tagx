@@ -1,0 +1,18 @@
+<jsp:root xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:spring="http://www.springframework.org/tags" xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
+  <jsp:output omit-xml-declaration="yes" />
+ 
+<OAI-PMH xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd" xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  
+  <c:set var="requestURL" value="${pageContext.request.requestURL}" />
+	<c:set var="baseURL" value="${fn:replace(requestURL, pageContext.request.requestURI, pageContext.request.contextPath)}" />
+	
+	<jsp:useBean id="now" class="java.util.Date" scope="page" />
+	<fmt:formatDate var="utcNow" value="${now}" pattern="yyyy-MM-dd'T'HH:mm:ssZ" />
+	<responseDate>${utcNow}</responseDate>
+	<request verb="${verb}" resumptionToken="${resumptionToken}" metadataPrefix="${metadataPrefix}" set="${set}" from="${from}" until="${until}">${baseURL}/oai</request>
+	
+	<jsp:doBody />
+	
+</OAI-PMH>
+ 
+</jsp:root>

@@ -6,11 +6,13 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.EntityManager;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.TypedQuery;
 
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
@@ -23,6 +25,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 import au.gov.nsw.records.search.service.DateHelper;
 import au.gov.nsw.records.search.service.LocationHelper;
+import au.gov.nsw.records.search.service.QueryHelper;
 
 @RooJavaBean
 @RooToString
@@ -54,7 +57,12 @@ public class Item {
 
     @Column(name = "Availability")
     private String availability;
-
+    
+    @Temporal(TemporalType.TIMESTAMP)
+  	@DateTimeFormat(style = "M-")
+  	@Column(name = "Last_amendment_date")
+  	private Date lastAmendmentDate;
+    
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "M-")
     @Column(name = "Start_date")
@@ -103,4 +111,32 @@ public class Item {
     	}
     	return itemsIndex;
     }
+    
+    public static List<Item> findItemFromLastAmendmentDate(Date from, Date until, int page, int pageSize) {
+    	String additionalCondition = QueryHelper.buildAdditionalQuery(from, until);
+    	 
+    	EntityManager em = Agency.entityManager();
+       TypedQuery<Item> q = em.createQuery("SELECT o FROM Item o " + additionalCondition, Item.class);
+       if (from!=null){
+       	q.setParameter("from", from);	
+       }
+       if (until!=null){
+       	q.setParameter("until", until);
+       }
+       return q.setFirstResult((page-1)*pageSize).setMaxResults(pageSize*page).getResultList();
+       
+   }
+   
+  	public static long countItemFromLastAmendmentDate(Date from, Date until) {
+  		String additionalCondition = QueryHelper.buildAdditionalQuery(from, until);
+  		EntityManager em = Agency.entityManager();
+      TypedQuery<Long> q = em.createQuery("SELECT count(o) FROM Item o " + additionalCondition, Long.class);
+      if (from!=null){
+       	q.setParameter("from", from);	
+       }
+       if (until!=null){
+       	q.setParameter("until", until);
+       }
+       return q.getSingleResult();
+   }
 }

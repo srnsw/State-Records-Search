@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 privileged aspect SerieController_Roo_Controller {
     
     void SerieController.addDateTimeFormatPatterns(Model uiModel) {
+        uiModel.addAttribute("serie_lastamendmentdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
         uiModel.addAttribute("serie_startdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
         uiModel.addAttribute("serie_enddate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
         uiModel.addAttribute("serie_contentstartdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));

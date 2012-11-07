@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import au.gov.nsw.records.search.model.Activity;
 import au.gov.nsw.records.search.model.Agency;
 import au.gov.nsw.records.search.model.Ministry;
 import au.gov.nsw.records.search.model.Person;
@@ -33,6 +34,7 @@ public class PortfolioController {
         }
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("view", "portfolios/list");
+        uiModel.addAttribute("count", Portfolio.countPortfolios());
         return "portfolios/list";
     }
 

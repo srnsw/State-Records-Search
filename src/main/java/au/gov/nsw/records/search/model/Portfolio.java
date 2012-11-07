@@ -36,7 +36,12 @@ public class Portfolio {
 	
 	@Column(name="Descriptive_note")
 	private String descriptiveNote;
-	
+
+  @Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(style = "M-")
+	@Column(name = "Last_amendment_date")
+	private Date lastAmendmentDate;
+  
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style = "M-")
 	@Column(name = "Registered_Date")

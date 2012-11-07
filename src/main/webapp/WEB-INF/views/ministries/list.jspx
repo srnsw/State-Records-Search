@@ -4,16 +4,16 @@
     <jsp:output omit-xml-declaration="yes"/>
     <H1>Ministries</H1>
     <table>
-    <td class="entitylist">
-    <c:forEach items="${ministrys}" var="item">
-        <spring:url value="/ministries/${item.id}" var="link_url"/>
-        <div class="collection_search_result">
-            <p>
-                <a href="${link_url}"> ${item.title} </a>
-            </p>
-        </div>
-    </c:forEach>
-    </td>
+        <td class="entitylist">
+            <c:forEach items="${ministrys}" var="item">
+                <spring:url value="/ministries/${item.id}" var="link_url"/>
+                <div class="collection_search_result">
+                    <p>
+                        <a href="${link_url}"> ${item.title} </a>
+                    </p>
+                </div>
+            </c:forEach>
+        </td>
     </table>
     <util:pagination maxPages="${maxPages}" page="${page}" size="${size}"/>
     <page:list id="pl_au_gov_nsw_records_search_model_Ministry" items="${ministrys}" render="false" z="user-managed">
@@ -22,6 +22,7 @@
             <table:column date="true" dateTimePattern="${ministry_registereddate_date_format}" id="c_au_gov_nsw_records_search_model_Ministry_registeredDate" property="registeredDate" z="VHOBB32YrACI43zQ8tIswirwF8U="/>
             <table:column date="true" dateTimePattern="${ministry_startdate_date_format}" id="c_au_gov_nsw_records_search_model_Ministry_startDate" property="startDate" z="d0naL6tX/USNxaV1JdTpoh4dM6A="/>
             <table:column date="true" dateTimePattern="${ministry_enddate_date_format}" id="c_au_gov_nsw_records_search_model_Ministry_endDate" property="endDate" z="vkEUULOdjqb78ydgASTMpX8QeCs="/>
+            <table:column date="true" dateTimePattern="${ministry_lastamendmentdate_date_format}" id="c_au_gov_nsw_records_search_model_Ministry_lastAmendmentDate" property="lastAmendmentDate" z="bzGk57fA4KrZSMjgtuGH1PLG5cs="/>
         </table:table>
     </page:list>
 </div>

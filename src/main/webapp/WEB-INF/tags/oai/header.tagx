@@ -1,0 +1,26 @@
+<jsp:root xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:spring="http://www.springframework.org/tags" xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
+  <jsp:output omit-xml-declaration="yes" />
+ 
+ <jsp:directive.attribute name="type" type="java.lang.String" required="true" rtexprvalue="true" description="Type of the response" />
+ <jsp:directive.attribute name="id" type="java.lang.String" required="true" rtexprvalue="true" description="Identifiation number" />
+ <jsp:directive.attribute name="dateStamp" type="java.util.Date" required="true" rtexprvalue="true" description="Date time stamp" />
+   
+ <c:set var="requestURL" value="${pageContext.request.requestURL}" />
+ <c:set var="baseURL" value="${fn:replace(requestURL, pageContext.request.requestURI, pageContext.request.contextPath)}" />
+	
+ <header>
+  <identifier>oai:${fn:substring(baseURL,7,-1)}:${type}/${id}</identifier>
+  
+  <c:if test="${not empty dateStamp}">
+   <fmt:formatDate var="dateStamp" value="${dateStamp}" pattern="YYY-MM-DD" />
+  </c:if>
+  
+  <c:if test="${empty dateStamp}">
+   <c:set value="1996-08-26" var="dateStamp"></c:set>
+  </c:if>
+  
+  <datestamp>${dateStamp}</datestamp>
+  <setSpec>${type}</setSpec>
+ </header>
+
+</jsp:root>

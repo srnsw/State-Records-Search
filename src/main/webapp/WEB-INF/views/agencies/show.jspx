@@ -15,6 +15,7 @@
                     <field:display field="startDateQualifier" id="s_au_gov_nsw_records_search_model_Agency_startDateQualifier" object="${agency}" render="false" z="user-managed"/>
                     <field:display date="true" dateTimePattern="${agency_enddate_date_format}" field="endDate" id="s_au_gov_nsw_records_search_model_Agency_endDate" object="${agency}" render="false" z="user-managed"/>
                     <field:display field="endDateQualifier" id="s_au_gov_nsw_records_search_model_Agency_endDateQualifier" object="${agency}" render="false" z="user-managed"/>
+                    <field:display date="true" dateTimePattern="${agency_lastamendmentdate_date_format}" field="lastAmendmentDate" id="s_au_gov_nsw_records_search_model_Agency_lastAmendmentDate" object="${agency}" z="F81mpSMooPbnH2R/8Xr8YCtqlTY="/>
                 </page:show>
             </div>
         </td>

@@ -1,0 +1,17 @@
+<jsp:root xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:spring="http://www.springframework.org/tags" xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
+ <oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+  
+  <c:if test="${not empty entity}">
+    <c:set var="agency" value="${entity}"></c:set>
+    <jsp:output omit-xml-declaration="yes"/>
+  </c:if>
+  
+  <c:set var="requestURL" value="${pageContext.request.requestURL}" />
+	<c:set var="baseURL" value="${fn:replace(requestURL, pageContext.request.requestURI, pageContext.request.contextPath)}" />
+	
+  <dc:title>${agency.title}</dc:title>
+  <dc:date>${agency.dateRange}</dc:date>
+  <dc:description>${fn:escapeXml(agency.administrativeHistoryNote)}</dc:description>
+  <dc:identifier>${baseURL}/agencies/${agency.id}</dc:identifier>
+ </oai_dc:dc>
+</jsp:root>

@@ -73,6 +73,14 @@ privileged aspect Item_Roo_JavaBean {
         this.availability = availability;
     }
     
+    public Date Item.getLastAmendmentDate() {
+        return this.lastAmendmentDate;
+    }
+    
+    public void Item.setLastAmendmentDate(Date lastAmendmentDate) {
+        this.lastAmendmentDate = lastAmendmentDate;
+    }
+    
     public Date Item.getStartDate() {
         return this.startDate;
     }

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jsp:root xmlns:oai="urn:jsptagdir:/WEB-INF/tags/oai"  xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:spring="http://www.springframework.org/tags" xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
 
 <rdf:RDF
  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -7,8 +7,11 @@
  xmlns:foaf="http://xmlns.com/foaf/0.1/"
  xmlns:dc="http://purl.org/dc/elements/1.1/"
  xmlns:dcterms="http://purl.org/dc/terms/"
- xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:spring="http://www.springframework.org/tags" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="1.0"
  >
+ <c:if test="${not empty entity}">
+    <c:set var="serie" value="${entity}"></c:set>
+    <jsp:output omit-xml-declaration="yes"/>
+  </c:if>
 <c:set var="requestURL" value="${pageContext.request.requestURL}" />
 <c:set var="baseURL" value="${fn:replace(requestURL, pageContext.request.requestURI, pageContext.request.contextPath)}" />
 <bib:Manuscript rdf:about="${baseURL}/series/${serie.id}">
@@ -27,7 +30,7 @@
         <rdf:li>
           <foaf:Person>
             <foaf:surname>${item.relationship.surname}</foaf:surname>
-            <foaf:givenname>${item.relationship.givenNames}</foaf:givenname>
+            <foaf:givenname>${item.relationship.givenName}</foaf:givenname>
           </foaf:Person>
         </rdf:li>
       </c:forEach>
@@ -45,3 +48,4 @@
   <z:libraryCatalog>http://www.records.nsw.gov.au</z:libraryCatalog>
 </bib:Manuscript> 
 </rdf:RDF>
+</jsp:root>

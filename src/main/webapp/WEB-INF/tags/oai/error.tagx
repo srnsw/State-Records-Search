@@ -1,0 +1,9 @@
+<jsp:root xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:spring="http://www.springframework.org/tags" xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
+  <jsp:output omit-xml-declaration="yes" />
+  
+   <jsp:directive.attribute name="errorCode" type="java.lang.String" required="true" rtexprvalue="true" description="Error code" />
+   <jsp:directive.attribute name="errorContent" type="java.lang.String" required="true" rtexprvalue="true" description="Error content" />
+    
+   <error code="${errorCode}" >${errorContent}</error>
+
+</jsp:root>

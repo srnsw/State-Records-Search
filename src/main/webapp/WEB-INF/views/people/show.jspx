@@ -19,6 +19,7 @@
                     <field:display field="deathDateQualifier" id="s_au_gov_nsw_records_search_model_Person_deathDateQualifier" object="${person}" render="false" z="user-managed"/>
                     <field:display field="prenomialHonorifics" id="s_au_gov_nsw_records_search_model_Person_prenomialHonorifics" object="${person}" render="false" z="user-managed"/>
                     <field:display field="postnomialHonorifics" id="s_au_gov_nsw_records_search_model_Person_postnomialHonorifics" object="${person}" render="false" z="user-managed"/>
+                    <field:display field="lastAmendmentDate" id="s_au_gov_nsw_records_search_model_Person_lastAmendmentDate" object="${person}" render="false" z="user-managed"/>
                 </page:show>
             </div>
         </td>

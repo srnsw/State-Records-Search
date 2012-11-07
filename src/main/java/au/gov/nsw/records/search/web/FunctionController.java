@@ -32,6 +32,7 @@ public class FunctionController {
             uiModel.addAttribute("functionns", Functionn.findAllFunctionns());
         }
         addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("count", Functionn.countFunctionns());
       	uiModel.addAttribute("view", "functions/list");
         return "functions/list";
     }

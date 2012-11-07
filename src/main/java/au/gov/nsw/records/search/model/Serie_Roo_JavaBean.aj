@@ -74,12 +74,28 @@ privileged aspect Serie_Roo_JavaBean {
         this.seriesControlStatus = seriesControlStatus;
     }
     
+    public String Serie.getAccessNote() {
+        return this.accessNote;
+    }
+    
+    public void Serie.setAccessNote(String accessNote) {
+        this.accessNote = accessNote;
+    }
+    
     public String Serie.getRepository() {
         return this.repository;
     }
     
     public void Serie.setRepository(String repository) {
         this.repository = repository;
+    }
+    
+    public Date Serie.getLastAmendmentDate() {
+        return this.lastAmendmentDate;
+    }
+    
+    public void Serie.setLastAmendmentDate(Date lastAmendmentDate) {
+        this.lastAmendmentDate = lastAmendmentDate;
     }
     
     public Date Serie.getStartDate() {

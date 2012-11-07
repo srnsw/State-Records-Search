@@ -8,11 +8,13 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.EntityManager;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.TypedQuery;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -28,6 +30,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 import au.gov.nsw.records.search.service.DateHelper;
 import au.gov.nsw.records.search.service.LocationHelper;
+import au.gov.nsw.records.search.service.QueryHelper;
 
 @RooJavaBean
 @RooToString
@@ -58,9 +61,17 @@ public class Serie {
 	@Column(name="Series_control_status")
 	private String seriesControlStatus;
 
+	@Column(name="Access_note")
+	private String accessNote;
+
 	@Column(name="Repository")
 	private String repository;
 
+  @Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(style = "M-")
+	@Column(name = "Last_amendment_date")
+	private Date lastAmendmentDate;
+  
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style = "M-")
 	@Column(name = "Start_date")
@@ -181,6 +192,32 @@ public class Serie {
   	return seriesIndex;
 	}
 
+	public static List<Serie> findSeriesFromLastAmendmentDate(Date from, Date until, int page, int pageSize) {
+		String additionalCondition = QueryHelper.buildAdditionalQuery(from, until);
+		EntityManager em = Agency.entityManager();
+    TypedQuery<Serie> q = em.createQuery("SELECT o FROM Serie o " + additionalCondition, Serie.class);
+    if (from!=null){
+    	q.setParameter("from", from);	
+    }
+    if (until!=null){
+    	q.setParameter("until", until);
+    }
+    return q.setFirstResult((page-1)*pageSize).setMaxResults(pageSize*page).getResultList();
+ }
+ 
+	public static long countSeriesFromLastAmendmentDate(Date from, Date until) {
+		String additionalCondition = QueryHelper.buildAdditionalQuery(from, until);
+ 		EntityManager em = Agency.entityManager();
+    TypedQuery<Long> q = em.createQuery("SELECT count(o) FROM Serie o " + additionalCondition, Long.class);
+    if (from!=null){
+     	q.setParameter("from", from);	
+     }
+     if (until!=null){
+     	q.setParameter("until", until);
+     }
+     return q.getSingleResult();
+ }
+	
 	public String toString() {
         return ReflectionToStringBuilder.toString(this.getTitle(), ToStringStyle.SHORT_PREFIX_STYLE);
     }

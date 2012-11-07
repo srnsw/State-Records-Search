@@ -1,0 +1,17 @@
+<jsp:root xmlns:oai="urn:jsptagdir:/WEB-INF/tags/oai"  xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:spring="http://www.springframework.org/tags" xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
+  <oai:template>	
+		<ListRecords>
+		  <c:forEach items="${entities}" var="entity">
+		    <record>
+				   <oai:header dateStamp="${entity.lastAmendmentDate}" type="${type}" id="${entity.id}"></oai:header>		
+				  <metadata>
+				    <jsp:include page="../${type}/show.${metadataPrefix}.jspx" >
+				       <jsp:param name="entity" value="${entity}"/>
+						 </jsp:include>
+				  </metadata>
+				</record>
+		  </c:forEach>
+		  <resumptionToken completeListSize="${size}" cursor="${page-1}">${resumptionToken}</resumptionToken>
+	  </ListRecords>
+  </oai:template>
+</jsp:root>

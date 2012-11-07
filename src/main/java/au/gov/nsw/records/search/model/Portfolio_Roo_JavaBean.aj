@@ -38,6 +38,14 @@ privileged aspect Portfolio_Roo_JavaBean {
         this.descriptiveNote = descriptiveNote;
     }
     
+    public Date Portfolio.getLastAmendmentDate() {
+        return this.lastAmendmentDate;
+    }
+    
+    public void Portfolio.setLastAmendmentDate(Date lastAmendmentDate) {
+        this.lastAmendmentDate = lastAmendmentDate;
+    }
+    
     public Date Portfolio.getRegisteredDate() {
         return this.registeredDate;
     }

@@ -1,0 +1,25 @@
+<jsp:root xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:spring="http://www.springframework.org/tags" xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
+  <jsp:output omit-xml-declaration="yes" />
+  
+  <jsp:directive.attribute name="startDate" type="java.util.Date" required="true" rtexprvalue="true" description="Start date" />
+  <jsp:directive.attribute name="endDate" type="java.util.Date" required="true" rtexprvalue="true" description="End date" />
+  
+  <c:choose>
+      <c:when test="${not empty agency.startDate and not empty agency.endDate}">
+		  <dateRange>
+		    <fmt:formatDate var="fromDate" value="${startDate}" pattern="YYYY-MM-DD" />
+		    <fmt:formatDate var="toDate" value="${endDate}" pattern="YYYY-MM-DD" />
+		    <fromDate standardDate="${fromDate}">${startDate}</fromDate>
+		    <toDate standardDate="${toDate}">${endDate}</toDate>
+		  </dateRange>
+		  </c:when>
+		<c:when test="${not empty startDate}">
+			<fmt:formatDate var="fromDate" value="${startDate}" pattern="YYYY-MM-DD" />
+		  <date standardDate="${fromDate}" notBefore="${fromDate}">${startDate}</date>
+		</c:when>
+		<c:when test="${not empty endDate}">
+		  <fmt:formatDate var="toDate" value="${endDate}" pattern="YYYY-MM-DD" />
+		  <date standardDate="${toDate}" notAfter="${toDate}">${endDate}</date>
+		 </c:when>
+	</c:choose>
+</jsp:root>

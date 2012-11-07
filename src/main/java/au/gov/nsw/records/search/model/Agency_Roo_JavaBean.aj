@@ -67,6 +67,14 @@ privileged aspect Agency_Roo_JavaBean {
         this.administrativeHistoryNote = administrativeHistoryNote;
     }
     
+    public Date Agency.getLastAmendmentDate() {
+        return this.lastAmendmentDate;
+    }
+    
+    public void Agency.setLastAmendmentDate(Date lastAmendmentDate) {
+        this.lastAmendmentDate = lastAmendmentDate;
+    }
+    
     public Date Agency.getStartDate() {
         return this.startDate;
     }

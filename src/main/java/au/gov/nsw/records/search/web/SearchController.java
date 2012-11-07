@@ -145,7 +145,6 @@ public class SearchController {
   		
   		SearchResult activitiesFunctions = lucene.search(params.setQuery(queryText).setFacetParams(facetParams).setPage(fpage).setSize(fsize).setClazz(Activity.class, Functionn.class));
   		SearchResult agenciesPeople = lucene.search(params.setQuery(queryText).setFacetParams(facetParams).setPage(apage).setSize(asize).setClazz(Agency.class, Person.class));
-  		try{
   		SearchResult seriesItems = lucene.search(params.setQuery(queryText).setSeries(series).setLocation(location).setFrom(from).setTo(to).setFacetParams(facetParams).setPage(page).setSize(pageSize).setClazz(Serie.class, Item.class));
       
   		String nonPageParams = "&q=" + queryText;
@@ -163,6 +162,17 @@ public class SearchController {
       	}
       }
   	
+      model.addAttribute("self_url", request.getRequestURL() + "?q=" + queryText);
+      
+      if (page>1){
+      	model.addAttribute("prev_url", request.getRequestURL() + "?q=" + queryText + "&page=" + (page-1) + "&size=" + pageSize);
+      }
+      
+      if (page < Math.ceil(seriesItems.getResultCount()/Double.valueOf(pageSize))){
+      	model.addAttribute("next_url", request.getRequestURL() + "?q=" + queryText + "&page=" + (page+1) + "&size=" + pageSize);
+      }
+      
+      model.addAttribute("count", seriesItems.getResultCount());
       
       model.addAttribute("q", queryText);
       
@@ -191,9 +201,7 @@ public class SearchController {
       
       model.addAttribute("facets", facets);
       model.addAttribute("baseurl", request.getRequestURL() + String.format("?q=%s", queryText));
-  		}catch(Exception e){
-  			e.printStackTrace();
-  		}
+  		model.addAttribute("view", "search/list");
       return "search/list";
     }
 }

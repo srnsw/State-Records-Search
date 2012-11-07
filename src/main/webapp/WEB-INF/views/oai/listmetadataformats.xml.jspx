@@ -1,0 +1,14 @@
+ <jsp:root xmlns:oai="urn:jsptagdir:/WEB-INF/tags/oai"  xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:spring="http://www.springframework.org/tags" xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
+	<oai:template>
+		<ListMetadataFormats>
+		<c:forEach items="${formats}" var="format">
+		  <metadataFormat>
+		    <metadataPrefix>${format.metadataPrefix}</metadataPrefix>
+		    <schema>${format.schema}</schema>
+		    <metadataNamespace>${format.metadataNamespace}</metadataNamespace>
+		  </metadataFormat>
+		</c:forEach>
+		</ListMetadataFormats>
+	</oai:template>
+</jsp:root>
+

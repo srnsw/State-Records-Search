@@ -44,6 +44,14 @@ privileged aspect Functionn_Roo_JavaBean {
         this.descriptiveNote = descriptiveNote;
     }
     
+    public Date Functionn.getLastAmendmentDate() {
+        return this.lastAmendmentDate;
+    }
+    
+    public void Functionn.setLastAmendmentDate(Date lastAmendmentDate) {
+        this.lastAmendmentDate = lastAmendmentDate;
+    }
+    
     public Date Functionn.getRegisteredDate() {
         return this.registeredDate;
     }

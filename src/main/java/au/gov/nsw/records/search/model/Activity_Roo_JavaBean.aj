@@ -35,6 +35,14 @@ privileged aspect Activity_Roo_JavaBean {
         this.descriptiveNote = descriptiveNote;
     }
     
+    public Date Activity.getLastAmendmentDate() {
+        return this.lastAmendmentDate;
+    }
+    
+    public void Activity.setLastAmendmentDate(Date lastAmendmentDate) {
+        this.lastAmendmentDate = lastAmendmentDate;
+    }
+    
     public Date Activity.getStartDate() {
         return this.startDate;
     }

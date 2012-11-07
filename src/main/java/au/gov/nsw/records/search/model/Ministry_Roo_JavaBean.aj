@@ -26,6 +26,14 @@ privileged aspect Ministry_Roo_JavaBean {
         this.title = title;
     }
     
+    public Date Ministry.getLastAmendmentDate() {
+        return this.lastAmendmentDate;
+    }
+    
+    public void Ministry.setLastAmendmentDate(Date lastAmendmentDate) {
+        this.lastAmendmentDate = lastAmendmentDate;
+    }
+    
     public Date Ministry.getRegisteredDate() {
         return this.registeredDate;
     }

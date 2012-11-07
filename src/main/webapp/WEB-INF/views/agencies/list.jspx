@@ -4,16 +4,16 @@
     <jsp:output omit-xml-declaration="yes"/>
     <H1>Agencies</H1>
     <table>
-    <td class="entitylist">
-    <c:forEach items="${agencys}" var="item">
-        <spring:url value="/agencies/${item.id}" var="link_url"/>
-        <div class="collection_search_result">
-            <p>
-                <a href="${link_url}"> ${item.title} </a>
-            </p>
-        </div>
-    </c:forEach>
-    </td>
+        <td class="entitylist">
+            <c:forEach items="${agencys}" var="item">
+                <spring:url value="/agencies/${item.id}" var="link_url"/>
+                <div class="collection_search_result">
+                    <p>
+                        <a href="${link_url}"> ${item.title} </a>
+                    </p>
+                </div>
+            </c:forEach>
+        </td>
     </table>
     <util:pagination maxPages="${maxPages}" page="${page}" size="${size}"/>
     <page:list id="pl_au_gov_nsw_records_search_model_Agency" items="${agencys}" render="false" z="user-managed">
@@ -23,7 +23,7 @@
             <table:column id="c_au_gov_nsw_records_search_model_Agency_creation" property="creation" z="CKhkx8fRxgi3nbhfDV+nMWWti4M="/>
             <table:column id="c_au_gov_nsw_records_search_model_Agency_abolition" property="abolition" z="Y9FyD2JsKbszXNKh+HdJrh6HoKA="/>
             <table:column id="c_au_gov_nsw_records_search_model_Agency_administrativeHistoryNote" property="administrativeHistoryNote" z="wUvIsqTTNUZPt8Ajg3rsOw9VTd0="/>
-            <table:column date="true" dateTimePattern="${agency_startdate_date_format}" id="c_au_gov_nsw_records_search_model_Agency_startDate" property="startDate" z="87IIW4XR5TIfHAwyvRt1QV9oLhw="/>
+            <table:column date="true" dateTimePattern="${agency_lastamendmentdate_date_format}" id="c_au_gov_nsw_records_search_model_Agency_lastAmendmentDate" property="lastAmendmentDate" z="NRG8sffChfHQQI0HSEk+oJ2x1WY="/>
         </table:table>
     </page:list>
 </div>

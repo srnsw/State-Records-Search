@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 privileged aspect ItemController_Roo_Controller {
     
     void ItemController.addDateTimeFormatPatterns(Model uiModel) {
+        uiModel.addAttribute("item_lastamendmentdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
         uiModel.addAttribute("item_startdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
         uiModel.addAttribute("item_enddate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
     }
