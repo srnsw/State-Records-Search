@@ -1,4 +1,4 @@
 <jsp:root xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" xmlns:eaccpf="urn:jsptagdir:/WEB-INF/tags/eac_cpf" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:spring="http://www.springframework.org/tags" xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
 <jsp:output omit-xml-declaration="yes"/>
-{"thisPage": ${page}, "totalResults": ${count}, "perPage": ${size}, "obj":[<c:forEach items="${activitys}" var="item">${item.jsonString},</c:forEach>]}
+${agency.jsonString}
 </jsp:root>

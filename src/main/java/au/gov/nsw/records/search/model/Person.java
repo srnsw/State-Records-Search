@@ -19,57 +19,71 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
+import com.google.gson.annotations.Expose;
+
 import au.gov.nsw.records.search.service.DateHelper;
 
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord(versionField = "")
 @Table(name = "persons_view")
-public class Person {
-
+public class Person extends JsonModel{
+	  @Expose
     @Id
     @Column(name = "Person_number")
     private int personNumber;
 
+	  @Expose
     @Column(name = "Surname")
     private String surname;
 
+	  @Expose
     @Column(name = "Given_names")
     private String givenName;
 
+	  @Expose
     @Column(name = "Prenomial_honorifics")
     private String prenomialHonorifics;
 
+	  @Expose
     @Column(name = "Postnomial_honorifics")
     private String postnomialHonorifics;
 
+	  @Expose
     @Column(name = "Offices_held")
     private String officeHeld;
 
+	  @Expose
     @Column(name = "Biographical_note")
     private String biographicalNote;
 
+	  @Expose
     @Column(name = "Minister")
     private boolean minister;
 
+	  @Expose
     @Temporal(TemporalType.TIMESTAMP)
   	@DateTimeFormat(style = "M-")
   	@Column(name = "Last_amendment_date")
   	private Date lastAmendmentDate;
     
+	  @Expose
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "M-")
     @Column(name = "Birth_date")
     private Date birthDate;
 
+	  @Expose
     @Column(name = "Birth_date_qualifier")
     private String birthDateQualifier;
 
+	  @Expose
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "M-")
     @Column(name = "Death_date")
     private Date deathDate;
 
+	  @Expose
     @Column(name = "Death_date_qualifier")
     private String deathDateQualifier;
 

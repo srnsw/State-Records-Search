@@ -28,6 +28,8 @@ import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.tostring.RooToString;
 
+import com.google.gson.annotations.Expose;
+
 import au.gov.nsw.records.search.service.DateHelper;
 import au.gov.nsw.records.search.service.LocationHelper;
 import au.gov.nsw.records.search.service.QueryHelper;
@@ -37,71 +39,89 @@ import au.gov.nsw.records.search.service.QueryHelper;
 @RooJpaActiveRecord(versionField = "")
 @Table(name = "series_view")
 @RooJson
-public class Serie {
+public class Serie extends JsonModel{
 
-	@Id
+	@Expose
+  @Id
 	@Column(name = "Series_number")
 	private int seriesNumber;
 
-	@Column(name = "Series_title")
+	@Expose
+  @Column(name = "Series_title")
 	private String title;
 
-	@Column(name="Descriptive_note")
+	@Expose
+  @Column(name="Descriptive_note")
 	private String descriptiveNote;
 
-	@Column(name="Format")
+	@Expose
+  @Column(name="Format")
 	private String format;
 
-	@Column(name="Arrangement")
+	@Expose
+  @Column(name="Arrangement")
 	private String arrangement;
 
-	@Column(name="Copies")
+	@Expose
+  @Column(name="Copies")
 	private String copies;
 
-	@Column(name="Series_control_status")
+	@Expose
+  @Column(name="Series_control_status")
 	private String seriesControlStatus;
 
-	@Column(name="Access_note")
+	@Expose
+  @Column(name="Access_note")
 	private String accessNote;
 
-	@Column(name="Repository")
+	@Expose
+  @Column(name="Repository")
 	private String repository;
 
+	@Expose
   @Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style = "M-")
 	@Column(name = "Last_amendment_date")
 	private Date lastAmendmentDate;
   
-	@Temporal(TemporalType.TIMESTAMP)
+	@Expose
+  @Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style = "M-")
 	@Column(name = "Start_date")
 	private Date startDate;
 
-	@Column(name = "Start_date_qualifier")
+	@Expose
+  @Column(name = "Start_date_qualifier")
 	private String startDateQualifier;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	@Expose
+  @Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style = "M-")
 	@Column(name = "End_date")
 	private Date endDate;
 
-	@Column(name = "End_date_qualifier")
+	@Expose
+  @Column(name = "End_date_qualifier")
 	private String endDateQualifier;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	@Expose
+  @Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style = "M-")
 	@Column(name = "Contents_start_date")
 	private Date contentStartDate;
 
-	@Column(name = "Contents_start_date_qualifier")
+	@Expose
+  @Column(name = "Contents_start_date_qualifier")
 	private String contentStartDateQualifier;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	@Expose
+  @Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style = "M-")
 	@Column(name = "Contents_End_date")
 	private Date contentEndDate;
 
-	@Column(name = "Contents_End_date_qualifier")
+	@Expose
+  @Column(name = "Contents_End_date_qualifier")
 	private String contentEndDateQualifier;
 
 	@OneToMany(mappedBy="serieId")

@@ -30,9 +30,9 @@ import au.gov.nsw.records.search.service.DateHelper;
 @Controller
 public class OaiController {
 	  
-	Map<String, List<String>> FORMATS = new HashMap<String, List<String>>();
-	Map<String, List<String>> SCHEMAS = new HashMap<String, List<String>>();
-	List<OaiSetSpec> SETSPECS = new ArrayList<OaiSetSpec>();
+	private final Map<String, List<String>> FORMATS = new HashMap<String, List<String>>();
+	private final Map<String, List<String>> SCHEMAS = new HashMap<String, List<String>>();
+	private final List<OaiSetSpec> SETSPECS = new ArrayList<OaiSetSpec>();
 	
 	  public OaiController(){
 	  	
@@ -246,7 +246,7 @@ public class OaiController {
   			returnView = "oai/error";
     	}catch(Exception e){
     		e.printStackTrace();
-    		uiModel.addAttribute("errorCode", e.getMessage());
+    		uiModel.addAttribute("errorCode","badVerb");
     		uiModel.addAttribute("errorContent", "internal server error");
   			returnView = "oai/error";
     	}

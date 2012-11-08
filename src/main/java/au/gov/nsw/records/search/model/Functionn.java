@@ -21,50 +21,63 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
+import com.google.gson.annotations.Expose;
+
 import au.gov.nsw.records.search.service.DateHelper;
 
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord(versionField = "")
 @Table(name = "functions_view")
-public class Functionn {
+public class Functionn extends JsonModel{
 	//Use Functionn to avoid the reserved word "Function"
+
+  @Expose
 	@Id
 	@Column(name = "Function_number")
   private int functionNumber;
   
-  @Column(name = "Function_title")
+  @Expose
+	@Column(name = "Function_title")
   private String title;
   
-  @Column(name = "Abolition")
+  @Expose
+	@Column(name = "Abolition")
   private String abolition;
   
-  @Column(name = "Descriptive_note")
+  @Expose
+	@Column(name = "Descriptive_note")
   private String descriptiveNote;
   
-  @Temporal(TemporalType.TIMESTAMP)
+  @Expose
+	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style = "M-")
 	@Column(name = "Last_amendment_date")
 	private Date lastAmendmentDate;
 	
+  @Expose
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style = "M-")
 	@Column(name = "Registered_date")
 	private Date registeredDate;
 	
+  @Expose
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style = "M-")
 	@Column(name = "Start_date")
 	private Date startDate;
 
+  @Expose
 	@Column(name = "Start_date_qualifier")
 	private String startDateQualifier;
 
+  @Expose
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style = "M-")
 	@Column(name = "End_date")
 	private Date endDate;
 
+  @Expose
 	@Column(name = "End_date_qualifier")
 	private String endDateQualifier;
 	

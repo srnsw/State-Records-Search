@@ -23,6 +23,8 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
+import com.google.gson.annotations.Expose;
+
 import au.gov.nsw.records.search.service.DateHelper;
 import au.gov.nsw.records.search.service.LocationHelper;
 import au.gov.nsw.records.search.service.QueryHelper;
@@ -31,44 +33,54 @@ import au.gov.nsw.records.search.service.QueryHelper;
 @RooToString
 @RooJpaActiveRecord(versionField = "")
 @Table(name = "items_view")
-public class Item {
+public class Item extends JsonModel{
 
-    @Id
+	  @Expose
+	  @Id
     @Column(name = "ID")
     private int id;
 
-    @Column(name = "Seriestype")
+	  @Expose
+	  @Column(name = "Seriestype")
     private String seriesType;
 
-    @ManyToOne
+	  @ManyToOne
     private Serie seriesNumber;
 
-    @Column(name = "Item_number_or_control_symbol")
+	  @Expose
+	  @Column(name = "Item_number_or_control_symbol")
     private String itemNumberOrControlSymbol;
 
-    @Column(name = "Item_title")
+	  @Expose
+	  @Column(name = "Item_title")
     private String title;
 
-    @Column(name = "Descriptive_Note")
+	  @Expose
+	  @Column(name = "Descriptive_Note")
     private String descriptiveNote;
 
-    @Column(name = "Accessdirectionno")
+	  @Expose
+	  @Column(name = "Accessdirectionno")
     private String accessDirectionNumber;
 
-    @Column(name = "Availability")
+	  @Expose
+	  @Column(name = "Availability")
     private String availability;
     
-    @Temporal(TemporalType.TIMESTAMP)
+	  @Expose
+	  @Temporal(TemporalType.TIMESTAMP)
   	@DateTimeFormat(style = "M-")
   	@Column(name = "Last_amendment_date")
   	private Date lastAmendmentDate;
     
-    @Temporal(TemporalType.TIMESTAMP)
+	  @Expose
+	  @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "M-")
     @Column(name = "Start_date")
     private Date startDate;
 
-    @Temporal(TemporalType.TIMESTAMP)
+	  @Expose
+	  @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "M-")
     @Column(name = "End_date")
     private Date endDate;

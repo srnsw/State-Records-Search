@@ -4,7 +4,7 @@
     <groupId>au.gov.nsw.records.search</groupId>
     <artifactId>Search</artifactId>
     <packaging>war</packaging>
-    <version>0.1.0.BUILD-SNAPSHOT</version>
+    <version>0.2.0.BUILD-SNAPSHOT</version>
     <name>Search</name>
     <properties>
         <aspectj.version>1.6.12</aspectj.version>
@@ -35,6 +35,10 @@
 					<id>springsource-external</id>
 					<url>http://repository.springsource.com/maven/bundles/external</url>
 				</repository>
+				<repository>
+					<id>maven-central</id>
+					<url>http://repo1.maven.org/maven2</url>
+				</repository>
     </repositories>
     <pluginRepositories>
         <pluginRepository>
@@ -55,17 +59,11 @@
     </pluginRepositories>
     <dependencies>
         <!-- General dependencies for standard applications -->
-       	<dependency>
-					<groupId>org.codehaus.jackson</groupId>
-					<artifactId>com.springsource.org.codehaus.jackson</artifactId>
-					<version>1.0.0</version>
+				 <dependency>
+				    <groupId>com.google.code.gson</groupId>
+				    <artifactId>gson</artifactId>
+				    <version>2.2.2</version>
 				</dependency>
-				<dependency>
-					<groupId>org.codehaus.jackson</groupId>
-					<artifactId>com.springsource.org.codehaus.jackson.mapper</artifactId>
-					<version>1.0.0</version>
-				</dependency>
-						  
         <dependency>
 					<groupId>org.apache.lucene</groupId>
 					<artifactId>lucene-core</artifactId>

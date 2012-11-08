@@ -23,52 +23,63 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
+import com.google.gson.annotations.Expose;
+
 @RooJavaBean
 @RooToString
 @Table(name = "agencies_view")
 @RooJpaActiveRecord(versionField = "", finders = { "findAgencysByStartDateLessThan" })
-public class Agency {
-
+public class Agency extends JsonModel{
+	  @Expose
     @Id
     @Column(name = "Agency_number")
     private int agencyNumber;
 
+	  @Expose
     @Column(name = "Agency_title")
     private String title;
 
+	  @Expose
     @Column(name = "Category")
     private String category;
 
+	  @Expose
     @Column(name = "Creation")
     private String creation;
 
+	  @Expose
     @Column(name = "Abolition")
     private String abolition;
 
+	  @Expose
     @Column(name = "Administrative_history_note")
     private String administrativeHistoryNote;
 
+	  @Expose
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "M-")
     @Column(name = "Last_amendment_date")
     private Date lastAmendmentDate;
 
+	  @Expose
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "M-")
     @Column(name = "Start_date")
     private Date startDate;
 
+	  @Expose
     @Column(name = "Start_date_qualifier")
     private String startDateQualifier;
 
+	  @Expose
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "M-")
     @Column(name = "End_date")
     private Date endDate;
 
+	  @Expose
     @Column(name = "End_date_qualifier")
     private String endDateQualifier;
-
     @OneToMany(mappedBy = "agencyId")
     private List<AgencyLinkFunction> functions;
 

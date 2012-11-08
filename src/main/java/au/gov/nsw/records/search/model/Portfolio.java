@@ -19,51 +19,62 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
+import com.google.gson.annotations.Expose;
+
 import au.gov.nsw.records.search.service.DateHelper;
 
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord(versionField = "")
 @Table(name="portfolios_view")
-public class Portfolio {
+public class Portfolio extends JsonModel{
 	
-	@Id
+	@Expose
+  @Id
 	@Column(name="Portfolio_number")
 	private int portfolioNumber;
 	
-	@Column(name="Portfolio_title")
+	@Expose
+  @Column(name="Portfolio_title")
 	private String title;
 	
-	@Column(name="Descriptive_note")
+	@Expose
+  @Column(name="Descriptive_note")
 	private String descriptiveNote;
 
+	@Expose
   @Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style = "M-")
 	@Column(name = "Last_amendment_date")
 	private Date lastAmendmentDate;
   
-	@Temporal(TemporalType.TIMESTAMP)
+	@Expose
+  @Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style = "M-")
 	@Column(name = "Registered_Date")
 	private Date registeredDate;
 	
-	@Temporal(TemporalType.TIMESTAMP)
+	@Expose
+  @Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style = "M-")
 	@Column(name = "Start_date")
 	private Date startDate;
 
-	@Column(name = "Start_date_qualifier")
+	@Expose
+  @Column(name = "Start_date_qualifier")
 	private String startDateQualifier;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	@Expose
+  @Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style = "M-")
 	@Column(name = "End_date")
 	private Date endDate;
 
-	@Column(name = "End_date_qualifier")
+	@Expose
+  @Column(name = "End_date_qualifier")
 	private String endDateQualifier;
 	
-	@OneToMany(mappedBy="portfolioId")
+  @OneToMany(mappedBy="portfolioId")
 	private List<PortfolioLinkMinistry> ministries;
 	
 	@OneToMany(mappedBy="portfolioId")

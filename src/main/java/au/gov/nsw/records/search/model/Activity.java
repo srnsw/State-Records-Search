@@ -20,43 +20,52 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
+import com.google.gson.annotations.Expose;
+
 import au.gov.nsw.records.search.service.DateHelper;
 
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord(versionField = "")
 @Table(name = "activities_view")
-public class Activity {
+public class Activity extends JsonModel{
 
+	@Expose
 	@Id
 	@Column(name = "Activity_number")
 	private int activityNumber;
 
+	@Expose
 	@Column(name = "Activity_title")
 	private String title;
 
+	@Expose
 	@Column(name = "Descriptive_note")
 	private String descriptiveNote;
 
+	@Expose
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style = "M-")
 	@Column(name = "Last_amendment_date")
 	private Date lastAmendmentDate;
 	
-	
+	@Expose
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style = "M-")
 	@Column(name = "Start_date")
 	private Date startDate;
 
+	@Expose
 	@Column(name = "Start_date_qualifier")
 	private String startDateQualifier;
 
+	@Expose
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style = "M-")
 	@Column(name = "End_date")
 	private Date endDate;
 
+	@Expose
 	@Column(name = "End_date_qualifier")
 	private String endDateQualifier;
 
