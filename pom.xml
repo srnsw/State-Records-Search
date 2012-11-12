@@ -4,7 +4,7 @@
     <groupId>au.gov.nsw.records.search</groupId>
     <artifactId>Search</artifactId>
     <packaging>war</packaging>
-    <version>0.2.0.BUILD-SNAPSHOT</version>
+    <version>1.0.0.BETA</version>
     <name>Search</name>
     <properties>
         <aspectj.version>1.6.12</aspectj.version>

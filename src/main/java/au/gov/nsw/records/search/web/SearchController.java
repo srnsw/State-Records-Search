@@ -124,7 +124,7 @@ public class SearchController {
     		@RequestParam(value = "series", required = false) String series,
     		@RequestParam(value = "from", required = false) String from,
     		@RequestParam(value = "to", required = false) String to,
-    		@RequestParam("q") String queryText,
+    		@RequestParam(value = "q", defaultValue="") String queryText,
     		Model model, HttpServletRequest request) {
   		
   		if (page==null){
