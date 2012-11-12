@@ -182,7 +182,7 @@ public class LuceneService {
 		}
 		
 		if (params.getFrom()!=null && params.getTo()!=null){
-			facetCondition += String.format(" AND (startyear:[%s TO 9999] OR endyear:[0000 TO %s])", params.getFrom(), params.getTo());
+			facetCondition += String.format(" AND (endyear:[%s TO 9999] AND startyear:[0000 TO %s])", params.getFrom(), params.getTo());
 		}
 		
 		

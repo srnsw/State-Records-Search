@@ -4,11 +4,53 @@
   <jsp:directive.attribute name="facets" type="java.util.Collection" required="true" rtexprvalue="true" description="Facet results" />
   <jsp:directive.attribute name="baseURL" type="java.lang.String" required="true" rtexprvalue="true" description="base URL" />
   <jsp:directive.attribute name="location" type="java.lang.String" required="false" rtexprvalue="true" description="Selected location value" />
+  <jsp:directive.attribute name="from" type="java.lang.String" required="false" rtexprvalue="true" description="Selected from" />
+  <jsp:directive.attribute name="to" type="java.lang.String" required="false" rtexprvalue="true" description="Selected to" />
   <jsp:directive.attribute name="series" type="java.lang.String" required="false" rtexprvalue="true" description="Selected series value" />
   
- <!--  <div>
-  	<h4>Filter by date</h4>
-  </div> -->
+  <c:set value="${from}" var="localfrom" />
+  <c:set value="${to}" var="localto" />
+  <c:if test="${empty from}">
+  	<c:set value="1775" var="localfrom" />
+	</c:if>
+	<c:if test="${empty to}">
+  	<c:set value="2025" var="localto" />
+	</c:if>
+						
+  <div>
+  	<h4>Filter by year</h4>
+  	<script>
+    $(function() {
+        $( "#slider-range" ).slider({
+            range: true,
+            min: 1775,
+            max: 2025,
+            step: 25,
+            values: [ ${localfrom}, ${localto} ],
+            slide: function( event, ui ) {
+                $( "#daterange" ).text("from " + ui.values[ 0 ] + " to " + ui.values[ 1 ] );
+                delayURLNavigation('yearslider', ui.values);
+            }
+        });
+        $( "#daterange" ).text("from " + $( "#slider-range" ).slider( "values", 0 ) +
+            " to " + $( "#slider-range" ).slider( "values", 1 ) );
+    });
+    
+    var timers = {};
+    function delayURLNavigation(type, values) {
+      clearTimeout(timers[type]);
+      timers[type] = setTimeout(function() {
+    	  var baseQuery = document.URL.replace("&amp;from="+${localfrom},"").replace("&amp;to="+${localto},"");
+        window.location = baseQuery + '&amp;from=' + values[0] + '&amp;to=' + values[1]; 
+      }, 2000);
+    }
+    </script>
+    
+    <p id="daterange">
+		    
+		</p>
+		<div id="slider-range"></div>
+  </div>
   
   <c:forEach items="${facets}" var="category">
   		<div>
@@ -33,6 +75,14 @@
 							</c:when>
 							
 						</c:choose>
+						<c:if test="${(not empty from)}">
+							<!-- include the select parameter if not already present -->
+							<spring:param name="from" value="${from}" />
+						</c:if>
+						<c:if test="${(not empty to)}">
+							<!-- include the select parameter if not already present -->
+							<spring:param name="to" value="${to}" />
+						</c:if>
 				  </spring:url>
 				  
 	      	<p>
