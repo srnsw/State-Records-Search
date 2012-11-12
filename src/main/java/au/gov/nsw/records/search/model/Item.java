@@ -23,6 +23,7 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
+import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
 
 import au.gov.nsw.records.search.service.DateHelper;
@@ -33,7 +34,7 @@ import au.gov.nsw.records.search.service.QueryHelper;
 @RooToString
 @RooJpaActiveRecord(versionField = "")
 @Table(name = "items_view")
-public class Item extends JsonModel{
+public class Item{
 
 	  @Expose
 	  @Id
@@ -151,4 +152,8 @@ public class Item extends JsonModel{
        }
        return q.getSingleResult();
    }
+  	
+  	 public String getJsonString(){
+    	 return new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(this); 
+     }
 }

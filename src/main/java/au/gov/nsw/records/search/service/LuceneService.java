@@ -187,7 +187,7 @@ public class LuceneService {
 		
 		
 		try {
-			String queryText = params.getQuery() + String.format(" AND (%s)", classQuery) + facetCondition; 
+			String queryText = params.getQuery() + String.format(" %s (%s)", params.getQuery().isEmpty()?"":"AND", classQuery) + facetCondition; 
 			log.info("Query:" + queryText);
 			//general query
 			Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_31);

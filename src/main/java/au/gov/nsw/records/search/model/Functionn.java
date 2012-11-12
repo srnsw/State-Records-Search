@@ -21,6 +21,7 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
+import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
 
 import au.gov.nsw.records.search.service.DateHelper;
@@ -29,7 +30,7 @@ import au.gov.nsw.records.search.service.DateHelper;
 @RooToString
 @RooJpaActiveRecord(versionField = "")
 @Table(name = "functions_view")
-public class Functionn extends JsonModel{
+public class Functionn{
 	//Use Functionn to avoid the reserved word "Function"
 
   @Expose
@@ -123,4 +124,8 @@ public class Functionn extends JsonModel{
   	}
   	return functionsIndex;
   }
+	
+	 public String getJsonString(){
+  	 return new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(this); 
+   }
 }

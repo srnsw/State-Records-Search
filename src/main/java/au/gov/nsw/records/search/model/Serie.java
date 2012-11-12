@@ -28,6 +28,7 @@ import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.tostring.RooToString;
 
+import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
 
 import au.gov.nsw.records.search.service.DateHelper;
@@ -39,7 +40,7 @@ import au.gov.nsw.records.search.service.QueryHelper;
 @RooJpaActiveRecord(versionField = "")
 @Table(name = "series_view")
 @RooJson
-public class Serie extends JsonModel{
+public class Serie{
 
 	@Expose
   @Id
@@ -241,4 +242,8 @@ public class Serie extends JsonModel{
 	public String toString() {
         return ReflectionToStringBuilder.toString(this.getTitle(), ToStringStyle.SHORT_PREFIX_STYLE);
     }
+	
+	 public String getJsonString(){
+  	 return new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(this); 
+   }
 }

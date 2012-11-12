@@ -23,13 +23,14 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
+import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
 
 @RooJavaBean
 @RooToString
 @Table(name = "agencies_view")
 @RooJpaActiveRecord(versionField = "", finders = { "findAgencysByStartDateLessThan" })
-public class Agency extends JsonModel{
+public class Agency{
 	  @Expose
     @Id
     @Column(name = "Agency_number")
@@ -160,5 +161,9 @@ public class Agency extends JsonModel{
         	q.setParameter("until", until);
         }
         return q.getSingleResult();
+    }
+    
+    public String getJsonString(){
+   	 return new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(this); 
     }
 }
