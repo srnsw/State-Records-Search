@@ -188,12 +188,12 @@ public class LuceneService {
 		
 		try {
 			String queryText = params.getQuery() + String.format(" %s (%s)", params.getQuery().isEmpty()?"":"AND", classQuery) + facetCondition; 
-			log.info("Query:" + queryText);
+		
 			//general query
 			Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_31);
 			MultiFieldQueryParser queryParser = new MultiFieldQueryParser(Version.LUCENE_31, new String[] {"title", "content"},analyzer);
 			Query baseQuery = queryParser.parse(queryText);
-			
+			log.info("Query:" + baseQuery.toString());
 			Query hilightQuery = queryParser.parse(params.getQuery().isEmpty()?"\"\"":params.getQuery());
 			return search(baseQuery, hilightQuery, params.getFacetParams(), params.getPage(), params.getSize());
 		} catch (ParseException e) {
