@@ -193,8 +193,10 @@ public class SearchController {
       model.addAttribute("activitiesfunctions", activitiesFunctions.getResults());
       model.addAttribute("activitiesfunctions_count", Math.ceil(activitiesFunctions.getResultCount()/Double.valueOf(fsize)));
       
+      
       model.addAttribute("seriesitems", seriesItems.getResults());
       model.addAttribute("seriesitems_count", Math.ceil(seriesItems.getResultCount()/Double.valueOf(pageSize)));
+      model.addAttribute("seriesitems_total", seriesItems.getResultCount());
       
       model.addAttribute("agenciespeoples", agenciesPeople.getResults());
       model.addAttribute("agenciespeoples_count", Math.ceil(agenciesPeople.getResultCount()/Double.valueOf(asize)));

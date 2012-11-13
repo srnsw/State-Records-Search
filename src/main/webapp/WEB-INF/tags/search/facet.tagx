@@ -28,12 +28,12 @@
             step: 25,
             values: [ ${localfrom}, ${localto} ],
             slide: function( event, ui ) {
-                $( "#daterange" ).text("from " + ui.values[ 0 ] + " to " + ui.values[ 1 ] );
+                $( "#daterange" ).text(ui.values[ 0 ] + " to " + ui.values[ 1 ] + " (loading..)"  );
                 delayURLNavigation('yearslider', ui.values);
             }
         });
-        $( "#daterange" ).text("from " + $( "#slider-range" ).slider( "values", 0 ) +
-            " to " + $( "#slider-range" ).slider( "values", 1 ) );
+        $( "#daterange" ).text($( "#slider-range" ).slider( "values", 0 ) +
+            " to " + $( "#slider-range" ).slider( "values", 1 ) + " (" + ${seriesitems_total} + ")" );
     });
     
     var timers = {};
@@ -41,7 +41,11 @@
       clearTimeout(timers[type]);
       timers[type] = setTimeout(function() {
     	  var baseQuery = document.URL.replace("&amp;from="+${localfrom},"").replace("&amp;to="+${localto},"");
-        window.location = baseQuery + '&amp;from=' + values[0] + '&amp;to=' + values[1]; 
+    	  if (baseQuery.indexOf("q=")!=-1){
+    		  window.location = baseQuery + '&amp;from=' + values[0] + '&amp;to=' + values[1];
+    	  }else{
+    		  window.location = baseQuery + '?q=&amp;from=' + values[0] + '&amp;to=' + values[1];  
+    	  }
       }, 2000);
     }
     </script>

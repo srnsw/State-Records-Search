@@ -108,7 +108,7 @@ public class LuceneService {
 		}
 	}
 	
-	private SearchResult search(Query query, FacetSearchParams facets, Integer page, Integer size){
+	private SearchResult search(Query query, Query hilightQuery, FacetSearchParams facets, Integer page, Integer size){
 		List<SearchResultItem> searchResults = new ArrayList<SearchResultItem>(); 
 		List<FacetResultItem> facetResults = new ArrayList<FacetResultItem>();
 		int numTotalHits = 0;
@@ -135,7 +135,7 @@ public class LuceneService {
 			for (ScoreDoc hit:docs.scoreDocs){
 				Document doc = searcher.doc(hit.doc);
 				Formatter formatter = new SimpleHTMLFormatter("<b>","</b>");
-				Scorer fragmentScorer = new QueryScorer(query);
+				Scorer fragmentScorer = new QueryScorer(hilightQuery);
 				Highlighter highlighter = new Highlighter(formatter, fragmentScorer);
 				Fragmenter fragmenter = new SimpleFragmenter(150);
 				highlighter.setTextFragmenter(fragmenter);
@@ -194,7 +194,8 @@ public class LuceneService {
 			MultiFieldQueryParser queryParser = new MultiFieldQueryParser(Version.LUCENE_31, new String[] {"title", "content"},analyzer);
 			Query baseQuery = queryParser.parse(queryText);
 			
-			return search(baseQuery, params.getFacetParams(), params.getPage(), params.getSize());
+			Query hilightQuery = queryParser.parse(params.getQuery().isEmpty()?"\"\"":params.getQuery());
+			return search(baseQuery, hilightQuery, params.getFacetParams(), params.getPage(), params.getSize());
 		} catch (ParseException e) {
 			e.printStackTrace();
 		} catch (Exception e){
