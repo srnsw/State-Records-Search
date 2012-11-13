@@ -15,7 +15,7 @@
 		<div class="collection_search">
 			<spring:url value="/search" var="form_url" />
 			<form accept-charset="UTF-8" action="${form_url}" method="get">
-				<input id="q" name="q" value="${q}" type="text"> </input> <input
+				<input id="q" name="q" value="${q}" type="text"> </input><c:out value=" "></c:out><input
 					class="collection_search" type="submit" value="Collection search">
 				</input>
 			</form>
