@@ -28,12 +28,20 @@
             step: 25,
             values: [ ${localfrom}, ${localto} ],
             slide: function( event, ui ) {
+            	if (ui.values[1]=="2025"){
+            		$( "#daterange" ).text(ui.values[ 0 ] + "+ " + " (loading..)"  );
+            	}else{
                 $( "#daterange" ).text(ui.values[ 0 ] + " to " + ui.values[ 1 ] + " (loading..)"  );
-                delayURLNavigation('yearslider', ui.values);
+            	}
+            	 delayURLNavigation('yearslider', ui.values);
             }
         });
-        $( "#daterange" ).text($( "#slider-range" ).slider( "values", 0 ) +
-            " to " + $( "#slider-range" ).slider( "values", 1 ) + " (" + ${seriesitems_total} + ")" );
+        if($( "#slider-range" ).slider( "values", 1 )=="2025"){
+        	$( "#daterange" ).text($( "#slider-range" ).slider( "values", 0 ) + "+ " + " (" + ${seriesitems_total} + ")" );
+        }else{
+        	$( "#daterange" ).text($( "#slider-range" ).slider( "values", 0 ) + " to " + $( "#slider-range" ).slider( "values", 1 ) + " (" + ${seriesitems_total} + ")" );	
+        }
+        
     });
     
     var timers = {};
