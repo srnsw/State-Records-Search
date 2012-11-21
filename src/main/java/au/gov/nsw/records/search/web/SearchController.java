@@ -1,6 +1,7 @@
 package au.gov.nsw.records.search.web;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -14,6 +15,7 @@ import org.apache.lucene.facet.search.params.CountFacetRequest;
 import org.apache.lucene.facet.search.params.FacetSearchParams;
 import org.apache.lucene.facet.taxonomy.CategoryPath;
 import org.apache.lucene.index.CorruptIndexException;
+import org.hibernate.property.Dom4jAccessor.TextSetter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import au.gov.nsw.records.search.bean.FacetResultItem;
 import au.gov.nsw.records.search.bean.SearchResult;
+import au.gov.nsw.records.search.bean.SearchResultItem;
 import au.gov.nsw.records.search.model.Activity;
 import au.gov.nsw.records.search.model.Agency;
 import au.gov.nsw.records.search.model.Functionn;
@@ -32,6 +35,7 @@ import au.gov.nsw.records.search.model.Portfolio;
 import au.gov.nsw.records.search.model.Serie;
 import au.gov.nsw.records.search.service.LuceneSearchParams;
 import au.gov.nsw.records.search.service.LuceneService;
+import au.gov.nsw.records.search.service.StringService;
 
 @RequestMapping("/search/**")
 @Controller
@@ -172,8 +176,25 @@ public class SearchController {
       	model.addAttribute("next_url", request.getRequestURL() + "?q=" + queryText + "&page=" + (page+1) + "&size=" + pageSize);
       }
       
+      List<SearchResultItem> hotLinks = new ArrayList<SearchResultItem>();
+      if (StringService.isNumeric(queryText)){
+  			Agency ag = Agency.findAgency(Integer.parseInt(queryText));
+  			if (ag!=null){
+  				hotLinks.add(new SearchResultItem("agencies", ag.getTitle(), "", String.valueOf(ag.getId()), "/agencies/"+ag.getId(), true));
+  			}
+  			Serie sr = Serie.findSerie(Integer.parseInt(queryText));
+  			if (sr!=null){
+  				hotLinks.add(new SearchResultItem("series", ag.getTitle(), "", String.valueOf(sr.getId()), "/series/"+sr.getId(), true));
+  			}
+  			Item it = Item.findItem(Integer.parseInt(queryText));
+  			if (it!=null){
+  				hotLinks.add(new SearchResultItem("items", it.getTitle(), "", String.valueOf(it.getId()), "/items/"+it.getId(), true));
+  			}
+  		}
+      
       model.addAttribute("count", seriesItems.getResultCount());
       
+      model.addAttribute("hotlinks", hotLinks);
       model.addAttribute("q", queryText);
       
       model.addAttribute("page", page);

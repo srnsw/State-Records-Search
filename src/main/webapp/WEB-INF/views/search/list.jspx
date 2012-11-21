@@ -20,7 +20,18 @@
 				</input>
 			</form>
 		</div>
-
+		
+		
+		<c:if test="${not empty hotlinks}">
+			<table>
+				<td class="searchlist">
+				  <div class="what">
+				  	<h4>Direct links</h4>
+	    			<search:list results="${hotlinks}"></search:list>
+	    		</div>
+	    	</td>
+	    </table>
+    </c:if>
 		<table>
 		<td class="searchlist" width="20%">
 			  <search:facet facets="${facets}" location="${location}" series="${series}" baseURL="/search"></search:facet>
