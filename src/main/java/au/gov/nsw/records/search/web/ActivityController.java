@@ -63,7 +63,7 @@ public class ActivityController {
 
 		Activity ac = Activity.findActivity(activityNumber);
 		if (ac!=null){
-			ControllerUtils.populateRelationshipModel(ac.getFunctions(), "series", page, size, uiModel, Serie.class);
+			ControllerUtils.populateRelationshipModel(ac.getSeries(), "series", page, size, uiModel, Serie.class);
 			addDateTimeFormatPatterns(uiModel);
 		}
 		uiModel.addAttribute("view", "series/list");

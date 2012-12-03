@@ -19,6 +19,30 @@ privileged aspect Activity_Roo_JavaBean {
         this.activityNumber = activityNumber;
     }
     
+    public String Activity.getAbolition() {
+        return this.abolition;
+    }
+    
+    public void Activity.setAbolition(String abolition) {
+        this.abolition = abolition;
+    }
+    
+    public String Activity.getCreation() {
+        return this.creation;
+    }
+    
+    public void Activity.setCreation(String creation) {
+        this.creation = creation;
+    }
+    
+    public String Activity.getAmendments() {
+        return this.amendments;
+    }
+    
+    public void Activity.setAmendments(String amendments) {
+        this.amendments = amendments;
+    }
+    
     public String Activity.getTitle() {
         return this.title;
     }

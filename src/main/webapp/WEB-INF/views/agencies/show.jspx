@@ -7,6 +7,7 @@
             <div class="entity_data">
                 <page:show create="false" delete="false" id="ps_au_gov_nsw_records_search_model_Agency" list="false" object="${agency}" path="/agencies" update="false" z="user-managed">
                     <field:display field="title" heading="true" id="s_au_gov_nsw_records_search_model_Agency_title" object="${agency}" z="user-managed"/>
+                    <field:display field="dateRange" id="s_au_gov_nsw_records_search_model_Agency_dateRange" object="${agency}" z="zkh9OGyYO45sxK0/BZM6fQCKHo4="/>
                     <field:display field="category" id="s_au_gov_nsw_records_search_model_Agency_category" object="${agency}" z="zkh9OGyYO45sxK0/BZM6fQCKHo4="/>
                     <field:display field="creation" id="s_au_gov_nsw_records_search_model_Agency_creation" object="${agency}" z="TZPjSUM23M1+FYvn01fOZZ35H6Y="/>
                     <field:display field="abolition" id="s_au_gov_nsw_records_search_model_Agency_abolition" object="${agency}" z="iDQuETMSj2dKeZdCbHDs50bAN/8="/>
@@ -15,7 +16,7 @@
                     <field:display field="startDateQualifier" id="s_au_gov_nsw_records_search_model_Agency_startDateQualifier" object="${agency}" render="false" z="user-managed"/>
                     <field:display date="true" dateTimePattern="${agency_enddate_date_format}" field="endDate" id="s_au_gov_nsw_records_search_model_Agency_endDate" object="${agency}" render="false" z="user-managed"/>
                     <field:display field="endDateQualifier" id="s_au_gov_nsw_records_search_model_Agency_endDateQualifier" object="${agency}" render="false" z="user-managed"/>
-                    <field:display date="true" dateTimePattern="${agency_lastamendmentdate_date_format}" field="lastAmendmentDate" id="s_au_gov_nsw_records_search_model_Agency_lastAmendmentDate" object="${agency}" z="F81mpSMooPbnH2R/8Xr8YCtqlTY="/>
+                    <field:display date="true" dateTimePattern="${agency_lastamendmentdate_date_format}" field="lastAmendmentDate" id="s_au_gov_nsw_records_search_model_Agency_lastAmendmentDate" object="${agency}" render="false" z="user-managed"/>
                 </page:show>
             </div>
         </td>

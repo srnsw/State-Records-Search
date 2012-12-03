@@ -1,9 +1,13 @@
 <agency xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:spring="http://www.springframework.org/tags" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="1.0">
     		  <id>${agency.id}</id>
     			<title>${fn:escapeXml(agency.title)}</title>
-    			<administrativeHistoryNote>${fn:escapeXml(item.administrativeHistoryNote)}</administrativeHistoryNote>
-    			<endDate>${agency.startDate}</endDate>
+    			<administrativeHistoryNote>${fn:escapeXml(agency.administrativeHistoryNote)}</administrativeHistoryNote>
+    			<abolition>${agency.abolition}</abolition>
+    			<category>${agency.category}</category>
+    			<creation>${agency.creation}</creation>
+    			<endDate>${agency.endDate}</endDate>
     			<endDateQualifier>${agency.endDateQualifier}</endDateQualifier>
     			<startDate>${agency.startDate}</startDate>
     			<startDateQualifier>${agency.startDateQualifier}</startDateQualifier>
+    			<lastAmendmentDate>${agency.lastAmendmentDate}</lastAmendmentDate>
 </agency>

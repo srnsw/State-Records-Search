@@ -20,10 +20,10 @@
         <table:table data="${activitys}" delete="false" id="l_au_gov_nsw_records_search_model_Activity" path="/activities" typeIdFieldName="activityNumber" update="false" z="4W4V/B+Uw0LTGPafmwl9B1LY6j8=">
             <table:column id="c_au_gov_nsw_records_search_model_Activity_title" property="title" z="P8GM1AyFs58AcTMUwfwP4XpKdm8="/>
             <table:column id="c_au_gov_nsw_records_search_model_Activity_descriptiveNote" property="descriptiveNote" z="HheHWxAs3RSUc19iMqowweKhd3I="/>
-            <table:column date="true" dateTimePattern="${activity_startdate_date_format}" id="c_au_gov_nsw_records_search_model_Activity_startDate" property="startDate" z="fR8Phw4r6HF3BGpC9zf21h2hXiQ="/>
-            <table:column id="c_au_gov_nsw_records_search_model_Activity_startDateQualifier" property="startDateQualifier" z="1R2KWYDYIKiNJ6cvtqui4ZZvIzY="/>
-            <table:column date="true" dateTimePattern="${activity_enddate_date_format}" id="c_au_gov_nsw_records_search_model_Activity_endDate" property="endDate" z="Sapm6DOI260Z9nNlc3Fl6N6UQRs="/>
             <table:column date="true" dateTimePattern="${activity_lastamendmentdate_date_format}" id="c_au_gov_nsw_records_search_model_Activity_lastAmendmentDate" property="lastAmendmentDate" z="I/DH0hiFLUWKh1tNIzEYhLDONrA="/>
+            <table:column id="c_au_gov_nsw_records_search_model_Activity_abolition" property="abolition" z="g4TfSB/zTQAJGQWIYNUe8NVmO44="/>
+            <table:column id="c_au_gov_nsw_records_search_model_Activity_creation" property="creation" z="FAxsQCmquItd4CVb6aq7KKsIgTc="/>
+            <table:column id="c_au_gov_nsw_records_search_model_Activity_amendments" property="amendments" z="/oNSC/0Zbk9V+au1pCgo84hSYwc="/>
         </table:table>
     </page:list>
 </div>

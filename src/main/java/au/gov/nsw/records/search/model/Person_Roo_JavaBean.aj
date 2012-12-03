@@ -30,6 +30,14 @@ privileged aspect Person_Roo_JavaBean {
         this.surname = surname;
     }
     
+    public String Person.getAlternativeName() {
+        return this.alternativeName;
+    }
+    
+    public void Person.setAlternativeName(String alternativeName) {
+        this.alternativeName = alternativeName;
+    }
+    
     public String Person.getGivenName() {
         return this.givenName;
     }

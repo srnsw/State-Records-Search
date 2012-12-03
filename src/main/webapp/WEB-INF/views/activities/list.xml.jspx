@@ -11,7 +11,7 @@
     		  <id>${item.activityNumber}</id>
     			<title>${fn:escapeXml(item.title)}</title>
     			<descriptiveNote>${fn:escapeXml(item.descriptiveNote)}</descriptiveNote>
-    			<endDate>${item.startDate}</endDate>
+    			<endDate>${item.endDate}</endDate>
     			<endDateQualifier>${item.endDateQualifier}</endDateQualifier>
     			<startDate>${item.startDate}</startDate>
     			<startDateQualifier>${item.startDateQualifier}</startDateQualifier>

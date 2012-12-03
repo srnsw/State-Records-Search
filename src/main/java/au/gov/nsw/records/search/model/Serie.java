@@ -80,6 +80,13 @@ public class Serie{
 	private String repository;
 
 	@Expose
+  @Column(name="Bridging_aids")
+	private String bridgingAids;
+	
+//	@OneToMany(mappedBy="seriesNumber")
+//	private List<Item> items; 
+	
+	@Expose
   @Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style = "M-")
 	@Column(name = "Last_amendment_date")

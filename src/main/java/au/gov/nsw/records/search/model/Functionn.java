@@ -37,7 +37,7 @@ public class Functionn{
 	@Id
 	@Column(name = "Function_number")
   private int functionNumber;
-  
+ 
   @Expose
 	@Column(name = "Function_title")
   private String title;
@@ -45,6 +45,10 @@ public class Functionn{
   @Expose
 	@Column(name = "Abolition")
   private String abolition;
+  
+  @Expose
+	@Column(name = "Creation")
+  private String creation;
   
   @Expose
 	@Column(name = "Descriptive_note")

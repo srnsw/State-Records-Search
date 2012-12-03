@@ -7,6 +7,7 @@
             <div class="entity_data">
                 <page:show create="false" delete="false" id="ps_au_gov_nsw_records_search_model_Portfolio" list="false" object="${portfolio}" path="/portfolios" update="false" z="user-managed">
                     <field:display field="title" heading="true" id="s_au_gov_nsw_records_search_model_Portfolio_title" object="${portfolio}" z="user-managed"/>
+                    <field:display field="dateRange" id="s_au_gov_nsw_records_search_model_Portfolio_dateRange" object="${portfolio}" z="l3jVp8oicuqvREeil1tBAapSbRU="/>
                     <field:display field="descriptiveNote" id="s_au_gov_nsw_records_search_model_Portfolio_descriptiveNote" object="${portfolio}" z="l3jVp8oicuqvREeil1tBAapSbRU="/>
                     <field:display date="true" dateTimePattern="${portfolio_registereddate_date_format}" field="registeredDate" id="s_au_gov_nsw_records_search_model_Portfolio_registeredDate" object="${portfolio}" render="false" z="user-managed"/>
                     <field:display date="true" dateTimePattern="${portfolio_startdate_date_format}" field="startDate" id="s_au_gov_nsw_records_search_model_Portfolio_startDate" object="${portfolio}" render="false" z="user-managed"/>

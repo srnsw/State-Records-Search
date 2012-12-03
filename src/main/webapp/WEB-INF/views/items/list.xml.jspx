@@ -13,7 +13,7 @@
     			<descriptiveNote>${fn:escapeXml(item.descriptiveNote)}</descriptiveNote>
     			<accessDirectionNumber>${item.accessDirectionNumber}</accessDirectionNumber>
     			<availability>${item.availability}</availability>
-    			<endDate>${item.startDate}</endDate>
+    			<endDate>${item.endDate}</endDate>
     			<startDate>${item.startDate}</startDate>
     		</item>
     	</c:forEach>

@@ -7,6 +7,7 @@
             <div class="entity_data">
                 <page:show create="false" delete="false" id="ps_au_gov_nsw_records_search_model_Activity" list="false" object="${activity}" path="/activities" update="false" z="user-managed">
                     <field:display field="title" heading="true" id="s_au_gov_nsw_records_search_model_Activity_title" object="${activity}" z="user-managed"/>
+                    <field:display field="dateRange" id="s_au_gov_nsw_records_search_model_Activity_dateRange" object="${activity}" z="Sj7+As/rDzcwXJFe8HCL0CUsYbU="/>
                     <field:display field="descriptiveNote" id="s_au_gov_nsw_records_search_model_Activity_descriptiveNote" object="${activity}" z="Sj7+As/rDzcwXJFe8HCL0CUsYbU="/>
                     <field:display date="true" dateTimePattern="${activity_startdate_date_format}" field="startDate" id="s_au_gov_nsw_records_search_model_Activity_startDate" object="${activity}" render="false" z="user-managed"/>
                     <field:display field="startDateQualifier" id="s_au_gov_nsw_records_search_model_Activity_startDateQualifier" object="${activity}" render="false" z="user-managed"/>
@@ -14,6 +15,9 @@
                     <field:display field="endDateQualifier" id="s_au_gov_nsw_records_search_model_Activity_endDateQualifier" object="${activity}" render="false" z="user-managed"/>
                     <field:display field="series" id="s_au_gov_nsw_records_search_model_Activity_series" object="${activity}" render="false" z="gGo0dZA9KdzWrYdGuq33mLotL9s="/>
                     <field:display field="lastAmendmentDate" id="s_au_gov_nsw_records_search_model_Activity_lastAmendmentDate" object="${activity}" render="false" z="user-managed"/>
+                    <field:display field="abolition" id="s_au_gov_nsw_records_search_model_Activity_abolition" object="${activity}" z="sa4q3Y+kOyt2bOXt7TAqZxFZab4="/>
+                    <field:display field="creation" id="s_au_gov_nsw_records_search_model_Activity_creation" object="${activity}" z="E42HCU8x93fZrZMR1SVOMayIYm0="/>
+                    <field:display field="amendments" id="s_au_gov_nsw_records_search_model_Activity_amendments" object="${activity}" z="bvGiHEmL30OOabUrbVJj5Ak3DGc="/>
                 </page:show>
             </div>
         </td>

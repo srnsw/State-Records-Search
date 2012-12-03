@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.EntityManager;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -42,10 +43,14 @@ public class Item{
     private int id;
 
 	  @Expose
+	  @Column(name = "Imagescount")
+	  private int imagesCount;
+	  
+	  @Expose
 	  @Column(name = "Seriestype")
     private String seriesType;
 
-	  @ManyToOne
+	  @ManyToOne(fetch = FetchType.LAZY)
     private Serie seriesNumber;
 
 	  @Expose

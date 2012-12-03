@@ -7,7 +7,8 @@
             <div class="entity_data">
                 <page:show create="false" delete="false" id="ps_au_gov_nsw_records_search_model_Ministry" list="false" object="${ministry}" path="/ministries" update="false" z="user-managed">
                     <field:display field="title" heading="true" id="s_au_gov_nsw_records_search_model_Ministry_title" object="${ministry}" z="user-managed"/>
-                    <field:display date="true" dateTimePattern="${ministry_registereddate_date_format}" field="registeredDate" id="s_au_gov_nsw_records_search_model_Ministry_registeredDate" object="${ministry}" z="4ArsAUv+FlzkZJ1qrRaauJUPZuk="/>
+                    <field:display date="true" dateTimePattern="${ministry_registereddate_date_format}" field="registeredDate" id="s_au_gov_nsw_records_search_model_Ministry_registeredDate" object="${ministry}" render="false" z="user-managed"/>
+                    <field:display field="dateRange" id="s_au_gov_nsw_records_search_model_Ministry_dateRange" object="${ministry}" z="user-managed"/>
                     <field:display date="true" dateTimePattern="${ministry_startdate_date_format}" field="startDate" id="s_au_gov_nsw_records_search_model_Ministry_startDate" object="${ministry}" render="false" z="user-managed"/>
                     <field:display date="true" dateTimePattern="${ministry_enddate_date_format}" field="endDate" id="s_au_gov_nsw_records_search_model_Ministry_endDate" object="${ministry}" render="false" z="user-managed"/>
                     <field:display field="lastAmendmentDate" id="s_au_gov_nsw_records_search_model_Ministry_lastAmendmentDate" object="${ministry}" render="false" z="user-managed"/>

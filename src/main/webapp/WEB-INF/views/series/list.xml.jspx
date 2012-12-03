@@ -14,7 +14,7 @@
     			<arrangement>${item.arrangement}</arrangement>
     			<copies>${item.copies}</copies>
     			<repository>${item.repository}</repository>
-    			<endDate>${item.startDate}</endDate>
+    			<endDate>${item.endDate}</endDate>
     			<startDate>${item.startDate}</startDate>
     		</series>
     	</c:forEach>

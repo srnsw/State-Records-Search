@@ -11,7 +11,7 @@
     		  <id>${item.id}</id>
     			<title>${fn:escapeXml(item.title)}</title>
     			<registeredDate>${item.registeredDate}</registeredDate>
-    			<endDate>${item.startDate}</endDate>
+    			<endDate>${item.endDate}</endDate>
     			<startDate>${item.startDate}</startDate>
     		</ministry>
     	</c:forEach>

@@ -2,7 +2,9 @@ package au.gov.nsw.records.search.web;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.StringTokenizer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -15,7 +17,6 @@ import org.apache.lucene.facet.search.params.CountFacetRequest;
 import org.apache.lucene.facet.search.params.FacetSearchParams;
 import org.apache.lucene.facet.taxonomy.CategoryPath;
 import org.apache.lucene.index.CorruptIndexException;
-import org.hibernate.property.Dom4jAccessor.TextSetter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,6 +47,7 @@ public class SearchController {
 	  private static LuceneService lucene = new LuceneService();
 	  private static boolean isIndexing = false;
 	
+	  private static List<Class<?>> entitiesList = new ArrayList<Class<?>>(Arrays.asList(new Class<?>[]{Serie.class, Item.class, Activity.class, Functionn.class, Person.class, Agency.class}));
 	  @RequestMapping(method = RequestMethod.GET)
     public String index() {
         return "search/index";
@@ -124,10 +126,12 @@ public class SearchController {
     		@RequestParam(value = "fpage", required = false, defaultValue="1") Integer fpage,
     		@RequestParam(value = "apage", required = false, defaultValue="1") Integer apage,
     		@RequestParam(value = "size", required = false, defaultValue="30") Integer pageSize,
+    		@RequestParam(value = "count", required = false, defaultValue="30") Integer count,
     		@RequestParam(value = "location", required = false) String location,
     		@RequestParam(value = "series", required = false) String series,
     		@RequestParam(value = "from", required = false) String from,
     		@RequestParam(value = "to", required = false) String to,
+    		@RequestParam(value = "entities", required = false) String entities,
     		@RequestParam(value = "q", defaultValue="") String queryText,
     		Model model, HttpServletRequest request) {
   		
@@ -137,6 +141,12 @@ public class SearchController {
   		if (pageSize==null){
   			pageSize=30;
   		}
+  		if (count!=null && !count.equals(new Integer(30))){
+  			pageSize = count.intValue();
+  		}
+  		
+  		
+  
   		LuceneSearchParams params = new LuceneSearchParams();
   		FacetSearchParams facetParams = new FacetSearchParams();
   		
@@ -147,24 +157,73 @@ public class SearchController {
   		int asize = 15;
   		int fsize = 5;
   		
-  		SearchResult activitiesFunctions = lucene.search(params.setQuery(queryText).setFacetParams(facetParams).setPage(fpage).setSize(fsize).setClazz(Activity.class, Functionn.class));
-  		SearchResult agenciesPeople = lucene.search(params.setQuery(queryText).setFacetParams(facetParams).setPage(apage).setSize(asize).setClazz(Agency.class, Person.class));
-  		SearchResult seriesItems = lucene.search(params.setQuery(queryText).setSeries(series).setLocation(location).setFrom(from).setTo(to).setFacetParams(facetParams).setPage(page).setSize(pageSize).setClazz(Serie.class, Item.class));
-      
+  		if (entities!=null){
+  			List<Class<?>> searchClass = new ArrayList<Class<?>>();
+  			StringTokenizer st = new StringTokenizer(entities, ",");
+  			while (st.hasMoreTokens()){
+  				String entity = st.nextToken();
+  				if (entity.length()>4){
+  					entity = entity.substring(0, 4);
+  				}
+  				for(Class<?> cls: entitiesList){
+  					System.out.println("debug comparing:" + entity + ":"  + cls.getName());
+  					if (cls.getName().toLowerCase().contains(entity.toLowerCase())){
+  						System.out.println("Using entity:" + entity + ":"  + cls.getName());
+  						searchClass.add(cls);
+  						break;
+  					}
+  				}
+  			}
+  			if (searchClass.size()>0){
+  				Class<?>[] clazzParams = new Class<?>[searchClass.size()];
+    			searchClass.toArray(clazzParams);
+    			SearchResult customSearch = lucene.search(params.setQuery(queryText).setFacetParams(facetParams).setPage(fpage).setSize(pageSize).setClazz(clazzParams));
+    			
+    			model.addAttribute("customsearch", customSearch.getResults());
+    			model.addAttribute("customsearch_count", Math.ceil(customSearch.getResultCount()/Double.valueOf(pageSize)));
+  			}
+  			
+  		}
+  		else {
+  		// TODO else
+	  		SearchResult activitiesFunctions = lucene.search(params.setQuery(queryText).setFacetParams(facetParams).setPage(fpage).setSize(fsize).setClazz(Activity.class, Functionn.class));
+	  		SearchResult agenciesPeople = lucene.search(params.setQuery(queryText).setFacetParams(facetParams).setPage(apage).setSize(asize).setClazz(Agency.class, Person.class));
+	  		SearchResult seriesItems = lucene.search(params.setQuery(queryText).setSeries(series).setLocation(location).setFrom(from).setTo(to).setFacetParams(facetParams).setPage(page).setSize(pageSize).setClazz(Serie.class, Item.class));
+	  	  
+	  		List<FacetResultItem> facets = seriesItems.getFacets();
+	      for (FacetResultItem fri:facets){
+	      	if (fri.getLabel().equals("series")){
+	      		for (FacetResultItem subFri:fri.getItems()){
+	      			subFri.setLabel(Serie.findSerie(Integer.valueOf(subFri.getLabel())).getTitle());
+	      		}
+	      	}
+	      }
+	      
+	      model.addAttribute("activitiesfunctions", activitiesFunctions.getResults());
+	      model.addAttribute("activitiesfunctions_count", Math.ceil(activitiesFunctions.getResultCount()/Double.valueOf(fsize)));
+	      
+	      
+	      model.addAttribute("seriesitems", seriesItems.getResults());
+	      model.addAttribute("seriesitems_count", Math.ceil(seriesItems.getResultCount()/Double.valueOf(pageSize)));
+	      model.addAttribute("seriesitems_total", seriesItems.getResultCount());
+	      
+	      model.addAttribute("agenciespeoples", agenciesPeople.getResults());
+	      model.addAttribute("agenciespeoples_count", Math.ceil(agenciesPeople.getResultCount()/Double.valueOf(asize)));
+	      
+	      model.addAttribute("facets", facets);
+	      
+	      // also make it available in custom search
+	      model.addAttribute("count", seriesItems.getResultCount());
+	      
+	      if (page < Math.ceil(seriesItems.getResultCount()/Double.valueOf(pageSize))){
+	      	model.addAttribute("next_url", request.getRequestURL() + "?q=" + queryText + "&page=" + (page+1) + "&size=" + pageSize);
+	      }
+  		}
   		String nonPageParams = "&q=" + queryText;
       if (location!=null){ nonPageParams += "&location=" + location; }
       if (series!=null){ nonPageParams += "&series=" + series; }
       if (from!=null){ nonPageParams += "&from=" + from; }
       if (to!=null){ nonPageParams += "&to=" + to; }
-      
-      List<FacetResultItem> facets = seriesItems.getFacets();
-      for (FacetResultItem fri:facets){
-      	if (fri.getLabel().equals("series")){
-      		for (FacetResultItem subFri:fri.getItems()){
-      			subFri.setLabel(Serie.findSerie(Integer.valueOf(subFri.getLabel())).getTitle());
-      		}
-      	}
-      }
   	
       model.addAttribute("self_url", request.getRequestURL() + "?q=" + queryText);
       
@@ -172,9 +231,6 @@ public class SearchController {
       	model.addAttribute("prev_url", request.getRequestURL() + "?q=" + queryText + "&page=" + (page-1) + "&size=" + pageSize);
       }
       
-      if (page < Math.ceil(seriesItems.getResultCount()/Double.valueOf(pageSize))){
-      	model.addAttribute("next_url", request.getRequestURL() + "?q=" + queryText + "&page=" + (page+1) + "&size=" + pageSize);
-      }
       
       List<SearchResultItem> hotLinks = new ArrayList<SearchResultItem>();
       if (StringService.isNumeric(queryText)){
@@ -192,7 +248,6 @@ public class SearchController {
   			}
   		}
       
-      model.addAttribute("count", seriesItems.getResultCount());
       
       model.addAttribute("hotlinks", hotLinks);
       model.addAttribute("q", queryText);
@@ -204,6 +259,8 @@ public class SearchController {
       model.addAttribute("asize", asize);
       model.addAttribute("fsize", fsize);
       
+      model.addAttribute("entities", entities);
+      
       model.addAttribute("location", location);
       model.addAttribute("series", series);
       model.addAttribute("from", from);
@@ -211,18 +268,6 @@ public class SearchController {
     
       model.addAttribute("nonPageParams", nonPageParams);
       
-      model.addAttribute("activitiesfunctions", activitiesFunctions.getResults());
-      model.addAttribute("activitiesfunctions_count", Math.ceil(activitiesFunctions.getResultCount()/Double.valueOf(fsize)));
-      
-      
-      model.addAttribute("seriesitems", seriesItems.getResults());
-      model.addAttribute("seriesitems_count", Math.ceil(seriesItems.getResultCount()/Double.valueOf(pageSize)));
-      model.addAttribute("seriesitems_total", seriesItems.getResultCount());
-      
-      model.addAttribute("agenciespeoples", agenciesPeople.getResults());
-      model.addAttribute("agenciespeoples_count", Math.ceil(agenciesPeople.getResultCount()/Double.valueOf(asize)));
-      
-      model.addAttribute("facets", facets);
       model.addAttribute("baseurl", request.getRequestURL() + String.format("?q=%s", queryText));
   		model.addAttribute("view", "search/list");
       return "search/list";

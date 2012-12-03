@@ -37,6 +37,18 @@ public class Activity{
 	private int activityNumber;
 
 	@Expose
+	@Column(name = "Abolition")
+	private String abolition;
+	
+	@Expose
+	@Column(name = "Creation")
+	private String creation;
+	
+	@Expose
+	@Column(name = "Amendments")
+	private String amendments;
+	
+	@Expose
 	@Column(name = "Activity_title")
 	private String title;
 

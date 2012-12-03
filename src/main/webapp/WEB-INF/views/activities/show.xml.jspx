@@ -3,8 +3,12 @@
     		  <id>${activity.activityNumber}</id>
     			<title>${fn:escapeXml(activity.title)}</title>
     			<descriptiveNote>${fn:escapeXml(activity.descriptiveNote)}</descriptiveNote>
-    			<endDate>${activity.startDate}</endDate>
+    			<endDate>${activity.endDate}</endDate>
     			<endDateQualifier>${activity.endDateQualifier}</endDateQualifier>
     			<startDate>${activity.startDate}</startDate>
     			<startDateQualifier>${activity.startDateQualifier}</startDateQualifier>
+    			<lastAmendmentDate>${activity.lastAmendmentDate}</lastAmendmentDate>
+    			<abolition>${activity.abolition}</abolition>
+    			<creation>${activity.creation}</creation>
+    			<amendments>${activity.amendments}</amendments>
 </activity>

@@ -12,7 +12,7 @@
     			<title>${fn:escapeXml(item.title)}</title>
     			<administrativeHistoryNote>${fn:escapeXml(item.administrativeHistoryNote)}</administrativeHistoryNote>
     			<endDate>${item.creation}</endDate>
-    			<endDate>${item.startDate}</endDate>
+    			<endDate>${item.endDate}</endDate>
     			<endDateQualifier>${item.endDateQualifier}</endDateQualifier>
     			<startDate>${item.startDate}</startDate>
     			<startDateQualifier>${item.startDateQualifier}</startDateQualifier>

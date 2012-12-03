@@ -4,16 +4,16 @@
     <jsp:output omit-xml-declaration="yes"/>
     <H1>Items</H1>
     <table>
-    <td class="entitylist">
-    <c:forEach items="${items}" var="item">
-        <spring:url value="/items/${item.id}" var="link_url"/>
-        <div class="collection_search_result">
-            <p>
-                <a href="${link_url}"> ${item.title} </a>
-            </p>
-        </div>
-    </c:forEach>
-    </td>
+        <td class="entitylist">
+            <c:forEach items="${items}" var="item">
+                <spring:url value="/items/${item.id}" var="link_url"/>
+                <div class="collection_search_result">
+                    <p>
+                        <a href="${link_url}"> ${item.title} </a>
+                    </p>
+                </div>
+            </c:forEach>
+        </td>
     </table>
     <util:pagination maxPages="${maxPages}" page="${page}" size="${size}"/>
     <page:list id="pl_au_gov_nsw_records_search_model_Item" items="${items}" render="false" z="user-managed">
@@ -23,7 +23,7 @@
             <table:column id="c_au_gov_nsw_records_search_model_Item_itemNumberOrControlSymbol" property="itemNumberOrControlSymbol" z="BHuJkq5Uf0KqOopxnEqsRo30Ibk="/>
             <table:column id="c_au_gov_nsw_records_search_model_Item_title" property="title" z="I+M5R0Hs1f5K0nWD0sklnEcVnzM="/>
             <table:column id="c_au_gov_nsw_records_search_model_Item_descriptiveNote" property="descriptiveNote" z="tSdxG8YYITtUKOusyiLHItsRPqw="/>
-            <table:column id="c_au_gov_nsw_records_search_model_Item_accessDirectionNumber" property="accessDirectionNumber" z="vTTZZJ7+nju+XMp3QaAGYHbNcnw="/>
+            <table:column id="c_au_gov_nsw_records_search_model_Item_imagesCount" property="imagesCount" z="WABBSKS3DnyKR0u3sO7EHDoAwy0="/>
         </table:table>
     </page:list>
 </div>

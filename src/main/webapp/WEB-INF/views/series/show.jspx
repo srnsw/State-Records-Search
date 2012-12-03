@@ -10,6 +10,7 @@
             <div class="entity_data">
                 <page:show create="false" delete="false" id="ps_au_gov_nsw_records_search_model_Serie" list="false" object="${serie}" path="/series" update="false" z="user-managed">
                     <field:display field="title" heading="true" id="s_au_gov_nsw_records_search_model_Serie_title" object="${serie}" z="user-managed"/>
+                    <field:display field="id" id="s_au_gov_nsw_records_search_model_Serie_id" object="${serie}" z="user-managed"/>
                     <field:display field="contentDateRange" id="s_au_gov_nsw_records_search_model_Serie_contentDateRange" object="${serie}" z="F6zo4JIn0RfpAIYaoqynR59hHkU="/>
                     <field:display field="descriptiveNote" id="s_au_gov_nsw_records_search_model_Serie_descriptiveNote" object="${serie}" z="F6zo4JIn0RfpAIYaoqynR59hHkU="/>
                     <field:display field="format" id="s_au_gov_nsw_records_search_model_Serie_format" object="${serie}" z="y4ABtYqYFGtds6bIRm+qc3UBcbw="/>
@@ -17,6 +18,7 @@
                     <field:display field="copies" id="s_au_gov_nsw_records_search_model_Serie_copies" object="${serie}" z="KwOPFSpsCV+JG/jSW/kwnH3MbbY="/>
                     <field:display field="seriesControlStatus" id="s_au_gov_nsw_records_search_model_Serie_seriesControlStatus" object="${serie}" z="GCi2x79a51iyxinxIAicyUAfsoM="/>
                     <field:display field="repository" id="s_au_gov_nsw_records_search_model_Serie_repository" object="${serie}" z="psPHJiOXoM24bXOQkxwP9PywBAU="/>
+                    <field:display field="bridgingAids" id="s_au_gov_nsw_records_search_model_Serie_bridgingAids" object="${serie}" z="B+jLMvUAu0rVoaVxBsVoOGUY2eg="/>
                     <field:display date="true" dateTimePattern="${serie_startdate_date_format}" field="startDate" id="s_au_gov_nsw_records_search_model_Serie_startDate" object="${serie}" render="false" z="user-managed"/>
                     <field:display field="startDateQualifier" id="s_au_gov_nsw_records_search_model_Serie_startDateQualifier" object="${serie}" render="false" z="user-managed"/>
                     <field:display date="true" dateTimePattern="${serie_enddate_date_format}" field="endDate" id="s_au_gov_nsw_records_search_model_Serie_endDate" object="${serie}" render="false" z="user-managed"/>
@@ -27,6 +29,7 @@
                     <field:display field="contentEndDateQualifier" id="s_au_gov_nsw_records_search_model_Serie_contentEndDateQualifier" object="${serie}" render="false" z="user-managed"/>
                     <field:display field="accessNote" id="s_au_gov_nsw_records_search_model_Serie_accessNote" object="${serie}" z="ytJdI1T3h8g3yLJByd90qps/Mn4="/>
                     <field:display field="lastAmendmentDate" id="s_au_gov_nsw_records_search_model_Serie_lastAmendmentDate" object="${serie}" render="false" z="user-managed"/>
+                    
                 </page:show>
             </div>
         </td>
@@ -40,6 +43,7 @@
             <util:relationship browseLink="/series/${serie.id}/related" heading="Related series" maxPages="${rel_related_series_size}" page="${rel_related_series_page}" pageParam="related_series_page" relationships="${rel_related_series}" type="series"/>
             <util:relationship browseLink="/series/${serie.id}/controlling" heading="Controlling series" maxPages="${rel_controlling_series_size}" page="${rel_controlling_series_page}" pageParam="controlling_series_page" relationships="${rel_controlling_series}" type="series"/>
             <util:relationship browseLink="/series/${serie.id}/controlled" heading="Controlled series" maxPages="${rel_controlled_series_size}" page="${rel_controlled_series_page}" pageParam="controlled_series_page" relationships="${rel_controlled_series}" type="series"/>
+            <util:relationship browseLink="/series/${serie.id}/items" heading="Items" maxPages="${rel_items_size}" page="${rel_items_page}" pageParam="items_page" relationships="${items_series}" type="items"/>
         </td>
     </table>
 </div>

@@ -13,7 +13,7 @@
     			<descriptiveNote>${fn:escapeXml(item.descriptiveNote)}</descriptiveNote>
     			<lastAmendmentDate>${item.lastAmendmentDate}</lastAmendmentDate>
     			<registeredDate>${item.registeredDate}</registeredDate>
-    			<endDate>${item.startDate}</endDate>
+    			<endDate>${item.endDate}</endDate>
     			<endDateQualifier>${item.endDateQualifier}</endDateQualifier>
     			<startDate>${item.startDate}</startDate>
     			<startDateQualifier>${item.startDateQualifier}</startDateQualifier>

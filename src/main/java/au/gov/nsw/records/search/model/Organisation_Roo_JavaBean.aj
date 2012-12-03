@@ -28,6 +28,30 @@ privileged aspect Organisation_Roo_JavaBean {
         this.title = title;
     }
     
+    public String Organisation.getCreation() {
+        return this.creation;
+    }
+    
+    public void Organisation.setCreation(String creation) {
+        this.creation = creation;
+    }
+    
+    public String Organisation.getAbolition() {
+        return this.abolition;
+    }
+    
+    public void Organisation.setAbolition(String abolition) {
+        this.abolition = abolition;
+    }
+    
+    public String Organisation.getCoNumber() {
+        return this.coNumber;
+    }
+    
+    public void Organisation.setCoNumber(String coNumber) {
+        this.coNumber = coNumber;
+    }
+    
     public String Organisation.getAdministrativeHistoryNote() {
         return this.administrativeHistoryNote;
     }

@@ -22,8 +22,8 @@
             <table:column id="c_au_gov_nsw_records_search_model_Functionn_abolition" property="abolition" z="jKFyYKPOLUqtGL8BH/ZL4JfHCds="/>
             <table:column id="c_au_gov_nsw_records_search_model_Functionn_descriptiveNote" property="descriptiveNote" z="a5pQA8mtjMVRqVP3vLH8hERuOis="/>
             <table:column date="true" dateTimePattern="${functionn_registereddate_date_format}" id="c_au_gov_nsw_records_search_model_Functionn_registeredDate" property="registeredDate" z="g8E1PWzzTRstvtuTTjf9tGvRUfg="/>
-            <table:column date="true" dateTimePattern="${functionn_startdate_date_format}" id="c_au_gov_nsw_records_search_model_Functionn_startDate" property="startDate" z="XAbMCjlGJbLgIWRRrJ3EC29FSXU="/>
             <table:column date="true" dateTimePattern="${functionn_lastamendmentdate_date_format}" id="c_au_gov_nsw_records_search_model_Functionn_lastAmendmentDate" property="lastAmendmentDate" z="U5DvOQhLixuyNAYrSWE1BTBxfrw="/>
+            <table:column id="c_au_gov_nsw_records_search_model_Functionn_creation" property="creation" z="O1zfOdJdL7ChW0eK3pBNuq4UTp4="/>
         </table:table>
     </page:list>
 </div>

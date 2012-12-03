@@ -39,6 +39,10 @@ public class Person{
     private String surname;
 
 	  @Expose
+    @Column(name = "Alternative_name")
+	  private String alternativeName;
+	  
+	  @Expose
     @Column(name = "Given_names")
     private String givenName;
 

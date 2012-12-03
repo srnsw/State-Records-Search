@@ -2,7 +2,9 @@ package au.gov.nsw.records.search.model;
 
 import au.gov.nsw.records.search.service.DateHelper;
 import au.gov.nsw.records.search.service.QueryHelper;
+import au.gov.nsw.records.search.service.StringService;
 
+import java.awt.font.TextHitInfo;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -119,6 +121,10 @@ public class Agency{
         return agencyNumber;
     }
 
+    public String getHistoryEacFormat(){
+    	return StringService.formatEacCpf(administrativeHistoryNote);
+    }
+    
     public static List<org.apache.lucene.document.Document> getIndexData(List<au.gov.nsw.records.search.model.Agency> agencies, CategoryDocumentBuilder builder) {
         List<Document> agenciesIndex = new ArrayList<Document>();
         for (Agency agency : agencies) {

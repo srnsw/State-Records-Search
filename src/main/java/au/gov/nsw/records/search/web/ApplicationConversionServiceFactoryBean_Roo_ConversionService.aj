@@ -24,7 +24,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Activity, String> ApplicationConversionServiceFactoryBean.getActivityToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<au.gov.nsw.records.search.model.Activity, java.lang.String>() {
             public String convert(Activity activity) {
-                return new StringBuilder().append(activity.getTitle()).append(" ").append(activity.getDescriptiveNote()).append(" ").append(activity.getLastAmendmentDate()).append(" ").append(activity.getStartDate()).toString();
+                return new StringBuilder().append(activity.getAbolition()).append(" ").append(activity.getCreation()).append(" ").append(activity.getAmendments()).append(" ").append(activity.getTitle()).toString();
             }
         };
     }
@@ -56,7 +56,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Functionn, String> ApplicationConversionServiceFactoryBean.getFunctionnToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<au.gov.nsw.records.search.model.Functionn, java.lang.String>() {
             public String convert(Functionn functionn) {
-                return new StringBuilder().append(functionn.getTitle()).append(" ").append(functionn.getAbolition()).append(" ").append(functionn.getDescriptiveNote()).append(" ").append(functionn.getLastAmendmentDate()).toString();
+                return new StringBuilder().append(functionn.getTitle()).append(" ").append(functionn.getAbolition()).append(" ").append(functionn.getCreation()).append(" ").append(functionn.getDescriptiveNote()).toString();
             }
         };
     }
@@ -72,7 +72,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Item, String> ApplicationConversionServiceFactoryBean.getItemToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<au.gov.nsw.records.search.model.Item, java.lang.String>() {
             public String convert(Item item) {
-                return new StringBuilder().append(item.getSeriesType()).append(" ").append(item.getItemNumberOrControlSymbol()).append(" ").append(item.getTitle()).append(" ").append(item.getDescriptiveNote()).toString();
+                return new StringBuilder().append(item.getImagesCount()).append(" ").append(item.getSeriesType()).append(" ").append(item.getItemNumberOrControlSymbol()).append(" ").append(item.getTitle()).toString();
             }
         };
     }
@@ -104,7 +104,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Organisation, String> ApplicationConversionServiceFactoryBean.getOrganisationToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<au.gov.nsw.records.search.model.Organisation, java.lang.String>() {
             public String convert(Organisation organisation) {
-                return new StringBuilder().append(organisation.getTitle()).append(" ").append(organisation.getAdministrativeHistoryNote()).append(" ").append(organisation.getLastAmendmentDate()).append(" ").append(organisation.getStartDate()).toString();
+                return new StringBuilder().append(organisation.getTitle()).append(" ").append(organisation.getCreation()).append(" ").append(organisation.getAbolition()).append(" ").append(organisation.getCoNumber()).toString();
             }
         };
     }
@@ -120,7 +120,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Person, String> ApplicationConversionServiceFactoryBean.getPersonToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<au.gov.nsw.records.search.model.Person, java.lang.String>() {
             public String convert(Person person) {
-                return new StringBuilder().append(person.getSurname()).append(" ").append(person.getGivenName()).append(" ").append(person.getPrenomialHonorifics()).append(" ").append(person.getPostnomialHonorifics()).toString();
+                return new StringBuilder().append(person.getSurname()).append(" ").append(person.getAlternativeName()).append(" ").append(person.getGivenName()).append(" ").append(person.getPrenomialHonorifics()).toString();
             }
         };
     }

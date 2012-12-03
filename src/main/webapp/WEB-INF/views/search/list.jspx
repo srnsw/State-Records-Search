@@ -8,6 +8,9 @@
 	xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="2.0">
 	<jsp:directive.page contentType="text/html;charset=UTF-8" />
 	<jsp:output omit-xml-declaration="yes" />
+	
+	<c:set var="pageTitle" value="Update Part Title"/> 
+	
 	<spring:message code="label_search_index" htmlEscape="false"
 		var="title" />
 
@@ -32,35 +35,48 @@
 	    	</td>
 	    </table>
     </c:if>
-		<table>
-		<td class="searchlist" width="20%">
-			  <search:facet facets="${facets}" location="${location}" series="${series}" baseURL="/search"></search:facet>
-			</td>
-			<td class="searchlist" width="50%">
-				<div class="what">
-					<h4>Record series and items</h4>
-					<search:list results="${seriesitems}"></search:list>
-					<c:if test="${seriesitems_count gt 1}">
-						<util:pagination showPageSizeSelection="false" page="${page}" pageParam="page" size="${size}" sizeParam="size" maxPages="${seriesitems_count}"></util:pagination>
+    <c:if test="${not empty customsearch}">
+      <h4>${entities}</h4>
+    	<table>
+				<td class="searchlist" width="20%">
+					<search:list results="${customsearch}"></search:list>
+					<c:if test="${customsearch_count gt 1}">
+						<util:pagination showPageSizeSelection="false" page="${page}" pageParam="page" size="${size}" sizeParam="size" maxPages="${customsearch_count}"></util:pagination>
 					</c:if>
-				</div>
-			</td>
-			<td class="searchlist" width="30%">
-				<div class="why_who">
-					<h4>Functions and activities</h4>
-					<search:list results="${activitiesfunctions}"></search:list>
-					<c:if test="${activitiesfunctions_count gt 1}">
-						<util:pagination showPageSizeSelection="false" page="${fpage}" pageParam="fpage" size="${fsize}" sizeParam="fsize" maxPages="${activitiesfunctions_count}"></util:pagination>
-					</c:if>
-
-					<h4>Agencies and people</h4>
-					<search:list results="${agenciespeoples}"></search:list>
-					<c:if test="${agenciespeoples_count gt 1}">
-						<util:pagination showPageSizeSelection="false" page="${apage}" pageParam="apage" size="${asize}" sizeParam="asize" maxPages="${agenciespeoples_count}"></util:pagination>
-					</c:if>
-				</div>
-			</td>
-		</table>
+				</td>
+			</table>
+    </c:if>
+    <c:if test="${empty entities}">
+      <table>
+			<td class="searchlist" width="20%">
+				  <search:facet facets="${facets}" location="${location}" series="${series}" baseURL="/search"></search:facet>
+				</td>
+				<td class="searchlist" width="50%">
+					<div class="what">
+						<h4>Record series and items</h4>
+						<search:list results="${seriesitems}"></search:list>
+						<c:if test="${seriesitems_count gt 1}">
+							<util:pagination showPageSizeSelection="false" page="${page}" pageParam="page" size="${size}" sizeParam="size" maxPages="${seriesitems_count}"></util:pagination>
+						</c:if>
+					</div>
+				</td>
+				<td class="searchlist" width="30%">
+					<div class="why_who">
+						<h4>Functions and activities</h4>
+						<search:list results="${activitiesfunctions}"></search:list>
+						<c:if test="${activitiesfunctions_count gt 1}">
+							<util:pagination showPageSizeSelection="false" page="${fpage}" pageParam="fpage" size="${fsize}" sizeParam="fsize" maxPages="${activitiesfunctions_count}"></util:pagination>
+						</c:if>
+	
+						<h4>Agencies and people</h4>
+						<search:list results="${agenciespeoples}"></search:list>
+						<c:if test="${agenciespeoples_count gt 1}">
+							<util:pagination showPageSizeSelection="false" page="${apage}" pageParam="apage" size="${asize}" sizeParam="asize" maxPages="${agenciespeoples_count}"></util:pagination>
+						</c:if>
+					</div>
+				</td>
+			</table>
+    </c:if>
 
 	</div>
 </div>

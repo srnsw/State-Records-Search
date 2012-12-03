@@ -4,16 +4,16 @@
     <jsp:output omit-xml-declaration="yes"/>
     <H1>People</H1>
     <table>
-    <td class="entitylist">
-    <c:forEach items="${people}" var="item">
-        <spring:url value="/persons/${item.id}" var="link_url"/>
-        <div class="collection_search_result">
-            <p>
-                <a href="${link_url}"> ${item.title} </a>
-            </p>
-        </div>
-    </c:forEach>
-    </td>
+        <td class="entitylist">
+            <c:forEach items="${people}" var="item">
+                <spring:url value="/persons/${item.id}" var="link_url"/>
+                <div class="collection_search_result">
+                    <p>
+                        <a href="${link_url}"> ${item.title} </a>
+                    </p>
+                </div>
+            </c:forEach>
+        </td>
     </table>
     <util:pagination maxPages="${maxPages}" page="${page}" size="${size}"/>
     <page:list id="pl_au_gov_nsw_records_search_model_Person" items="${people}" render="false" z="user-managed">
@@ -22,8 +22,8 @@
             <table:column id="c_au_gov_nsw_records_search_model_Person_givenName" property="givenName" z="F+D8xXdQHA7MzOjt7MlFZ7+TYkk="/>
             <table:column id="c_au_gov_nsw_records_search_model_Person_prenomialHonorifics" property="prenomialHonorifics" z="IZWze21WsNK1elFOYGEqcrbjNuQ="/>
             <table:column id="c_au_gov_nsw_records_search_model_Person_postnomialHonorifics" property="postnomialHonorifics" z="zt9VxLzism9Jub94k+TddG1S+Fs="/>
+            <table:column id="c_au_gov_nsw_records_search_model_Person_alternativeName" property="alternativeName" z="4aT2sCBXiZ6V7GEaF0HKUp1hXd0="/>
             <table:column id="c_au_gov_nsw_records_search_model_Person_officeHeld" property="officeHeld" z="cGiNO9anzmxAeJDPBrBvbB6dxM8="/>
-            <table:column id="c_au_gov_nsw_records_search_model_Person_biographicalNote" property="biographicalNote" z="8atnW4p8aaFofzSkpUNv88brIf0="/>
         </table:table>
     </page:list>
 </div>

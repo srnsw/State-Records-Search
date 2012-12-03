@@ -34,6 +34,18 @@ public class Organisation{
 	@Expose
   @Column(name="Organisation_title")
 	private String title;
+
+	@Expose
+  @Column(name="Creation")
+	private String creation;
+	
+	@Expose
+  @Column(name="Abolition")
+	private String abolition;
+	
+	@Expose
+  @Column(name="CO_number")
+	private String coNumber;
 	
 	@Expose
   @Column(name="Administrative_history_note")

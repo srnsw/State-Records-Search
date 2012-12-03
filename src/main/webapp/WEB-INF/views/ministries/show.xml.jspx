@@ -3,6 +3,7 @@
     		  <id>${ministry.id}</id>
     			<title>${fn:escapeXml(ministry.title)}</title>
     			<registeredDate>${ministry.registeredDate}</registeredDate>
-    			<endDate>${ministry.startDate}</endDate>
+    			<endDate>${ministry.endDate}</endDate>
     			<startDate>${ministry.startDate}</startDate>
+    			<lastAmendmentDate>${ministry.lastAmendmentDate}</lastAmendmentDate>
 </ministry>

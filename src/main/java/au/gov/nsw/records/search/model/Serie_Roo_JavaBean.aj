@@ -90,6 +90,14 @@ privileged aspect Serie_Roo_JavaBean {
         this.repository = repository;
     }
     
+    public String Serie.getBridgingAids() {
+        return this.bridgingAids;
+    }
+    
+    public void Serie.setBridgingAids(String bridgingAids) {
+        this.bridgingAids = bridgingAids;
+    }
+    
     public Date Serie.getLastAmendmentDate() {
         return this.lastAmendmentDate;
     }

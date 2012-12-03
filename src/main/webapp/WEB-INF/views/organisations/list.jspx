@@ -20,10 +20,10 @@
         <table:table data="${organisations}" delete="false" id="l_au_gov_nsw_records_search_model_Organisation" path="/organisations" typeIdFieldName="organisationNumber" update="false" z="vvaOQFZHm7l28Zab0hI5Pv4czvI=">
             <table:column id="c_au_gov_nsw_records_search_model_Organisation_title" property="title" z="ngfz6hXpl6IZylwhBsUh/UE+Tjg="/>
             <table:column id="c_au_gov_nsw_records_search_model_Organisation_administrativeHistoryNote" property="administrativeHistoryNote" z="pRwcCduUCbhiUavtc5w0mOyH2j4="/>
-            <table:column date="true" dateTimePattern="${organisation_startdate_date_format}" id="c_au_gov_nsw_records_search_model_Organisation_startDate" property="startDate" z="VUo/6s5OuUseSlpBTbGFDypYD8I="/>
-            <table:column id="c_au_gov_nsw_records_search_model_Organisation_startDateQualifier" property="startDateQualifier" z="cDMRy/pAq0amoxBvDOvhApdFvtk="/>
-            <table:column date="true" dateTimePattern="${organisation_enddate_date_format}" id="c_au_gov_nsw_records_search_model_Organisation_endDate" property="endDate" z="oIup34ZNotds/4t9d6KKWDf/k5Q="/>
             <table:column date="true" dateTimePattern="${organisation_lastamendmentdate_date_format}" id="c_au_gov_nsw_records_search_model_Organisation_lastAmendmentDate" property="lastAmendmentDate" z="v6l8W38XbIiJfMfv0tOugAi2VPI="/>
+            <table:column id="c_au_gov_nsw_records_search_model_Organisation_creation" property="creation" z="dXwPzpWV5G5tBsLuASMFMqAoUVo="/>
+            <table:column id="c_au_gov_nsw_records_search_model_Organisation_abolition" property="abolition" z="fGYeLyXlIg2eV9uNisxb3uGnSMI="/>
+            <table:column id="c_au_gov_nsw_records_search_model_Organisation_coNumber" property="coNumber" z="KFAFnOW4OeKCyyQeBp0AUK0U23s="/>
         </table:table>
     </page:list>
 </div>

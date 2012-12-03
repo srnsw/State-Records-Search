@@ -6,16 +6,13 @@
     		<total_results>${count}</total_results>
     		<per_page>${size}</per_page>
     	</pagination>
-    	<c:forEach items="${activitys}" var="item">
+    	<c:forEach items="${organisations}" var="item">
     		<organisation>
-    		  <id>${item.activityNumber}</id>
+    		  <id>${item.id}</id>
     			<title>${fn:escapeXml(item.title)}</title>
     			<administrativeHistoryNote>${fn:escapeXml(item.administrativeHistoryNote)}</administrativeHistoryNote>
-    			<abolition>${item.abolition}</abolition>
-    			<creation>${item.creation}</creation>
-    			<coNumber>${item.coNumber}</coNumber>
-	    		<registeredDate>${item.registeredDate}</registeredDate>
-    			<endDate>${item.startDate}</endDate>
+    			<lastAmendmentDate>${item.lastAmendmentDate}</lastAmendmentDate>
+    			<endDate>${item.endDate}</endDate>
     			<endDateQualifier>${item.endDateQualifier}</endDateQualifier>
     			<startDate>${item.startDate}</startDate>
     			<startDateQualifier>${item.startDateQualifier}</startDateQualifier>

@@ -7,6 +7,7 @@
             <div class="entity_data">
                 <page:show create="false" delete="false" id="ps_au_gov_nsw_records_search_model_Functionn" list="false" object="${functionn}" path="/functions" update="false" z="user-managed">
                     <field:display field="title" heading="true" id="s_au_gov_nsw_records_search_model_Functionn_title" object="${functionn}" z="user-managed"/>
+                    <field:display field="dateRange" id="s_au_gov_nsw_records_search_model_Functionn_dateRange" object="${functionn}" z="jj/UZxAOZ4H6jsabnwFCkOenwQE="/>
                     <field:display field="abolition" id="s_au_gov_nsw_records_search_model_Functionn_abolition" object="${functionn}" z="jj/UZxAOZ4H6jsabnwFCkOenwQE="/>
                     <field:display field="descriptiveNote" id="s_au_gov_nsw_records_search_model_Functionn_descriptiveNote" object="${functionn}" z="YLz243byQhw96GIj1kNDL0H7V3o="/>
                     <field:display date="true" dateTimePattern="${functionn_registereddate_date_format}" field="registeredDate" id="s_au_gov_nsw_records_search_model_Functionn_registeredDate" object="${functionn}" render="false" z="user-managed"/>
@@ -14,7 +15,8 @@
                     <field:display field="startDateQualifier" id="s_au_gov_nsw_records_search_model_Functionn_startDateQualifier" object="${functionn}" render="false" z="user-managed"/>
                     <field:display date="true" dateTimePattern="${functionn_enddate_date_format}" field="endDate" id="s_au_gov_nsw_records_search_model_Functionn_endDate" object="${functionn}" render="false" z="user-managed"/>
                     <field:display field="endDateQualifier" id="s_au_gov_nsw_records_search_model_Functionn_endDateQualifier" object="${functionn}" render="false" z="user-managed"/>
-                    <field:display date="true" dateTimePattern="${functionn_lastamendmentdate_date_format}" field="lastAmendmentDate" id="s_au_gov_nsw_records_search_model_Functionn_lastAmendmentDate" object="${functionn}" z="on9dpPjLOHPsk4Kl7KXj/hhG3HU="/>
+                    <field:display date="true" dateTimePattern="${functionn_lastamendmentdate_date_format}" field="lastAmendmentDate" id="s_au_gov_nsw_records_search_model_Functionn_lastAmendmentDate" object="${functionn}" render="false" z="user-managed"/>
+                    <field:display field="creation" id="s_au_gov_nsw_records_search_model_Functionn_creation" object="${functionn}" z="37xLb9DqYqeGCfOheidIaMZ4Bfs="/>
                 </page:show>
             </div>
         </td>

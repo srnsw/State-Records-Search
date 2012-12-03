@@ -4,8 +4,12 @@
     			<title>${fn:escapeXml(functionn.title)}</title>
     			<descriptiveNote>${fn:escapeXml(functionn.descriptiveNote)}</descriptiveNote>
     			<registeredDate>${functionn.registeredDate}</registeredDate>
-    			<endDate>${functionn.startDate}</endDate>
+    			<endDate>${functionn.endDate}</endDate>
     			<endDateQualifier>${functionn.endDateQualifier}</endDateQualifier>
     			<startDate>${functionn.startDate}</startDate>
     			<startDateQualifier>${functionn.startDateQualifier}</startDateQualifier>
+    			<lastAmendmentDate>${functionn.lastAmendmentDate}</lastAmendmentDate>
+    			<registeredDate>${functionn.registeredDate}</registeredDate>
+    			<abolition>${functionn.abolition}</abolition>
+    			<creation>${functionn.creation}</creation>
 </function>

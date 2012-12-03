@@ -7,8 +7,18 @@
 	<descriptiveNote>${fn:escapeXml(serie.descriptiveNote)}</descriptiveNote>
 	<accessNote>${serie.accessNote}</accessNote>
 	<arrangement>${serie.arrangement}</arrangement>
-	<copies>${serie.copies}</copies>
+	<copies>${fn:escapeXml(serie.copies)}</copies>
 	<repository>${serie.repository}</repository>
-	<endDate>${serie.startDate}</endDate>
+	<endDate>${serie.endDate}</endDate>
+	<endDateQualifier>${serie.endDateQualifier}</endDateQualifier>
 	<startDate>${serie.startDate}</startDate>
+	<startDateQualifier>${serie.startDateQualifier}</startDateQualifier>
+	<bridgingAids>${serie.bridgingAids}</bridgingAids>
+	<seriesControlStatus>${serie.seriesControlStatus}</seriesControlStatus>
+	<contentStartDateQualifier>${serie.contentStartDateQualifier}</contentStartDateQualifier>
+	<contentStartDate>${serie.contentStartDate}</contentStartDate>
+	<contentEndDateQualifier>${serie.contentEndDateQualifier}</contentEndDateQualifier>
+	<contentEndDate>${serie.contentEndDate}</contentEndDate>
+	<format>${serie.format}</format>
+	<lastAmendmentDate>${serie.lastAmendmentDate}</lastAmendmentDate>
 </series>

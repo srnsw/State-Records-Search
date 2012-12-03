@@ -112,6 +112,11 @@
 	      <value>/WEB-INF/views/**/views.xml</value>
 	    </list>
 	  </property>
+	  <property name="tilesProperties">
+	    <props>
+	    	<prop key="org.apache.tiles.evaluator.AttributeEvaluator">org.apache.tiles.evaluator.el.ELAttributeEvaluator</prop> 
+	    </props>
+	  </property>
   </bean>
  <bean class="au.gov.nsw.records.search.web.ApplicationConversionServiceFactoryBean" id="applicationConversionService"/>
 </beans>

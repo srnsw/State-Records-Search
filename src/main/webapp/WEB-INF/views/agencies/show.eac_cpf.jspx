@@ -61,7 +61,7 @@
 		    </mandates>
 	    </c:if>
 	    <biogHist>
-	      ${fn:escapeXml(agency.administrativeHistoryNote)}
+	    	${agency.historyEacFormat}
 	    </biogHist>
 	  </description>
 	  <relations>

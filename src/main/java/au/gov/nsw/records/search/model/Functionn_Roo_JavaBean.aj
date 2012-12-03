@@ -36,6 +36,14 @@ privileged aspect Functionn_Roo_JavaBean {
         this.abolition = abolition;
     }
     
+    public String Functionn.getCreation() {
+        return this.creation;
+    }
+    
+    public void Functionn.setCreation(String creation) {
+        this.creation = creation;
+    }
+    
     public String Functionn.getDescriptiveNote() {
         return this.descriptiveNote;
     }

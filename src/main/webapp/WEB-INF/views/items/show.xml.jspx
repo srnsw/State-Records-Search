@@ -5,6 +5,11 @@
     			<descriptiveNote>${fn:escapeXml(item.descriptiveNote)}</descriptiveNote>
     			<accessDirectionNumber>${item.accessDirectionNumber}</accessDirectionNumber>
     			<availability>${item.availability}</availability>
-    			<endDate>${item.startDate}</endDate>
+    			<endDate>${item.endDate}</endDate>
     			<startDate>${item.startDate}</startDate>
+    			<lastAmendmentDate>${item.lastAmendmentDate}</lastAmendmentDate>
+    			<seriesNumber>${item.seriesNumber.id}</seriesNumber>
+    			<seriesType>${item.seriesType}</seriesType>
+    			<itemNumberOrControlSymbol>${item.itemNumberOrControlSymbol}</itemNumberOrControlSymbol>
+    			<imagesCount>${item.imagesCount}</imagesCount>
 </item>

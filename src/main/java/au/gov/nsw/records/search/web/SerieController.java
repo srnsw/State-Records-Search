@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import au.gov.nsw.records.search.model.Activity;
 import au.gov.nsw.records.search.model.Agency;
+import au.gov.nsw.records.search.model.Item;
 import au.gov.nsw.records.search.model.Person;
 import au.gov.nsw.records.search.model.Serie;
 import au.gov.nsw.records.search.service.ControllerUtils;
@@ -99,13 +100,30 @@ public class SerieController {
 	        uiModel.addAttribute("rel_controlled_series",  Serie.findSerie(seriesNumber).getControlledSeries().subList(Math.max((controlled_series_page-1)*size, 0), Math.min(controlled_series_page*size, arraySize)));
 	        uiModel.addAttribute("rel_controlled_series_size", Double.valueOf(Math.ceil(arraySize/(float)size)).intValue());
 	        uiModel.addAttribute("rel_controlled_series_page", controlled_series_page);
+	        
+//	        arraySize =  Serie.findSerie(seriesNumber).getItems().size();
+//	        uiModel.addAttribute("rel_items",  Serie.findSerie(seriesNumber).getItems().subList(Math.max((items_page-1)*size, 0), Math.min(items_page*size, arraySize)));
+//	        uiModel.addAttribute("rel_items_size", Double.valueOf(Math.ceil(arraySize/(float)size)).intValue());
+//	        uiModel.addAttribute("rel_items_page", items_page);
         }
         uiModel.addAttribute("unapi", "true");
         uiModel.addAttribute("view", "series/show");
         return "series/show";
     }
 	
-	@RequestMapping(value="/{seriesNumber}/creating_agencies", produces = "text/html")
+	@RequestMapping(value="/{seriesNumber}/items", produces = "text/html")
+	public String listItems(@PathVariable("seriesNumber") int seriesNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+
+		Serie se = Serie.findSerie(seriesNumber);
+		if (se!=null){
+//			ControllerUtils.populateRelationshipModel(se.getItems(), "items", page, size, uiModel, Item.class);
+//			addDateTimeFormatPatterns(uiModel);
+		}
+		uiModel.addAttribute("view", "items/list");
+		return "items/list";
+	}
+	
+	@RequestMapping(value="/{seriesNumber}/agencies_creating", produces = "text/html")
 	public String listCreatingAgencies(@PathVariable("seriesNumber") int seriesNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
 
 		Serie se = Serie.findSerie(seriesNumber);
@@ -129,7 +147,7 @@ public class SerieController {
 		return "people/list";
 	}
 	
-	@RequestMapping(value="/{seriesNumber}/controlling_agencies", produces = "text/html")
+	@RequestMapping(value="/{seriesNumber}/agencies_controlling", produces = "text/html")
 	public String listControllingAgencies(@PathVariable("seriesNumber") int seriesNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
 
 		Serie se = Serie.findSerie(seriesNumber);
@@ -153,7 +171,7 @@ public class SerieController {
 		return "activities/list";
 	}
 	
-	@RequestMapping(value="/{seriesNumber}/preceding_series", produces = "text/html")
+	@RequestMapping(value="/{seriesNumber}/preceding", produces = "text/html")
 	public String listPrecedingSeries(@PathVariable("seriesNumber") int seriesNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
 
 		Serie se = Serie.findSerie(seriesNumber);
@@ -166,7 +184,7 @@ public class SerieController {
 	}
 	
 	//succeeding
-	@RequestMapping(value="/{seriesNumber}/succeeding_series", produces = "text/html")
+	@RequestMapping(value="/{seriesNumber}/succeeding", produces = "text/html")
 	public String listSucceedingSeries(@PathVariable("seriesNumber") int seriesNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
 
 		Serie se = Serie.findSerie(seriesNumber);
@@ -178,7 +196,7 @@ public class SerieController {
 		return "series/list";
 	}
 	//related
-	@RequestMapping(value="/{seriesNumber}/related_series", produces = "text/html")
+	@RequestMapping(value="/{seriesNumber}/related", produces = "text/html")
 	public String listRelatedSeries(@PathVariable("seriesNumber") int seriesNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
 
 		Serie se = Serie.findSerie(seriesNumber);
@@ -190,7 +208,7 @@ public class SerieController {
 		return "series/list";
 	}	
 	//controlling
-	@RequestMapping(value="/{seriesNumber}/controlling_series", produces = "text/html")
+	@RequestMapping(value="/{seriesNumber}/controlling", produces = "text/html")
 	public String listControllingSeries(@PathVariable("seriesNumber") int seriesNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
 
 		Serie se = Serie.findSerie(seriesNumber);
@@ -202,7 +220,7 @@ public class SerieController {
 		return "series/list";
 	}
 	//controlled
-	@RequestMapping(value="/{seriesNumber}/controlled_series", produces = "text/html")
+	@RequestMapping(value="/{seriesNumber}/controlled", produces = "text/html")
 	public String listControlledSeries(@PathVariable("seriesNumber") int seriesNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
 
 		Serie se = Serie.findSerie(seriesNumber);

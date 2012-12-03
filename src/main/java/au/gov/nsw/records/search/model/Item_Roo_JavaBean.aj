@@ -17,6 +17,14 @@ privileged aspect Item_Roo_JavaBean {
         this.id = id;
     }
     
+    public int Item.getImagesCount() {
+        return this.imagesCount;
+    }
+    
+    public void Item.setImagesCount(int imagesCount) {
+        this.imagesCount = imagesCount;
+    }
+    
     public String Item.getSeriesType() {
         return this.seriesType;
     }

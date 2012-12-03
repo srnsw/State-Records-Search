@@ -12,14 +12,21 @@
                     <field:display field="title" heading="true" id="s_au_gov_nsw_records_search_model_Item_title" object="${item}" z="user-managed"/>
                     <field:display field="dateRange" id="s_au_gov_nsw_records_search_model_Item_dateRange" object="${item}" z="ETGIx7g2+SCfETp73TYji0TjGU8="/>
                     <field:display field="itemNumberOrControlSymbol" id="s_au_gov_nsw_records_search_model_Item_itemNumberOrControlSymbol" object="${item}" z="lJFgEgbN/pgUZgW+/tO7TEhD4tQ="/>
-                    <field:display field="seriesType" id="s_au_gov_nsw_records_search_model_Item_seriesType" object="${item}" z="ETGIx7g2+SCfETp73TYji0TjGU8="/>
+                    <field:display field="seriesType" id="s_au_gov_nsw_records_search_model_Item_seriesType" object="${item}" render="false" z="user-managed"/>
                     <field:display field="descriptiveNote" id="s_au_gov_nsw_records_search_model_Item_descriptiveNote" object="${item}" z="C/Eq95OhJbR8sVBj3N1bgXM53N0="/>
                     <field:display field="accessDirectionNumber" id="s_au_gov_nsw_records_search_model_Item_accessDirectionNumber" object="${item}" z="E8QoM4jZ6HoQekSTDs0axK0MSY0="/>
                     <field:display field="availability" id="s_au_gov_nsw_records_search_model_Item_availability" object="${item}" z="68Svmry8l85jRnlyub/PnC1vZdg="/>
                     <field:display date="true" dateTimePattern="${item_startdate_date_format}" field="startDate" id="s_au_gov_nsw_records_search_model_Item_startDate" object="${item}" render="false" z="user-managed"/>
                     <field:display date="true" dateTimePattern="${item_enddate_date_format}" field="endDate" id="s_au_gov_nsw_records_search_model_Item_endDate" object="${item}" render="false" z="user-managed"/>
-                    <field:display field="seriesNumber" id="s_au_gov_nsw_records_search_model_Item_seriesNumber" object="${item}" z="yIZ1A5QRRrn0IvSA1enBMFdThS0="/>
+                    <field:display field="seriesNumber" id="s_au_gov_nsw_records_search_model_Item_seriesNumber" object="${item}" render="false" z="user-managed"/>
                     <field:display field="lastAmendmentDate" id="s_au_gov_nsw_records_search_model_Item_lastAmendmentDate" object="${item}" render="false" z="user-managed"/>
+                    <field:display field="imagesCount" id="s_au_gov_nsw_records_search_model_Item_imagesCount" object="${item}" render="false" z="user-managed"/>
+                    <div>
+                        <dl>
+                            <dt>Location:</dt>
+                            <dd>${item.seriesNumber.location}</dd>
+                        </dl>
+                    </div>
                 </page:show>
             </div>
         </td>
