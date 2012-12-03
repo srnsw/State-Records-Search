@@ -10,11 +10,37 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=8" />	
 			
 		<util:load-scripts />
-		
-		<spring:message code="application_name" var="app_name" htmlEscape="false"/>
-		<title><spring:message code="welcome_h3" arguments="${app_name}" /></title>
+		<c:set value="Search" var="title"> </c:set>
+		<c:if test="${not empty activity}">
+		 	<c:set value="${activity.title}" var="title"> </c:set>
+		</c:if>
+		<c:if test="${not empty agency}">
+		 	<c:set value="${agency.title}" var="title"> </c:set>
+		</c:if>
+		<c:if test="${not empty functionn}">
+		 	<c:set value="${functionn.title}" var="title"> </c:set>
+		</c:if>
+		<c:if test="${not empty item}">
+		 	<c:set value="${item.title}" var="title"> </c:set>
+		</c:if>
+		<c:if test="${not empty ministry}">
+		 	<c:set value="${ministry.title}" var="title"> </c:set>
+		</c:if>
+		<c:if test="${not empty organisation}">
+		 	<c:set value="${organisation.title}" var="title"> </c:set>
+		</c:if>
+		<c:if test="${not empty person}">
+		 	<c:set value="${person.title}" var="title"> </c:set>
+		</c:if>
+		<c:if test="${not empty portfolio}">
+		 	<c:set value="${portfolio.title}" var="title"> </c:set>
+		</c:if>
+		<c:if test="${not empty serie}">
+		 	<c:set value="${serie.title}" var="title"> </c:set>
+		</c:if>
+		<title>${title} - State Records NSW </title>
 		 <spring:url value="/opensearch" var="openURL" />
-		<link rel="search" type="application/opensearchdescription+xml" href="${openURL}" title="State Records NSW search" />
+		<link rel="search" type="application/opensearchdescription+xml" href="${openURL}" title="State Records NSW Search" />
 		<c:if test="${not empty unapi}">
 		    <c:set var="requestURL" value="${pageContext.request.requestURL}" />
         <c:set var="baseURL" value="${fn:replace(requestURL, pageContext.request.requestURI, pageContext.request.contextPath)}" />
