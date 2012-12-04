@@ -1,14 +1,15 @@
 package au.gov.nsw.records.search.service;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class StringService {
 
 	public static boolean isNumeric(String str)
 	{
-	    for (char c : str.toCharArray())
-	    {
-	        if (Character.isDigit(c)) return false;
-	    }
-	    return true;
+		Pattern p = Pattern.compile( "([0-9]*)+" );
+		Matcher m = p.matcher(str);
+		return m.matches();
 	}
 	
 	public static String formatEacCpf(String field){
