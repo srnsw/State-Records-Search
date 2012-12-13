@@ -145,7 +145,19 @@ public class SearchController {
   			pageSize = count.intValue();
   		}
   		
-  		
+  		if (queryText.contains("entities:")){
+  			StringTokenizer st = new StringTokenizer(queryText, " ");
+  			String strippedQueryText = ""; 
+  			while(st.hasMoreTokens()){
+  				String token = st.nextToken();
+  				if (token.startsWith("entities:")){
+  					entities = token.replace("entities:", "");
+  				}else{
+  					strippedQueryText += " " + token; 
+  				}
+  			}
+  			queryText = strippedQueryText.trim();
+  		}
   
   		LuceneSearchParams params = new LuceneSearchParams();
   		FacetSearchParams facetParams = new FacetSearchParams();
@@ -166,9 +178,7 @@ public class SearchController {
   					entity = entity.substring(0, 4);
   				}
   				for(Class<?> cls: entitiesList){
-  					System.out.println("debug comparing:" + entity + ":"  + cls.getName());
   					if (cls.getName().toLowerCase().contains(entity.toLowerCase())){
-  						System.out.println("Using entity:" + entity + ":"  + cls.getName());
   						searchClass.add(cls);
   						break;
   					}
@@ -185,7 +195,6 @@ public class SearchController {
   			
   		}
   		else {
-  		// TODO else
 	  		SearchResult activitiesFunctions = lucene.search(params.setQuery(queryText).setFacetParams(facetParams).setPage(fpage).setSize(fsize).setClazz(Activity.class, Functionn.class));
 	  		SearchResult agenciesPeople = lucene.search(params.setQuery(queryText).setFacetParams(facetParams).setPage(apage).setSize(asize).setClazz(Agency.class, Person.class));
 	  		SearchResult seriesItems = lucene.search(params.setQuery(queryText).setSeries(series).setLocation(location).setFrom(from).setTo(to).setFacetParams(facetParams).setPage(page).setSize(pageSize).setClazz(Serie.class, Item.class));
