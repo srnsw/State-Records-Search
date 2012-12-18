@@ -158,7 +158,7 @@ public class SearchController {
   			}
   			queryText = strippedQueryText.trim();
   		}
-  
+  		
   		LuceneSearchParams params = new LuceneSearchParams();
   		FacetSearchParams facetParams = new FacetSearchParams();
   		
@@ -249,7 +249,7 @@ public class SearchController {
   			}
   			Serie sr = Serie.findSerie(Integer.parseInt(queryText));
   			if (sr!=null){
-  				hotLinks.add(new SearchResultItem("series", ag.getTitle(), "", String.valueOf(sr.getId()), "/series/"+sr.getId(), true));
+  				hotLinks.add(new SearchResultItem("series", sr.getTitle(), "", String.valueOf(sr.getId()), "/series/"+sr.getId(), true));
   			}
   			Item it = Item.findItem(Integer.parseInt(queryText));
   			if (it!=null){

@@ -217,6 +217,18 @@ public class OaiController {
     	uiModel.addAttribute("until", until);
     	uiModel.addAttribute("set", set);
     	uiModel.addAttribute("resumptionToken", resumptionToken);
+    
+    	String responseAttributes = "";
+    	if (until!=null) responseAttributes += String.format(" until=\"%s\"",until);
+    	if (from!=null) responseAttributes += String.format(" from=\"%s\"",from);
+    	if (set!=null) responseAttributes += String.format(" set=\"%s\"",set);
+    	if (metadataPrefix!=null) responseAttributes += String.format(" metadataPrefix=\"%s\"",metadataPrefix);
+    	if (resumptionToken!=null) responseAttributes += String.format(" resumptionToken=\"%s\"",resumptionToken);
+    	if (verb!=null) responseAttributes += String.format(" verb=\"%s\"",verb);
+    	
+    	uiModel.addAttribute("responseXML", "<request" + responseAttributes + ">");
+    	uiModel.addAttribute("_responseXML", "</request>");
+    	
     	String returnView = "oai/error";
     	try{
     		
