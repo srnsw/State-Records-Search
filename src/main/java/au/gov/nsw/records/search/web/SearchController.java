@@ -96,7 +96,7 @@ public class SearchController {
   						int pageSize = 15000;
   						int pageCount = 0;
   						while(pageCount * pageSize < itemCount){
-  							logger.info("Items page " + pageCount + " of " + itemCount/pageSize);
+  							logger.info("Indexing items page " + pageCount + " of " + itemCount/pageSize);
   							lucene.indexDocuments(Item.getIndexData(Item.findItemEntries(pageCount * pageSize, pageSize), builder), Item.class);
   							lucene.commit();
   							pageCount++;
@@ -105,8 +105,10 @@ public class SearchController {
   						
   						logger.info("Indexing finished");
   		    	} catch (CorruptIndexException e) {
+  		    		logger.error("Indexing error", e);
   						e.printStackTrace();
   					} catch (IOException e) {
+  						logger.error("Indexing error", e);
   						e.printStackTrace();
   					}finally{
   						isIndexing = false;
