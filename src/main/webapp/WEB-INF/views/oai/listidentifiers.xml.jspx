@@ -1,10 +1,10 @@
 <jsp:root xmlns:oai="urn:jsptagdir:/WEB-INF/tags/oai"  xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:spring="http://www.springframework.org/tags" xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
 	<oai:template>
-		<ListIdenfitiers>
+		<ListIdentifiers>
 		  <c:forEach items="${entities}" var="entity">
 				<oai:header dateStamp="${entity.lastAmendmentDate}" type="${type}" id="${entity.id}"></oai:header>		  	
 		  </c:forEach>
 			<resumptionToken completeListSize="${size}" cursor="${page-1}">${resumptionToken}</resumptionToken>
-    </ListIdenfitiers>
+    </ListIdentifiers>
 	</oai:template>
 </jsp:root>
