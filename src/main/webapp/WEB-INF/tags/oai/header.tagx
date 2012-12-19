@@ -12,7 +12,7 @@
   <identifier>oai:${fn:substring(baseURL,7,-1)}:${type}/${id}</identifier>
   
   <c:if test="${not empty dateStamp}">
-   <fmt:formatDate var="dateStamp" value="${dateStamp}" pattern="YYY-MM-DD" />
+   <fmt:formatDate var="dateStamp" value="${dateStamp}" pattern="YYY-MM-dd" />
   </c:if>
   
   <c:if test="${empty dateStamp}">
