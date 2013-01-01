@@ -55,11 +55,11 @@ public class SearchController {
     
     @RequestMapping(value = "/createindex", method = RequestMethod.POST)
     public void startIndex(HttpServletRequest request, HttpServletResponse response) {
-     	ExecutorService indexWorker = Executors.newSingleThreadExecutor();
+//     	ExecutorService indexWorker = Executors.newSingleThreadExecutor();
      	if (!isIndexing){
-     		indexWorker.execute(new Runnable() {
-  				@Override
-  				public void run() {
+//     		indexWorker.execute(new Runnable() {
+//  				@Override
+//  				public void run() {
   		    	try {
   		    		
   		    		isIndexing = true;
@@ -113,8 +113,8 @@ public class SearchController {
   					}finally{
   						isIndexing = false;
   					}
-  				}
-  			});
+//  				}
+//  			});
 
   			logger.info("Indexing started");
      	}else{
