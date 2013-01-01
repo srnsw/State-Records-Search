@@ -1,6 +1,7 @@
 package au.gov.nsw.records.search.model;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.EntityManager;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -35,7 +37,7 @@ import au.gov.nsw.records.search.service.QueryHelper;
 @RooToString
 @RooJpaActiveRecord(versionField = "")
 @Table(name = "items_view")
-public class Item{
+public class Item implements Serializable{
 
 	  @Expose
 	  @Id
@@ -50,7 +52,8 @@ public class Item{
 	  @Column(name = "Seriestype")
     private String seriesType;
 
-	  @ManyToOne(fetch = FetchType.LAZY)
+	  @ManyToOne
+	  @JoinColumn(name = "Series_number")
     private Serie seriesNumber;
 
 	  @Expose

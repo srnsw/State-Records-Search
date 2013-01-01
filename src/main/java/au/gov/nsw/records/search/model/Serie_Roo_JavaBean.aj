@@ -9,6 +9,7 @@ import au.gov.nsw.records.search.model.SerieLinkControlledSerie;
 import au.gov.nsw.records.search.model.SerieLinkControllingAgency;
 import au.gov.nsw.records.search.model.SerieLinkControllingSerie;
 import au.gov.nsw.records.search.model.SerieLinkCreatingAgency;
+import au.gov.nsw.records.search.model.SerieLinkItem;
 import au.gov.nsw.records.search.model.SerieLinkPerson;
 import au.gov.nsw.records.search.model.SerieLinkPrecedingSerie;
 import au.gov.nsw.records.search.model.SerieLinkRelatedSerie;
@@ -168,6 +169,14 @@ privileged aspect Serie_Roo_JavaBean {
     
     public void Serie.setContentEndDateQualifier(String contentEndDateQualifier) {
         this.contentEndDateQualifier = contentEndDateQualifier;
+    }
+    
+    public List<SerieLinkItem> Serie.getItems() {
+        return this.items;
+    }
+    
+    public void Serie.setItems(List<SerieLinkItem> items) {
+        this.items = items;
     }
     
     public List<SerieLinkActivity> Serie.getActivities() {

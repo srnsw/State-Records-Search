@@ -1,6 +1,7 @@
 package au.gov.nsw.records.search.model;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ import au.gov.nsw.records.search.service.QueryHelper;
 @RooJpaActiveRecord(versionField = "")
 @Table(name = "series_view")
 @RooJson
-public class Serie{
+public class Serie implements Serializable{
 
 	@Expose
   @Id
@@ -132,6 +133,9 @@ public class Serie{
   @Column(name = "Contents_End_date_qualifier")
 	private String contentEndDateQualifier;
 
+	@OneToMany(mappedBy="seriesNumber")
+	private List<SerieLinkItem> items;
+	
 	@OneToMany(mappedBy="serieId")
 	private List<SerieLinkActivity> activities;
 	

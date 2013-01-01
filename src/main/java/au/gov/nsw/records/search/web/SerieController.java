@@ -101,10 +101,10 @@ public class SerieController {
 	        uiModel.addAttribute("rel_controlled_series_size", Double.valueOf(Math.ceil(arraySize/(float)size)).intValue());
 	        uiModel.addAttribute("rel_controlled_series_page", controlled_series_page);
 	        
-//	        arraySize =  Serie.findSerie(seriesNumber).getItems().size();
-//	        uiModel.addAttribute("rel_items",  Serie.findSerie(seriesNumber).getItems().subList(Math.max((items_page-1)*size, 0), Math.min(items_page*size, arraySize)));
-//	        uiModel.addAttribute("rel_items_size", Double.valueOf(Math.ceil(arraySize/(float)size)).intValue());
-//	        uiModel.addAttribute("rel_items_page", items_page);
+	        arraySize =  Serie.findSerie(seriesNumber).getItems().size();
+	        uiModel.addAttribute("rel_items",  Serie.findSerie(seriesNumber).getItems().subList(Math.max((items_page-1)*size, 0), Math.min(items_page*size, arraySize)));
+	        uiModel.addAttribute("rel_items_size", Double.valueOf(Math.ceil(arraySize/(float)size)).intValue());
+	        uiModel.addAttribute("rel_items_page", items_page);
         }
         uiModel.addAttribute("unapi", "true");
         uiModel.addAttribute("view", "series/show");
@@ -116,8 +116,8 @@ public class SerieController {
 
 		Serie se = Serie.findSerie(seriesNumber);
 		if (se!=null){
-//			ControllerUtils.populateRelationshipModel(se.getItems(), "items", page, size, uiModel, Item.class);
-//			addDateTimeFormatPatterns(uiModel);
+			ControllerUtils.populateRelationshipModel(se.getItems(), "items", page, size, uiModel, Item.class);
+			addDateTimeFormatPatterns(uiModel);
 		}
 		uiModel.addAttribute("view", "items/list");
 		return "items/list";

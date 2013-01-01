@@ -43,7 +43,7 @@
             <util:relationship browseLink="/series/${serie.id}/related" heading="Related series" maxPages="${rel_related_series_size}" page="${rel_related_series_page}" pageParam="related_series_page" relationships="${rel_related_series}" type="series"/>
             <util:relationship browseLink="/series/${serie.id}/controlling" heading="Controlling series" maxPages="${rel_controlling_series_size}" page="${rel_controlling_series_page}" pageParam="controlling_series_page" relationships="${rel_controlling_series}" type="series"/>
             <util:relationship browseLink="/series/${serie.id}/controlled" heading="Controlled series" maxPages="${rel_controlled_series_size}" page="${rel_controlled_series_page}" pageParam="controlled_series_page" relationships="${rel_controlled_series}" type="series"/>
-            <util:relationship browseLink="/series/${serie.id}/items" heading="Items" maxPages="${rel_items_size}" page="${rel_items_page}" pageParam="items_page" relationships="${items_series}" type="items"/>
+            <util:relationship browseLink="/series/${serie.id}/items" heading="Items" maxPages="${rel_items_size}" page="${rel_items_page}" pageParam="items_page" relationships="${rel_items}" type="items"/>
         </td>
     </table>
 </div>
