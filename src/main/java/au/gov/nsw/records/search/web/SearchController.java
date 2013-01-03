@@ -93,7 +93,7 @@ public class SearchController {
   										
   						logger.info("Indexing items");
   						long itemCount = Item.countItems();
-  						int pageSize = 15000;
+  						int pageSize = 5000;
   						int pageCount = 0;
   						while(pageCount * pageSize < itemCount){
   							logger.info("Indexing items page " + pageCount + " of " + itemCount/pageSize);
