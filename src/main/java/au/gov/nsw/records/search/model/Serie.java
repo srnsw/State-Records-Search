@@ -193,6 +193,14 @@ public class Serie implements Serializable{
 		return result;
 	}
 	
+	public Long countItems() {
+		return entityManager().createQuery("SELECT COUNT(o) FROM SerieLinkItem o where seriesNumber = " + this.seriesNumber, Long.class).getSingleResult();
+ }
+	
+	 public List<SerieLinkItem> getItems(int page, int size) {
+		 return entityManager().createQuery("SELECT o FROM SerieLinkItem o where seriesNumber = " + this.seriesNumber, SerieLinkItem.class).setFirstResult((page-1)*size).setMaxResults(size).getResultList();
+  }
+	 
 	public static List<Document> getIndexData(List<Serie> series, CategoryDocumentBuilder builder) throws IOException{
   	List<Document> seriesIndex = new ArrayList<Document>();
   	for (Serie serie:series){

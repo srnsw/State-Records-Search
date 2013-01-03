@@ -101,8 +101,8 @@ public class SerieController {
 	        uiModel.addAttribute("rel_controlled_series_size", Double.valueOf(Math.ceil(arraySize/(float)size)).intValue());
 	        uiModel.addAttribute("rel_controlled_series_page", controlled_series_page);
 	        
-	        arraySize =  Serie.findSerie(seriesNumber).getItems().size();
-	        uiModel.addAttribute("rel_items",  Serie.findSerie(seriesNumber).getItems().subList(Math.max((items_page-1)*size, 0), Math.min(items_page*size, arraySize)));
+	        arraySize =  Serie.findSerie(seriesNumber).countItems().intValue();
+	        uiModel.addAttribute("rel_items",  Serie.findSerie(seriesNumber).getItems(items_page,size));
 	        uiModel.addAttribute("rel_items_size", Double.valueOf(Math.ceil(arraySize/(float)size)).intValue());
 	        uiModel.addAttribute("rel_items_page", items_page);
         }
@@ -116,7 +116,7 @@ public class SerieController {
 
 		Serie se = Serie.findSerie(seriesNumber);
 		if (se!=null){
-			ControllerUtils.populateRelationshipModel(se.getItems(), "items", page, size, uiModel, Item.class);
+			ControllerUtils.populateRelationshipModel(se.getItems(page, size), "items", page, size, uiModel, se.countItems().intValue(), Item.class);
 			addDateTimeFormatPatterns(uiModel);
 		}
 		uiModel.addAttribute("view", "items/list");

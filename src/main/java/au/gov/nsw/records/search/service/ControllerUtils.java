@@ -38,4 +38,12 @@ public class ControllerUtils {
 		uiModel.addAttribute("page", page);
 		uiModel.addAttribute("size", size);
 	}
+	
+	public static void populateRelationshipModel(List<?> objects, String attributeName, Integer page, Integer size, Model uiModel, int resultSize, Class<?> clazz){
+		uiModel.addAttribute(attributeName, ControllerUtils.getRelationList(objects, clazz));
+		float nrOfPages = (float) resultSize / size;
+		uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
+		uiModel.addAttribute("page", page);
+		uiModel.addAttribute("size", size);
+	}
 }
