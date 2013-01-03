@@ -1,0 +1,112 @@
+<jsp:root xmlns:oai="urn:jsptagdir:/WEB-INF/tags/oai"  xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:spring="http://www.springframework.org/tags" xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
+<c:set var="requestURL" value="${pageContext.request.requestURL}" />
+<c:set var="baseURL" value="${fn:replace(requestURL, pageContext.request.requestURI, pageContext.request.contextPath)}" />
+  <oai:template>
+		<ListRecords>
+		  <c:forEach items="${entities}" var="serie">
+		    <record>
+				   <oai:header dateStamp="${entity.lastAmendmentDate}" type="${type}" id="${serie.id}"></oai:header>		
+				  <metadata>
+				    <registryObject group="State Records Authority of New South Wales">
+						  <key>${baseURL}/series/${serie.id}</key>
+						  <originatingSource>http://www.records.nsw.gov.au</originatingSource>
+						  <collection type="repository">
+						    <identifier type="uri">${baseURL}/series/${serie.id}</identifier>
+						    <name>
+						      <namePart type="full">${serie.title}</namePart>
+						    </name>
+						    <c:if test="${not empty serie.startDate || not empty serie.endDate}">
+							    <coverage>
+							      <temporal>
+							        <c:if test="${not empty serie.startDate}">
+							         <date type="dateFrom" dateFormat="W3CDTF">${serie.startDateW3c}</date>
+							        </c:if>
+							        <c:if test="${not empty serie.endDate}">
+							        	<date type="dateTo" dateFormat="W3CDTF">${serie.endDateW3c}</date>
+							        </c:if>
+							      </temporal>
+							    </coverage>
+						    </c:if>
+						    <relatedObject>
+						      <key>${baseURL}/series/${serie.id}</key>
+						      <relation type="isLocatedIn">
+						        <description>${serie.repository}</description>
+						      </relation>
+						    </relatedObject>
+						    <c:forEach items="${serie.creatingAgencies}" var="item">
+							    <relatedObject>
+							      <key>${baseURL}/agencies/${item.relationship.id}</key>
+							      <relation type="hasCollector">
+							        <description>${item.relationship.title}</description>
+							      </relation>
+							    </relatedObject>
+						    </c:forEach>
+						    <c:forEach items="${serie.persons}" var="item">
+							    <relatedObject>
+							      <key>${baseURL}/persons/${item.relationship.id}</key>
+							      <relation type="hasCollector">
+							        <description>${person.fullName}</description>
+							      </relation>
+							    </relatedObject>
+						    </c:forEach>
+						    <c:forEach items="${serie.precedingSeries}" var="item">
+							    <relatedObject>
+							      <key>${baseURL}/series/${item.relationship.id}</key>
+							      <relation type="hasAssociationWith">
+							        <description>${item.relationship.title}</description>
+							      </relation>
+							    </relatedObject>
+						    </c:forEach>
+						    <c:forEach items="${serie.succeedingSeries}" var="item">
+						    <relatedObject>
+						      <key>${baseURL}/series/${item.relationship.id}</key>
+						      <relation type="hasAssociationWith">
+						        <description>${item.relationship.title}</description>
+						      </relation>
+						    </relatedObject>
+						    </c:forEach>
+						    <c:forEach items="${serie.relatedSeries}" var="item">
+						    <relatedObject>
+						      <key>${baseURL}/series/${item.relationship.id}</key>
+						      <relation type="hasAssociationWith">
+						        <description>${item.relationship.title}</description>
+						      </relation>
+						    </relatedObject>
+						    </c:forEach>
+						    <c:forEach items="${serie.controllingSeries}" var="item">
+						    <relatedObject>
+						      <key>${baseURL}/series/${item.relationship.id}</key>
+						      <relation type="isPartOf">
+						        <description>${item.relationship.title}</description>
+						      </relation>
+						    </relatedObject>
+						    </c:forEach>
+						    <c:forEach items="${serie.controlledSeries}" var="item">
+						    <relatedObject>
+						      <key>${baseURL}/series/${item.relationship.id}</key>
+						      <relation type="hasPart">
+						        <description>${item.relationship.title}</description>
+						      </relation>
+						    </relatedObject>
+						    </c:forEach>
+						    <description type="full">${fn:escapeXml(serie.descriptiveNote)}</description>
+						    <rights>
+						      <rightsStatement rightsUri="http://www.records.nsw.gov.au/about-us/copyright-policy">Copyright, State of New South Wales through the State Records Authority of NSW</rightsStatement>
+						      <license rightsUri="http://creativecommons.org/licenses/by-nc/3.0/au/">Attribution-NonCommercial 3.0 Australia (CC BY-NC 3.0)</license>
+						    </rights>
+						    <relatedInfo>
+						      <identifier type="website">${url}</identifier>
+						    </relatedInfo>
+						    <citationInfo>
+						      <fullCitation>SRNSW: NRS ${serie.id}</fullCitation>
+						    </citationInfo>
+						  </collection>
+						</registryObject> 
+
+				  </metadata>
+				</record>
+		  </c:forEach>
+		  <resumptionToken completeListSize="${size}" cursor="${page-1}">${resumptionToken}</resumptionToken>
+	  </ListRecords>
+  </oai:template>
+</jsp:root>

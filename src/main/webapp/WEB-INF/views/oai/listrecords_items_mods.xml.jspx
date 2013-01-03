@@ -1,0 +1,53 @@
+<jsp:root xmlns:oai="urn:jsptagdir:/WEB-INF/tags/oai"  xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:spring="http://www.springframework.org/tags" xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
+  <oai:template>	
+  	<c:set var="requestURL" value="${pageContext.request.requestURL}" />
+		<c:set var="baseURL" value="${fn:replace(requestURL, pageContext.request.requestURI, pageContext.request.contextPath)}" />
+		<ListRecords>
+		  <c:forEach items="${entities}" var="item">
+		    <record>
+				   <oai:header dateStamp="${entity.lastAmendmentDate}" type="${type}" id="${item.id}"></oai:header>		
+				  <metadata>
+				    <mods xmlns:xlink="http://www.w3.org/1999/xlink" version="3.4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.loc.gov/mods/v3" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd">
+	
+							 <titleInfo>
+							  <title>${item.title}</title>
+							</titleInfo>
+							<typeOfResource manuscript="yes" collection="yes">mixed material</typeOfResource>
+							<genre authority="local">manuscript</genre>
+							<c:forEach items="${item.seriesNumber.creatingAgencies}" var="it">
+								<name type="personal">
+								  <namePart>${it.relationship.title}</namePart>
+								  <role>
+								    <roleTerm type="code" authority="marcrelator">aut</roleTerm>
+								   </role>
+								</name>
+							</c:forEach>
+							<c:forEach items="${item.seriesNumber.persons}" var="it">
+								<name type="personal">
+								  <namePart type="family">${it.relationship.surname}</namePart>
+								  <namePart type="given">${it.relationship.givenName}</namePart>
+								  <role>
+								    <roleTerm type="code" authority="marcrelator">aut</roleTerm>
+								   </role>
+								</name>
+							</c:forEach>
+							<originInfo>
+							  <dateCreated>${item.startDate}</dateCreated>
+							</originInfo>
+							<location>
+							  <physicalLocation>State Records NSW</physicalLocation>
+							  <c:if test="${not empty item.itemNumberOrControlSymbol}">
+							      <c:set value="${item.itemNumberOrControlSymbol}" var="number" />
+							    </c:if>
+							  <shelfLocator>NUA ${item.id} ${number}</shelfLocator>
+							  <url>${baseURL}/items/${item.id}</url>
+							</location>
+						
+						</mods>
+				  </metadata>
+				</record>
+		  </c:forEach>
+		  <resumptionToken completeListSize="${size}" cursor="${page-1}">${resumptionToken}</resumptionToken>
+	  </ListRecords>
+  </oai:template>
+</jsp:root>

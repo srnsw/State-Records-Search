@@ -190,8 +190,9 @@ public class OaiController {
     	uiModel.addAttribute("resumptionToken", token.nextToken().toString());
     	uiModel.addAttribute("page", token.page);
     	
-    	uiModel.addAttribute("view", "oai/listrecords");
-    	return "oai/listrecords";
+    	String view = String.format("oai/listrecords_%s_%s", uiModel.asMap().get("type"), uiModel.asMap().get("metadataPrefix"));
+    	uiModel.addAttribute("view", view);
+    	return "view";
     }
     
     private String listSets(String identifier, String metadataPrefix, Model uiModel) throws OaiException{

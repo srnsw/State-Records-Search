@@ -1,0 +1,117 @@
+<jsp:root xmlns:oai="urn:jsptagdir:/WEB-INF/tags/oai"  xmlns:eaccpf="urn:jsptagdir:/WEB-INF/tags/eac_cpf" xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:spring="http://www.springframework.org/tags" xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
+  <oai:template>	
+		<ListRecords>
+		  <c:forEach items="${entities}" var="agency">
+		    <record>
+				   <oai:header dateStamp="${entity.lastAmendmentDate}" type="${type}" id="${agency.id}"></oai:header>		
+				  <metadata>
+				    
+				    <eac-cpf xmlns="urn:isbn:1-931666-33-4" xmlns:xlink="http://www.w3.org/1999/xlink"	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"	xsi:schemaLocation="urn:isbn:1-931666-33-4 http://eac.staatsbibliothek-berlin.de/schema/cpf.xsd">
+						 <c:set var="requestURL" value="${pageContext.request.requestURL}" />
+						 <c:set var="baseURL" value="${fn:replace(requestURL, pageContext.request.requestURI, pageContext.request.contextPath)}" />
+							
+						<control>
+						  <recordId>agencies:${agency.id}.eac_cpf</recordId>
+						  <maintenanceStatus>new</maintenanceStatus>
+						  <maintenanceAgency>
+						    <agencyCode>AU-ANL:477539</agencyCode>
+						    <agencyName>State Records Authority of New South Wales</agencyName>
+						  </maintenanceAgency>
+						  <languageDeclaration>
+						    <language languageCode="eng">English</language>
+						    <script scriptCode="Latn">Latin</script>
+						  </languageDeclaration>
+						  <maintenanceHistory>
+						    <maintenanceEvent>
+						      <eventType>created</eventType>
+						      <eventDateTime standardDateTime="${today}">${today}</eventDateTime>
+						      <agentType>machine</agentType>
+						      <agent>created</agent>
+						    </maintenanceEvent>
+						  </maintenanceHistory>
+						</control>
+						<cpfDescription>
+						  <identity>
+						    <entityId>${baseURL}/agencies/${agency.id}</entityId>
+						    <entityType>corporateBody</entityType>
+						    <nameEntry>
+						      <part>${agency.title}</part>
+						    </nameEntry>
+						  </identity>
+						  <description>
+						    
+						    <c:if test="${not empty agency.startDate or not empty agency.endDate}">
+							    <existDates>
+							    	<eaccpf:date startDate="${agency.startDate}" endDate="${agency.endDate}"></eaccpf:date>
+							    </existDates>
+						    </c:if>
+						    
+						    <c:if test="${not empty agency.creation or not empty agency.abolition}">
+							    <mandates>
+							      <c:if test="${not empty agency.creation}">
+								      <mandate>
+								        <citation>${agency.creation}</citation>
+								        <descriptiveNote><p>Legislation - Creation</p></descriptiveNote>
+								      </mandate>
+							      </c:if>
+							      <c:if test="${not empty agency.abolition}">
+								      <mandate>
+								        <citation>${agency.abolition}</citation>
+								        <descriptiveNote><p>Legislation - Abolition</p></descriptiveNote>
+								      </mandate>
+							      </c:if>
+							    </mandates>
+						    </c:if>
+						    <biogHist>
+						    	${agency.historyEacFormat}
+						    </biogHist>
+						  </description>
+						  <relations>
+						     <c:forEach items="${agency.preceding}" var="item">
+							      <cpfRelation cpfRelationType="temporal-earlier" xlink:href="${baseURL}/agencies/${item.relationship.id}">
+										  <relationEntry>${item.relationship.title}</relationEntry>
+										  <eaccpf:date startDate="${item.relationship.startDate}" endDate="${item.relationship.endDate}"></eaccpf:date>
+										</cpfRelation>
+							    </c:forEach>
+							    <c:forEach items="${agency.succeeding}" var="item">
+							      <cpfRelation cpfRelationType="temporal-later" xlink:href="${baseURL}/agencies/${item.relationship.id}">
+										  <relationEntry>${item.relationship.title}</relationEntry>
+										   <eaccpf:date startDate="${item.relationship.startDate}" endDate="${item.relationship.endDate}"></eaccpf:date>
+										</cpfRelation>
+							    </c:forEach>
+							    <c:forEach items="${agency.superiors}" var="item">
+							      <cpfRelation cpfRelationType="hierarchical-parent" xlink:href="${baseURL}/agencies/${item.relationship.id}">
+										  <relationEntry>${item.relationship.title}</relationEntry>
+										   <eaccpf:date startDate="${item.relationship.startDate}" endDate="${item.relationship.endDate}"></eaccpf:date>
+										</cpfRelation>
+							    </c:forEach>
+							    <c:forEach items="${agency.subordinates}" var="item">
+							      <cpfRelation cpfRelationType="hierarchical-child" xlink:href="${baseURL}/agencies/${item.relationship.id}">
+										  <relationEntry>${item.relationship.title}</relationEntry>
+										  <eaccpf:date startDate="${item.relationship.startDate}" endDate="${item.relationship.endDate}"></eaccpf:date>
+										</cpfRelation>
+							    </c:forEach>
+							    <c:forEach items="${agency.related}" var="item">
+							      <cpfRelation cpfRelationType="associative" xlink:href="${baseURL}/agencies/${item.relationship.id}">
+										  <relationEntry>${item.relationship.title}</relationEntry>
+										  <eaccpf:date startDate="${item.relationship.startDate}" endDate="${item.relationship.endDate}"></eaccpf:date>
+										</cpfRelation>
+							    </c:forEach>
+							    <c:forEach items="${agency.functions}" var="item">
+							      <functionRelation functionRelationType="performs" xlink:href="${baseURL}/functions/${item.relationship.id}">
+							        <relationEntry>${item.relationship.title}</relationEntry>
+							         <eaccpf:date startDate="${item.relationship.startDate}" endDate="${item.relationship.endDate}"></eaccpf:date>
+							        <descriptiveNote>${fn:escapeXml(item.relationship.descriptiveNote)}</descriptiveNote>
+							      </functionRelation>
+							    </c:forEach>
+						  </relations>
+						</cpfDescription>
+						</eac-cpf>
+						
+				  </metadata>
+				</record>
+		  </c:forEach>
+		  <resumptionToken completeListSize="${size}" cursor="${page-1}">${resumptionToken}</resumptionToken>
+	  </ListRecords>
+  </oai:template>
+</jsp:root>
