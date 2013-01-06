@@ -60,12 +60,6 @@ privileged aspect Item_Roo_Jpa_ActiveRecord {
     }
     
     @Transactional
-    public void Item.clear() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.clear();
-    }
-    
-    @Transactional
     public Item Item.merge() {
         if (this.entityManager == null) this.entityManager = entityManager();
         Item merged = this.entityManager.merge(this);

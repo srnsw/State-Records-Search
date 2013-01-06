@@ -109,15 +109,20 @@ public class Item implements Serializable{
     		Field f = new Field("title", item.getTitle(), Field.Store.YES, Field.Index.ANALYZED);
     		f.setBoost(2.0f);
     		doc.add(f);
-    		   		
+    		
+    		if (!item.getDescriptiveNote().equals(item.getTitle())){
+	    		Field content = new Field("content", item.getDescriptiveNote(), Field.Store.YES, Field.Index.ANALYZED);
+	    		content.setBoost(1.5f);
+	    		doc.add(content);
+    		}
+    		
     		doc.add(new Field("location", item.getLocation(), Field.Store.YES, Field.Index.ANALYZED));
-    		//doc.add(new Field("series", item.getSeriesNumber().getTitle(), Field.Store.YES, Field.Index.ANALYZED));
     		doc.add(new Field("series", String.valueOf(item.getSeriesNumber().getId()), Field.Store.YES, Field.Index.ANALYZED));
-    		doc.add(new Field("type", "items", Field.Store.YES, Field.Index.ANALYZED));
-    		doc.add(new Field("content", item.getDescriptiveNote().replace("<i>", "").replace("</i>", ""), Field.Store.YES, Field.Index.ANALYZED));
-    		doc.add(new Field("url", String.format("/items/%d",item.getId()), Field.Store.YES, Field.Index.ANALYZED));
-    		doc.add(new Field("startyear", DateHelper.getYearString(item.getStartDate()), Field.Store.YES, Field.Index.ANALYZED));
-    		doc.add(new Field("endyear",  DateHelper.getYearString(item.getEndDate()), Field.Store.YES, Field.Index.ANALYZED));
+    		doc.add(new Field("type", "items", Field.Store.YES, Field.Index.NOT_ANALYZED));
+    		
+    		doc.add(new Field("url", String.format("/items/%d",item.getId()), Field.Store.YES, Field.Index.NOT_ANALYZED));
+    		doc.add(new Field("startyear", DateHelper.getYearString(item.getStartDate()), Field.Store.NO, Field.Index.NOT_ANALYZED));
+    		doc.add(new Field("endyear",  DateHelper.getYearString(item.getEndDate()), Field.Store.NO, Field.Index.NOT_ANALYZED));
     		
     		List<CategoryPath> categories = new ArrayList<CategoryPath>();
   			categories.add(new CategoryPath("startyear", DateHelper.getYearString(item.getStartDate())));
@@ -136,7 +141,7 @@ public class Item implements Serializable{
     public static List<Item> findItemFromLastAmendmentDate(Date from, Date until, int page, int pageSize) {
     	String additionalCondition = QueryHelper.buildAdditionalQuery(from, until);
     	 
-    	EntityManager em = Agency.entityManager();
+    	EntityManager em = Item.entityManager();
        TypedQuery<Item> q = em.createQuery("SELECT o FROM Item o " + additionalCondition, Item.class);
        if (from!=null){
        	q.setParameter("from", from);	
@@ -148,9 +153,13 @@ public class Item implements Serializable{
        
    }
    
+    public static void clear() {
+        entityManager().clear();
+    }
+    
   	public static long countItemFromLastAmendmentDate(Date from, Date until) {
   		String additionalCondition = QueryHelper.buildAdditionalQuery(from, until);
-  		EntityManager em = Agency.entityManager();
+  		EntityManager em = Item.entityManager();
       TypedQuery<Long> q = em.createQuery("SELECT count(o) FROM Item o " + additionalCondition, Long.class);
       if (from!=null){
        	q.setParameter("from", from);	

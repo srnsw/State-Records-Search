@@ -208,15 +208,17 @@ public class Serie implements Serializable{
   		Field f = new Field("title", serie.getTitle(), Field.Store.YES, Field.Index.ANALYZED);
   		f.setBoost(2.0f);
   		doc.add(f);
-
-  		doc.add(new Field("type", "series", Field.Store.YES, Field.Index.ANALYZED));
-  		doc.add(new Field("location", serie.getLocation(), Field.Store.YES, Field.Index.ANALYZED));
-  		//doc.add(new Field("series", serie.getTitle(), Field.Store.YES, Field.Index.ANALYZED));
-  		doc.add(new Field("series", String.valueOf(serie.getId()), Field.Store.YES, Field.Index.ANALYZED));
-  		doc.add(new Field("content", serie.getDescriptiveNote()==null? "" : serie.getDescriptiveNote().replace("<i>", "").replace("</i>", ""), Field.Store.YES, Field.Index.ANALYZED));
-  		doc.add(new Field("url", String.format("/series/%d", serie.getSeriesNumber()), Field.Store.YES, Field.Index.ANALYZED));
-  		doc.add(new Field("startyear", DateHelper.getYearString(serie.getStartDate()), Field.Store.YES, Field.Index.ANALYZED));
-  		doc.add(new Field("endyear",  DateHelper.getYearString(serie.getEndDate()), Field.Store.YES, Field.Index.ANALYZED));
+  		
+  		Field descriptiveNote = new Field("content", serie.getDescriptiveNote()==null? "" : serie.getDescriptiveNote(), Field.Store.YES, Field.Index.ANALYZED);
+  		descriptiveNote.setBoost(1.5f);
+  		doc.add(descriptiveNote);
+  		
+  		doc.add(new Field("type", "series", Field.Store.YES, Field.Index.NOT_ANALYZED));
+  		doc.add(new Field("location", serie.getLocation(), Field.Store.YES, Field.Index.NOT_ANALYZED));
+  		doc.add(new Field("series", String.valueOf(serie.getId()), Field.Store.YES, Field.Index.NOT_ANALYZED));
+  		doc.add(new Field("url", String.format("/series/%d", serie.getSeriesNumber()), Field.Store.YES, Field.Index.NOT_ANALYZED));
+  		doc.add(new Field("startyear", DateHelper.getYearString(serie.getStartDate()), Field.Store.YES, Field.Index.NOT_ANALYZED));
+  		doc.add(new Field("endyear",  DateHelper.getYearString(serie.getEndDate()), Field.Store.YES, Field.Index.NOT_ANALYZED));
   		
   		List<CategoryPath> categories = new ArrayList<CategoryPath>();
 			categories.add(new CategoryPath("startyear", DateHelper.getYearString(serie.getStartDate())));

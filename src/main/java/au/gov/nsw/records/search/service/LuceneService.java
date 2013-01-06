@@ -130,7 +130,7 @@ public class LuceneService {
 			
 			TopDocs docs = docCollector.topDocs((page.intValue()-1)*size.intValue(), size.intValue());
 			numTotalHits = docCollector.getTotalHits();
-			log.info(numTotalHits + " total matching documents");
+			log.debug(numTotalHits + " total matching documents");
 			
 			for (ScoreDoc hit:docs.scoreDocs){
 				Document doc = searcher.doc(hit.doc);
@@ -139,7 +139,11 @@ public class LuceneService {
 				Highlighter highlighter = new Highlighter(formatter, fragmentScorer);
 				Fragmenter fragmenter = new SimpleFragmenter(150);
 				highlighter.setTextFragmenter(fragmenter);
-				searchResults.add(new SearchResultItem(doc.get("type"), doc.get("title"), highlighter.getBestFragment(analyzer, "content", doc.get("content")), doc.get("id"), doc.get("url"), doc.get("title").equals(doc.get("content"))));
+				String hilighted = highlighter.getBestFragment(analyzer, "content", doc.get("content")==null?"":doc.get("content"));
+				if (hilighted!=null){
+					hilighted = hilighted.replace("<i>", "").replace("</i>", "").replace("<em>", "").replace("</em>", "");
+				}
+				searchResults.add(new SearchResultItem(doc.get("type"), doc.get("title"), hilighted, doc.get("id"), doc.get("url"), doc.get("title").equals(doc.get("content"))));
 			}
 
 			for (FacetResult fr:facetsCollector.getFacetResults()){
@@ -193,7 +197,7 @@ public class LuceneService {
 			Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_31);
 			MultiFieldQueryParser queryParser = new MultiFieldQueryParser(Version.LUCENE_31, new String[] {"title", "content"},analyzer);
 			Query baseQuery = queryParser.parse(queryText);
-			log.info("Query:" + baseQuery.toString());
+			log.debug("Query:" + baseQuery.toString());
 			Query hilightQuery = queryParser.parse(params.getQuery().isEmpty()?"\"\"":params.getQuery());
 			return search(baseQuery, hilightQuery, params.getFacetParams(), params.getPage(), params.getSize());
 		} catch (ParseException e) {
