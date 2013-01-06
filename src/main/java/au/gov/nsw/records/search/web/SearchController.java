@@ -75,7 +75,7 @@ public class SearchController {
   						lucene.indexDocuments(Agency.getIndexData(Agency.findAllAgencys(), builder), Agency.class); 
   						lucene.commit();
   						
-  						logger.info("Indexing Series");
+  						logger.info("Indexing series");
   						lucene.indexDocuments(Serie.getIndexData(Serie.findAllSeries(), builder), Serie.class); 
   						lucene.commit();
   						
@@ -91,15 +91,17 @@ public class SearchController {
   						lucene.indexDocuments(Portfolio.getIndexData(Portfolio.findAllPortfolios(), builder), Portfolio.class);
   						lucene.commit();
   										
-  						logger.info("Indexing items");
+  						logger.info("Indexing items " + Item.countItems());
   						long itemCount = Item.countItems();
-  						int pageSize = 5000;
+  						int pageSize = 1000;
   						int pageCount = 0;
   						while(pageCount * pageSize < itemCount){
   							logger.info("Indexing items page " + pageCount + " of " + itemCount/pageSize);
   							lucene.indexDocuments(Item.getIndexData(Item.findItemEntries(pageCount * pageSize, pageSize), builder), Item.class);
   							lucene.commit();
   							pageCount++;
+  							Item.clear();
+  							System.gc();
   						}
   						lucene.finishWriting();
   						
