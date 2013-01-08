@@ -18,14 +18,17 @@ public class StringService {
 	public static String formatEacCpf(String field){
 		
 		field = field.replaceAll("\n", "</p><p>");
-    field = field.replaceAll("<br />", "</p><p>");  
+    field = field.replaceAll("<br />", "</p><p>");
+    field = field.replaceAll("<br/>", "</p><p>");
     field = field.replaceAll("nbsp;", " ");
     field = field.replaceAll("&middot;", "-");
     field = field.replaceAll("&ndash;", "-");
     field = field.replaceAll("&emdash;", "-");
     field = field.replaceAll("&quot;", "\"");
     field = field.replaceAll("&hellip;", "...");
-    //field = field.replaceAll("/&[lr][sd]quo;/", "'");
+    field = field.replaceAll("&lsquo;", "'");
+    field = field.replaceAll("&ldquo;", "'");
+    field = field.replaceAll("&rdquo;", "'");
     field = field.replaceAll("&rsquo;", "'");
     field = field.replaceAll("&ldquo;", "'");
     field = field.replaceAll("/<p>\\s*<\\/p>/", "");
