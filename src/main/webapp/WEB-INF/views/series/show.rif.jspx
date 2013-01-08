@@ -5,7 +5,7 @@
     <jsp:output omit-xml-declaration="yes"/>
   </c:if>
 
-<registryObject group="State Records Authority of New South Wales">
+<registryObject group="State Records Authority of New South Wales" xmlns="http://ands.org.au/standards/rif-cs/registryObjects" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects http://services.ands.org.au/documentation/rifcs/1.3/schema/registryObjects.xsd">
  
  <c:set var="requestURL" value="${pageContext.request.requestURL}" />
  <c:set var="baseURL" value="${fn:replace(requestURL, pageContext.request.requestURI, pageContext.request.contextPath)}" />

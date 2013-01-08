@@ -7,7 +7,7 @@
 		    <record>
 				   <oai:header dateStamp="${entity.lastAmendmentDate}" type="${type}" id="${serie.id}"></oai:header>		
 				  <metadata>
-				    <registryObject group="State Records Authority of New South Wales">
+				    <registryObject group="State Records Authority of New South Wales" xmlns="http://ands.org.au/standards/rif-cs/registryObjects" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects http://services.ands.org.au/documentation/rifcs/1.3/schema/registryObjects.xsd">
 						  <key>${baseURL}/series/${serie.id}</key>
 						  <originatingSource>http://www.records.nsw.gov.au</originatingSource>
 						  <collection type="repository">
