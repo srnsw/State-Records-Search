@@ -67,8 +67,8 @@ public class OaiController {
 
     private String getRecord(String identifier, String metadataPrefix, Model uiModel) throws OaiException{
     	
-    	if (identifier==null || metadataPrefix==null){
-    		throw new OaiException("badArgument#" + "missing required argument " + identifier==null? "identifier" : "metadataPrefix");
+    	if (identifier==null || metadataPrefix==null || identifier.isEmpty() || metadataPrefix.isEmpty()){
+    		throw new OaiException("badArgument#" + "missing required argument " + (identifier==null? "identifier" : "metadataPrefix"));
     	}
     	
     	if (!isFormatAvailable(identifier, metadataPrefix)){
@@ -302,7 +302,7 @@ public class OaiController {
     private boolean populateEntitySearch(ResumptionToken token, Model uiModel){
     	String entityName = token.getSet();
     	int pageSize = 100;
-    	// auto populate entity from the know format if it does not present
+    	// auto populate entity from the known format if it does not present
     	if (entityName==null || entityName.isEmpty()){
     		for (String key:FORMATS.keySet()){
     			for (String storedFormat:FORMATS.get(key)){
