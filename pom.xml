@@ -4,7 +4,7 @@
     <groupId>au.gov.nsw.records.search</groupId>
     <artifactId>Search</artifactId>
     <packaging>war</packaging>
-    <version>1.1.0.BETA</version>
+    <version>1.2.0.BETA</version>
     <name>Search</name>
     <properties>
         <aspectj.version>1.6.12</aspectj.version>
@@ -59,6 +59,12 @@
     </pluginRepositories>
     <dependencies>
         <!-- General dependencies for standard applications -->
+        <dependency>
+				  <!-- jsoup HTML parser library @ http://jsoup.org/ -->
+				  <groupId>org.jsoup</groupId>
+				  <artifactId>jsoup</artifactId>
+				  <version>1.7.1</version>
+				</dependency>
 				 <dependency>
 				    <groupId>com.google.code.gson</groupId>
 				    <artifactId>gson</artifactId>

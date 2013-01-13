@@ -3,6 +3,8 @@ package au.gov.nsw.records.search.service;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.jsoup.Jsoup;
+
 public class StringService {
 
 	public static boolean isNumeric(String str)
@@ -17,30 +19,26 @@ public class StringService {
 	
 	public static String formatEacCpf(String field){
 		
-		field = field.replaceAll("\n", "</p><p>");
-    field = field.replaceAll("<br />", "</p><p>");
-    field = field.replaceAll("<br/>", "</p><p>");
-    field = field.replaceAll("nbsp;", " ");
-    field = field.replaceAll("&middot;", "-");
-    field = field.replaceAll("&ndash;", "-");
-    field = field.replaceAll("&emdash;", "-");
-    field = field.replaceAll("&quot;", "\"");
-    field = field.replaceAll("&hellip;", "...");
-    field = field.replaceAll("&lsquo;", "'");
-    field = field.replaceAll("&ldquo;", "'");
-    field = field.replaceAll("&rdquo;", "'");
-    field = field.replaceAll("&rsquo;", "'");
-    field = field.replaceAll("&ldquo;", "'");
-    field = field.replaceAll("/<p>\\s*<\\/p>/", "");
-    //field = field.replaceAll("/<\\/?(?(em|[\\/pbi])).*?>/", ""); // # ... HErE bE DRAgONs [should strip any html except - p, em, b, i tags. Maybe requiring nokogiri/loofah would be saner]
-    field = field.replaceAll("<i>", "<span style=\"font-style:italic\">");
-    field = field.replaceAll("</i>", "</span>");
-    field = field.replaceAll("<em>", "<span style=\"font-style:italic\">");
-    field = field.replaceAll("</em>", "</span>");
-    field = field.replaceAll("<b>", "<span style=\"font-weight:bold\">");
-    field = field.replaceAll("</b>", "</span>");
-    field = field.replaceAll("<p></p>", "");
-    field = field.replaceAll("& ", "&amp; ");
-		return "<p>" + field + "</p>";
+		field = field.replaceAll("\n", "=newline=");
+		field = field.replaceAll("<br />", "=newline=");
+    field = field.replaceAll("<br/>", "=newline=");
+    field = field.replaceAll("<br>", "=newline=");
+    field = field.replaceAll("<i>", "=i=");
+    field = field.replaceAll("</i>", "=/i=");
+    field = field.replaceAll("<em>", "=em=");
+    field = field.replaceAll("</em>", "=/em=");
+    field = field.replaceAll("<b>", "=b=");
+    field = field.replaceAll("</b>", "=/b=");
+    
+    String resp = Jsoup.parse(field).text();
+    resp = resp.replaceAll("=i=", "<span style=\"font-style:italic\">");
+    resp = resp.replaceAll("=/i=", "</span>");
+    resp = resp.replaceAll("=em=", "<span style=\"font-style:italic\">");
+    resp = resp.replaceAll("=/em=", "</span>");
+    resp = resp.replaceAll("=b=", "<span style=\"font-weight:bold\">");
+    resp = resp.replaceAll("=/b=", "</span>");
+    resp = resp.replaceAll("=newline=", "</p><p>");
+    resp = resp.replaceAll("&", "&amp; ");
+		return "<p>" + resp + "</p>";
 	}
 }
