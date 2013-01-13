@@ -109,7 +109,7 @@ public class SearchController {
   		    	} catch (CorruptIndexException e) {
   		    		logger.error("Indexing error", e);
   						e.printStackTrace();
-  					} catch (IOException e) {
+  					} catch (Exception e) {
   						logger.error("Indexing error", e);
   						e.printStackTrace();
   					}finally{
