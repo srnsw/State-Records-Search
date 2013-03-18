@@ -45,5 +45,9 @@
             <menu:item id="i_controller__opensearchindex_id" messageCode="global_generic" url="/opensearch/index" z="UIjqa9ADwmKD5LyWI/JooI93dnM="/>
             <menu:item id="i_controller__oaiindex_id" messageCode="global_generic" url="/oai/index" z="Z/puKtqpkrFOWOBSjhqY4hoK8LQ="/>
         </menu:category>
+        <menu:category id="c_accessdirection" z="1QMrdYazUVbs61MYwKAj+JHBOs8=">
+            <menu:item id="i_accessdirection_new" messageCode="global_menu_new" url="/accessdirections?form" z="p6k5JZxmvWwwov4QGzTgPJQhwMM="/>
+            <menu:item id="i_accessdirection_list" messageCode="global_menu_list" url="/accessdirections?page=1&amp;size=${empty param.size ? 10 : param.size}" z="hw0aW0IwJok2giRLdpaMmkoIiFk="/>
+        </menu:category>
     </menu:menu>
 </div>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:spring="http://www.springframework.org/tags" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <H1>Access Directions</H1>
+    <table>
+        <td class="entitylist">
+            <c:forEach items="${accessdirections}" var="item">
+                <spring:url value="/accessdirections/${item.id}" var="link_url"/>
+                <div class="collection_search_result">
+                    <p>
+                        <a href="${link_url}"> ${item.id} - ${item.agencyTitle} </a>
+                    </p>
+                </div>
+            </c:forEach>
+        </td>
+    </table>
+    <util:pagination maxPages="${maxPages}" page="${page}" size="${size}"/>
+    <page:list id="pl_au_gov_nsw_records_search_model_AccessDirection" items="${accessdirections}" render="false" z="user-managed">
+        <table:table data="${accessdirections}" id="l_au_gov_nsw_records_search_model_AccessDirection" path="/accessdirections" z="76YKUX8z93QV9wV7yXS9aq+x1E8=">
+            <table:column id="c_au_gov_nsw_records_search_model_AccessDirection_scope" property="scope" z="XYFspWyn7XRQNQ0rDWAgHqu4L90="/>
+            <table:column id="c_au_gov_nsw_records_search_model_AccessDirection_furtherDetails" property="furtherDetails" z="ZsGjqhkDeCV6glCbFu0tKJSjTGk="/>
+            <table:column id="c_au_gov_nsw_records_search_model_AccessDirection_agencyTitle" property="agencyTitle" z="2inMJGfg+pzH+/p62fr++5IG5Wg="/>
+            <table:column id="c_au_gov_nsw_records_search_model_AccessDirection_typeAccess" property="typeAccess" z="Yp723ZgJKEfaE/Voj6v9NrMbudc="/>
+            <table:column id="c_au_gov_nsw_records_search_model_AccessDirection_effect" property="effect" z="R+Gq94VTW7GthhRdhfFo7NXW970="/>
+            <table:column id="c_au_gov_nsw_records_search_model_AccessDirection_cpaDuration" property="cpaDuration" z="sI0g9xadcvw0LYmuQr7JnQP6tY8="/>
+        </table:table>
+    </page:list>
+</div>

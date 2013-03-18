@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_au_gov_nsw_records_search_model_AccessDirection" modelAttribute="accessDirection" path="/accessdirections" render="${empty dependencies}" z="wIGCPaXfQxd9i0rPJfZ20p4QOYA=">
+        <field:input field="scope" id="c_au_gov_nsw_records_search_model_AccessDirection_scope" z="8kSqZSr521b/SWvCSRWAp0qXjjI="/>
+        <field:input field="furtherDetails" id="c_au_gov_nsw_records_search_model_AccessDirection_furtherDetails" z="8Sfwt1bm6QINUS0pUXzDrg6Xj9s="/>
+        <field:input field="agencyTitle" id="c_au_gov_nsw_records_search_model_AccessDirection_agencyTitle" z="77PSF2dj0Uglsw4c6KOTVACzp1M="/>
+        <field:input field="typeAccess" id="c_au_gov_nsw_records_search_model_AccessDirection_typeAccess" z="5ihGI6YXVJW9b6EswIU8vbc27Bo="/>
+        <field:input field="effect" id="c_au_gov_nsw_records_search_model_AccessDirection_effect" z="E6AgALVlCiIWt42Cb0n2dNbdEQs="/>
+        <field:input field="cpaDuration" id="c_au_gov_nsw_records_search_model_AccessDirection_cpaDuration" z="Y9PJ/meotARcDqWs0TseUvP8Id8="/>
+        <field:input field="cpaReasons" id="c_au_gov_nsw_records_search_model_AccessDirection_cpaReasons" z="dv6ypgTv6daBwp1HvreUzp+CBLs="/>
+        <field:input field="location" id="c_au_gov_nsw_records_search_model_AccessDirection_location" z="p/mrIo62o97aDJ/MPgdTZbzcUAg="/>
+        <field:datetime dateTimePattern="${accessDirection_authorisationdate_date_format}" field="authorisationDate" id="c_au_gov_nsw_records_search_model_AccessDirection_authorisationDate" z="5vaWl7O96vVbF13C/a0jBEk0fbM="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_au_gov_nsw_records_search_model_AccessDirection" render="${not empty dependencies}" z="4rlwS0dIT3mTzwj1bkGvVvLRaKk="/>
+</div>

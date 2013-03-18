@@ -3,6 +3,7 @@
 
 package au.gov.nsw.records.search.web;
 
+import au.gov.nsw.records.search.model.AccessDirection;
 import au.gov.nsw.records.search.model.Activity;
 import au.gov.nsw.records.search.model.Agency;
 import au.gov.nsw.records.search.model.Functionn;
@@ -20,6 +21,30 @@ import org.springframework.format.FormatterRegistry;
 privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService {
     
     declare @type: ApplicationConversionServiceFactoryBean: @Configurable;
+    
+    public Converter<AccessDirection, String> ApplicationConversionServiceFactoryBean.getAccessDirectionToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<au.gov.nsw.records.search.model.AccessDirection, java.lang.String>() {
+            public String convert(AccessDirection accessDirection) {
+                return new StringBuilder().append(accessDirection.getScope()).append(" ").append(accessDirection.getFurtherDetails()).append(" ").append(accessDirection.getAgencyTitle()).append(" ").append(accessDirection.getTypeAccess()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, AccessDirection> ApplicationConversionServiceFactoryBean.getIdToAccessDirectionConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, au.gov.nsw.records.search.model.AccessDirection>() {
+            public au.gov.nsw.records.search.model.AccessDirection convert(java.lang.Long id) {
+                return AccessDirection.findAccessDirection(id);
+            }
+        };
+    }
+    
+    public Converter<String, AccessDirection> ApplicationConversionServiceFactoryBean.getStringToAccessDirectionConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, au.gov.nsw.records.search.model.AccessDirection>() {
+            public au.gov.nsw.records.search.model.AccessDirection convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), AccessDirection.class);
+            }
+        };
+    }
     
     public Converter<Activity, String> ApplicationConversionServiceFactoryBean.getActivityToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<au.gov.nsw.records.search.model.Activity, java.lang.String>() {
@@ -158,6 +183,9 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     }
     
     public void ApplicationConversionServiceFactoryBean.installLabelConverters(FormatterRegistry registry) {
+        registry.addConverter(getAccessDirectionToStringConverter());
+        registry.addConverter(getIdToAccessDirectionConverter());
+        registry.addConverter(getStringToAccessDirectionConverter());
         registry.addConverter(getActivityToStringConverter());
         registry.addConverter(getIdToActivityConverter());
         registry.addConverter(getStringToActivityConverter());
