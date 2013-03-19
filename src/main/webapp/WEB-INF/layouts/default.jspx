@@ -38,6 +38,9 @@
 		<c:if test="${not empty serie}">
 		 	<c:set value="${serie.title}" var="title"> </c:set>
 		</c:if>
+		<c:if test="${not empty accessdirection}">
+		 	<c:set value="${accessdirection.agencyTitle}" var="title"> </c:set>
+		</c:if>
 		<title>${title} - State Records NSW </title>
 		 <spring:url value="/opensearch" var="openURL" />
 		<link rel="search" type="application/opensearchdescription+xml" href="${openURL}" title="State Records NSW Search" />
