@@ -57,6 +57,7 @@ public class SearchController {
     public void startIndex(HttpServletRequest request, HttpServletResponse response) {
 //     	ExecutorService indexWorker = Executors.newSingleThreadExecutor();
      	if (!isIndexing){
+     		logger.info("Indexing started");
 //     		indexWorker.execute(new Runnable() {
 //  				@Override
 //  				public void run() {
@@ -117,8 +118,7 @@ public class SearchController {
   					}
 //  				}
 //  			});
-
-  			logger.info("Indexing started");
+  			
      	}else{
      		logger.warn("Indexing already in progress");
      	}
