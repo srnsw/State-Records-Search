@@ -1,13 +1,13 @@
 package au.gov.nsw.records.search.web;
 
-import au.gov.nsw.records.search.model.AccessDirection;
-
-import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import au.gov.nsw.records.search.model.AccessDirection;
 
 @RequestMapping("/accessdirections")
 @Controller
@@ -25,7 +25,19 @@ public class AccessDirectionController {
         uiModel.addAttribute("page", page);
         uiModel.addAttribute("size", size);
         
+        uiModel.addAttribute("count", AccessDirection.countAccessDirections());
+        uiModel.addAttribute("view", "accessdirections/list");
+        
         addDateTimeFormatPatterns(uiModel);
         return "accessdirections/list";
+    }
+
+	@RequestMapping(value = "/{id}", produces = "text/html")
+    public String show(@PathVariable("id") Long id, Model uiModel) {
+        addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("accessdirection", AccessDirection.findAccessDirection(id));
+        uiModel.addAttribute("itemId", id);
+        uiModel.addAttribute("view", "accessdirections/show"); 
+        return "accessdirections/show";
     }
 }

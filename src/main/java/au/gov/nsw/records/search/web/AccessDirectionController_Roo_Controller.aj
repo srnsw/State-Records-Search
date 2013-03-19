@@ -38,14 +38,6 @@ privileged aspect AccessDirectionController_Roo_Controller {
         return "accessdirections/create";
     }
     
-    @RequestMapping(value = "/{id}", produces = "text/html")
-    public String AccessDirectionController.show(@PathVariable("id") Long id, Model uiModel) {
-        addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("accessdirection", AccessDirection.findAccessDirection(id));
-        uiModel.addAttribute("itemId", id);
-        return "accessdirections/show";
-    }
-    
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
     public String AccessDirectionController.update(@Valid AccessDirection accessDirection, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
