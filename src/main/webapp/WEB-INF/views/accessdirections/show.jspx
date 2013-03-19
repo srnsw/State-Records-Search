@@ -2,23 +2,22 @@
 <div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    
-     <table>
+    <table>
         <td class="searchlist" width="65%">
             <div class="entity_data">
-					    <page:show id="ps_au_gov_nsw_records_search_model_AccessDirection" create="false" update="false" delete="false" list="false" object="${accessdirection}" path="/accessdirections" z="/3oNCf69bC7z4IL2ZB1o/stutCo=">
-					        <field:display heading="true" field="agencyTitle" id="s_au_gov_nsw_records_search_model_AccessDirection_agencyTitle" object="${accessdirection}" z="P4vyfikEKBrOmTmx9ExKegAij4k="/>
-									<field:display field="id" id="s_au_gov_nsw_records_search_model_AccessDirection_id" object="${accessdirection}" z="fvpvowa4E2Vqp4yy/R898ds++T8="/>
-					        <field:display field="scope" id="s_au_gov_nsw_records_search_model_AccessDirection_scope" object="${accessdirection}" z="fvpvowa4E2Vqp4yy/R898ds++T8="/>
-					        <field:display field="furtherDetails" id="s_au_gov_nsw_records_search_model_AccessDirection_furtherDetails" object="${accessdirection}" z="NRz7CEgBpkEUhV9lQxVRePDFPV0="/>
-					        <field:display field="typeAccess" id="s_au_gov_nsw_records_search_model_AccessDirection_typeAccess" object="${accessdirection}" z="8koR7a2IpI4hpq4bVkiCalrRAN0="/>
-					        <field:display field="effect" id="s_au_gov_nsw_records_search_model_AccessDirection_effect" object="${accessdirection}" z="tadCHY97DXBc3gBzEXaTTnepVII="/>
-					        <field:display field="cpaDuration" id="s_au_gov_nsw_records_search_model_AccessDirection_cpaDuration" object="${accessdirection}" z="a4pY2zsm7HtrZZq34V7bWaWUCY4="/>
-					        <field:display field="cpaReasons" id="s_au_gov_nsw_records_search_model_AccessDirection_cpaReasons" object="${accessdirection}" z="MW43un7GPQY+1yvHQRRweh6i23Q="/>
-					        <field:display field="location" id="s_au_gov_nsw_records_search_model_AccessDirection_location" object="${accessdirection}" z="7wp+5XoF8qr7uXaOhgloIr8paPE="/>
-					        <field:display date="true" dateTimePattern="${accessDirection_authorisationdate_date_format}" field="authorisationDate" id="s_au_gov_nsw_records_search_model_AccessDirection_authorisationDate" object="${accessdirection}" z="DBjQ9ZjZ1loDgR868NqxrvBmzJ0="/>
-					    </page:show>
-					  </div>
+                <page:show create="false" delete="false" id="ps_au_gov_nsw_records_search_model_AccessDirection" list="false" object="${accessdirection}" path="/accessdirections" update="false" z="user-managed">
+                    <field:display field="agencyTitle" heading="true" id="s_au_gov_nsw_records_search_model_AccessDirection_agencyTitle" object="${accessdirection}" z="user-managed"/>
+                    <field:display field="id" id="s_au_gov_nsw_records_search_model_AccessDirection_id" object="${accessdirection}" z="fvpvowa4E2Vqp4yy/R898ds++T8="/>
+                    <field:display field="scope" id="s_au_gov_nsw_records_search_model_AccessDirection_scope" object="${accessdirection}" z="fvpvowa4E2Vqp4yy/R898ds++T8="/>
+                    <field:display field="furtherDetails" id="s_au_gov_nsw_records_search_model_AccessDirection_furtherDetails" object="${accessdirection}" z="NRz7CEgBpkEUhV9lQxVRePDFPV0="/>
+                    <field:display field="typeAccess" id="s_au_gov_nsw_records_search_model_AccessDirection_typeAccess" object="${accessdirection}" z="8koR7a2IpI4hpq4bVkiCalrRAN0="/>
+                    <field:display field="effect" id="s_au_gov_nsw_records_search_model_AccessDirection_effect" object="${accessdirection}" z="tadCHY97DXBc3gBzEXaTTnepVII="/>
+                    <field:display field="cpaDuration" id="s_au_gov_nsw_records_search_model_AccessDirection_cpaDuration" object="${accessdirection}" z="a4pY2zsm7HtrZZq34V7bWaWUCY4="/>
+                    <field:display field="cpaReasons" id="s_au_gov_nsw_records_search_model_AccessDirection_cpaReasons" object="${accessdirection}" z="MW43un7GPQY+1yvHQRRweh6i23Q="/>
+                    <field:display field="location" id="s_au_gov_nsw_records_search_model_AccessDirection_location" object="${accessdirection}" z="7wp+5XoF8qr7uXaOhgloIr8paPE="/>
+                    <field:display date="true" dateTimePattern="${accessDirection_authorisationdate_date_format}" field="authorisationDate" id="s_au_gov_nsw_records_search_model_AccessDirection_authorisationDate" object="${accessdirection}" z="DBjQ9ZjZ1loDgR868NqxrvBmzJ0="/>
+                </page:show>
+            </div>
         </td>
     </table>
 </div>
