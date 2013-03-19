@@ -27,9 +27,8 @@
                     <field:display field="contentStartDateQualifier" id="s_au_gov_nsw_records_search_model_Serie_contentStartDateQualifier" object="${serie}" render="false" z="user-managed"/>
                     <field:display date="true" dateTimePattern="${serie_contentenddate_date_format}" field="contentEndDate" id="s_au_gov_nsw_records_search_model_Serie_contentEndDate" object="${serie}" render="false" z="user-managed"/>
                     <field:display field="contentEndDateQualifier" id="s_au_gov_nsw_records_search_model_Serie_contentEndDateQualifier" object="${serie}" render="false" z="user-managed"/>
-                    <field:display field="accessNote" render="false" id="s_au_gov_nsw_records_search_model_Serie_accessNote" object="${serie}" z="ytJdI1T3h8g3yLJByd90qps/Mn4="/>
+                    <field:display field="accessNote" id="s_au_gov_nsw_records_search_model_Serie_accessNote" object="${serie}" render="false" z="user-managed"/>
                     <field:display field="lastAmendmentDate" id="s_au_gov_nsw_records_search_model_Serie_lastAmendmentDate" object="${serie}" render="false" z="user-managed"/>
-                    
                 </page:show>
             </div>
         </td>
