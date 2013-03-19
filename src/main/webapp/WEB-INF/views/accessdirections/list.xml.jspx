@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<accessdirections xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:spring="http://www.springframework.org/tags" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="1.0">
+ 
+    	<pagination>
+    		<this_page>${page}</this_page>
+    		<total_results>${count}</total_results>
+    		<per_page>${size}</per_page>
+    	</pagination>
+    	<c:forEach items="${accessdirections}" var="accessdirection">
+    		<accessdirection >
+    		  <id>${accessdirection.id}</id>
+    		  <scope>${accessdirection.scope}</scope>
+    		  <agencyTitle>${accessdirection.agencyTitle}</agencyTitle>
+    		  <typeAccess>${accessdirection.typeAccess}</typeAccess>
+    		  <cpaDuration>${accessdirection.cpaDuration}</cpaDuration>
+    		  <cpaReasons>${accessdirection.cpaReasons}</cpaReasons>
+    		  <location>${accessdirection.location}</location>
+    			<furtherDetails>${fn:escapeXml(accessdirection.furtherDetails)}</furtherDetails>
+    			<agencyTitle>${fn:escapeXml(accessdirection.agencyTitle)}</agencyTitle>
+    			<authorisationDate>${accessdirection.authorisationDate}</authorisationDate>
+				</accessdirection>
+    	</c:forEach>
+    	
+</accessdirections>
