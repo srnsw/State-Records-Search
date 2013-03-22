@@ -35,10 +35,6 @@ privileged aspect Serie_Roo_JavaBean {
         this.title = title;
     }
     
-    public String Serie.getDescriptiveNote() {
-        return this.descriptiveNote;
-    }
-    
     public void Serie.setDescriptiveNote(String descriptiveNote) {
         this.descriptiveNote = descriptiveNote;
     }

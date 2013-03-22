@@ -267,4 +267,8 @@ public class Serie implements Serializable{
 	 public String getJsonString(){
   	 return new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(this); 
    }
+
+	public String getDescriptiveNote() {
+        return this.descriptiveNote.replaceAll("\n", "<br/>");
+    }
 }
