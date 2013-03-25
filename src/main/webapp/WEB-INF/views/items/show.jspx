@@ -14,15 +14,17 @@
                     <field:display field="itemNumberOrControlSymbol" id="s_au_gov_nsw_records_search_model_Item_itemNumberOrControlSymbol" object="${item}" z="lJFgEgbN/pgUZgW+/tO7TEhD4tQ="/>
                     <field:display field="seriesType" id="s_au_gov_nsw_records_search_model_Item_seriesType" object="${item}" render="false" z="user-managed"/>
                     <field:display field="descriptiveNote" id="s_au_gov_nsw_records_search_model_Item_descriptiveNote" object="${item}" z="C/Eq95OhJbR8sVBj3N1bgXM53N0="/>
-                    <field:display field="accessDirectionNumber" render="false" id="s_au_gov_nsw_records_search_model_Item_accessDirectionNumber" object="${item}" z="E8QoM4jZ6HoQekSTDs0axK0MSY0="/>
+                    <field:display field="accessDirectionNumber" id="s_au_gov_nsw_records_search_model_Item_accessDirectionNumber" object="${item}" render="false" z="user-managed"/>
                     <c:if test="${not empty item.accessDirectionNumber}">
-	                    <spring:url value="/accessdirections/${item.accessDirectionNumber}" var="url" />
-	                    <div>
-	                        <dl>
-	                            <dt>Access Direction Number:</dt>
-	                            <dd> <a href="${url}"> ${item.accessDirectionNumber} </a></dd>
-	                        </dl>
-	                    </div>
+                        <spring:url value="/accessdirections/${item.accessDirectionNumber.id}" var="url"/>
+                        <div>
+                            <dl>
+                                <dt>Access Direction Number:</dt>
+                                <dd>
+                                    <a href="${url}"> Effect: ${item.accessDirectionNumber.effect}; Duration: ${item.accessDirectionNumber.cpaDuration} </a>
+                                </dd>
+                            </dl>
+                        </div>
                     </c:if>
                     <field:display field="availability" id="s_au_gov_nsw_records_search_model_Item_availability" object="${item}" z="68Svmry8l85jRnlyub/PnC1vZdg="/>
                     <field:display date="true" dateTimePattern="${item_startdate_date_format}" field="startDate" id="s_au_gov_nsw_records_search_model_Item_startDate" object="${item}" render="false" z="user-managed"/>

@@ -8,7 +8,6 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.EntityManager;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,16 +21,17 @@ import org.apache.lucene.document.Field;
 import org.apache.lucene.facet.index.CategoryDocumentBuilder;
 import org.apache.lucene.facet.taxonomy.CategoryPath;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.orm.jpa.JpaObjectRetrievalFailureException;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
-import com.google.gson.GsonBuilder;
-import com.google.gson.annotations.Expose;
-
 import au.gov.nsw.records.search.service.DateHelper;
 import au.gov.nsw.records.search.service.LocationHelper;
 import au.gov.nsw.records.search.service.QueryHelper;
+
+import com.google.gson.GsonBuilder;
+import com.google.gson.annotations.Expose;
 
 @RooJavaBean
 @RooToString
@@ -68,9 +68,9 @@ public class Item implements Serializable{
 	  @Column(name = "Descriptive_Note")
     private String descriptiveNote;
 
-	  @Expose
-	  @Column(name = "Accessdirectionno")
-    private String accessDirectionNumber;
+	  @ManyToOne
+	  @JoinColumn(name = "Accessdirectionno")
+    private AccessDirection accessDirectionNumber;
 
 	  @Expose
 	  @Column(name = "Availability")
@@ -173,4 +173,13 @@ public class Item implements Serializable{
   	 public String getJsonString(){
     	 return new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(this); 
      }
+
+  		public static List<Item> findItemEntries(int firstResult, int maxResults) {
+  			try{
+  	        return entityManager().createQuery("SELECT o FROM Item o", Item.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+  			}catch (JpaObjectRetrievalFailureException ne){
+  	    	 ne.printStackTrace();
+  	    }
+  			return new ArrayList<Item>();
+  		}
 }

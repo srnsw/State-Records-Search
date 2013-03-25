@@ -269,6 +269,6 @@ public class Serie implements Serializable{
    }
 
 	public String getDescriptiveNote() {
-        return this.descriptiveNote.replaceAll("\n", "<br/>");
+        return this.descriptiveNote;
     }
 }

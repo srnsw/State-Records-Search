@@ -32,10 +32,6 @@ privileged aspect Item_Roo_Jpa_ActiveRecord {
         return entityManager().find(Item.class, id);
     }
     
-    public static List<Item> Item.findItemEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM Item o", Item.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
-    }
-    
     @Transactional
     public void Item.persist() {
         if (this.entityManager == null) this.entityManager = entityManager();
