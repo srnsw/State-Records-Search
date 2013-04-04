@@ -101,8 +101,8 @@ public class AgencyController {
 	        uiModel.addAttribute("rel_succeeding_size", Double.valueOf(Math.ceil(arraySize/(float)size)).intValue());
 	        uiModel.addAttribute("rel_succeeding_page", succeeding_page);
 	        
-	        arraySize =  Agency.findAgency(agencyNumber).getSucceeding().size();
-	        uiModel.addAttribute("rel_superiors",  Agency.findAgency(agencyNumber).getSucceeding().subList(Math.max((superiors_page-1)*size, 0), Math.min(superiors_page*size, arraySize)));
+	        arraySize =  Agency.findAgency(agencyNumber).getSuperiors().size();
+	        uiModel.addAttribute("rel_superiors",  Agency.findAgency(agencyNumber).getSuperiors().subList(Math.max((superiors_page-1)*size, 0), Math.min(superiors_page*size, arraySize)));
 	        uiModel.addAttribute("rel_superiors_size", Double.valueOf(Math.ceil(arraySize/(float)size)).intValue());
 	        uiModel.addAttribute("rel_superiors_page", superiors_page);
         }
