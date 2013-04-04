@@ -19,7 +19,7 @@
                         <spring:url value="/accessdirections/${item.accessDirectionNumber.id}" var="url"/>
                         <div>
                             <dl>
-                                <dt>Access Direction Number:</dt>
+                                <dt>Access Direction:</dt>
                                 <dd>
                                     <a href="${url}"> Effect: ${item.accessDirectionNumber.effect}; Duration: ${item.accessDirectionNumber.cpaDuration} </a>
                                 </dd>
