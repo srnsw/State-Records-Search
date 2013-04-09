@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import au.gov.nsw.records.search.model.Activity;
 import au.gov.nsw.records.search.model.Agency;
+import au.gov.nsw.records.search.model.Item;
 import au.gov.nsw.records.search.model.Organisation;
 import au.gov.nsw.records.search.service.ControllerUtils;
 
@@ -42,7 +43,7 @@ public class OrganisationController {
     		@RequestParam(value = "succeeding_page", required = false, defaultValue="1") Integer succeeding_page,
     		@RequestParam(value = "agencies_page", required = false, defaultValue="1") Integer agencies_page) {
         addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("organisation", Organisation.findOrganisation(organisationNumber));
+        uiModel.addAttribute("organisation", reformatNewLine(Organisation.findOrganisation(organisationNumber)));
         uiModel.addAttribute("itemId", organisationNumber);
         
         if (Organisation.findOrganisation(organisationNumber)!=null){
@@ -65,6 +66,13 @@ public class OrganisationController {
         uiModel.addAttribute("view", "organisations/show");
         return "organisations/show";
     }
+	
+	private static Organisation reformatNewLine(Organisation org){
+		if (org.getAdministrativeHistoryNote()!=null){
+			org.setAdministrativeHistoryNote(org.getAdministrativeHistoryNote().replaceAll("\n", "<br/>"));
+		}
+		return org;
+	}
 	
 	@RequestMapping(value="/{organisationNumber}/preceding", produces = "text/html")
 	public String listPreceding(@PathVariable("organisationNumber") int organisationNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import au.gov.nsw.records.search.model.Activity;
 import au.gov.nsw.records.search.model.Agency;
+import au.gov.nsw.records.search.model.Functionn;
 import au.gov.nsw.records.search.model.Item;
 import au.gov.nsw.records.search.model.Person;
 import au.gov.nsw.records.search.service.ControllerUtils;
@@ -43,7 +44,7 @@ public class ItemController {
     		@RequestParam(value = "persons_page", required = false, defaultValue="1") Integer persons_page,
     		@RequestParam(value = "agencies_page", required = false, defaultValue="1") Integer agencies_page) {
         addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("item", Item.findItem(id));
+        uiModel.addAttribute("item", reformatNewLine(Item.findItem(id)));
         uiModel.addAttribute("itemId", id);
         
         if (Item.findItem(id)!=null){
@@ -63,6 +64,12 @@ public class ItemController {
         return "items/show";
     }
 	
+	private static Item reformatNewLine(Item item){
+		if (item.getDescriptiveNote()!=null){
+			item.setDescriptiveNote(item.getDescriptiveNote().replaceAll("\n", "<br/>"));
+		}
+		return item;
+	}
 	@RequestMapping(value="/{id}/persons", produces = "text/html")
 	public String listPersons(@PathVariable("id") int id, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
 

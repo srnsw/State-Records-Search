@@ -39,7 +39,7 @@ public class ActivityController {
 	@RequestMapping(value = "/{activityNumber}", produces = "text/html")
     public String show(@RequestParam(value = "series_page", required = false, defaultValue="1") Integer series_page, @RequestParam(value = "functions_page", required = false, defaultValue="1") Integer functions_page, @PathVariable("activityNumber") int activityNumber, Model uiModel) {
         addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("activity", Activity.findActivity(activityNumber));
+        uiModel.addAttribute("activity", reformatNewLine(Activity.findActivity(activityNumber)));
         uiModel.addAttribute("itemId", activityNumber);
         
         if (Activity.findActivity(activityNumber)!=null){
@@ -57,6 +57,13 @@ public class ActivityController {
         uiModel.addAttribute("view", "activities/show");
         return "activities/show";
     }
+	
+	private static Activity reformatNewLine(Activity ac){
+		if (ac.getDescriptiveNote()!=null){
+			ac.setDescriptiveNote(ac.getDescriptiveNote().replaceAll("\n", "<br/>"));
+		}
+		return ac;
+	}
 	
 	@RequestMapping(value="/{activityNumber}/series", produces = "text/html")
 	public String listSeries(@PathVariable("activityNumber") int activityNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {

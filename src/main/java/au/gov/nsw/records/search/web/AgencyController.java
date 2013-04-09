@@ -51,7 +51,7 @@ public class AgencyController {
     		@RequestParam(value = "succeeding_page", required = false, defaultValue="1") Integer succeeding_page,
     		@RequestParam(value = "superiors_page", required = false, defaultValue="1") Integer superiors_page) {
         addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("agency", Agency.findAgency(agencyNumber));
+        uiModel.addAttribute("agency", reformatNewLine(Agency.findAgency(agencyNumber)));
         uiModel.addAttribute("itemId", agencyNumber);
         
         if (Agency.findAgency(agencyNumber)!=null){
@@ -110,6 +110,12 @@ public class AgencyController {
         return "agencies/show";
     }
 	
+	private static Agency reformatNewLine(Agency ag){
+		if (ag.getAdministrativeHistoryNote()!=null){
+			ag.setAdministrativeHistoryNote(ag.getAdministrativeHistoryNote().replaceAll("\n", "<br/>"));
+		}
+		return ag;
+	}
 	@RequestMapping(value="/{agencyNumber}/functions", produces = "text/html")
 	public String listFunctions(@PathVariable("agencyNumber") int agencyNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
 

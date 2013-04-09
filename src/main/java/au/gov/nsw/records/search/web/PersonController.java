@@ -48,7 +48,7 @@ public class PersonController {
     		@RequestParam(value = "functions_page", required = false, defaultValue="1") Integer functions_page,
     		@RequestParam(value = "series_page", required = false, defaultValue="1") Integer series_page) {
         addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("person", Person.findPerson(personNumber));
+        uiModel.addAttribute("person", reformatNewLine(Person.findPerson(personNumber)));
         uiModel.addAttribute("itemId", personNumber);
         
         if (Person.findPerson(personNumber)!=null){
@@ -81,6 +81,13 @@ public class PersonController {
         uiModel.addAttribute("view", "people/show");
         return "people/show";
     }
+	  
+	  private static Person reformatNewLine(Person person){
+			if (person.getBiographicalNote()!=null){
+				person.setBiographicalNote(person.getBiographicalNote().replaceAll("\n", "<br/>"));
+			}
+			return person;
+		}
 	  
 		@RequestMapping(value="/{personNumber}/agencies", produces = "text/html")
 		public String listAgencies(@PathVariable("personNumber") int personNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {

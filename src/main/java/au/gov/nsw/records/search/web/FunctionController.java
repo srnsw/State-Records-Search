@@ -44,7 +44,7 @@ public class FunctionController {
     		@RequestParam(value = "persons_page", required = false, defaultValue="1") Integer persons_page) {
 		
         addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("functionn", Functionn.findFunctionn(functionNumber));
+        uiModel.addAttribute("functionn", reformatNewLine(Functionn.findFunctionn(functionNumber)));
         uiModel.addAttribute("itemId", functionNumber);
         
         if (Functionn.findFunctionn(functionNumber)!=null){
@@ -67,6 +67,13 @@ public class FunctionController {
       	uiModel.addAttribute("view", "functions/show");
         return "functions/show";
     }
+	
+	private static Functionn reformatNewLine(Functionn fn){
+		if (fn.getDescriptiveNote()!=null){
+			fn.setDescriptiveNote(fn.getDescriptiveNote().replaceAll("\n", "<br/>"));
+		}
+		return fn;
+	}
 	
 	@RequestMapping(value="/{functionNumber}/agencies", produces = "text/html")
 	public String listAgencies(@PathVariable("functionNumber") int functionNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {

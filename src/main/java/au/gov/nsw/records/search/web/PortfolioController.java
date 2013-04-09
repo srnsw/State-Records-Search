@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import au.gov.nsw.records.search.model.Activity;
 import au.gov.nsw.records.search.model.Agency;
+import au.gov.nsw.records.search.model.Item;
 import au.gov.nsw.records.search.model.Ministry;
 import au.gov.nsw.records.search.model.Person;
 import au.gov.nsw.records.search.model.Portfolio;
@@ -46,7 +47,7 @@ public class PortfolioController {
     		@RequestParam(value = "persons_page", required = false, defaultValue="1") Integer persons_page,
     		@RequestParam(value = "agencies_page", required = false, defaultValue="1") Integer agencies_page) {
         addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("portfolio", Portfolio.findPortfolio(portfolioNumber));
+        uiModel.addAttribute("portfolio", reformatNewLine(Portfolio.findPortfolio(portfolioNumber)));
         uiModel.addAttribute("itemId", portfolioNumber);
         
         if (Portfolio.findPortfolio(portfolioNumber)!=null){
@@ -80,6 +81,12 @@ public class PortfolioController {
         return "portfolios/show";
     }
 	
+	private static Portfolio reformatNewLine(Portfolio portf){
+		if (portf.getDescriptiveNote()!=null){
+			portf.setDescriptiveNote(portf.getDescriptiveNote().replaceAll("\n", "<br/>"));
+		}
+		return portf;
+	}
 	@RequestMapping(value="/{portfolioNumber}/preceding", produces = "text/html")
 	public String listPreceding(@PathVariable("portfolioNumber") int portfolioNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
 

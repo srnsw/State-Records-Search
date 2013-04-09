@@ -51,7 +51,7 @@ public class SerieController {
     		@RequestParam(value = "controlled_series_page", required = false, defaultValue="1") Integer controlled_series_page,
     		@RequestParam(value = "items_page", required = false, defaultValue="1") Integer items_page) {
         addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("serie", Serie.findSerie(seriesNumber));
+        uiModel.addAttribute("serie", reformatNewLine(Serie.findSerie(seriesNumber)));
         uiModel.addAttribute("itemId", seriesNumber);
         
         if (Serie.findSerie(seriesNumber)!=null){
@@ -110,6 +110,13 @@ public class SerieController {
         uiModel.addAttribute("view", "series/show");
         return "series/show";
     }
+	
+	private static Serie reformatNewLine(Serie serie){
+		if (serie.getDescriptiveNote()!=null){
+			serie.setDescriptiveNote(serie.getDescriptiveNote().replaceAll("\n", "<br/>"));
+		}
+		return serie;
+	}
 	
 	@RequestMapping(value="/{seriesNumber}/items", produces = "text/html")
 	public String listItems(@PathVariable("seriesNumber") int seriesNumber, @RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
