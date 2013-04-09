@@ -38,7 +38,7 @@
     <c:forEach items="${serie.creatingAgencies}" var="item">
 	    <relatedObject>
 	      <key>${baseURL}/agencies/${item.relationship.id}</key>
-	      <relation type="hasCollector">
+	      <relation type="hasCreator">
 	        <description>${item.relationship.title}</description>
 	      </relation>
 	    </relatedObject>
@@ -46,7 +46,7 @@
     <c:forEach items="${serie.persons}" var="item">
 	    <relatedObject>
 	      <key>${baseURL}/persons/${item.relationship.id}</key>
-	      <relation type="hasCollector">
+	      <relation type="hasCreator">
 	        <description>${person.fullName}</description>
 	      </relation>
 	    </relatedObject>
@@ -93,7 +93,7 @@
     </c:forEach>
     <description type="full">${fn:escapeXml(serie.descriptiveNote)}</description>
     <rights>
-      <rightsStatement rightsUri="http://www.records.nsw.gov.au/about-us/copyright-policy">Copyright, State of New South Wales through the State Records Authority of NSW</rightsStatement>
+      <rightsStatement rightsUri="http://www.records.nsw.gov.au/state-archives/guides-and-finding-aids/archives-in-brief/archives-in-brief-74"> Records held by the State Records Authority of New South Wales are covered by copyright. For information on reusing material from the collection see Archives in Brief 74 – Research and Copyright.</rightsStatement>
       <license rightsUri="http://creativecommons.org/licenses/by-nc/3.0/au/">Attribution-NonCommercial 3.0 Australia (CC BY-NC 3.0)</license>
     </rights>
     <relatedInfo>
