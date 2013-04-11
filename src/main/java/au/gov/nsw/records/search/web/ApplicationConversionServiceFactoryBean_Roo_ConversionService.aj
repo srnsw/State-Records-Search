@@ -97,7 +97,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Item, String> ApplicationConversionServiceFactoryBean.getItemToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<au.gov.nsw.records.search.model.Item, java.lang.String>() {
             public String convert(Item item) {
-                return new StringBuilder().append(item.getImagesCount()).append(" ").append(item.getSeriesType()).append(" ").append(item.getItemNumberOrControlSymbol()).append(" ").append(item.getTitle()).toString();
+                return new StringBuilder().append(item.getAccessDirectionNumber()).append(" ").append(item.getImagesCount()).append(" ").append(item.getSeriesType()).append(" ").append(item.getItemNumberOrControlSymbol()).toString();
             }
         };
     }
