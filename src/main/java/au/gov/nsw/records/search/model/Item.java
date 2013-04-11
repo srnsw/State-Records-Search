@@ -68,9 +68,8 @@ public class Item implements Serializable{
 	  @Column(name = "Descriptive_Note")
     private String descriptiveNote;
 
-	  @ManyToOne
-	  @JoinColumn(name = "Accessdirectionno")
-    private AccessDirection accessDirectionNumber;
+	  @Column(name = "Accessdirectionno")
+    private Integer accessDirectionNumber;
 
 	  @Expose
 	  @Column(name = "Availability")
@@ -182,4 +181,16 @@ public class Item implements Serializable{
   	    }
   			return new ArrayList<Item>();
   		}
+
+	public AccessDirection getAccessDirectionNumber() {
+		  // do load from DB mannually
+        //return this.accessDirectionNumber;
+		if (this.accessDirectionNumber!=null && this.accessDirectionNumber > 0){
+			EntityManager em = Item.entityManager();
+	    TypedQuery<AccessDirection> q = em.createQuery("SELECT ad FROM AccessDirection ad where id =:id", AccessDirection.class);
+	    q.setParameter("id", Long.valueOf(this.accessDirectionNumber.toString()));	
+	    return q.getSingleResult();
+		}
+     return null;
+    }
 }

@@ -3,7 +3,6 @@
 
 package au.gov.nsw.records.search.model;
 
-import au.gov.nsw.records.search.model.AccessDirection;
 import au.gov.nsw.records.search.model.Item;
 import au.gov.nsw.records.search.model.Serie;
 import java.util.Date;
@@ -66,11 +65,7 @@ privileged aspect Item_Roo_JavaBean {
         this.descriptiveNote = descriptiveNote;
     }
     
-    public AccessDirection Item.getAccessDirectionNumber() {
-        return this.accessDirectionNumber;
-    }
-    
-    public void Item.setAccessDirectionNumber(AccessDirection accessDirectionNumber) {
+    public void Item.setAccessDirectionNumber(Integer accessDirectionNumber) {
         this.accessDirectionNumber = accessDirectionNumber;
     }
     
