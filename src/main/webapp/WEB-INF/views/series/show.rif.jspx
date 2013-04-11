@@ -94,7 +94,7 @@
     <description type="full">${fn:escapeXml(serie.descriptiveNote)}</description>
     <rights>
       <rightsStatement rightsUri="http://www.records.nsw.gov.au/state-archives/guides-and-finding-aids/archives-in-brief/archives-in-brief-74"> Records held by the State Records Authority of New South Wales are covered by copyright. For information on reusing material from the collection see Archives in Brief 74 – Research and Copyright.</rightsStatement>
-      <license rightsUri="http://creativecommons.org/licenses/by-nc/3.0/au/">Attribution-NonCommercial 3.0 Australia (CC BY-NC 3.0)</license>
+      <licence rightsUri="http://creativecommons.org/licences/by-nc/3.0/au/">Attribution-NonCommercial 3.0 Australia (CC BY-NC 3.0)</licence>
     </rights>
     <relatedInfo>
       <identifier type="website">${url}</identifier>
