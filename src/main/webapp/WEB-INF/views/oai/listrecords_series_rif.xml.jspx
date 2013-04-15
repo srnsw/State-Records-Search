@@ -30,14 +30,14 @@
 						    <relatedObject>
 						      <key>${baseURL}/series/${serie.id}</key>
 						      <relation type="isLocatedIn">
-						        <description>${serie.repository}</description>
+						        <description>${fn:escapeXml(serie.repository)}</description>
 						      </relation>
 						    </relatedObject>
 						    <c:forEach items="${serie.creatingAgencies}" var="item">
 							    <relatedObject>
 							      <key>${baseURL}/agencies/${item.relationship.id}</key>
 							      <relation type="hasCreator">
-							        <description>${item.relationship.title}</description>
+							        <description>${fn:escapeXml(item.relationship.title)}</description>
 							      </relation>
 							    </relatedObject>
 						    </c:forEach>
@@ -45,7 +45,7 @@
 							    <relatedObject>
 							      <key>${baseURL}/persons/${item.relationship.id}</key>
 							      <relation type="hasCreator">
-							        <description>${item.relationship.fullName}</description>
+							        <description>${fn:escapeXml(item.relationship.fullName)}</description>
 							      </relation>
 							    </relatedObject>
 						    </c:forEach>
@@ -53,7 +53,7 @@
 							    <relatedObject>
 							      <key>${baseURL}/series/${item.relationship.id}</key>
 							      <relation type="hasAssociationWith">
-							        <description>${item.relationship.title}</description>
+							        <description>${fn:escapeXml(item.relationship.title)}</description>
 							      </relation>
 							    </relatedObject>
 						    </c:forEach>
@@ -61,7 +61,7 @@
 						    <relatedObject>
 						      <key>${baseURL}/series/${item.relationship.id}</key>
 						      <relation type="hasAssociationWith">
-						        <description>${item.relationship.title}</description>
+						        <description>${fn:escapeXml(item.relationship.title)}</description>
 						      </relation>
 						    </relatedObject>
 						    </c:forEach>
@@ -69,7 +69,7 @@
 						    <relatedObject>
 						      <key>${baseURL}/series/${item.relationship.id}</key>
 						      <relation type="hasAssociationWith">
-						        <description>${item.relationship.title}</description>
+						        <description>${fn:escapeXml(item.relationship.title)}</description>
 						      </relation>
 						    </relatedObject>
 						    </c:forEach>
@@ -77,7 +77,7 @@
 						    <relatedObject>
 						      <key>${baseURL}/series/${item.relationship.id}</key>
 						      <relation type="isPartOf">
-						        <description>${item.relationship.title}</description>
+						        <description>${fn:escapeXml(item.relationship.title)}</description>
 						      </relation>
 						    </relatedObject>
 						    </c:forEach>
@@ -85,7 +85,7 @@
 						    <relatedObject>
 						      <key>${baseURL}/series/${item.relationship.id}</key>
 						      <relation type="hasPart">
-						        <description>${item.relationship.title}</description>
+						        <description>${fn:escapeXml(item.relationship.title)}</description>
 						      </relation>
 						    </relatedObject>
 						    </c:forEach>
