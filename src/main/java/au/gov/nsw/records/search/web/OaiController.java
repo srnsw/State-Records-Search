@@ -162,13 +162,16 @@ public class OaiController {
     }
     
     private String listRecords(String identifier, String metadataPrefix, String from, String until, String className, String resumptionToken, Model uiModel) throws OaiException{
-    	if (metadataPrefix==null){
-    		throw new OaiException("badArgument#" + "The request includes illegal arguments or missing required arguments");
-    	}
+    	
     	ResumptionToken token = null;
     	if (resumptionToken!=null){
     		token = ResumptionToken.parse(resumptionToken);
     	}else{
+    		
+    		if (metadataPrefix==null){
+      		throw new OaiException("badArgument#" + "The request includes illegal arguments or missing required arguments");
+      	}
+    		
     		if (!isValidFormat(metadataPrefix)){
     			throw new OaiException("cannotDisseminateFormat#" + "Repository does not support format: " + metadataPrefix);
     		}
