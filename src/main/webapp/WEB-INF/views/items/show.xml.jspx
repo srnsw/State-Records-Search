@@ -3,7 +3,7 @@
     		  <id>${item.id}</id>
     			<title>${fn:escapeXml(item.title)}</title>
     			<descriptiveNote>${fn:escapeXml(item.descriptiveNote)}</descriptiveNote>
-    			<accessDirectionNumber>${item.accessDirectionNumber}</accessDirectionNumber>
+    			<accessDirectionNumber>${item.accessDirectionNumber.id}</accessDirectionNumber>
     			<availability>${item.availability}</availability>
     			<endDate>${item.endDate}</endDate>
     			<startDate>${item.startDate}</startDate>
