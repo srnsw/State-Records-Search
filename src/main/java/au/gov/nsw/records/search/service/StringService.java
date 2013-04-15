@@ -3,6 +3,7 @@ package au.gov.nsw.records.search.service;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.jsoup.Jsoup;
 
 public class StringService {
@@ -40,5 +41,19 @@ public class StringService {
     resp = resp.replaceAll("=newline=", "</p><p>");
     resp = resp.replaceAll("&", "&amp; ");
 		return "<p>" + resp + "</p>";
+	}
+	
+	public static String stripHTML(String htmlString){
+		if (htmlString!=null && !htmlString.isEmpty()){
+			return Jsoup.parse(htmlString).text();
+		}
+		return htmlString;
+	}
+	
+	public static String escapeXML(String xmlString){
+		if (xmlString!=null && !xmlString.isEmpty()){
+			return StringEscapeUtils.escapeXml(xmlString).replace(" & ", " &amp; ");
+		}
+		return xmlString;
 	}
 }

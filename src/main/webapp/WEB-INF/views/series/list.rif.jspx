@@ -11,7 +11,7 @@ xmlns="http://ands.org.au/standards/rif-cs/registryObjects" xmlns:xsi="http://ww
 	  <collection type="repository">
 	    <identifier type="uri">${baseURL}/series/${serie.id}</identifier>
 	    <name>
-	      <namePart type="full">${serie.title}</namePart>
+	      <namePart type="full">${fn:escapeXml(serie.title)}</namePart>
 	    </name>
 	    <c:if test="${not empty serie.startDate || not empty serie.endDate}">
 		    <coverage>

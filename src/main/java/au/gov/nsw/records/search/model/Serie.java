@@ -35,6 +35,7 @@ import com.google.gson.annotations.Expose;
 import au.gov.nsw.records.search.service.DateHelper;
 import au.gov.nsw.records.search.service.LocationHelper;
 import au.gov.nsw.records.search.service.QueryHelper;
+import au.gov.nsw.records.search.service.StringService;
 
 @RooJavaBean
 @RooToString
@@ -271,4 +272,8 @@ public class Serie implements Serializable{
 	public String getDescriptiveNote() {
         return this.descriptiveNote;
     }
+	
+	public String getDescriptiveNoteNonHtml() {
+    return StringService.stripHTML(this.descriptiveNote);
+}
 }
