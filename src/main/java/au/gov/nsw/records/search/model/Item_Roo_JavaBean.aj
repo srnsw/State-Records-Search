@@ -65,7 +65,7 @@ privileged aspect Item_Roo_JavaBean {
         this.descriptiveNote = descriptiveNote;
     }
     
-    public void Item.setAccessDirectionNumber(Integer accessDirectionNumber) {
+    public void Item.setAccessDirectionNumber(String accessDirectionNumber) {
         this.accessDirectionNumber = accessDirectionNumber;
     }
     

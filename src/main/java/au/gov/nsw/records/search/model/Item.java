@@ -29,6 +29,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 import au.gov.nsw.records.search.service.DateHelper;
 import au.gov.nsw.records.search.service.LocationHelper;
 import au.gov.nsw.records.search.service.QueryHelper;
+import au.gov.nsw.records.search.service.StringService;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
@@ -69,7 +70,7 @@ public class Item implements Serializable{
     private String descriptiveNote;
 
 	  @Column(name = "Accessdirectionno")
-    private Integer accessDirectionNumber;
+    private String accessDirectionNumber;
 
 	  @Expose
 	  @Column(name = "Availability")
@@ -185,10 +186,10 @@ public class Item implements Serializable{
 	public AccessDirection getAccessDirectionNumber() {
 		  // do load from DB mannually
         //return this.accessDirectionNumber;
-		if (this.accessDirectionNumber!=null && this.accessDirectionNumber > 0){
+		if (this.accessDirectionNumber!=null && StringService.isNumeric(accessDirectionNumber)){
 			EntityManager em = Item.entityManager();
 	    TypedQuery<AccessDirection> q = em.createQuery("SELECT ad FROM AccessDirection ad where id =:id", AccessDirection.class);
-	    q.setParameter("id", Long.valueOf(this.accessDirectionNumber.toString()));	
+	    q.setParameter("id", Long.valueOf(this.accessDirectionNumber));	
 	    return q.getSingleResult();
 		}
      return null;
