@@ -166,6 +166,8 @@ public class OaiController {
     	ResumptionToken token = null;
     	if (resumptionToken!=null){
     		token = ResumptionToken.parse(resumptionToken);
+    		
+    		metadataPrefix = resumptionToken.substring(0,resumptionToken.indexOf(":"));
     	}else{
     		
     		if (metadataPrefix==null){
@@ -193,7 +195,7 @@ public class OaiController {
     	uiModel.addAttribute("resumptionToken", token.nextToken().toString());
     	uiModel.addAttribute("page", token.page);
     	
-    	String view = String.format("oai/listrecords_%s_%s", uiModel.asMap().get("type"), uiModel.asMap().get("metadataPrefix"));
+    	String view = String.format("oai/listrecords_%s_%s", uiModel.asMap().get("type"), metadataPrefix);
     	uiModel.addAttribute("view", view);
     	return "view";
     }
