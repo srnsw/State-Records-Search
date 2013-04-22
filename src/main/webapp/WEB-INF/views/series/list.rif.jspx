@@ -43,7 +43,7 @@ xmlns="http://ands.org.au/standards/rif-cs/registryObjects" xmlns:xsi="http://ww
 		    <relatedObject>
 		      <key>${baseURL}/persons/${item.relationship.id}</key>
 		      <relation type="hasCreator">
-		        <description>${item.fullName}</description>
+		        <description>${item.relationship.fullName}</description>
 		      </relation>
 		    </relatedObject>
 	    </c:forEach>
