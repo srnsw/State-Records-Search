@@ -190,7 +190,11 @@ public class Item implements Serializable{
 			EntityManager em = Item.entityManager();
 	    TypedQuery<AccessDirection> q = em.createQuery("SELECT ad FROM AccessDirection ad where id =:id", AccessDirection.class);
 	    q.setParameter("id", Long.valueOf(this.accessDirectionNumber));	
-	    return q.getSingleResult();
+	    if (q.getResultList().size() > 0){
+	    	return q.getSingleResult();
+	    }else{
+	    	return null;
+	    }
 		}
      return null;
     }
