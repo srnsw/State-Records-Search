@@ -139,7 +139,7 @@ public class LuceneService {
 				Highlighter highlighter = new Highlighter(formatter, fragmentScorer);
 				Fragmenter fragmenter = new SimpleFragmenter(150);
 				highlighter.setTextFragmenter(fragmenter);
-				String hilighted = highlighter.getBestFragment(analyzer, "content", doc.get("content")==null?"":doc.get("content"));
+				String hilighted = highlighter.getBestFragment(analyzer, "content", doc.get("content")==null?"":doc.get("content").replace("<b>", "").replace("</b>", ""));
 				if (hilighted!=null){
 					hilighted = hilighted.replace("<i>", "").replace("</i>", "").replace("<em>", "").replace("</em>", "");
 				}
