@@ -24,6 +24,16 @@
     <name>
       <namePart type="full">${fn:escapeXml(serie.title)}</namePart>
     </name>
+    <location>
+			<address>
+				<electronic type="url">
+					<value>${baseURL}/series/${serie.id}</value>
+				</electronic>
+				<physical type="streetAddress">
+					<addressPart type="text">${serie.locationAddress}</addressPart>
+				</physical>
+			</address>
+		</location>
     <c:if test="${not empty serie.startDate || not empty serie.endDate}">
 	    <coverage>
 	      <temporal>
@@ -39,7 +49,7 @@
     <relatedObject>
       <key>${baseURL}/series/${serie.id}</key>
       <relation type="isLocatedIn">
-        <description>${serie.repository}</description>
+        <description>${fn:escapeXml(serie.repository)}</description>
       </relation>
     </relatedObject>
     <c:forEach items="${serie.creatingAgencies}" var="item">
