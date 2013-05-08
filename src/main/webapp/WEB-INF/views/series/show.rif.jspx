@@ -102,6 +102,7 @@
       </relation>
     </relatedObject>
     </c:forEach>
+    <subject type="anzsrc-for">2103 HISTORICAL STUDIES</subject>
     <description type="full">${fn:escapeXml(serie.descriptiveNote)}</description>
     <rights>
       <rightsStatement rightsUri="http://www.records.nsw.gov.au/state-archives/guides-and-finding-aids/archives-in-brief/archives-in-brief-74"> Records held by the State Records Authority of New South Wales are covered by copyright. For information on reusing material from the collection see Archives in Brief 74 – Research and Copyright.</rightsStatement>
