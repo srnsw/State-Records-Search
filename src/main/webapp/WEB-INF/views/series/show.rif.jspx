@@ -15,6 +15,12 @@
   <fmt:formatDate var="dateModified" value="${serie.lastAmendmentDate}" pattern="YYYY-MM-dd" />
 	<collection type="collection" dateModified="${dateModified}">
     <identifier type="uri">${baseURL}/series/${serie.id}</identifier>
+    <dates type="dc.created">
+    	<fmt:formatDate var="dateFrom" value="${serie.startDate}" pattern="YYYY-MM-dd" />
+			<date type="dateFrom" dateFormat="W3CDTF">${dateFrom}</date>
+			<fmt:formatDate var="dateTo" value="${serie.endDate}" pattern="YYYY-MM-dd" />
+			<date type="dateTo" dateFormat="W3CDTF">${dateTo}</date>
+		</dates>
     <name>
       <namePart type="full">${fn:escapeXml(serie.title)}</namePart>
     </name>
