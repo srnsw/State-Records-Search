@@ -10,7 +10,8 @@
 				    <registryObject group="State Records Authority of New South Wales" xmlns="http://ands.org.au/standards/rif-cs/registryObjects" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects http://services.ands.org.au/documentation/rifcs/1.3/schema/registryObjects.xsd">
 						  <key>${baseURL}/series/${serie.id}</key>
 						  <originatingSource>http://www.records.nsw.gov.au</originatingSource>
-						  <collection type="collection">
+						  <fmt:formatDate var="dateModified" value="${serie.lastAmendmentDate}" pattern="YYYY-MM-dd" />
+						  <collection type="collection" dateModified="${dateModified}">
 						    <identifier type="uri">${baseURL}/series/${serie.id}</identifier>
 						    <name>
 						      <namePart type="full">${fn:escapeXml(serie.title)}</namePart>

@@ -1,5 +1,5 @@
 
-<registryObjects xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:jsp="http://java.sun.com/JSP/Page"
+<registryObjects xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:jsp="http://java.sun.com/JSP/Page"
 xmlns="http://ands.org.au/standards/rif-cs/registryObjects" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects http://services.ands.org.au/documentation/rifcs/1.3/schema/registryObjects.xsd">
 <c:forEach items="${series}" var="serie">
 	<registryObject group="State Records Authority of New South Wales"  >
@@ -8,7 +8,8 @@ xmlns="http://ands.org.au/standards/rif-cs/registryObjects" xmlns:xsi="http://ww
 		
 	  <key>${baseURL}/series/${serie.id}</key>
 	  <originatingSource>http://www.records.nsw.gov.au</originatingSource>
-	  <collection type="collection">
+	  <fmt:formatDate var="dateModified" value="${serie.lastAmendmentDate}" pattern="YYYY-MM-dd" />
+		<collection type="collection" dateModified="${dateModified}">
 	    <identifier type="uri">${baseURL}/series/${serie.id}</identifier>
 	    <name>
 	      <namePart type="full">${fn:escapeXml(serie.title)}</namePart>

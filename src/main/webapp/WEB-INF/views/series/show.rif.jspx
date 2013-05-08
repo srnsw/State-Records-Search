@@ -12,7 +12,8 @@
 	
   <key>${baseURL}/series/${serie.id}</key>
   <originatingSource>http://www.records.nsw.gov.au</originatingSource>
-  <collection type="collection">
+  <fmt:formatDate var="dateModified" value="${serie.lastAmendmentDate}" pattern="YYYY-MM-dd" />
+	<collection type="collection" dateModified="${dateModified}">
     <identifier type="uri">${baseURL}/series/${serie.id}</identifier>
     <name>
       <namePart type="full">${fn:escapeXml(serie.title)}</namePart>
