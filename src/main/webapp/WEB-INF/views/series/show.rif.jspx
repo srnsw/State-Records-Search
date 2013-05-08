@@ -12,7 +12,7 @@
 	
   <key>${baseURL}/series/${serie.id}</key>
   <originatingSource>http://www.records.nsw.gov.au</originatingSource>
-  <collection type="repository">
+  <collection type="collection">
     <identifier type="uri">${baseURL}/series/${serie.id}</identifier>
     <name>
       <namePart type="full">${fn:escapeXml(serie.title)}</namePart>
