@@ -46,12 +46,6 @@
 	      </temporal>
 	    </coverage>
     </c:if>
-    <relatedObject>
-      <key>${baseURL}/series/${serie.id}</key>
-      <relation type="isLocatedIn">
-        <description>${fn:escapeXml(serie.repository)}</description>
-      </relation>
-    </relatedObject>
     <c:forEach items="${serie.creatingAgencies}" var="item">
 	    <relatedObject>
 	      <key>${baseURL}/agencies/${item.relationship.id}</key>
