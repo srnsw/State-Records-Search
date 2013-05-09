@@ -105,7 +105,7 @@
 	    </coverage>
     </c:if>
     <rights>
-      <accessRights rightsUri="http://www.records.nsw.gov.au/state-archives/register-of-access-directions">The State Records Act 1998 (NSW) provides a general entitlement of public access to State records that are at least 30 years old. For a record to be available under the Act it must be subject to an 'open to public access' direction. Some records containing sensitive information may be closed for longer than 30 years under a ‘closed to public access’ direction. View access directions at : http://www.records.nsw.gov.au/state-archives/register-of-access-directions</accessRights>
+      <accessRights rightsUri="http://www.records.nsw.gov.au/state-archives/register-of-access-directions">The State Records Act 1998 (NSW) provides a general entitlement of public access to State records that are at least 30 years old. For a record to be available under the Act it must be subject to an 'open to public access' direction. Some records containing sensitive information may be closed for longer than 30 years under a ‘closed to public access’ direction. View access directions at: http://www.records.nsw.gov.au/state-archives/register-of-access-directions</accessRights>
       <rightsStatement rightsUri="http://www.records.nsw.gov.au/state-archives/guides-and-finding-aids/archives-in-brief/archives-in-brief-74"> Records held by the State Records Authority of New South Wales are covered by copyright. For information on reusing material from the collection see Archives in Brief 74 – Research and Copyright.</rightsStatement>
     </rights>
     <relatedInfo>
