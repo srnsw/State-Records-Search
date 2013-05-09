@@ -37,6 +37,17 @@ div.entity_data
  margin-bottom: 10px;
  margin-right: 10px;
  font-size: 1.1em;
+ 
+}
+
+p
+{
+	word-wrap:break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+  -ms-word-break: break-all;
+  word-break: break-all;
 }
 
 td.searchlist
