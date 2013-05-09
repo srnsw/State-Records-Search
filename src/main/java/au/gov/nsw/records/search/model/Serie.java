@@ -176,6 +176,10 @@ public class Serie implements Serializable{
   	return LocationHelper.getSimpleLocation(repository);
   }
 	
+	public String getLocationAddress(){
+		return LocationHelper.getAddress(repository);
+	}
+	
 	public int getId(){
 		return seriesNumber;
 	}
