@@ -46,7 +46,7 @@
 	    <relatedObject>
 	      <key>${baseURL}/persons/${item.relationship.id}</key>
 	      <relation type="hasCreator">
-	        <description>${person.fullName}</description>
+	        <description>${item.relationship.fullName}</description>
 	      </relation>
 	    </relatedObject>
     </c:forEach>
