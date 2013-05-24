@@ -12,6 +12,7 @@ p.collection_navigation
 text-align:center;
 }
 
+#usage{font-weight: 400; font-size: 0.9em; padding: 0; vertical-align: top; margin: 0;}
 td.searchlist {font-weight: 400; font-size: 1.1em; padding: 0; vertical-align: top; margin: 0;}
 td.entitylist {font-weight: 400; font-size: 1.1em; padding: 0; vertical-align: top; margin: 0;}
 

@@ -8,13 +8,14 @@
 	<jsp:output omit-xml-declaration="yes" />
 
 	<div id="portal-footer">
-
+   <spring:url var="root" value="/" />
 		<p class="footernote">
 			<a title="Accessibility" href="http://www.records.nsw.gov.au/resolveuid/469e777f22083fd7c8c094b28202aab6">Accessibility</a>
 			| <a title="Copyright Policy" href="http://www.records.nsw.gov.au/resolveuid/6e3ff931e4d5b1d8fed02cceba2a50b7">Copyright</a>
 			| <a title="Links to other archival organisations" href="http://www.records.nsw.gov.au/resolveuid/9f0ed51a1e7e23b40d235d1cb00ed0e5">Links to other cultural organisations</a>
 			| <a title="Privacy Policy" href="http://www.records.nsw.gov.au/resolveuid/0cdb5fb198d24ec0ef04f3a3202c9a42">Privacy</a>
 			| <a title="Sitemap" href="http://www.records.nsw.gov.au/sitemap">Sitemap</a>
+			| <a title="API Documentation" href="${root}usage">API documentation</a>
 		</p>
 		<div class="footerlinks">
 			<p>
