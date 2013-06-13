@@ -22,8 +22,8 @@
             <table:column id="c_au_gov_nsw_records_search_model_Item_seriesNumber" property="seriesNumber" z="kpAxS1cEKOfrbt2CVJN6hSnduNo="/>
             <table:column id="c_au_gov_nsw_records_search_model_Item_itemNumberOrControlSymbol" property="itemNumberOrControlSymbol" z="BHuJkq5Uf0KqOopxnEqsRo30Ibk="/>
             <table:column id="c_au_gov_nsw_records_search_model_Item_title" property="title" z="I+M5R0Hs1f5K0nWD0sklnEcVnzM="/>
-            <table:column id="c_au_gov_nsw_records_search_model_Item_descriptiveNote" property="descriptiveNote" z="tSdxG8YYITtUKOusyiLHItsRPqw="/>
             <table:column id="c_au_gov_nsw_records_search_model_Item_imagesCount" property="imagesCount" z="WABBSKS3DnyKR0u3sO7EHDoAwy0="/>
+            <table:column id="c_au_gov_nsw_records_search_model_Item_accessDirectionNumber" property="accessDirectionNumber" z="vTTZZJ7+nju+XMp3QaAGYHbNcnw="/>
         </table:table>
     </page:list>
 </div>
