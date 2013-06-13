@@ -5,5 +5,5 @@
  {"thisPage": ${page},
   "totalResults": ${count},
   "perPage": ${size}, 
-  "obj":[ <c:forEach items="${seriesitems}" var="result"> {"category": ${result.type},"title": ${fn:escapeXml(result.title)},"id": ${baseURL}${result.url},"summary": ${fn:escapeXml(result.content)}},</c:forEach>]}
+  "obj":[ <c:forEach items="${seriesitems}" var="result"> {"category": "${result.type}","title": "${fn:escapeXml(result.title)}","id": "${baseURL}${result.url}","summary": "${fn:escapeXml(result.content)}"},</c:forEach>]}
 </jsp:root>
