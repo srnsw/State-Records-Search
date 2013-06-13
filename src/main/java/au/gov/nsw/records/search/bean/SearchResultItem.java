@@ -33,6 +33,9 @@ public class SearchResultItem {
 	public String getContent() {
 		return content;
 	}
+	public String getEscapedContent(){
+		return content==null? "":content.replaceAll("\n", "\\n");
+	}
 	public String getId() {
 		return id;
 	}
