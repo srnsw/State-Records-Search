@@ -27,7 +27,7 @@ public class SimpleMediaTypeView extends AbstractView {
 		Object viewpath = model.get("view");
 		if (viewpath!=null){
 			String targetJsp = String.format("/WEB-INF/views/%s.%s.jspx", viewpath, extension);
-			logger.info("Using:" + targetJsp);
+			logger.debug("Using:" + targetJsp);
 			final JstlView view = new JstlView(targetJsp);
 			view.setApplicationContext(getApplicationContext());
 			view.render(model, request, response);
