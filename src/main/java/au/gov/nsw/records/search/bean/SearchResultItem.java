@@ -1,5 +1,8 @@
 package au.gov.nsw.records.search.bean;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 public class SearchResultItem {
 
 	private String type;
@@ -34,7 +37,7 @@ public class SearchResultItem {
 		return content;
 	}
 	public String getEscapedContent(){
-		return content==null? "":content.replaceAll("\n", "\\n");
+		return content==null? "": new Gson().toJson(content);
 	}
 	public String getId() {
 		return id;
