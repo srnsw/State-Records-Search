@@ -2,5 +2,5 @@
 {"thisPage": ${page},
  "totalResults": ${count},
  "perPage": ${size},  
- "obj":[ <c:forEach items="${seriesitems}" var="result">{"category": "${result.type}","title": "${fn:escapeXml(result.title)}","id": "${baseURL}${result.url}","summary": "${fn:escapeXml(result.escapedContent)}"}<c:set var="recNum" value="${recNum + 1}" /> <c:if test="${recNum lt count}">,</c:if></c:forEach>]}
-</jsp:root>
+ "obj":[ <c:forEach items="${seriesitems}" var="result">{"category": "${result.type}","title": "${fn:escapeXml(result.title)}","id": "${baseURL}${result.url}","summary": "${fn:escapeXml(result.escapedContent)}"}<c:set var="recNum" value="${recNum + 1}" /><c:if test="${(recNum lt count) and (recNum lt size)}">,</c:if></c:forEach>]}
+</jsp:root> 
