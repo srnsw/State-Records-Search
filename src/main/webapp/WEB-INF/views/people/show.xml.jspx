@@ -4,10 +4,10 @@
   			<biographicalNote>${fn:escapeXml(person.biographicalNote)}</biographicalNote>
   			<givenName>${fn:escapeXml(person.givenName)}</givenName>
   			<alternativeName>${fn:escapeXml(person.alternativeName)}</alternativeName>
-  			<officesHeld>${person.officesHeld}</officesHeld>
+  			<officeHeld>${person.officeHeld}</officeHeld>
   			<minister>${person.minister}</minister>
   			<birthDate>${person.birthDate}</birthDate>
   			<birthDateQualifier>${person.birthDateQualifier}</birthDateQualifier>
-  			<deathDate>${person.deathDate}</deathDateDate>
+  			<deathDate>${person.deathDate}</deathDate>
   			<deathDateQualifier>${person.deathDateQualifier}</deathDateQualifier>
 </person>
