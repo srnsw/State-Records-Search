@@ -1,0 +1,93 @@
+<jsp:root xmlns:oai="urn:jsptagdir:/WEB-INF/tags/oai"  xmlns:eaccpf="urn:jsptagdir:/WEB-INF/tags/eac_cpf" xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:spring="http://www.springframework.org/tags" xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
+
+<c:set var="requestURL" value="${pageContext.request.requestURL}" />
+<c:set var="baseURL" value="${fn:replace(requestURL, pageContext.request.requestURI, pageContext.request.contextPath)}" />
+				      
+  <oai:template>	
+		<ListRecords>
+		  <c:forEach items="${entities}" var="agency">
+		    <record>
+				   <oai:header dateStamp="${agency.lastAmendmentDate}" type="${type}" id="${agency.id}"></oai:header>		
+				  <metadata>
+				    <registryObject xmlns="http://ands.org.au/standards/rif-cs/registryObjects" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects http://services.ands.org.au/documentation/rifcs/1.3/schema/registryObjects.xsd" group="State Records Authority of New South Wales">
+							<key>${baseURL}/agencies/${agency.id}</key>
+							<originatingSource>http://www.records.nsw.gov.au</originatingSource>
+							<fmt:formatDate var="dateModified" value="${agency.lastAmendmentDate}" pattern="YYYY-MM-dd" />
+							<party dateModified="${dateModified}" type="group">
+								<identifier type="uri">${baseURL}/agencies/${agency.id}</identifier>
+								<name type="primary">
+									<namePart type="full">${fn:escapeXml(agency.title)}</namePart>
+								</name>
+								<c:forEach items="${agency.seriesCreated}" var="item">
+									<relatedObject>
+										<key>${baseURL}/series/${item.relationship.id}</key>
+										<relation type="isCreatorOf"><description>${fn:escapeXml(item.relationship.title)}</description></relation>
+									</relatedObject>
+								</c:forEach>
+								<c:forEach items="${agency.persons}" var="item">
+									<relatedObject>
+										<key>${baseURL}/persons/${item.relationship.id}</key>
+										<relation type="hasAssociationWith">
+											<description>${fn:escapeXml(item.relationship.givenName)} ${fn:escapeXml(item.relationship.surname)}</description>
+										</relation>
+									</relatedObject>
+								</c:forEach>
+								<c:forEach items="${agency.related}" var="item">
+									<relatedObject>
+										<key>${baseURL}/agencies/${item.relationship.id}</key>
+										<relation type="hasAssociationWith">
+											<description>${fn:escapeXml(item.relationship.title)}</description>
+										</relation>
+									</relatedObject>
+								</c:forEach>
+								<c:forEach items="${agency.preceding}" var="item">
+									<relatedObject>
+										<key>${baseURL}/agencies/${item.relationship.id}</key>
+										<relation type="hasAssociationWith">
+											<description>${fn:escapeXml(item.relationship.title)}</description>
+										</relation>
+									</relatedObject>
+								</c:forEach>
+								<c:forEach items="${agency.succeeding}" var="item">
+									<relatedObject>
+										<key>${baseURL}/agencies/${item.relationship.id}</key>
+										<relation type="hasAssociationWith">
+											<description>${fn:escapeXml(item.relationship.title)}</description>
+										</relation>
+									</relatedObject>
+								</c:forEach>
+								<c:forEach items="${agency.superiors}" var="item">
+									<relatedObject>
+										<key>${baseURL}/agencies/${item.relationship.id}</key>
+										<relation type="hasAssociationWith">
+											<description>${fn:escapeXml(item.relationship.title)}</description>
+										</relation>
+									</relatedObject>
+								</c:forEach>
+								<c:forEach items="${agency.subordinates}" var="item">
+									<relatedObject>
+										<key>${baseURL}/agencies/${item.relationship.id}</key>
+										<relation type="hasAssociationWith">
+											<description>${fn:escapeXml(item.relationship.title)}</description>
+										</relation>
+									</relatedObject>
+								</c:forEach>
+								<subject type="anzsrc-for">2103 HISTORICAL STUDIES</subject>
+								<description type="full">${fn:escapeXml(agency.administrativeHistoryNote)}</description>
+								<existenceDates>
+								  <fmt:formatDate var="startDate" value="${agency.startDate}" pattern="yyyy-MM-dd'T'HH:mm:ssZ" />
+									<startDate dateFormat="W3CDTF">${startDate}</startDate>
+									<fmt:formatDate var="endDate" value="${agency.endDate}" pattern="yyyy-MM-dd'T'HH:mm:ssZ" />
+									<endDate dateFormat="W3CDTF">${endDate}</endDate>
+								</existenceDates>
+								<relatedInfo><identifier type="website">${baseURL}/agencies/${agency.id}</identifier></relatedInfo>
+							</party>
+						</registryObject>
+						
+				  </metadata>
+				</record>
+		  </c:forEach>
+		  <resumptionToken completeListSize="${size}" cursor="${page-1}">${resumptionToken}</resumptionToken>
+	  </ListRecords>
+  </oai:template>
+</jsp:root>

@@ -23,6 +23,7 @@ import au.gov.nsw.records.search.bean.OaiMetadataFormat;
 import au.gov.nsw.records.search.bean.OaiSetSpec;
 import au.gov.nsw.records.search.model.Agency;
 import au.gov.nsw.records.search.model.Item;
+import au.gov.nsw.records.search.model.Person;
 import au.gov.nsw.records.search.model.Serie;
 import au.gov.nsw.records.search.service.DateHelper;
 
@@ -30,17 +31,23 @@ import au.gov.nsw.records.search.service.DateHelper;
 @Controller
 public class OaiController {
 	  
+	private final Map<String, List<String>> RENDERABLE_FORMATS = new HashMap<String, List<String>>();
 	private final Map<String, List<String>> FORMATS = new HashMap<String, List<String>>();
 	private final Map<String, List<String>> SCHEMAS = new HashMap<String, List<String>>();
 	private final List<OaiSetSpec> SETSPECS = new ArrayList<OaiSetSpec>();
 	
 	  public OaiController(){
 	  	
-	  	FORMATS.put("series", new ArrayList<String>(Arrays.asList("mods","rdf_zotero", "rif")));
+	  	FORMATS.put("series", new ArrayList<String>(Arrays.asList("rif", "mods","rdf_zotero")));
 	  	FORMATS.put("items", new ArrayList<String>(Arrays.asList("mods","rdf_zotero")));
 	  	FORMATS.put("agencies", new ArrayList<String>(Arrays.asList("oai_dc","eac_cpf")));
+	  	FORMATS.put("persons", new ArrayList<String>(Arrays.asList("rif")));
 	  	
-	  
+	  	RENDERABLE_FORMATS.put("series", new ArrayList<String>(Arrays.asList("rif")));
+	  	RENDERABLE_FORMATS.put("items", new ArrayList<String>(Arrays.asList("mods")));
+	  	RENDERABLE_FORMATS.put("agencies", new ArrayList<String>(Arrays.asList("rif", "oai_dc","eac_cpf")));
+	  	RENDERABLE_FORMATS.put("persons", new ArrayList<String>(Arrays.asList("rif")));
+
 	  	SCHEMAS.put("mods", new ArrayList<String>(Arrays.asList("Library of Congress Metadata Object Description Schema", "http://www.loc.gov/standards/mods/", 
 	  			"http://www.loc.gov/mods/v3", "http://www.loc.gov/standards/mods/mods.xsd")));
 	  	SCHEMAS.put("oai_dc", new ArrayList<String>(Arrays.asList("Dublin Core without qualification", "http://www.openarchives.org/OAI/openarchivesprotocol.html",
@@ -285,7 +292,7 @@ public class OaiController {
     }
     
     private boolean isValidFormat(String spec, String format){
-    	if (FORMATS.containsKey(spec) && SCHEMAS.get(spec)!=null && SCHEMAS.get(spec).contains(format)){
+    	if (RENDERABLE_FORMATS.containsKey(spec) && RENDERABLE_FORMATS.get(spec).get(0).equalsIgnoreCase(format)/*&& SCHEMAS.get(spec)!=null && SCHEMAS.get(spec).contains(format)*/){
     		return true;
     	}
     	return false;
@@ -340,6 +347,14 @@ public class OaiController {
     		if (!a.isEmpty()){
     			uiModel.addAttribute("entities", a);
     			uiModel.addAttribute("size", Agency.countAgencyFromLastAmendmentDate(token.fromDate, token.untilDate));
+    		}else{
+    			return false;
+    		}
+    	}else if (entityName.equals("persons")){
+    		List<Person> a =Person.findPersonFromLastAmendmentDate(token.fromDate, token.untilDate, token.getPage(), pageSize);
+    		if (!a.isEmpty()){
+    			uiModel.addAttribute("entities", a);
+    			uiModel.addAttribute("size", Person.countPersonFromLastAmendmentDate(token.fromDate, token.untilDate));
     		}else{
     			return false;
     		}

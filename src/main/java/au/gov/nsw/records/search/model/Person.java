@@ -5,11 +5,13 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.EntityManager;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.TypedQuery;
 
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
@@ -23,6 +25,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
 
 import au.gov.nsw.records.search.service.DateHelper;
+import au.gov.nsw.records.search.service.QueryHelper;
 
 @RooJavaBean
 @RooToString
@@ -148,4 +151,31 @@ public class Person{
     public String getJsonString(){
    	 return new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(this); 
     }
+    
+    public static List<au.gov.nsw.records.search.model.Person> findPersonFromLastAmendmentDate(Date from, Date until, int page, int pageSize) {
+      String additionalCondition = QueryHelper.buildAdditionalQuery(from, until);
+      
+      EntityManager em = Agency.entityManager();
+      TypedQuery<Person> q = em.createQuery("SELECT o FROM Person AS o" + additionalCondition, Person.class);
+      if (from!=null){
+      	q.setParameter("from", from);	
+      }
+      if (until!=null){
+      	q.setParameter("until", until);
+      }
+      return q.setFirstResult((page-1)*pageSize).setMaxResults(pageSize*page).getResultList();
+  }
+
+  public static long countPersonFromLastAmendmentDate(Date from, Date until) {
+  	  String additionalCondition = QueryHelper.buildAdditionalQuery(from, until);
+  	  EntityManager em = Agency.entityManager();
+  	  TypedQuery<Long> q = em.createQuery("SELECT count(o) FROM Agency o " + additionalCondition, Long.class);
+      if (from!=null){
+      	q.setParameter("from", from);	
+      }
+      if (until!=null){
+      	q.setParameter("until", until);
+      }
+      return q.getSingleResult();
+  }
 }

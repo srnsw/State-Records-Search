@@ -10,13 +10,13 @@
 				    <mods xmlns:xlink="http://www.w3.org/1999/xlink" version="3.4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.loc.gov/mods/v3" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd">
 	
 							 <titleInfo>
-							  <title>${item.title}</title>
+							  <title>${fn:escapeXml(item.title)}</title>
 							</titleInfo>
 							<typeOfResource manuscript="yes" collection="yes">mixed material</typeOfResource>
 							<genre authority="local">manuscript</genre>
 							<c:forEach items="${item.seriesNumber.creatingAgencies}" var="it">
 								<name type="personal">
-								  <namePart>${it.relationship.title}</namePart>
+								  <namePart>${fn:escapeXml(it.relationship.title)}</namePart>
 								  <role>
 								    <roleTerm type="code" authority="marcrelator">aut</roleTerm>
 								   </role>
@@ -24,8 +24,8 @@
 							</c:forEach>
 							<c:forEach items="${item.seriesNumber.persons}" var="it">
 								<name type="personal">
-								  <namePart type="family">${it.relationship.surname}</namePart>
-								  <namePart type="given">${it.relationship.givenName}</namePart>
+								  <namePart type="family">${fn:escapeXml(it.relationship.surname)}</namePart>
+								  <namePart type="given">${fn:escapeXml(it.relationship.givenName)}</namePart>
 								  <role>
 								    <roleTerm type="code" authority="marcrelator">aut</roleTerm>
 								   </role>
