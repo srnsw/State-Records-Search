@@ -74,12 +74,14 @@
 								</c:forEach>
 								<subject type="anzsrc-for">2103 HISTORICAL STUDIES</subject>
 								<description type="full">${fn:escapeXml(agency.administrativeHistoryNote)}</description>
-								<existenceDates>
-								  <fmt:formatDate var="startDate" value="${agency.startDate}" pattern="yyyy-MM-dd'T'HH:mm:ssZ" />
-									<startDate dateFormat="W3CDTF">${startDate}</startDate>
-									<fmt:formatDate var="endDate" value="${agency.endDate}" pattern="yyyy-MM-dd'T'HH:mm:ssZ" />
-									<endDate dateFormat="W3CDTF">${endDate}</endDate>
-								</existenceDates>
+								<c:if test="${(not empty agency.startDate) and (not empty agency.endDate)}">
+									<existenceDates>
+									  <fmt:formatDate var="startDate" value="${agency.startDate}" pattern="yyyy-MM-dd'T'HH:mm:ssZ" />
+										<startDate dateFormat="W3CDTF">${startDate}</startDate>
+										<fmt:formatDate var="endDate" value="${agency.endDate}" pattern="yyyy-MM-dd'T'HH:mm:ssZ" />
+										<endDate dateFormat="W3CDTF">${endDate}</endDate>
+									</existenceDates>
+								</c:if>
 								<relatedInfo><identifier type="website">${baseURL}/agencies/${agency.id}</identifier></relatedInfo>
 							</party>
 						</registryObject>

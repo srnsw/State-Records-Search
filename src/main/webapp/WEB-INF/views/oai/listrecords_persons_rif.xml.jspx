@@ -46,12 +46,14 @@
 								</c:forEach>
 								<subject type="anzsrc-for">2103 HISTORICAL STUDIES</subject>
 								<description type="full">${fn:escapeXml(person.biographicalNote)}</description>
-								<existenceDates>
-									<fmt:formatDate var="birthDate" value="${person.birthDate}" pattern="yyyy-MM-dd'T'HH:mm:ssZ" />
-									<startDate dateFormat="W3CDTF">${birthDate}</startDate>
-									<fmt:formatDate var="deathDate" value="${person.deathDate}" pattern="yyyy-MM-dd'T'HH:mm:ssZ" />
-									<endDate dateFormat="W3CDTF">${deathDate}</endDate>
-								</existenceDates>
+								<c:if test="${(not empty person.birthDate) and (not empty person.deathDate)}">
+									<existenceDates>
+										<fmt:formatDate var="birthDate" value="${person.birthDate}" pattern="yyyy-MM-dd'T'HH:mm:ssZ" />
+										<startDate dateFormat="W3CDTF">${birthDate}</startDate>
+										<fmt:formatDate var="deathDate" value="${person.deathDate}" pattern="yyyy-MM-dd'T'HH:mm:ssZ" />
+										<endDate dateFormat="W3CDTF">${deathDate}</endDate>
+									</existenceDates>
+								</c:if>
 								<relatedInfo><identifier type="website">${baseURL}/persons/${person.id}</identifier></relatedInfo>
 							</party>
 						</registryObject>
