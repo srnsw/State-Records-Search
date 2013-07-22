@@ -149,7 +149,7 @@ public class Item implements Serializable{
        if (until!=null){
        	q.setParameter("until", until);
        }
-       return q.setFirstResult((page-1)*pageSize).setMaxResults(pageSize*page).getResultList();
+       return q.setFirstResult((page-1)*pageSize).setMaxResults(pageSize).getResultList();
        
    }
    
