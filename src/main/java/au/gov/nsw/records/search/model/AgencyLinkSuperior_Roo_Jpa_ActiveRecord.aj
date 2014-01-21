@@ -14,6 +14,8 @@ privileged aspect AgencyLinkSuperior_Roo_Jpa_ActiveRecord {
     @PersistenceContext
     transient EntityManager AgencyLinkSuperior.entityManager;
     
+    public static final List<String> AgencyLinkSuperior.fieldNames4OrderClauseFilter = java.util.Arrays.asList("id", "agencyId", "superiorId", "startDate", "startDateQualifier", "endDate", "endDateQualifier");
+    
     public static final EntityManager AgencyLinkSuperior.entityManager() {
         EntityManager em = new AgencyLinkSuperior().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
@@ -28,12 +30,34 @@ privileged aspect AgencyLinkSuperior_Roo_Jpa_ActiveRecord {
         return entityManager().createQuery("SELECT o FROM AgencyLinkSuperior o", AgencyLinkSuperior.class).getResultList();
     }
     
+    public static List<AgencyLinkSuperior> AgencyLinkSuperior.findAllAgencyLinkSuperiors(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM AgencyLinkSuperior o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, AgencyLinkSuperior.class).getResultList();
+    }
+    
     public static AgencyLinkSuperior AgencyLinkSuperior.findAgencyLinkSuperior(int id) {
         return entityManager().find(AgencyLinkSuperior.class, id);
     }
     
     public static List<AgencyLinkSuperior> AgencyLinkSuperior.findAgencyLinkSuperiorEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM AgencyLinkSuperior o", AgencyLinkSuperior.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    public static List<AgencyLinkSuperior> AgencyLinkSuperior.findAgencyLinkSuperiorEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM AgencyLinkSuperior o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, AgencyLinkSuperior.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

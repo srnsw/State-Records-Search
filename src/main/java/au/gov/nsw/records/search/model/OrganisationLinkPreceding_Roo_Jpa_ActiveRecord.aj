@@ -14,6 +14,8 @@ privileged aspect OrganisationLinkPreceding_Roo_Jpa_ActiveRecord {
     @PersistenceContext
     transient EntityManager OrganisationLinkPreceding.entityManager;
     
+    public static final List<String> OrganisationLinkPreceding.fieldNames4OrderClauseFilter = java.util.Arrays.asList("id", "organisationId", "precedingId", "startDate", "startDateQualifier", "endDate", "endDateQualifier");
+    
     public static final EntityManager OrganisationLinkPreceding.entityManager() {
         EntityManager em = new OrganisationLinkPreceding().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
@@ -28,12 +30,34 @@ privileged aspect OrganisationLinkPreceding_Roo_Jpa_ActiveRecord {
         return entityManager().createQuery("SELECT o FROM OrganisationLinkPreceding o", OrganisationLinkPreceding.class).getResultList();
     }
     
+    public static List<OrganisationLinkPreceding> OrganisationLinkPreceding.findAllOrganisationLinkPrecedings(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM OrganisationLinkPreceding o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, OrganisationLinkPreceding.class).getResultList();
+    }
+    
     public static OrganisationLinkPreceding OrganisationLinkPreceding.findOrganisationLinkPreceding(int id) {
         return entityManager().find(OrganisationLinkPreceding.class, id);
     }
     
     public static List<OrganisationLinkPreceding> OrganisationLinkPreceding.findOrganisationLinkPrecedingEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM OrganisationLinkPreceding o", OrganisationLinkPreceding.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    public static List<OrganisationLinkPreceding> OrganisationLinkPreceding.findOrganisationLinkPrecedingEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM OrganisationLinkPreceding o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, OrganisationLinkPreceding.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

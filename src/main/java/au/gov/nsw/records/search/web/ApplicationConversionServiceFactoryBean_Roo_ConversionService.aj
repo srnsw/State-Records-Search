@@ -25,7 +25,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<AccessDirection, String> ApplicationConversionServiceFactoryBean.getAccessDirectionToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<au.gov.nsw.records.search.model.AccessDirection, java.lang.String>() {
             public String convert(AccessDirection accessDirection) {
-                return new StringBuilder().append(accessDirection.getScope()).append(" ").append(accessDirection.getFurtherDetails()).append(" ").append(accessDirection.getAgencyTitle()).append(" ").append(accessDirection.getTypeAccess()).toString();
+                return new StringBuilder().append(accessDirection.getScope()).append(' ').append(accessDirection.getFurtherDetails()).append(' ').append(accessDirection.getAgencyTitle()).append(' ').append(accessDirection.getTypeAccess()).toString();
             }
         };
     }
@@ -49,7 +49,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Activity, String> ApplicationConversionServiceFactoryBean.getActivityToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<au.gov.nsw.records.search.model.Activity, java.lang.String>() {
             public String convert(Activity activity) {
-                return new StringBuilder().append(activity.getAbolition()).append(" ").append(activity.getCreation()).append(" ").append(activity.getAmendments()).append(" ").append(activity.getTitle()).toString();
+                return new StringBuilder().append(activity.getAbolition()).append(' ').append(activity.getCreation()).append(' ').append(activity.getAmendments()).append(' ').append(activity.getTitle()).toString();
             }
         };
     }
@@ -65,7 +65,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Agency, String> ApplicationConversionServiceFactoryBean.getAgencyToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<au.gov.nsw.records.search.model.Agency, java.lang.String>() {
             public String convert(Agency agency) {
-                return new StringBuilder().append(agency.getTitle()).append(" ").append(agency.getCategory()).append(" ").append(agency.getCreation()).append(" ").append(agency.getAbolition()).toString();
+                return new StringBuilder().append(agency.getTitle()).append(' ').append(agency.getCategory()).append(' ').append(agency.getCreation()).append(' ').append(agency.getAbolition()).toString();
             }
         };
     }
@@ -81,7 +81,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Functionn, String> ApplicationConversionServiceFactoryBean.getFunctionnToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<au.gov.nsw.records.search.model.Functionn, java.lang.String>() {
             public String convert(Functionn functionn) {
-                return new StringBuilder().append(functionn.getTitle()).append(" ").append(functionn.getAbolition()).append(" ").append(functionn.getCreation()).append(" ").append(functionn.getDescriptiveNote()).toString();
+                return new StringBuilder().append(functionn.getTitle()).append(' ').append(functionn.getAbolition()).append(' ').append(functionn.getCreation()).append(' ').append(functionn.getDescriptiveNote()).toString();
             }
         };
     }
@@ -97,7 +97,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Item, String> ApplicationConversionServiceFactoryBean.getItemToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<au.gov.nsw.records.search.model.Item, java.lang.String>() {
             public String convert(Item item) {
-                return new StringBuilder().append(item.getAccessDirectionNumber()).append(" ").append(item.getImagesCount()).append(" ").append(item.getSeriesType()).append(" ").append(item.getItemNumberOrControlSymbol()).toString();
+                return new StringBuilder().append(item.getAccessDirectionNumber()).append(' ').append(item.getImagesCount()).append(' ').append(item.getSeriesType()).append(' ').append(item.getItemNumberOrControlSymbol()).toString();
             }
         };
     }
@@ -113,7 +113,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Ministry, String> ApplicationConversionServiceFactoryBean.getMinistryToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<au.gov.nsw.records.search.model.Ministry, java.lang.String>() {
             public String convert(Ministry ministry) {
-                return new StringBuilder().append(ministry.getTitle()).append(" ").append(ministry.getLastAmendmentDate()).append(" ").append(ministry.getRegisteredDate()).append(" ").append(ministry.getStartDate()).toString();
+                return new StringBuilder().append(ministry.getTitle()).append(' ').append(ministry.getLastAmendmentDate()).append(' ').append(ministry.getRegisteredDate()).append(' ').append(ministry.getStartDate()).toString();
             }
         };
     }
@@ -129,7 +129,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Organisation, String> ApplicationConversionServiceFactoryBean.getOrganisationToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<au.gov.nsw.records.search.model.Organisation, java.lang.String>() {
             public String convert(Organisation organisation) {
-                return new StringBuilder().append(organisation.getTitle()).append(" ").append(organisation.getCreation()).append(" ").append(organisation.getAbolition()).append(" ").append(organisation.getCoNumber()).toString();
+                return new StringBuilder().append(organisation.getTitle()).append(' ').append(organisation.getCreation()).append(' ').append(organisation.getAbolition()).append(' ').append(organisation.getCoNumber()).toString();
             }
         };
     }
@@ -145,7 +145,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Person, String> ApplicationConversionServiceFactoryBean.getPersonToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<au.gov.nsw.records.search.model.Person, java.lang.String>() {
             public String convert(Person person) {
-                return new StringBuilder().append(person.getSurname()).append(" ").append(person.getAlternativeName()).append(" ").append(person.getGivenName()).append(" ").append(person.getPrenomialHonorifics()).toString();
+                return new StringBuilder().append(person.getSurname()).append(' ').append(person.getAlternativeName()).append(' ').append(person.getGivenName()).append(' ').append(person.getPrenomialHonorifics()).toString();
             }
         };
     }
@@ -161,7 +161,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Portfolio, String> ApplicationConversionServiceFactoryBean.getPortfolioToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<au.gov.nsw.records.search.model.Portfolio, java.lang.String>() {
             public String convert(Portfolio portfolio) {
-                return new StringBuilder().append(portfolio.getTitle()).append(" ").append(portfolio.getDescriptiveNote()).append(" ").append(portfolio.getLastAmendmentDate()).append(" ").append(portfolio.getRegisteredDate()).toString();
+                return new StringBuilder().append(portfolio.getTitle()).append(' ').append(portfolio.getDescriptiveNote()).append(' ').append(portfolio.getLastAmendmentDate()).append(' ').append(portfolio.getRegisteredDate()).toString();
             }
         };
     }

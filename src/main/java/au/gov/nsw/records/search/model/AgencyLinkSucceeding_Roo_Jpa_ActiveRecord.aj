@@ -14,6 +14,8 @@ privileged aspect AgencyLinkSucceeding_Roo_Jpa_ActiveRecord {
     @PersistenceContext
     transient EntityManager AgencyLinkSucceeding.entityManager;
     
+    public static final List<String> AgencyLinkSucceeding.fieldNames4OrderClauseFilter = java.util.Arrays.asList("id", "agencyId", "succeedingId", "startDate", "startDateQualifier", "endDate", "endDateQualifier");
+    
     public static final EntityManager AgencyLinkSucceeding.entityManager() {
         EntityManager em = new AgencyLinkSucceeding().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
@@ -28,12 +30,34 @@ privileged aspect AgencyLinkSucceeding_Roo_Jpa_ActiveRecord {
         return entityManager().createQuery("SELECT o FROM AgencyLinkSucceeding o", AgencyLinkSucceeding.class).getResultList();
     }
     
+    public static List<AgencyLinkSucceeding> AgencyLinkSucceeding.findAllAgencyLinkSucceedings(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM AgencyLinkSucceeding o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, AgencyLinkSucceeding.class).getResultList();
+    }
+    
     public static AgencyLinkSucceeding AgencyLinkSucceeding.findAgencyLinkSucceeding(int id) {
         return entityManager().find(AgencyLinkSucceeding.class, id);
     }
     
     public static List<AgencyLinkSucceeding> AgencyLinkSucceeding.findAgencyLinkSucceedingEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM AgencyLinkSucceeding o", AgencyLinkSucceeding.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    public static List<AgencyLinkSucceeding> AgencyLinkSucceeding.findAgencyLinkSucceedingEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM AgencyLinkSucceeding o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, AgencyLinkSucceeding.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

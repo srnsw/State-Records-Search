@@ -14,6 +14,8 @@ privileged aspect Agency_Roo_Jpa_ActiveRecord {
     @PersistenceContext
     transient EntityManager Agency.entityManager;
     
+    public static final List<String> Agency.fieldNames4OrderClauseFilter = java.util.Arrays.asList("agencyNumber", "title", "category", "creation", "abolition", "administrativeHistoryNote", "lastAmendmentDate", "startDate", "startDateQualifier", "endDate", "endDateQualifier", "functions", "organisations", "persons", "seriesControlled", "seriesCreated", "preceding", "related", "subordinates", "succeeding", "superiors");
+    
     public static final EntityManager Agency.entityManager() {
         EntityManager em = new Agency().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
@@ -28,12 +30,34 @@ privileged aspect Agency_Roo_Jpa_ActiveRecord {
         return entityManager().createQuery("SELECT o FROM Agency o", Agency.class).getResultList();
     }
     
+    public static List<Agency> Agency.findAllAgencys(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM Agency o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, Agency.class).getResultList();
+    }
+    
     public static Agency Agency.findAgency(int agencyNumber) {
         return entityManager().find(Agency.class, agencyNumber);
     }
     
     public static List<Agency> Agency.findAgencyEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM Agency o", Agency.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    public static List<Agency> Agency.findAgencyEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM Agency o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, Agency.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

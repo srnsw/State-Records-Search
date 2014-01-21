@@ -14,6 +14,8 @@ privileged aspect PortfolioLinkAgency_Roo_Jpa_ActiveRecord {
     @PersistenceContext
     transient EntityManager PortfolioLinkAgency.entityManager;
     
+    public static final List<String> PortfolioLinkAgency.fieldNames4OrderClauseFilter = java.util.Arrays.asList("id", "portfolioId", "agencyId", "startDate", "startDateQualifier", "endDate", "endDateQualifier");
+    
     public static final EntityManager PortfolioLinkAgency.entityManager() {
         EntityManager em = new PortfolioLinkAgency().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
@@ -28,12 +30,34 @@ privileged aspect PortfolioLinkAgency_Roo_Jpa_ActiveRecord {
         return entityManager().createQuery("SELECT o FROM PortfolioLinkAgency o", PortfolioLinkAgency.class).getResultList();
     }
     
+    public static List<PortfolioLinkAgency> PortfolioLinkAgency.findAllPortfolioLinkAgencys(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM PortfolioLinkAgency o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, PortfolioLinkAgency.class).getResultList();
+    }
+    
     public static PortfolioLinkAgency PortfolioLinkAgency.findPortfolioLinkAgency(int id) {
         return entityManager().find(PortfolioLinkAgency.class, id);
     }
     
     public static List<PortfolioLinkAgency> PortfolioLinkAgency.findPortfolioLinkAgencyEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM PortfolioLinkAgency o", PortfolioLinkAgency.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    public static List<PortfolioLinkAgency> PortfolioLinkAgency.findPortfolioLinkAgencyEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM PortfolioLinkAgency o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, PortfolioLinkAgency.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

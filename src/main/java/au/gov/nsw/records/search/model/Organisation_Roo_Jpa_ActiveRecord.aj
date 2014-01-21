@@ -14,6 +14,8 @@ privileged aspect Organisation_Roo_Jpa_ActiveRecord {
     @PersistenceContext
     transient EntityManager Organisation.entityManager;
     
+    public static final List<String> Organisation.fieldNames4OrderClauseFilter = java.util.Arrays.asList("organisationNumber", "title", "creation", "abolition", "coNumber", "administrativeHistoryNote", "lastAmendmentDate", "startDate", "startDateQualifier", "endDate", "endDateQualifier", "succeeding", "preceding", "agencies");
+    
     public static final EntityManager Organisation.entityManager() {
         EntityManager em = new Organisation().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
@@ -28,12 +30,34 @@ privileged aspect Organisation_Roo_Jpa_ActiveRecord {
         return entityManager().createQuery("SELECT o FROM Organisation o", Organisation.class).getResultList();
     }
     
+    public static List<Organisation> Organisation.findAllOrganisations(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM Organisation o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, Organisation.class).getResultList();
+    }
+    
     public static Organisation Organisation.findOrganisation(int organisationNumber) {
         return entityManager().find(Organisation.class, organisationNumber);
     }
     
     public static List<Organisation> Organisation.findOrganisationEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM Organisation o", Organisation.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    public static List<Organisation> Organisation.findOrganisationEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM Organisation o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, Organisation.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

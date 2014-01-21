@@ -14,6 +14,8 @@ privileged aspect OrganisationLinkAgency_Roo_Jpa_ActiveRecord {
     @PersistenceContext
     transient EntityManager OrganisationLinkAgency.entityManager;
     
+    public static final List<String> OrganisationLinkAgency.fieldNames4OrderClauseFilter = java.util.Arrays.asList("id", "organisationId", "agencyId", "startDate", "startDateQualifier", "endDate", "endDateQualifier");
+    
     public static final EntityManager OrganisationLinkAgency.entityManager() {
         EntityManager em = new OrganisationLinkAgency().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
@@ -28,12 +30,34 @@ privileged aspect OrganisationLinkAgency_Roo_Jpa_ActiveRecord {
         return entityManager().createQuery("SELECT o FROM OrganisationLinkAgency o", OrganisationLinkAgency.class).getResultList();
     }
     
+    public static List<OrganisationLinkAgency> OrganisationLinkAgency.findAllOrganisationLinkAgencys(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM OrganisationLinkAgency o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, OrganisationLinkAgency.class).getResultList();
+    }
+    
     public static OrganisationLinkAgency OrganisationLinkAgency.findOrganisationLinkAgency(int id) {
         return entityManager().find(OrganisationLinkAgency.class, id);
     }
     
     public static List<OrganisationLinkAgency> OrganisationLinkAgency.findOrganisationLinkAgencyEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM OrganisationLinkAgency o", OrganisationLinkAgency.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    public static List<OrganisationLinkAgency> OrganisationLinkAgency.findOrganisationLinkAgencyEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM OrganisationLinkAgency o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, OrganisationLinkAgency.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

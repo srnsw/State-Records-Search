@@ -14,6 +14,8 @@ privileged aspect OrganisationLinkSucceeding_Roo_Jpa_ActiveRecord {
     @PersistenceContext
     transient EntityManager OrganisationLinkSucceeding.entityManager;
     
+    public static final List<String> OrganisationLinkSucceeding.fieldNames4OrderClauseFilter = java.util.Arrays.asList("id", "organisationId", "succeedingId", "startDate", "startDateQualifier", "endDate", "endDateQualifier");
+    
     public static final EntityManager OrganisationLinkSucceeding.entityManager() {
         EntityManager em = new OrganisationLinkSucceeding().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
@@ -28,12 +30,34 @@ privileged aspect OrganisationLinkSucceeding_Roo_Jpa_ActiveRecord {
         return entityManager().createQuery("SELECT o FROM OrganisationLinkSucceeding o", OrganisationLinkSucceeding.class).getResultList();
     }
     
+    public static List<OrganisationLinkSucceeding> OrganisationLinkSucceeding.findAllOrganisationLinkSucceedings(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM OrganisationLinkSucceeding o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, OrganisationLinkSucceeding.class).getResultList();
+    }
+    
     public static OrganisationLinkSucceeding OrganisationLinkSucceeding.findOrganisationLinkSucceeding(int id) {
         return entityManager().find(OrganisationLinkSucceeding.class, id);
     }
     
     public static List<OrganisationLinkSucceeding> OrganisationLinkSucceeding.findOrganisationLinkSucceedingEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM OrganisationLinkSucceeding o", OrganisationLinkSucceeding.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    public static List<OrganisationLinkSucceeding> OrganisationLinkSucceeding.findOrganisationLinkSucceedingEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM OrganisationLinkSucceeding o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, OrganisationLinkSucceeding.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

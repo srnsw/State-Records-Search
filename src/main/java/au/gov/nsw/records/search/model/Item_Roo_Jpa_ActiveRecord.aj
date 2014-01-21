@@ -14,6 +14,8 @@ privileged aspect Item_Roo_Jpa_ActiveRecord {
     @PersistenceContext
     transient EntityManager Item.entityManager;
     
+    public static final List<String> Item.fieldNames4OrderClauseFilter = java.util.Arrays.asList("id", "imagesCount", "seriesType", "seriesNumber", "itemNumberOrControlSymbol", "title", "descriptiveNote", "accessDirectionNumber", "availability", "lastAmendmentDate", "startDate", "endDate");
+    
     public static final EntityManager Item.entityManager() {
         EntityManager em = new Item().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
@@ -28,8 +30,30 @@ privileged aspect Item_Roo_Jpa_ActiveRecord {
         return entityManager().createQuery("SELECT o FROM Item o", Item.class).getResultList();
     }
     
+    public static List<Item> Item.findAllItems(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM Item o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, Item.class).getResultList();
+    }
+    
     public static Item Item.findItem(int id) {
         return entityManager().find(Item.class, id);
+    }
+    
+    public static List<Item> Item.findItemEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM Item o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, Item.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

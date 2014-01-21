@@ -14,6 +14,8 @@ privileged aspect PersonLinkPortfolio_Roo_Jpa_ActiveRecord {
     @PersistenceContext
     transient EntityManager PersonLinkPortfolio.entityManager;
     
+    public static final List<String> PersonLinkPortfolio.fieldNames4OrderClauseFilter = java.util.Arrays.asList("id", "personId", "portfolioId", "startDate", "startDateQualifier", "endDate", "endDateQualifier");
+    
     public static final EntityManager PersonLinkPortfolio.entityManager() {
         EntityManager em = new PersonLinkPortfolio().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
@@ -28,12 +30,34 @@ privileged aspect PersonLinkPortfolio_Roo_Jpa_ActiveRecord {
         return entityManager().createQuery("SELECT o FROM PersonLinkPortfolio o", PersonLinkPortfolio.class).getResultList();
     }
     
+    public static List<PersonLinkPortfolio> PersonLinkPortfolio.findAllPersonLinkPortfolios(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM PersonLinkPortfolio o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, PersonLinkPortfolio.class).getResultList();
+    }
+    
     public static PersonLinkPortfolio PersonLinkPortfolio.findPersonLinkPortfolio(int id) {
         return entityManager().find(PersonLinkPortfolio.class, id);
     }
     
     public static List<PersonLinkPortfolio> PersonLinkPortfolio.findPersonLinkPortfolioEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM PersonLinkPortfolio o", PersonLinkPortfolio.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    public static List<PersonLinkPortfolio> PersonLinkPortfolio.findPersonLinkPortfolioEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM PersonLinkPortfolio o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, PersonLinkPortfolio.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

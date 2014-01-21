@@ -14,6 +14,8 @@ privileged aspect PortfolioLinkSucceeding_Roo_Jpa_ActiveRecord {
     @PersistenceContext
     transient EntityManager PortfolioLinkSucceeding.entityManager;
     
+    public static final List<String> PortfolioLinkSucceeding.fieldNames4OrderClauseFilter = java.util.Arrays.asList("id", "portfolioId", "succeedingId", "startDate", "startDateQualifier", "endDate", "endDateQualifier");
+    
     public static final EntityManager PortfolioLinkSucceeding.entityManager() {
         EntityManager em = new PortfolioLinkSucceeding().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
@@ -28,12 +30,34 @@ privileged aspect PortfolioLinkSucceeding_Roo_Jpa_ActiveRecord {
         return entityManager().createQuery("SELECT o FROM PortfolioLinkSucceeding o", PortfolioLinkSucceeding.class).getResultList();
     }
     
+    public static List<PortfolioLinkSucceeding> PortfolioLinkSucceeding.findAllPortfolioLinkSucceedings(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM PortfolioLinkSucceeding o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, PortfolioLinkSucceeding.class).getResultList();
+    }
+    
     public static PortfolioLinkSucceeding PortfolioLinkSucceeding.findPortfolioLinkSucceeding(int id) {
         return entityManager().find(PortfolioLinkSucceeding.class, id);
     }
     
     public static List<PortfolioLinkSucceeding> PortfolioLinkSucceeding.findPortfolioLinkSucceedingEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM PortfolioLinkSucceeding o", PortfolioLinkSucceeding.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    public static List<PortfolioLinkSucceeding> PortfolioLinkSucceeding.findPortfolioLinkSucceedingEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM PortfolioLinkSucceeding o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, PortfolioLinkSucceeding.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

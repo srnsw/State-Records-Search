@@ -14,6 +14,8 @@ privileged aspect PersonLinkFunction_Roo_Jpa_ActiveRecord {
     @PersistenceContext
     transient EntityManager PersonLinkFunction.entityManager;
     
+    public static final List<String> PersonLinkFunction.fieldNames4OrderClauseFilter = java.util.Arrays.asList("id", "personId", "functionId", "startDate", "startDateQualifier", "endDate", "endDateQualifier");
+    
     public static final EntityManager PersonLinkFunction.entityManager() {
         EntityManager em = new PersonLinkFunction().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
@@ -28,12 +30,34 @@ privileged aspect PersonLinkFunction_Roo_Jpa_ActiveRecord {
         return entityManager().createQuery("SELECT o FROM PersonLinkFunction o", PersonLinkFunction.class).getResultList();
     }
     
+    public static List<PersonLinkFunction> PersonLinkFunction.findAllPersonLinkFunctions(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM PersonLinkFunction o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, PersonLinkFunction.class).getResultList();
+    }
+    
     public static PersonLinkFunction PersonLinkFunction.findPersonLinkFunction(int id) {
         return entityManager().find(PersonLinkFunction.class, id);
     }
     
     public static List<PersonLinkFunction> PersonLinkFunction.findPersonLinkFunctionEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM PersonLinkFunction o", PersonLinkFunction.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    public static List<PersonLinkFunction> PersonLinkFunction.findPersonLinkFunctionEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM PersonLinkFunction o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, PersonLinkFunction.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

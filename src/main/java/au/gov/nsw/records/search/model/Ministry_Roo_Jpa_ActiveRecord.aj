@@ -14,6 +14,8 @@ privileged aspect Ministry_Roo_Jpa_ActiveRecord {
     @PersistenceContext
     transient EntityManager Ministry.entityManager;
     
+    public static final List<String> Ministry.fieldNames4OrderClauseFilter = java.util.Arrays.asList("ministryNumber", "title", "lastAmendmentDate", "registeredDate", "startDate", "endDate", "portfolios");
+    
     public static final EntityManager Ministry.entityManager() {
         EntityManager em = new Ministry().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
@@ -28,12 +30,34 @@ privileged aspect Ministry_Roo_Jpa_ActiveRecord {
         return entityManager().createQuery("SELECT o FROM Ministry o", Ministry.class).getResultList();
     }
     
+    public static List<Ministry> Ministry.findAllMinistrys(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM Ministry o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, Ministry.class).getResultList();
+    }
+    
     public static Ministry Ministry.findMinistry(int ministryNumber) {
         return entityManager().find(Ministry.class, ministryNumber);
     }
     
     public static List<Ministry> Ministry.findMinistryEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM Ministry o", Ministry.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    public static List<Ministry> Ministry.findMinistryEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM Ministry o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, Ministry.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

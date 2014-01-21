@@ -14,6 +14,8 @@ privileged aspect Functionn_Roo_Jpa_ActiveRecord {
     @PersistenceContext
     transient EntityManager Functionn.entityManager;
     
+    public static final List<String> Functionn.fieldNames4OrderClauseFilter = java.util.Arrays.asList("functionNumber", "title", "abolition", "creation", "descriptiveNote", "lastAmendmentDate", "registeredDate", "startDate", "startDateQualifier", "endDate", "endDateQualifier", "activities", "agencies", "persons");
+    
     public static final EntityManager Functionn.entityManager() {
         EntityManager em = new Functionn().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
@@ -28,12 +30,34 @@ privileged aspect Functionn_Roo_Jpa_ActiveRecord {
         return entityManager().createQuery("SELECT o FROM Functionn o", Functionn.class).getResultList();
     }
     
+    public static List<Functionn> Functionn.findAllFunctionns(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM Functionn o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, Functionn.class).getResultList();
+    }
+    
     public static Functionn Functionn.findFunctionn(int functionNumber) {
         return entityManager().find(Functionn.class, functionNumber);
     }
     
     public static List<Functionn> Functionn.findFunctionnEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM Functionn o", Functionn.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    public static List<Functionn> Functionn.findFunctionnEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM Functionn o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, Functionn.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

@@ -10,10 +10,33 @@ import javax.persistence.TypedQuery;
 
 privileged aspect Agency_Roo_Finder {
     
+    public static Long Agency.countFindAgencysByStartDateLessThan(Date startDate) {
+        if (startDate == null) throw new IllegalArgumentException("The startDate argument is required");
+        EntityManager em = Agency.entityManager();
+        TypedQuery q = em.createQuery("SELECT COUNT(o) FROM Agency AS o WHERE o.startDate < :startDate", Long.class);
+        q.setParameter("startDate", startDate);
+        return ((Long) q.getSingleResult());
+    }
+    
     public static TypedQuery<Agency> Agency.findAgencysByStartDateLessThan(Date startDate) {
         if (startDate == null) throw new IllegalArgumentException("The startDate argument is required");
         EntityManager em = Agency.entityManager();
         TypedQuery<Agency> q = em.createQuery("SELECT o FROM Agency AS o WHERE o.startDate < :startDate", Agency.class);
+        q.setParameter("startDate", startDate);
+        return q;
+    }
+    
+    public static TypedQuery<Agency> Agency.findAgencysByStartDateLessThan(Date startDate, String sortFieldName, String sortOrder) {
+        if (startDate == null) throw new IllegalArgumentException("The startDate argument is required");
+        EntityManager em = Agency.entityManager();
+        String jpaQuery = "SELECT o FROM Agency AS o WHERE o.startDate < :startDate";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        TypedQuery<Agency> q = em.createQuery(jpaQuery, Agency.class);
         q.setParameter("startDate", startDate);
         return q;
     }

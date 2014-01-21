@@ -14,6 +14,8 @@ privileged aspect ActivityLinkFunction_Roo_Jpa_ActiveRecord {
     @PersistenceContext
     transient EntityManager ActivityLinkFunction.entityManager;
     
+    public static final List<String> ActivityLinkFunction.fieldNames4OrderClauseFilter = java.util.Arrays.asList("id", "activitiyId", "functionId", "startDate", "startDateQualifier", "endDate", "endDateQualifier");
+    
     public static final EntityManager ActivityLinkFunction.entityManager() {
         EntityManager em = new ActivityLinkFunction().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
@@ -28,12 +30,34 @@ privileged aspect ActivityLinkFunction_Roo_Jpa_ActiveRecord {
         return entityManager().createQuery("SELECT o FROM ActivityLinkFunction o", ActivityLinkFunction.class).getResultList();
     }
     
+    public static List<ActivityLinkFunction> ActivityLinkFunction.findAllActivityLinkFunctions(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM ActivityLinkFunction o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, ActivityLinkFunction.class).getResultList();
+    }
+    
     public static ActivityLinkFunction ActivityLinkFunction.findActivityLinkFunction(int id) {
         return entityManager().find(ActivityLinkFunction.class, id);
     }
     
     public static List<ActivityLinkFunction> ActivityLinkFunction.findActivityLinkFunctionEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM ActivityLinkFunction o", ActivityLinkFunction.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    public static List<ActivityLinkFunction> ActivityLinkFunction.findActivityLinkFunctionEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM ActivityLinkFunction o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, ActivityLinkFunction.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

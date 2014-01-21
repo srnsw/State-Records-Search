@@ -14,6 +14,8 @@ privileged aspect MinistryLinkPortfolio_Roo_Jpa_ActiveRecord {
     @PersistenceContext
     transient EntityManager MinistryLinkPortfolio.entityManager;
     
+    public static final List<String> MinistryLinkPortfolio.fieldNames4OrderClauseFilter = java.util.Arrays.asList("id", "ministryId", "portfolioId", "startDate", "startDateQualifier", "endDate", "endDateQualifier");
+    
     public static final EntityManager MinistryLinkPortfolio.entityManager() {
         EntityManager em = new MinistryLinkPortfolio().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
@@ -28,12 +30,34 @@ privileged aspect MinistryLinkPortfolio_Roo_Jpa_ActiveRecord {
         return entityManager().createQuery("SELECT o FROM MinistryLinkPortfolio o", MinistryLinkPortfolio.class).getResultList();
     }
     
+    public static List<MinistryLinkPortfolio> MinistryLinkPortfolio.findAllMinistryLinkPortfolios(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM MinistryLinkPortfolio o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, MinistryLinkPortfolio.class).getResultList();
+    }
+    
     public static MinistryLinkPortfolio MinistryLinkPortfolio.findMinistryLinkPortfolio(int id) {
         return entityManager().find(MinistryLinkPortfolio.class, id);
     }
     
     public static List<MinistryLinkPortfolio> MinistryLinkPortfolio.findMinistryLinkPortfolioEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM MinistryLinkPortfolio o", MinistryLinkPortfolio.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    public static List<MinistryLinkPortfolio> MinistryLinkPortfolio.findMinistryLinkPortfolioEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM MinistryLinkPortfolio o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, MinistryLinkPortfolio.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

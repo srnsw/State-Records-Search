@@ -14,6 +14,8 @@ privileged aspect PersonLinkMinistry_Roo_Jpa_ActiveRecord {
     @PersistenceContext
     transient EntityManager PersonLinkMinistry.entityManager;
     
+    public static final List<String> PersonLinkMinistry.fieldNames4OrderClauseFilter = java.util.Arrays.asList("id", "personId", "ministryId", "startDate", "startDateQualifier", "endDate", "endDateQualifier");
+    
     public static final EntityManager PersonLinkMinistry.entityManager() {
         EntityManager em = new PersonLinkMinistry().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
@@ -28,12 +30,34 @@ privileged aspect PersonLinkMinistry_Roo_Jpa_ActiveRecord {
         return entityManager().createQuery("SELECT o FROM PersonLinkMinistry o", PersonLinkMinistry.class).getResultList();
     }
     
+    public static List<PersonLinkMinistry> PersonLinkMinistry.findAllPersonLinkMinistrys(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM PersonLinkMinistry o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, PersonLinkMinistry.class).getResultList();
+    }
+    
     public static PersonLinkMinistry PersonLinkMinistry.findPersonLinkMinistry(int id) {
         return entityManager().find(PersonLinkMinistry.class, id);
     }
     
     public static List<PersonLinkMinistry> PersonLinkMinistry.findPersonLinkMinistryEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM PersonLinkMinistry o", PersonLinkMinistry.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    public static List<PersonLinkMinistry> PersonLinkMinistry.findPersonLinkMinistryEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM PersonLinkMinistry o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, PersonLinkMinistry.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

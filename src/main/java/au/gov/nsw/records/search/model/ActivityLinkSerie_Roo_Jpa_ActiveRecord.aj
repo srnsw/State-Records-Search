@@ -14,6 +14,8 @@ privileged aspect ActivityLinkSerie_Roo_Jpa_ActiveRecord {
     @PersistenceContext
     transient EntityManager ActivityLinkSerie.entityManager;
     
+    public static final List<String> ActivityLinkSerie.fieldNames4OrderClauseFilter = java.util.Arrays.asList("id", "activitiyId", "seriesId", "startDate", "startDateQualifier", "endDate", "endDateQualifier");
+    
     public static final EntityManager ActivityLinkSerie.entityManager() {
         EntityManager em = new ActivityLinkSerie().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
@@ -28,12 +30,34 @@ privileged aspect ActivityLinkSerie_Roo_Jpa_ActiveRecord {
         return entityManager().createQuery("SELECT o FROM ActivityLinkSerie o", ActivityLinkSerie.class).getResultList();
     }
     
+    public static List<ActivityLinkSerie> ActivityLinkSerie.findAllActivityLinkSeries(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM ActivityLinkSerie o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, ActivityLinkSerie.class).getResultList();
+    }
+    
     public static ActivityLinkSerie ActivityLinkSerie.findActivityLinkSerie(int id) {
         return entityManager().find(ActivityLinkSerie.class, id);
     }
     
     public static List<ActivityLinkSerie> ActivityLinkSerie.findActivityLinkSerieEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM ActivityLinkSerie o", ActivityLinkSerie.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    public static List<ActivityLinkSerie> ActivityLinkSerie.findActivityLinkSerieEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM ActivityLinkSerie o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, ActivityLinkSerie.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

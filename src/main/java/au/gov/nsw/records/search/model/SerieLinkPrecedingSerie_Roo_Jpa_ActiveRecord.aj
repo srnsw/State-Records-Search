@@ -14,6 +14,8 @@ privileged aspect SerieLinkPrecedingSerie_Roo_Jpa_ActiveRecord {
     @PersistenceContext
     transient EntityManager SerieLinkPrecedingSerie.entityManager;
     
+    public static final List<String> SerieLinkPrecedingSerie.fieldNames4OrderClauseFilter = java.util.Arrays.asList("id", "serieId", "precedingId", "startDate", "startDateQualifier", "endDate", "endDateQualifier");
+    
     public static final EntityManager SerieLinkPrecedingSerie.entityManager() {
         EntityManager em = new SerieLinkPrecedingSerie().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
@@ -28,12 +30,34 @@ privileged aspect SerieLinkPrecedingSerie_Roo_Jpa_ActiveRecord {
         return entityManager().createQuery("SELECT o FROM SerieLinkPrecedingSerie o", SerieLinkPrecedingSerie.class).getResultList();
     }
     
+    public static List<SerieLinkPrecedingSerie> SerieLinkPrecedingSerie.findAllSerieLinkPrecedingSeries(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM SerieLinkPrecedingSerie o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, SerieLinkPrecedingSerie.class).getResultList();
+    }
+    
     public static SerieLinkPrecedingSerie SerieLinkPrecedingSerie.findSerieLinkPrecedingSerie(int id) {
         return entityManager().find(SerieLinkPrecedingSerie.class, id);
     }
     
     public static List<SerieLinkPrecedingSerie> SerieLinkPrecedingSerie.findSerieLinkPrecedingSerieEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM SerieLinkPrecedingSerie o", SerieLinkPrecedingSerie.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    public static List<SerieLinkPrecedingSerie> SerieLinkPrecedingSerie.findSerieLinkPrecedingSerieEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM SerieLinkPrecedingSerie o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, SerieLinkPrecedingSerie.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

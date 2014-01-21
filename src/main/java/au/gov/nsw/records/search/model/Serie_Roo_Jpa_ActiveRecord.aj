@@ -14,6 +14,8 @@ privileged aspect Serie_Roo_Jpa_ActiveRecord {
     @PersistenceContext
     transient EntityManager Serie.entityManager;
     
+    public static final List<String> Serie.fieldNames4OrderClauseFilter = java.util.Arrays.asList("seriesNumber", "title", "descriptiveNote", "format", "arrangement", "copies", "seriesControlStatus", "accessNote", "repository", "bridgingAids", "lastAmendmentDate", "startDate", "startDateQualifier", "endDate", "endDateQualifier", "contentStartDate", "contentStartDateQualifier", "contentEndDate", "contentEndDateQualifier", "items", "activities", "controllingAgencies", "creatingAgencies", "persons", "precedingSeries", "succeedingSeries", "relatedSeries", "controllingSeries", "controlledSeries");
+    
     public static final EntityManager Serie.entityManager() {
         EntityManager em = new Serie().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
@@ -28,12 +30,34 @@ privileged aspect Serie_Roo_Jpa_ActiveRecord {
         return entityManager().createQuery("SELECT o FROM Serie o", Serie.class).getResultList();
     }
     
+    public static List<Serie> Serie.findAllSeries(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM Serie o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, Serie.class).getResultList();
+    }
+    
     public static Serie Serie.findSerie(int seriesNumber) {
         return entityManager().find(Serie.class, seriesNumber);
     }
     
     public static List<Serie> Serie.findSerieEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM Serie o", Serie.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    public static List<Serie> Serie.findSerieEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM Serie o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, Serie.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

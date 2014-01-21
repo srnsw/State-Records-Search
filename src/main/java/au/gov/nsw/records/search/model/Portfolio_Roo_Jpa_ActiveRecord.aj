@@ -14,6 +14,8 @@ privileged aspect Portfolio_Roo_Jpa_ActiveRecord {
     @PersistenceContext
     transient EntityManager Portfolio.entityManager;
     
+    public static final List<String> Portfolio.fieldNames4OrderClauseFilter = java.util.Arrays.asList("portfolioNumber", "title", "descriptiveNote", "lastAmendmentDate", "registeredDate", "startDate", "startDateQualifier", "endDate", "endDateQualifier", "ministries", "persons", "agencies", "preceding", "succeeding");
+    
     public static final EntityManager Portfolio.entityManager() {
         EntityManager em = new Portfolio().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
@@ -28,12 +30,34 @@ privileged aspect Portfolio_Roo_Jpa_ActiveRecord {
         return entityManager().createQuery("SELECT o FROM Portfolio o", Portfolio.class).getResultList();
     }
     
+    public static List<Portfolio> Portfolio.findAllPortfolios(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM Portfolio o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, Portfolio.class).getResultList();
+    }
+    
     public static Portfolio Portfolio.findPortfolio(int portfolioNumber) {
         return entityManager().find(Portfolio.class, portfolioNumber);
     }
     
     public static List<Portfolio> Portfolio.findPortfolioEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM Portfolio o", Portfolio.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    public static List<Portfolio> Portfolio.findPortfolioEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM Portfolio o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, Portfolio.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional
