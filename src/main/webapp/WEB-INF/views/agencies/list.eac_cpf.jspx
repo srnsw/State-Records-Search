@@ -1,6 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jsp:root  xmlns:eaccpf="urn:jsptagdir:/WEB-INF/tags/eac_cpf" xmlns:jsp="http://java.sun.com/JSP/Page"
+           xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+           xmlns:c="http://java.sun.com/jsp/jstl/core"
+        xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" version="2.0">
 
-<eac_cpf_set xmlns:jsp="http://java.sun.com/jsp/jstl/jsp" xmlns:eaccpf="urn:jsptagdir:/WEB-INF/tags/eac_cpf" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
+<eac_cpf_set  xmlns:eaccpf="urn:jsptagdir:/WEB-INF/tags/eac_cpf" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
 <page_details>
   <totalResults>${count}</totalResults>
   <startIndex>${size*(page-1)}</startIndex>
@@ -37,9 +40,24 @@
 	  <identity>
 	    <entityId>${baseURL}/agencies/${agency.id}</entityId>
 	    <entityType>corporateBody</entityType>
-	    <nameEntry>
-	      <part>${agency.title}</part>
-	    </nameEntry>
+          <c:forEach var="name" items="${agency.names}">
+              <nameEntry>
+                  <part>${name.name}</part>
+                  <c:if test="${name.startYear != null || name.endYear != null}">
+                      <useDates>
+                          <dateRange>
+                              <c:if test="${name.startYear != null}">
+                                  <fromDate standardDate="${name.startYear}">${name.startYear}</fromDate>
+                              </c:if>
+                              <c:if test="${name.endYear != null}">
+                                  <toDate standardDate="${name.endYear}">${name.endYear}</toDate>
+                              </c:if>
+                          </dateRange>
+                      </useDates>
+                  </c:if>
+
+              </nameEntry>
+          </c:forEach>
 	  </identity>
 	  <description>
 	    
@@ -112,4 +130,4 @@
 	</eac-cpf>
 	</c:forEach>
 </eac_cpf_set>
-
+</jsp:root>

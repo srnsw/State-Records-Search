@@ -21,5 +21,4 @@ public class RelationshipResultItem {
 	public String getType() {
 		return type;
 	}
-	
 }

@@ -4,22 +4,18 @@ import au.gov.nsw.records.search.service.DateHelper;
 import au.gov.nsw.records.search.service.QueryHelper;
 import au.gov.nsw.records.search.service.StringService;
 
-import java.awt.font.TextHitInfo;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.EntityManager;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.TypedQuery;
+import java.util.*;
+import java.util.regex.*;
+import javax.persistence.*;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.lucene.document.*;
 import org.apache.lucene.document.Document;
-import org.apache.lucene.document.Field;
 import org.apache.lucene.facet.index.CategoryDocumentBuilder;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
@@ -124,6 +120,116 @@ public class Agency{
     public String getHistoryEacFormat(){
     	return StringService.formatEacCpf(administrativeHistoryNote);
     }
+
+    public class AgencyName{
+        private String name;
+        private Long startYear =null, endYear = null;
+        public AgencyName(String name){
+            this.name = StringUtils.strip(name);
+        }
+
+        public AgencyName(String name, Long startYear, Long endYear){
+            this.name = StringUtils.strip(name);
+            this.endYear = endYear;
+            this.startYear = startYear;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public Long getStartYear() {
+            return startYear;
+        }
+
+        public Long getEndYear() {
+            return endYear;
+        }
+
+        public void setEndYear(Long endYear) {
+            this.endYear = endYear;
+        }
+
+        public void setStartYear(Long startYear) {
+            this.startYear = startYear;
+        }
+
+        @Override
+        public String toString() {
+            return String.format("%s (%d - %d)", name, startYear, endYear);
+        }
+    };
+
+    public List<Object> getNames(){
+        AgencyName name;
+        List<Object> names = new ArrayList<Object>();
+        Pattern p = Pattern.compile("((([\\w\\\\t \\.,'\"’‒–—―\\-;+]+)(\\([0-9]+\\))?(\\([^0-9]+\\))?(\\(No [\\d]+\\))?([\\w\\\\t \\.,'’‒–—―\\-;+]+)?(\\t?\\[[IVXMDC0-9]+\\])?([\\w\\\\t \\.,'\"’‒–—―\\-;+]+)?)((\\t? ?\\([/\\w\\t .,?‒–—―\\-;+]+\\)\\s?)+)?(-[ \\w]+)?(\\s)?(\\t? ?\\[[\\w\\\\t \\.,'’‒–—―\\-;+]+\\])?((\\t? ?\\([/\\w\\t .,?‒–—―\\-;+]+\\)\\s?)+)?,?)");
+        Matcher matcher =p.matcher(title);
+        while (matcher.find()){
+
+            name= new AgencyName(matcher.group().replaceAll("\\([cby./?\\d ‒–—―\\-]+\\)", ""));
+
+
+            Pattern datePattern = Pattern.compile("\\([cby./?\\d‒–—―\\-\\ ]+\\)");
+
+            Matcher dateMatcher = datePattern.matcher(matcher.group());
+            while (dateMatcher.find()){
+                Matcher yearMatcher = Pattern.compile("\\d{4}").matcher(dateMatcher.group());
+                List<String> years =new ArrayList<String>();
+                while (yearMatcher.find()) years.add(yearMatcher.group());
+
+                if(years.size()  == 2){
+                    name.setStartYear(Long.parseLong(years.get(0)));
+                    name.setEndYear(Long.parseLong(years.get(1)));
+                    break;
+                }
+                else if(years.size()  == 1 && !dateMatcher.group().matches(".*[‒–—―\\-].*")){
+                    name.setStartYear(Long.parseLong(years.get(0)));
+                    name.setEndYear(Long.parseLong(years.get(0)));
+                    break;
+                }
+
+                yearMatcher = Pattern.compile("\\d{4}(?=([ ]+)?-([ ]+)?)").matcher(dateMatcher.group());
+                years =new ArrayList<String>();
+                while (yearMatcher.find())years.add(yearMatcher.group());
+
+                if(years.size()  == 1){
+                    name.setStartYear(Long.parseLong(years.get(0)));
+                    break;
+                }
+
+                yearMatcher = Pattern.compile("\\d{4}(?=(?:[ ?]+)?\\))").matcher(dateMatcher.group());
+                years =new ArrayList<String>();
+                while (yearMatcher.find())years.add(yearMatcher.group());
+
+                if(years.size()  == 1){
+                    name.setStartYear(Long.parseLong(years.get(0)));
+                    break;
+                }
+            }
+
+
+            names.add(name);
+        }
+
+        if(names.size()==1 && this.startDate !=null){
+            name = (AgencyName)names.get(0);
+            names.remove(name);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(this.startDate);
+            name.setStartYear((long)calendar.get(Calendar.YEAR));
+            names.add(name);
+        }
+        if(names.size()==1 && this.endDate !=null){
+            name = (AgencyName)names.get(0);
+            names.remove(name);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(this.endDate);
+            name.setEndYear((long) calendar.get(Calendar.YEAR));
+            names.add(name);
+        }
+        return names;
+    }
     
     public static List<org.apache.lucene.document.Document> getIndexData(List<au.gov.nsw.records.search.model.Agency> agencies, CategoryDocumentBuilder builder) {
         List<Document> agenciesIndex = new ArrayList<Document>();
@@ -170,6 +276,9 @@ public class Agency{
     }
     
     public String getJsonString(){
-   	 return new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(this); 
+        JsonElement jsonElement = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJsonTree(this);
+        JsonElement jsonElementList = new GsonBuilder().create().toJsonTree(this.getNames());
+        jsonElement.getAsJsonObject().add("names", jsonElementList);
+        return jsonElement.toString();
     }
 }
