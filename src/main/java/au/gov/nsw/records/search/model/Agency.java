@@ -274,6 +274,12 @@ public class Agency{
         }
         return q.getSingleResult();
     }
+
+    public static List<Agency> findOpenAgencies(int firstResult, int sizeNo) {
+        EntityManager em = Agency.entityManager();
+        TypedQuery<Agency> q = em.createQuery("SELECT o FROM Agency as o where o.endDate = null", Agency.class);
+        return q.setFirstResult(firstResult).setMaxResults(sizeNo).getResultList();
+    }
     
     public String getJsonString(){
         JsonElement jsonElement = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJsonTree(this);
