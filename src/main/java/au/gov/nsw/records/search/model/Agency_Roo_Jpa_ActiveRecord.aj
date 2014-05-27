@@ -23,8 +23,8 @@ privileged aspect Agency_Roo_Jpa_ActiveRecord {
     }
     
     public static long Agency.countAgencys() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM Agency o", Long.class).getSingleResult();
-    }
+    return entityManager().createQuery("SELECT COUNT(o) FROM Agency o", Long.class).getSingleResult();
+}
     
     public static List<Agency> Agency.findAllAgencys() {
         return entityManager().createQuery("SELECT o FROM Agency o", Agency.class).getResultList();

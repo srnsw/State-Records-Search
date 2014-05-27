@@ -275,12 +275,47 @@ public class Agency{
         return q.getSingleResult();
     }
 
+
+
+    public static List<Agency> findAgencies(int firstResult, int maxResults, Date ammendedSince) {
+        EntityManager em = Agency.entityManager();
+            TypedQuery<Agency> q = em.createQuery("SELECT o FROM Agency as o where o.lastAmendmentDate >= :date", Agency.class);
+            q.setParameter("date",ammendedSince, TemporalType.DATE);
+            return q.setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+
+    public static List<Agency> findOpenAgencies(int firstResult, int sizeNo, Date ammendedSince) {
+        EntityManager em = Agency.entityManager();
+            TypedQuery<Agency> q = em.createQuery("SELECT o FROM Agency as o where o.endDate = null and o.lastAmendmentDate >= :date", Agency.class);
+            q.setParameter("date",ammendedSince, TemporalType.DATE);
+            return q.setFirstResult(firstResult).setMaxResults(sizeNo).getResultList();
+    }
+
     public static List<Agency> findOpenAgencies(int firstResult, int sizeNo) {
         EntityManager em = Agency.entityManager();
         TypedQuery<Agency> q = em.createQuery("SELECT o FROM Agency as o where o.endDate = null", Agency.class);
         return q.setFirstResult(firstResult).setMaxResults(sizeNo).getResultList();
     }
-    
+
+    public static Long countOpenAgencies() {
+        EntityManager em = Agency.entityManager();
+        TypedQuery<Long> q = em.createQuery("SELECT COUNT(o) FROM Agency as o where o.endDate = null", Long.class);
+        return q.getSingleResult();
+    }
+
+    public static Long countOpenAgencies(Date ammendedSince) {
+        EntityManager em = Agency.entityManager();
+        TypedQuery<Long> q = em.createQuery("SELECT COUNT(o) FROM Agency as o where o.endDate = null and o.lastAmendmentDate >= :date", Long.class);
+        q.setParameter("date",ammendedSince, TemporalType.DATE);
+        return q.getSingleResult();
+    }
+    public static Long countAgencys(Date ammendedSince) {
+        EntityManager em = Agency.entityManager();
+        TypedQuery<Long> q = em.createQuery("SELECT COUNT(o) FROM Agency as o where o.lastAmendmentDate >= :date", Long.class);
+        q.setParameter("date",ammendedSince, TemporalType.DATE);
+        return q.getSingleResult();
+    }
+
     public String getJsonString(){
         JsonElement jsonElement = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJsonTree(this);
         JsonElement jsonElementList = new GsonBuilder().create().toJsonTree(this.getNames());
