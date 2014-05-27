@@ -1,13 +1,18 @@
-<jsp:root xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" xmlns:eaccpf="urn:jsptagdir:/WEB-INF/tags/eac_cpf" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:spring="http://www.springframework.org/tags" xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
-	<eac-cpf xmlns="urn:isbn:1-931666-33-4" xmlns:xlink="http://www.w3.org/1999/xlink"	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"	xsi:schemaLocation="urn:isbn:1-931666-33-4 http://eac.staatsbibliothek-berlin.de/schema/cpf.xsd">
-	
+<jsp:root  xmlns:eaccpf="urn:jsptagdir:/WEB-INF/tags/eac_cpf" xmlns:jsp="http://java.sun.com/JSP/Page"
+           xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+           xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
+	<eac-cpf xmlns="urn:isbn:1-931666-33-4"
+             xmlns:xlink="http://www.w3.org/1999/xlink"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="urn:isbn:1-931666-33-4 http://eac.staatsbibliothek-berlin.de/schema/cpf.xsd">
+
 	 <c:set var="requestURL" value="${pageContext.request.requestURL}" />
 	 <c:set var="baseURL" value="${fn:replace(requestURL, pageContext.request.requestURI, pageContext.request.contextPath)}" />
 		<c:if test="${not empty entity}">
 			<c:set var="agency" value="${entity}"></c:set>
 			<jsp:output omit-xml-declaration="yes"/>
 		</c:if>
-		
+
 	<control>
 	  <recordId>agencies:${agency.id}.eac_cpf</recordId>
 	  <maintenanceStatus>new</maintenanceStatus>
@@ -32,18 +37,32 @@
 	  <identity>
 	    <entityId>${baseURL}/agencies/${agency.id}</entityId>
 	    <entityType>corporateBody</entityType>
-	    <nameEntry>
-	      <part>${agency.title}</part>
-	    </nameEntry>
+          <c:forEach var="name" items="${agency.names}">
+              <nameEntry>
+                  <part>${name.name}</part>
+                  <c:if test="${name.startYear != null || name.endYear != null}">
+                    <useDates>
+                       <dateRange>
+                            <c:if test="${name.startYear != null}">
+                                <fromDate standardDate="${name.startYear}">${name.startYear}</fromDate>
+                            </c:if>
+                            <c:if test="${name.endYear != null}">
+                                <toDate standardDate="${name.endYear}">${name.endYear}</toDate>
+                            </c:if>
+                        </dateRange>
+                    </useDates>
+                  </c:if>
+              </nameEntry>
+          </c:forEach>
 	  </identity>
 	  <description>
-	    
+
 	    <c:if test="${not empty agency.startDate or not empty agency.endDate}">
 		    <existDates>
 		    	<eaccpf:date startDate="${agency.startDate}" endDate="${agency.endDate}"></eaccpf:date>
 		    </existDates>
 	    </c:if>
-	    
+
 	    <c:if test="${not empty agency.creation or not empty agency.abolition}">
 		    <mandates>
 		      <c:if test="${not empty agency.creation}">

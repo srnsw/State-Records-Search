@@ -1,5 +1,10 @@
 package au.gov.nsw.records.search.web;
 
+import au.gov.nsw.records.search.model.Agency;
+import au.gov.nsw.records.search.model.Functionn;
+import au.gov.nsw.records.search.model.Organisation;
+import au.gov.nsw.records.search.model.Serie;
+import au.gov.nsw.records.search.service.ControllerUtils;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,33 +12,64 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import au.gov.nsw.records.search.model.Activity;
-import au.gov.nsw.records.search.model.Agency;
-import au.gov.nsw.records.search.model.Functionn;
-import au.gov.nsw.records.search.model.Organisation;
-import au.gov.nsw.records.search.model.Serie;
-import au.gov.nsw.records.search.service.ControllerUtils;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @RequestMapping("/agencies")
 @Controller
 @RooWebScaffold(path = "agencies", formBackingObject = Agency.class, update=false, create=false, delete=false)
 public class AgencyController {
-	
-	@RequestMapping(produces = "text/html")
-    public String list(@RequestParam(value = "page", required = false, defaultValue="1") Integer page, @RequestParam(value = "size", required = false, defaultValue="30") Integer size, Model uiModel) {
+
+    @RequestMapping(produces = "text/html")
+    public String list(
+            @RequestParam(value = "page", required = false, defaultValue="1") Integer page,
+            @RequestParam(value = "size", required = false, defaultValue="30") Integer size,
+            @RequestParam(value = "showOpenOnly", required = false, defaultValue="false") Boolean showOpenOnly,
+            @RequestParam(value = "since", required = false, defaultValue = "") String since,
+            Model uiModel
+    ) {
+        long agencyCount = 0;
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("agencys", Agency.findAgencyEntries(firstResult, sizeNo));
-            float nrOfPages = (float) Agency.countAgencys() / sizeNo;
+
+            if(since.isEmpty()|| since == null){
+                if(showOpenOnly) {
+                    uiModel.addAttribute("agencys",Agency.findOpenAgencies(firstResult, sizeNo));
+                    agencyCount = Agency.countOpenAgencies();
+
+                }
+                else {
+                    uiModel.addAttribute("agencys",Agency.findAgencyEntries(firstResult, sizeNo));
+                    agencyCount = Agency.countAgencys();
+                }
+            }
+            else{
+                Date sinceDate = new Date(0);
+                try {sinceDate= new SimpleDateFormat("yyyyMMdd").parse(since);} catch (ParseException ignored) {}
+
+                if(showOpenOnly) {
+                    uiModel.addAttribute("agencys",Agency.findOpenAgencies(firstResult, sizeNo, sinceDate));
+                    agencyCount = Agency.countOpenAgencies(sinceDate);
+                }
+                else {
+                    uiModel.addAttribute("agencys",  Agency.findAgencies(firstResult, sizeNo,sinceDate));
+                    agencyCount = Agency.countAgencys(sinceDate);
+                }
+            }
+
+            float nrOfPages = (float) agencyCount/ sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
+
             uiModel.addAttribute("page", page);
             uiModel.addAttribute("size", size);
         } else {
             uiModel.addAttribute("agencys", Agency.countAgencys());
         }
+        uiModel.addAttribute("count", agencyCount);
         uiModel.addAttribute("view", "agencies/list");
-        uiModel.addAttribute("count", Activity.countActivitys());
+
         addDateTimeFormatPatterns(uiModel);
         return "agencies/list";
     }

@@ -8,3 +8,4 @@
 Search.iml
 .idea/
 src/main/resources/META-INF/spring/database.properties
+atlassian-ide-plugin.xml

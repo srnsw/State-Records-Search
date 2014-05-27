@@ -5,20 +5,20 @@
   <spring:theme code="styleSheet" var="roo_css" />
   <spring:url value="/${roo_css}" var="roo_css_url" />
   <spring:url value="/resources/dojo/dojo.js" var="dojo_url" />
-  
-  <spring:url value="/resources/styles/da.css" var="digital_archive_css_url" />
   <spring:url value="/resources/styles/print.css" var="digital_archive_print_css_url" />
+  <spring:url value="/resources/styles/da.css" var="digital_archive_css_url" />
   <spring:url value="/resources/spring/Spring.js" var="spring_url" />
   <spring:url value="/resources/spring/Spring-Dojo.js" var="spring_dojo_url" />
   <spring:url value="/resources/images/nsw-gov-crest.gif" var="favicon" />
   <link rel="stylesheet" type="text/css" href="${tundra_url}" />
-  <link rel="stylesheet" type="text/css" href="${digital_archive_css_url}" />
   <link rel="stylesheet" type="text/css" href="${digital_archive_print_css_url}" />
   <link rel="stylesheet" type="text/css" media="screen" href="${roo_css_url}" />
+  <link rel="stylesheet" type="text/css" href="${digital_archive_css_url}" />
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
   <link rel="SHORTCUT ICON" href="${favicon}" />
 
-  <!-- Get the user local from the page context (it was set by Spring MVC's locale resolver) -->
+
+    <!-- Get the user local from the page context (it was set by Spring MVC's locale resolver) -->
   <c:set var="userLocale">
     <c:set var="plocale">${pageContext.response.locale}</c:set>
     <c:out value="${fn:replace(plocale, '_', '-')}" default="en" />

@@ -1,3 +1,17 @@
+*{-webkit-font-smoothing: antialiased;}
+
+@media screen{
+
+    #portal-footer {font-size: 80%;}
+    input, textarea {
+        font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 110%;
+        border-color: black;
+        background-image: none;
+        border-radius: 1.5pt;
+    }
+
+}
 
 span.alignleft{
  float: left;
