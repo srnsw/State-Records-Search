@@ -48,39 +48,45 @@ import java.util.Properties;
 public class LuceneService {
 
     private static final String INDEX_LOC_PROPERTY = "indexlocation";
-    private static final String TEXO_LOC_PROPERTY = "taxolocation";
+    private static final String TAXONOMY_LOC_PROPERTY = "taxolocation";
     private static final String INDEX_CRON_PROPERTY = "cron";
     private static final Logger log = Logger.getLogger(LuceneService.class);
     private static IndexWriter writer;
-    private static TaxonomyWriter taxo;
+    private static TaxonomyWriter taxonomyWriter;
     private static ClassPathResource cpr = new ClassPathResource("META-INF/spring/lucene.properties");
     private static ConcurrentTaskScheduler scheduler = new ConcurrentTaskScheduler();
     private static boolean isIndexing = false;
     private static Directory dir;
 
+
     public LuceneService() throws IOException {
         Properties prop = new Properties();
         prop.load(new FileInputStream(cpr.getFile()));
-        FileUtils.deleteDirectory(new File(prop.getProperty(INDEX_LOC_PROPERTY)));
-        FileUtils.deleteDirectory(new File(prop.getProperty(TEXO_LOC_PROPERTY)));
+        try {
+            FSDirectory.open(new File(prop.getProperty(INDEX_LOC_PROPERTY)));
+            FSDirectory.open(new File(prop.getProperty(TAXONOMY_LOC_PROPERTY)));
+        } catch (IOException e) {
+            FileUtils.deleteDirectory(new File(prop.getProperty(INDEX_LOC_PROPERTY)));
+            FileUtils.deleteDirectory(new File(prop.getProperty(TAXONOMY_LOC_PROPERTY)));
+        }
 
         scheduler.schedule(new Runnable() {
-            @Override
-            public void run() {
-                log.info("CronTask");
-                startIndex();
-            }
-        }, new CronTrigger(prop.getProperty(INDEX_CRON_PROPERTY)));
+                               @Override
+                               public void run() {
+                                   log.info("CronTask");
+                                   startIndex();
+                               }
+                           },
+                new CronTrigger(prop.getProperty(INDEX_CRON_PROPERTY))
+        );
 
         new Thread() {
             @Override
             public void run() {
                 log.info("Init Task");
-               startIndex();
+                startIndex();
             }
         }.start();
-
-
     }
 
     public void startIndex() {
@@ -88,7 +94,6 @@ public class LuceneService {
             log.info("Indexing started");
             try {
                 isIndexing = true;
-
 
                 CategoryDocumentBuilder builder = startWriting();
 
@@ -132,7 +137,6 @@ public class LuceneService {
                     System.gc();
                 }
 
-
                 log.info("Indexing finished");
             } catch (CorruptIndexException e) {
                 log.error("Indexing error", e);
@@ -165,7 +169,7 @@ public class LuceneService {
         IndexWriterConfig iwc = new IndexWriterConfig(Version.LUCENE_36, analyzer);
         // Create a new index in the directory, removing any
         // previously indexed documents:
-        iwc.setOpenMode(OpenMode.CREATE);
+        iwc.setOpenMode(OpenMode.CREATE_OR_APPEND);
 
         // Optional: for better indexing performance, if you
         // are indexing many documents, increase the RAM
@@ -175,20 +179,20 @@ public class LuceneService {
 
         writer = new IndexWriter(dir, iwc);
 
-        Directory taxoDir = FSDirectory.open(new File(prop.getProperty(TEXO_LOC_PROPERTY)));
+        Directory taxonomyDir = FSDirectory.open(new File(prop.getProperty(TAXONOMY_LOC_PROPERTY)));
 
-        taxo = new DirectoryTaxonomyWriter(taxoDir, OpenMode.CREATE);
+        taxonomyWriter = new DirectoryTaxonomyWriter(taxonomyDir, OpenMode.CREATE_OR_APPEND);
 
-        return new CategoryDocumentBuilder(taxo);
+        return new CategoryDocumentBuilder(taxonomyWriter);
     }
 
     public void commit() throws CorruptIndexException, IOException {
-        taxo.commit();
+        taxonomyWriter.commit();
         writer.commit();
     }
 
     public void finishWriting() throws CorruptIndexException, IOException {
-        taxo.close();
+        taxonomyWriter.close();
         writer.close();
     }
 
@@ -215,7 +219,7 @@ public class LuceneService {
             IndexSearcher searcher = new IndexSearcher(indexReader);
             Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_36);
 
-            Directory taxoDir = FSDirectory.open(new File(prop.getProperty(TEXO_LOC_PROPERTY)));
+            Directory taxoDir = FSDirectory.open(new File(prop.getProperty(TAXONOMY_LOC_PROPERTY)));
             TaxonomyReader taxoReader = new DirectoryTaxonomyReader(taxoDir);
             FacetsCollector facetsCollector = new FacetsCollector(facets, indexReader, taxoReader);
 
@@ -264,7 +268,7 @@ public class LuceneService {
         String classQuery = "";
         // multi-entity search
         boolean first = true;
-        ;
+
         for (Class<?> clazz : params.getClazz()) {
             if (first) {
                 first = false;

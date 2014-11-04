@@ -30,7 +30,8 @@
 				<td class="searchlist">
 				  <div class="what">
 				  	<h4>Direct links</h4>
-	    			<search:list results="${hotlinks}"></search:list>
+	    			<search:list results="${hotlinks}">
+	    			</search:list>
 	    		</div>
 	    	</td>
 	    </table>
@@ -39,9 +40,11 @@
       <h4>${entities}</h4>
     	<table>
 				<td class="searchlist" width="20%">
-					<search:list results="${customsearch}"></search:list>
+					<search:list results="${customsearch}">
+					</search:list>
 					<c:if test="${customsearch_count gt 1}">
-						<util:pagination showPageSizeSelection="false" page="${page}" pageParam="page" size="${size}" sizeParam="size" maxPages="${customsearch_count}"></util:pagination>
+						<util:pagination showPageSizeSelection="false" page="${page}" pageParam="page" size="${size}" sizeParam="size" maxPages="${customsearch_count}">
+						</util:pagination>
 					</c:if>
 				</td>
 			</table>
@@ -49,29 +52,44 @@
     <c:if test="${empty entities}">
       <table>
 			<td class="searchlist" width="20%">
-				  <search:facet facets="${facets}" location="${location}" series="${series}" baseURL="/search"></search:facet>
+				  <search:facet facets="${facets}" location="${location}"  series="${series}" baseURL="/search">
+				  </search:facet>
 				</td>
 				<td class="searchlist" width="50%">
+
+
 					<div class="what">
 						<h4>Record series and items</h4>
-						<search:list results="${seriesitems}"></search:list>
+						<search:list results="${seriesitems}">
+						</search:list>
 						<c:if test="${seriesitems_count gt 1}">
-							<util:pagination showPageSizeSelection="false" page="${page}" pageParam="page" size="${size}" sizeParam="size" maxPages="${seriesitems_count}"></util:pagination>
+							<util:pagination
+									showPageSizeSelection="false"
+									page="${page}"
+									pageParam="page"
+									size="${size}"
+									sizeParam="size"
+									maxPages="${seriesitems_count}">
+							</util:pagination>
 						</c:if>
 					</div>
 				</td>
 				<td class="searchlist" width="30%">
 					<div class="why_who">
 						<h4>Functions and activities</h4>
-						<search:list results="${activitiesfunctions}"></search:list>
+						<search:list results="${activitiesfunctions}">
+						</search:list>
 						<c:if test="${activitiesfunctions_count gt 1}">
-							<util:pagination showPageSizeSelection="false" page="${fpage}" pageParam="fpage" size="${fsize}" sizeParam="fsize" maxPages="${activitiesfunctions_count}"></util:pagination>
+							<util:pagination showPageSizeSelection="false" page="${fpage}" pageParam="fpage" size="${fsize}" sizeParam="fsize" maxPages="${activitiesfunctions_count}">
+							</util:pagination>
 						</c:if>
 	
 						<h4>Agencies and people</h4>
-						<search:list results="${agenciespeoples}"></search:list>
+						<search:list results="${agenciespeoples}">
+						</search:list>
 						<c:if test="${agenciespeoples_count gt 1}">
-							<util:pagination showPageSizeSelection="false" page="${apage}" pageParam="apage" size="${asize}" sizeParam="asize" maxPages="${agenciespeoples_count}"></util:pagination>
+							<util:pagination showPageSizeSelection="false" page="${apage}" pageParam="apage" size="${asize}" sizeParam="asize" maxPages="${agenciespeoples_count}">
+							</util:pagination>
 						</c:if>
 					</div>
 				</td>

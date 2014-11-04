@@ -11,26 +11,22 @@
   <jsp:directive.attribute name="showPageSizeSelection" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Allow page size selection" />
   <jsp:directive.attribute name="browseLink" type="java.lang.String" required="false" rtexprvalue="true" description="Extra browse link" />
   <c:if test="${(empty render or render) and (maxPages gt 1)}">
-		
+
     <c:if test="${empty page || page lt 1}">
       <c:set var="page" value="1" />
     </c:if>
-
     <c:if test="${empty size || size lt 1}">
       <c:set var="size" value="10" />
     </c:if>
-
-		<c:if test="${empty pageParam}">
+	<c:if test="${empty pageParam}">
       <c:set var="pageParam" value="page" />
     </c:if>
-    
     <c:if test="${empty sizeParam}">
       <c:set var="sizeParam" value="size" />
-    </c:if>		
-		<c:if test="${not empty itemCount || itemCount gt 0}">
+    </c:if>
+	<c:if test="${not empty itemCount || itemCount gt 0}">
 			<c:set var="maxPages" value="${itemCount/size}" />
 		</c:if>
-		
     <p class="collection_navigation">
 		<c:if test="${showPageSizeSelection}">
     	<spring:message code="list_size" var="list_size" htmlEscape="false" />
@@ -59,7 +55,7 @@
       </spring:url>
       <spring:url value="/resources/images/resultset_first.png" var="first_image_url" />
       <spring:message code="list_first" var="first_label" htmlEscape="false" />
-      <a class="image" href="${first}${nonPageParams}" title="${fn:escapeXml(first_label)}">
+      <a class="image" href="${fn:escapeXml(first)}${fn:escapeXml(nonPageParams)}" title="${fn:escapeXml(first_label)}">
         <img alt="${fn:escapeXml(first_label)}" src="${first_image_url}" />
       </a>
     </c:if>
@@ -70,7 +66,7 @@
       </spring:url>
       <spring:url value="/resources/images/resultset_previous.png" var="previous_image_url" />
       <spring:message code="list_previous" var="previous_label" htmlEscape="false" />
-      <a class="image" href="${previous}${nonPageParams}" title="${fn:escapeXml(previous_label)}">
+      <a class="image" href="${fn:escapeXml(previous)}${fn:escapeXml(nonPageParams)}" title="${fn:escapeXml(previous_label)}">
         <img alt="${fn:escapeXml(previous_label)}" src="${previous_image_url}" />
       </a>
     </c:if>
@@ -84,7 +80,7 @@
       </spring:url>
       <spring:url value="/resources/images/resultset_next.png" var="next_image_url" />
       <spring:message code="list_next" var="next_label" htmlEscape="false" />
-      <a class="image" href="${next}${nonPageParams}" title="${fn:escapeXml(next_label)}">
+      <a class="image" href="${fn:escapeXml(next)}${fn:escapeXml(nonPageParams)}" title="${fn:escapeXml(next_label)}">
         <img alt="${fn:escapeXml(next_label)}" src="${next_image_url}" />
       </a>
     </c:if>
@@ -95,7 +91,7 @@
       </spring:url>
       <spring:url value="/resources/images/resultset_last.png" var="last_image_url" />
       <spring:message code="list_last" var="last_label" htmlEscape="false" />
-      <a class="image" href="${last}${nonPageParams}" title="${fn:escapeXml(last_label)}">
+      <a class="image" href="${fn:escapeXml(last)}${fn:escapeXml(nonPageParams)}" title="${fn:escapeXml(last_label)}">
         <img alt="${fn:escapeXml(last_label)}" src="${last_image_url}" />
       </a>
     </c:if>
