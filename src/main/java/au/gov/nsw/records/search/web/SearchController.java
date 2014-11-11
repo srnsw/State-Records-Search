@@ -98,10 +98,14 @@ public class SearchController {
             if (searchClass.size() > 0) {
                 Class<?>[] clazzParams = new Class<?>[searchClass.size()];
                 searchClass.toArray(clazzParams);
-                SearchResult customSearch = lucene.search(params.setQuery(queryText).setFacetParams(facetParams).setPage(fpage).setSize(pageSize).setClazz(clazzParams));
+                SearchResult customSearch = lucene.search(params.setQuery(queryText).setFacetParams(facetParams).setPage(page).setSize(pageSize).setClazz(clazzParams));
 
                 model.addAttribute("customsearch", customSearch.getResults());
-                model.addAttribute("customsearch_count", Math.ceil(customSearch.getResultCount() / Double.valueOf(pageSize)));
+                model.addAttribute("customsearch_total", customSearch.getResultCount());
+                model.addAttribute(
+                        "customsearch_count",
+                        (int)(Math.ceil(customSearch.getResultCount() / Double.valueOf(pageSize)))
+                );
             }
 
         } else {

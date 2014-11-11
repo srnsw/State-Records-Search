@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<feed xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:spring="http://www.springframework.org/tags" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" 
-xmnls="http://www.w3.org/2005/Atom" xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:srnsw-custom="http//www.records.nsw.gov.au/StateRecordsNSWOpenSearchExtensions" > 
+<feed xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form"
+      xmlns:spring="http://www.springframework.org/tags" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields"
+      xmlns:util="urn:jsptagdir:/WEB-INF/tags/util"
+      xmnls="http://www.w3.org/2005/Atom" xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/"
+      xmlns:srnsw-custom="http//www.records.nsw.gov.au/StateRecordsNSWOpenSearchExtensions"
+      xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
    <c:set var="requestURL" value="${pageContext.request.requestURL}" />
 	 <c:set var="baseURL" value="${fn:replace(requestURL, pageContext.request.requestURI, pageContext.request.contextPath)}" />
 		   	
@@ -11,7 +16,7 @@ xmnls="http://www.w3.org/2005/Atom" xmlns:opensearch="http://a9.com/-/spec/opens
 		<id>${baseURL}</id>
 		<updated>2012-10-28T12:00:00Z</updated>
 		
-		<opensearch:totalResults>${count}</opensearch:totalResults>
+		<opensearch:totalResults>${count+customsearch_total}</opensearch:totalResults>
 		<opensearch:startIndex>${(page-1)*size}</opensearch:startIndex>
 		<opensearch:itemsPerPage>${size}</opensearch:itemsPerPage>
 		<opensearch:Query role="request" searchTerms="${q}" />
@@ -25,7 +30,7 @@ xmnls="http://www.w3.org/2005/Atom" xmlns:opensearch="http://a9.com/-/spec/opens
    </c:if>
 
 		<link rel="search" type="application/opensearchdescription+xml" href="${baseURL}/opensearch.xml"/>
-		<c:forEach items="${seriesitems}" var="result">
+		<c:forEach items="${customsearch}" var="result">
 			<entry>
 			  <category term="${result.type}"/>
 			  <title>${fn:escapeXml(result.title)}</title>
@@ -35,4 +40,14 @@ xmnls="http://www.w3.org/2005/Atom" xmlns:opensearch="http://a9.com/-/spec/opens
 			  <updated>${updated}</updated>
 			</entry>
 		</c:forEach>
+    <c:forEach items="${seriesitems}" var="result">
+        <entry>
+            <category term="${result.type}"/>
+            <title>${fn:escapeXml(result.title)}</title>
+            <link href="${baseURL}${result.url}"/>
+            <id>${baseURL}${result.url}</id>
+            <summary type="html">${fn:escapeXml(result.content)}</summary>
+            <updated>${updated}</updated>
+        </entry>
+    </c:forEach>
 </feed>
